@@ -1,10 +1,10 @@
 import React from "react";
-import './homepage.scss'
+import "./homepage.scss";
 
 const Homepage = () => (
-    <div>
-
-    </div>
+  <div>
+    <h1>Welcome</h1>
+  </div>
 );
 
 export default Homepage;
