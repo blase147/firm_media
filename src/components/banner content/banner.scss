@@ -2,46 +2,65 @@
   color: #fcfbfb;
   position: relative;
   top: 0px;
+//   display: block;
+//   width: auto;
+  margin: auto; /* Center the image horizontally */
+  max-width: 100%; /* Ensure the image does not exceed its container's width */
 
+  #banner_image {
+    display: block; /* Ensure the image behaves as a block element */
+    max-width: 100%; /* Ensure the image does not exceed its container's width */
+    height: auto; /* Maintain the image's aspect ratio */
+    margin: auto; /* Center the image horizontally */
+  }
   #social_icons_container {
     position: absolute;
     top: 35%;
-    left: 5%;
+    left: -7%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2em;
-    font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    // font-weight: bold;
+    // font-family: "Roboto", sans-serif;
   }
   #banner_text {
-    // background-color: rgb(12, 81, 230);
     position: absolute;
     top: 50%;
     left: 40%;
     transform: translate(-50%, -50%);
     text-align: left;
-    font-size: 2em;
-    font-weight: bold;
-    font-family: "Roboto", sans-serif;
-  }
-  button {
-    border: solid 1px #fdb90c;
-    position: absolute;
-    top: 90%;
-    left: 10%;
-    color: #fdb90c;
-    background-color: transparent;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 300px;
-    // height: 80px;
+
+    #banner_text h5 {
+      font-size: 1.5em; /* Set font size for h5 */
+    }
+
+    #banner_text h1 {
+      font-size: 3em; /* Set font size for h1 */
+    }
+
+    #banner_text p {
+      font-size: 1em; /* Set font size for paragraphs */
+    }
+    button {
+      border: solid 1px #fdb90c;
+      position: absolute;
+      top: 90%;
+      left: -3;
+      color: #fdb90c;
+      background-color: transparent;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 300px;
+      margin: 50px 0px;
+      // height: 80px;
+    }
   }
 }

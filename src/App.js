@@ -5,10 +5,10 @@ import Homepage from './components/homepage/homepage';
 
 const App = () => (
   <Router>
-  <Routes>
-    <Route path="/" element={<Homepage />} />
-  </Routes>
-</Router>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+    </Routes>
+  </Router>
 );
 
 export default App;

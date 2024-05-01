@@ -1,5 +1,5 @@
-import React from "react";
-import "./partners.scss";
+import React from 'react';
+import './partners.scss';
 
 const Partners = () => (
   <div>
