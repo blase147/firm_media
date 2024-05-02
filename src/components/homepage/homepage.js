@@ -26,7 +26,6 @@ const Homepage = () => (
       <About />
       <OurRecord />
       <OurServices />
-      <Newsletter />
       <WhyChooseUs />
       <Partners />
       <PortfolioVideos />
@@ -34,6 +33,7 @@ const Homepage = () => (
       <Testimonials />
       <HireUs />
       <BlogUpdate />
+      <Newsletter />
       <FooterBody />
     </div>
   </div>
