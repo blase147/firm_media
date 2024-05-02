@@ -1,0 +1,27 @@
+#our_record {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: #474242;
+  padding: 50px 0;
+
+  .our_record_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    // background-color: red;
+
+    & h1 {
+      padding: 0;
+      margin: 0;
+      font-size: 4em;
+      color: gold;
+    }
+    & p {
+      padding: 0;
+      margin: 0;
+      font-size: 1.5em;
+    }
+  }
+}

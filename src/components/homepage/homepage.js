@@ -19,7 +19,10 @@ const Homepage = () => (
   <div id="homepage_container">
     <div>
       <Nav />
-      <Banner />
+      <div>
+        <Banner />
+      </div>
+      {' '}
       <About />
       <OurRecord />
       <OurServices />
