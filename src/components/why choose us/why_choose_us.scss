@@ -1,5 +1,63 @@
 #why_choose_us {
-    #why_choose_us_text {
-        width: 40%;
+  display: flex;
+  gap: 60px;
+  width: 75%;
+  margin: auto;
+
+  #why_choose_us_text {
+    width: 40%;
+
+    & h5 {
+      margin: 0;
+      font-size: 1.5em;
+      color: rgb(250, 185, 7);
+      span {
+        color: white;
+        margin-right: 10px;
+      }
     }
+
+    & h1 {
+      color: rgb(250, 185, 7);
+      font-size: 3.5em;
+      padding: 0;
+      margin: 0;
+    }
+
+    & p {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: 1.2em;
+    }
+  }
+
+  #why_choose_us_card_container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 60%;
+
+    #why_choose_us_card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40%;
+      border: 1px solid #f0f0f0;
+      padding: 20px 20px 0px 20px;
+      text-align: center;
+      img {
+        width: 50px;
+        margin-bottom: 10px;
+      }
+      & h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-wrap: wrap;
+      }
+    }
+  }
 }
