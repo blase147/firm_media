@@ -1,36 +1,39 @@
 #port_vid {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    position: relative;margin-bottom: 100px;
-  
-    #port_vid_text {
-      text-align: center; 
-      z-index: 5000;
-      position: absolute;
-      width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 100px;
 
-      & h1 {
-        font-size: 4em;
-        color: gold;
-      }
-  
-      button {
-        width: 200px;
-        padding: 20px;
-        background-color: transparent;
-        border: 1px solid gold;
-        color: gold;
-        margin-top: 30px;
-        cursor: pointer;
+  #port_vid_text {
+    text-align: center;
+    z-index: 5000;
+    position: absolute;
+    width: 50%;
+
+    & h1 {
+      font-size: 4em;
+      color: gold;
+    }
+
+    button {
+      width: 200px;
+      padding: 20px;
+      background-color: transparent;
+      border: 1px solid gold;
+      color: gold;
+      margin-top: 30px;
+      cursor: pointer;
+      &:hover {
+        color: rgb(255, 255, 255);
+        background-color: gold;
       }
     }
-  
-    video {
-      width: 100%;
-      height: 650px;
-    }
-    
   }
-  
+
+  video {
+    width: 100%;
+    height: 650px;
+  }
+}

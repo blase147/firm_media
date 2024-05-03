@@ -1,6 +1,6 @@
 #banner_cont {
-    background-color: blue;
-    margin-bottom: 100px;
+  background-color: blue;
+  margin-bottom: 100px;
   #banner {
     color: #fcfbfb;
     //   padding: 20px;
@@ -8,10 +8,10 @@
     // height: 100%;
 
     // .responsive_image {
-    //   display: block; 
+    //   display: block;
     //   width: 100%;
     //   height: 100%;
-    //   margin: auto; 
+    //   margin: auto;
     // }
     #social_icons_container {
       position: absolute;
@@ -32,11 +32,11 @@
       text-align: left;
       width: 60%;
       & h5 {
-        font-size: 2.0em; /* Set font size for h5 */
+        font-size: 2em; /* Set font size for h5 */
         background-color: green($color: #000000);
         margin-bottom: 20px;
         padding-top: 0;
-}
+      }
 
       & h1 {
         font-size: 4.5em; /* Set font size for h1 */
@@ -49,20 +49,18 @@
       }
       button {
         border: solid 1px #fdb90c;
-        position: absolute;
-        top: 90%;
-        left: -3;
         color: #fdb90c;
         background-color: transparent;
-        padding: 15px 32px;
-        text-align: center;
         text-decoration: none;
-        display: inline-block;
         font-size: 1em;
         font-weight: bold;
         cursor: pointer;
         width: 170px;
-        margin: 50px 0px;
+        padding: 10px;
+        &:hover {
+          color: rgb(255, 255, 255);
+          background-color: gold;
+        }
       }
     }
   }

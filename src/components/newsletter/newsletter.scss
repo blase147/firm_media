@@ -34,11 +34,15 @@
     button {
       width: 160px;
       padding: 12px;
-      background-color: gold;
+      background-color: rgb(190, 166, 27);
       color: rgb(255, 255, 255);
       font-weight: bolder;
       cursor: pointer;
       font-size: 1em;
-    }
+      &:hover {
+        color: rgb(255, 255, 255);
+        background-color: gold;
+      }
+}
   }
 }

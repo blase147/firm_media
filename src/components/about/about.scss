@@ -66,6 +66,10 @@
       cursor: pointer;
       width: 180px;
       margin: 20px 0px;
+      &:hover {
+        color: rgb(255, 255, 255);
+        background-color: gold;
+      }
     }
   }
 }

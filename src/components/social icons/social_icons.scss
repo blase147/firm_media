@@ -7,14 +7,18 @@
   width: 50px;
   right: -20px;
 
-  a {
-    margin: 0 10px;
-    color: #000;
-    font-size: 20px;
-    transition: all 0.3s;
+  img {
     &:hover {
-      color: #007bff;
       cursor: pointer;
+      color: rgb(255, 255, 255);
+      transform: scale(1.2);
+    }
+
+    a {
+      margin: 0 10px;
+      color: #000;
+      font-size: 20px;
+      transition: all 0.3s;
     }
   }
 }
