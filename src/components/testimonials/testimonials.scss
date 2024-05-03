@@ -6,8 +6,12 @@
   padding-top: 100px;
   #testimonials_text {
     width: 40%;
+    padding-top: 0;
+    margin-top: 0;
     & h5 {
       font-size: 1.5em;
+      padding-top: 0;
+      margin-top: 0;
       span {
         color: gold;
         margin-right: 10px;
@@ -23,15 +27,16 @@
   #testimonial_card_container {
     display: flex;
     justify-content: space-between;
-    width: 55%;
+    width: 58%;
     .testimonial_card {
       background-color: rgb(56, 60, 71);
-      width: 39%;
-      height: auto;
-      padding: 40px;
+      width: 42%;
+      //   height: 30vh;
+      padding: 30px;
+      margin-bottom: 0;
 
       > p {
-        font-size: 1.3em;
+        font-size: 1.1em;
       }
       .testimonial_image_byline {
         display: flex;
