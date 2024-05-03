@@ -28,6 +28,7 @@
       font-size: 1em;
       font-weight: 900;
       margin-top: 20px;
+      cursor: pointer;
     }
   }
   #blog_content {
@@ -64,13 +65,12 @@
           // width: 10%;
           height: 2vh;
           margin-top: 20px;
-
         }
         p {
           font-size: 1em;
           padding-bottom: 0;
           margin-bottom: 0;
-}
+        }
       }
       h1 {
         font-size: 2em;

@@ -12,19 +12,19 @@ const Nav = () => (
           <a href="/">Home</a>
         </li>
         <li>
-          <a href="/about">About</a>
+          <a href="#about">About</a>
         </li>
         <li>
-          <a href="/services">Services</a>
+          <a href="#our_services">Services</a>
         </li>
         <li>
-          <a href="/blog">Blog</a>
+          <a href="#blog_update">Blog</a>
         </li>
         <li>
-          <a href="/portfolio">Portfolio</a>
+          <a href="#gallery">Portfolio</a>
         </li>
         <li>
-          <a href="/youtube">YOUTUBE</a>
+          <a href="https://www.youtube.com">YOUTUBE</a>
         </li>
       </ul>
     </nav>
