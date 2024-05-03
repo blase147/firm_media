@@ -1,0 +1,35 @@
+#port_vid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+  
+    #port_vid_text {
+      text-align: center; 
+      z-index: 5000;
+      position: absolute;
+      width: 50%;
+
+      & h1 {
+        font-size: 4em;
+        color: gold;
+      }
+  
+      button {
+        width: 200px;
+        padding: 20px;
+        background-color: transparent;
+        border: 1px solid gold;
+        color: gold;
+        margin-top: 30px;
+      }
+    }
+  
+    video {
+      width: 100%;
+      height: 650px;
+    }
+    
+  }
+  
