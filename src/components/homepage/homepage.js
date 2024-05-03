@@ -5,7 +5,6 @@ import Banner from '../banner content/banner';
 import About from '../about/about';
 import OurRecord from '../our record/our_record';
 import OurServices from '../our services/our_services';
-import Newsletter from '../newsletter/newsletter';
 import WhyChooseUs from '../why choose us/why_choose_us';
 import Partners from '../partners/partners';
 import PortfolioVideos from '../portfolio videos/portfolio_videos';
@@ -33,7 +32,6 @@ const Homepage = () => (
       <Testimonials />
       <HireUs />
       <BlogUpdate />
-      <Newsletter />
       <FooterBody />
     </div>
   </div>

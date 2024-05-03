@@ -1,0 +1,37 @@
+#footer_body {
+  position: relative;
+  .footer_body_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    // background-color: rgb(128, 126, 0);
+    #newsletter {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      //   background-color: green;
+      width: 75%;
+      margin: auto;
+      padding: 0;
+      position: relative;
+      top: -50px;
+    }
+    #footer1 {
+      display: flex;
+      justify-content: space-between;
+    //   background-color: red;
+      width: 75%;
+      margin: auto;
+      padding-top: 0;
+    }
+
+    #copyright {
+      width: 75%;
+      margin: auto;
+    }
+  }
+  .footer1_item {
+    width: 33%;
+  }
+}

@@ -1,0 +1,51 @@
+#hire_us_container {
+  #hire_us {
+    display: flex;
+    flex-direction: column;
+    #hire_us_text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 75%;
+      margin: auto;
+      z-index: 5000;
+      h5,
+      h1,
+      p,
+      button {
+        width: 75%;
+      }
+      h5 {
+        font-size: 1.5em;
+        padding: 0;
+        margin-top: 50px;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        span {
+          color: gold;
+          margin-right: 10px;
+        }
+      }
+      h1 {
+        font-size: 3.5em;
+        color: gold;
+        padding: 0;
+        margin: 0;
+      }
+      p {
+        font-size: 1.3em;
+      }
+      button {
+        border: 1px solid gold;
+        background-color: transparent;
+        padding: 15px;
+        color: gold;
+        width: 200px;
+        font-size: 1em;
+        font-weight: 900;
+        margin-top: 20px;
+      }
+    }
+  }
+}
