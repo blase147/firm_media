@@ -1,6 +1,5 @@
 import React from 'react';
 import './homepage.scss';
-import Nav from '../nav/nav';
 import Banner from '../banner content/banner';
 import About from '../about/about';
 import OurRecord from '../our record/our_record';
@@ -17,7 +16,6 @@ import FooterBody from '../footer body/footer_body';
 const Homepage = () => (
   <div id="homepage_container">
     <div>
-      <Nav />
       <div>
         <Banner />
       </div>

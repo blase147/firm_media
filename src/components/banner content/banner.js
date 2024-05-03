@@ -2,6 +2,7 @@ import React from 'react';
 import './banner.scss';
 import homepageBanner from '../images/jpeg/homepage_banner.jpg';
 import SocialIcons from '../social icons/social_icons';
+import Nav from '../nav/nav';
 
 const Banner = () => {
   const bannerStyle = {
@@ -14,7 +15,7 @@ const Banner = () => {
     <div id="banner_cont">
       <div id="banner" style={bannerStyle}>
         <div>
-          {/* <img className="responsive_image" src={homepageBanner} alt="banner" /> */}
+          <Nav id="nav" />
         </div>
         <div className="banner_text">
           <div id="social_icons_container">
