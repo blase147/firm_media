@@ -1,5 +1,6 @@
 import React from 'react';
 import './nav.scss';
+import { Link } from 'react-router-dom';
 
 const Nav = () => (
   <div id="nav_container">
@@ -15,7 +16,7 @@ const Nav = () => (
           <a href="#about">About</a>
         </li>
         <li>
-          <a href="#our_services">Services</a>
+          <Link to="/ourServicesDetails">Services</Link>
         </li>
         <li>
           <a href="#blog_update">Blog</a>

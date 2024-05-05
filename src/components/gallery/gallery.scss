@@ -58,3 +58,16 @@
     }
   }
 }
+#gallerySliderContainer {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.sliding-gallery-container .slick-slide {
+  display: flex !important; /* Ensure the slides take up full width */
+}
+
+.gallery-image {
+  width: 400px; /* Ensure the image takes up full width of the slide */
+  height: 400px; /* Ensure the image takes up full height of the slide */
+  object-fit: cover; /* Ensure the image fills the container while maintaining aspect ratio */
+}
