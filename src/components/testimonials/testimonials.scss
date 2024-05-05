@@ -1,64 +1,109 @@
 #testimonials {
   display: flex;
   justify-content: space-between;
+  // gap: 40px;
   width: 75%;
   margin: auto;
   padding-top: 100px;
   padding-bottom: 100px;
+
   #testimonials_text {
-    width: 40%;
+    width: 50%;
     padding-top: 0;
     margin-top: 0;
-    & h5 {
+
+    h5 {
       font-size: 1.5em;
       padding-top: 0;
       margin-top: 0;
+
       span {
         color: gold;
         margin-right: 10px;
       }
     }
-    & h1 {
+
+    h1 {
       font-size: 3.5em;
       color: gold;
     }
-    & p {
+
+    p {
     }
   }
+
   #testimonial_card_container {
-    display: flex;
-    justify-content: space-between;
-    width: 58%;
-    .testimonial_card {
-      background-color: rgb(56, 60, 71);
-      width: 42%;
-      //   height: 30vh;
-      padding: 30px;
-      margin-bottom: 0;
+    width: 55%;
 
-      > p {
-        font-size: 1.1em;
-      }
-      .testimonial_image_byline {
+    .slider {
+      margin-left: 50px;
+      .testimonial_card {
         display: flex;
-        justify-content: first baseline;
-        gap: 20px;
-        margin-top: 50px;
+        flex-direction: column;
+        background-color: rgb(56, 60, 71);
+        max-width: 90%;
+        padding: 10px;
 
-        img {
-          border-radius: 50px;
+        > p {
+          font-size: 1em;
         }
-        .testimonial_byline {
-          h4 {
-            padding: 0;
-            margin: 0;
+
+        .testimonial_image_byline {
+          display: flex;
+          justify-content: flex-start;
+          gap: 20px;
+          margin-top: 50px;
+
+          img {
+            border-radius: 50px;
           }
-          p {
-            padding: 0;
-            margin: 5px 0px;
+
+          .testimonial_byline {
+            h4 {
+              padding: 0;
+              margin: 0;
+            }
+
+            p {
+              padding: 0;
+              margin: 5px 0px;
+            }
           }
         }
       }
+    }
+  }
+  
+  // Add styles to make the dots visible
+  .slick-dots {
+    display: block !important; /* Ensure dots are displayed */
+    list-style: none;
+    text-align: center;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 10px;
+      height: 10px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      margin-top: 150px;
+    }
+
+    .slick-active button {
+      background-color: gold;
     }
   }
 }

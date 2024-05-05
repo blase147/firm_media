@@ -8,7 +8,7 @@ const SlidingGallery = ({ images }) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 10000,
     slidesToShow: images.length,
     slidesToScroll: 1,
     autoplay: true,
