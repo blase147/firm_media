@@ -32,7 +32,7 @@ const HireUs = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
-          <button type="button">Book Now</button>
+          <button className="button" type="button">Book Now</button>
         </div>
       </div>
     </div>

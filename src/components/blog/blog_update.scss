@@ -1,3 +1,5 @@
+@import '../scss/config';
+
 #blog_update {
   width: 75%;
   margin: auto;
@@ -20,19 +22,19 @@
       color: gold;
     }
     button {
-      border: 1px solid gold;
-      background-color: transparent;
-      height: 55px;
-      color: gold;
-      width: 200px;
-      font-size: 1em;
-      font-weight: 900;
-      margin-top: 20px;
-      cursor: pointer;
-      &:hover {
-        color: rgb(255, 255, 255);
-        background-color: gold;
-      }
+      // border: 1px solid gold;
+      // background-color: transparent;
+      // height: 55px;
+      // color: gold;
+      // width: 200px;
+      // font-size: 1em;
+      // font-weight: 900;
+      margin-bottom: 0px;
+      // cursor: pointer;
+      // &:hover {
+      //   color: rgb(255, 255, 255);
+      //   background-color: gold;
+      // }
     }
   }
   #blog_content {

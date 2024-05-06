@@ -15,7 +15,7 @@ const BlogUpdate = () => (
           </h5>
           <h1>Latest Blog and News</h1>
         </div>
-        <button type="button">See More</button>
+        <button className="button" type="button">See More</button>
       </div>
       <div id="blog_content">
         <div id="blog_card1">

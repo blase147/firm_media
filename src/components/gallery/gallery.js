@@ -16,7 +16,7 @@ const Gallery = () => (
         </h5>
         <h1>See What We Have Done</h1>
       </div>
-      <button type="button">Discover More</button>
+      <button className="button" type="button">Discover More</button>
     </div>
     <div id="gallery_content">
       <div id="gallery_content1">

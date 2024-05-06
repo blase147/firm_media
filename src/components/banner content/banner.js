@@ -30,7 +30,7 @@ const Banner = () => {
               Integer tristique porttitor urna accumsan egestas. Vestibulum
               imperdiet fermentum nunc, nec efficitur massa tempus ut.
             </p>
-            <button type="button">Get Started</button>
+            <button className="button" type="button">Get Started</button>
           </div>
         </div>
       </div>

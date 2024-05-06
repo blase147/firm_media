@@ -12,7 +12,7 @@ const PortfolioVideos = () => (
         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
         velit esse cillum dolore eu fugiat nulla
       </p>
-      <button type="button">Discover More</button>
+      <button className="button" type="button">Discover More</button>
     </div>
     <iframe
       width="100%"

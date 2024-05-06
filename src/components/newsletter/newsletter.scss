@@ -1,3 +1,5 @@
+@import '../scss/config';
+
 #newsletter {
   display: flex;
   justify-content: space-between;
@@ -10,7 +12,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   .newsletter_text {
-    width: 50%;
+    width: 45%;
 
     h1 {
       font-size: 3em;
@@ -24,23 +26,27 @@
     }
   }
   form {
+    width: 45%;
     input {
-      width: 500px;
-      //   height: 4vh;
-      padding: 12px;
-      border: 1px solid gold;
-      background-color: transparent;
+      // width: 60%;
+      // //   height: 4vh;
+      // padding: 12px;
+      // border: 1px solid gold;
+      // background-color: transparent;
     }
     button {
-      width: 160px;
-      padding: 12px;
+      width: 30%;
+      border: 0px solid gold;
+      border-radius: 0px;
+      // width: 160px;
+      // padding: 12px;
       background-color: rgb(190, 166, 27);
       color: rgb(255, 255, 255);
-      font-weight: bolder;
-      cursor: pointer;
-      font-size: 1em;
+      // font-weight: bolder;
+      // cursor: pointer;
+      // font-size: 1em;
       &:hover {
-        color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
         background-color: gold;
       }
 }

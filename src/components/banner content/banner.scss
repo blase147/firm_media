@@ -1,3 +1,5 @@
+@import "../scss/config";
+
 #banner_cont {
   background-color: blue;
   margin-bottom: 100px;
@@ -48,19 +50,19 @@
         font-size: 1.8em; /* Set font size for paragraphs */
       }
       button {
-        border: solid 1px #fdb90c;
-        color: #fdb90c;
-        background-color: transparent;
-        text-decoration: none;
-        font-size: 1em;
-        font-weight: bold;
-        cursor: pointer;
-        width: 170px;
-        padding: 10px;
-        &:hover {
-          color: rgb(255, 255, 255);
-          background-color: gold;
-        }
+        // border: solid 1px #fdb90c;
+        // color: #fdb90c;
+        // background-color: transparent;
+        // text-decoration: none;
+        // font-size: 1em;
+        // font-weight: bold;
+        // cursor: pointer;
+        // width: 170px;
+        // padding: 10px;
+        // &:hover {
+        //   color: rgb(255, 255, 255);
+        //   background-color: gold;
+        // }
       }
     }
   }

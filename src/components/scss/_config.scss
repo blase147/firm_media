@@ -1,0 +1,48 @@
+// _config.scss
+
+//input Properties
+$input-border: 1px solid gold; // Input border
+$input-background-color: transparent; // Input background color
+$input-padding: 15px 20px; // Input padding
+$input-width: 60%; // Input width
+
+// Button Properties
+$button-background-color: transparent; // Button background color
+$button-text-color: gold; // Button text color
+$button-border-radius: 4px; // Button border radius
+$button-padding: 15px 20px; // Button padding
+$button-font-size: 16px; // Button font size
+$button-border: 2px solid gold; // Button border
+$button-hover-background-color: gold; // Button background color on hover
+$button-hover-border-color: #ffffff; // Button border color on hover
+$button-hover-text-color: #000000; // Button text color on hover
+$button-width: 200px; // Button width
+$button-margin-top-bottom: 30px 0px;
+
+// Button styles
+.button {
+  background-color: $button-background-color;
+  color: $button-text-color;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  font-size: $button-font-size;
+  border: $button-border;
+  margin: $button-margin-top-bottom;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  width: $button-width;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+    border-color: $button-hover-border-color;
+    color: $button-hover-text-color;
+  }
+}
+
+// Input styles
+.input {
+  border: $input-border;
+  background-color: $input-background-color;
+  padding: $input-padding;
+  width: $input-width;
+}

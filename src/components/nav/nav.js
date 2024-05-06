@@ -7,7 +7,7 @@ const Nav = () => (
     <div className="logo">
       <img src="https://via.placeholder.com/50" alt="FirmMedia" />
     </div>
-    <nav>
+    <Nav>
       <ul>
         <li>
           <a href="/">Home</a>
@@ -22,13 +22,19 @@ const Nav = () => (
           <a href="#blog_update">Blog</a>
         </li>
         <li>
-          <a href="#gallery">Portfolio</a>
+          <a href="/contact">Contact</a>
         </li>
         <li>
-          <a href="https://www.youtube.com">YOUTUBE</a>
+          <a href="/pricing">Pricing</a>
+        </li>
+        <li>
+          <a href="/portfolio">Portfolio</a>
+        </li>
+        <li>
+          <button className="button" type="button">Book Now</button>
         </li>
       </ul>
-    </nav>
+    </Nav>
   </div>
 );
 
