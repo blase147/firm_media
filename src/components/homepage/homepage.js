@@ -10,7 +10,7 @@ import PortfolioVideos from '../portfolio videos/portfolio_videos';
 import Gallery from '../gallery/gallery';
 import Testimonials from '../testimonials/testimonials';
 import HireUs from '../hire us/hire_us';
-import BlogUpdate from '../blog/blog_update';
+import BlogUpdate from '../blogUpdate/blog_update';
 import FooterBody from '../footer body/footer_body';
 
 const Homepage = () => (

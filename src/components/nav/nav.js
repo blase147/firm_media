@@ -7,34 +7,36 @@ const Nav = () => (
     <div className="logo">
       <img src="https://via.placeholder.com/50" alt="FirmMedia" />
     </div>
-    <Nav>
+    <nav>
       <ul>
         <li>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="/aboutDetails">About</a>
+          <Link to="/aboutDetails">About</Link>
         </li>
         <li>
           <Link to="/ourServicesDetails">Services</Link>
         </li>
         <li>
-          <a href="#blog_update">Blog</a>
+          <Link to="/blog">Blog</Link>
         </li>
         <li>
-          <a href="/contact">Contact</a>
+          <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <a href="/pricing">Pricing</a>
+          <Link to="/pricing">Pricing</Link>
         </li>
         <li>
-          <a href="/portfolio">Portfolio</a>
+          <Link to="/portfolio">Portfolio</Link>
         </li>
         <li>
-          <button className="button" type="button">Book Now</button>
+          <Link to="/bookNow">
+            <button className="button" type="button">Book Now</button>
+          </Link>
         </li>
       </ul>
-    </Nav>
+    </nav>
   </div>
 );
 
