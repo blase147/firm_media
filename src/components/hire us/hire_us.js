@@ -1,5 +1,6 @@
 import React from 'react';
 import './hire_us.scss';
+import { Link } from 'react-router-dom';
 import hireUsImage from '../images/jpeg/hire_us_image.jpg';
 
 const HireUs = () => {
@@ -32,7 +33,11 @@ const HireUs = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
-          <button className="button" type="button">Book Now</button>
+          <Link to="/bookNow">
+            <button className="button" type="button">
+              Book Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -30,13 +30,20 @@ const Nav = () => (
         <li>
           <Link to="/portfolio">Portfolio</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/bookNow">
-            <button className="button" type="button">Book Now</button>
+            <button className="button" type="button">
+              Book Now
+            </button>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
+    <Link to="/bookNow">
+      <button className="button" type="button">
+        Book Now
+      </button>
+    </Link>
   </div>
 );
 

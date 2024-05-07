@@ -1,5 +1,6 @@
 import React from 'react';
 import './portfolio_videos.scss';
+import { Link } from 'react-router-dom';
 
 const PortfolioVideos = () => (
   <div id="port_vid">
@@ -12,7 +13,12 @@ const PortfolioVideos = () => (
         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
         velit esse cillum dolore eu fugiat nulla
       </p>
-      <button className="button" type="button">Discover More</button>
+      <Link to="/portfolio">
+        <button className="button" type="button">
+          Discover More
+        </button>
+      </Link>
+
     </div>
     <iframe
       width="100%"

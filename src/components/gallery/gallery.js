@@ -1,5 +1,6 @@
 import React from 'react';
 import './gallery.scss';
+import { Link } from 'react-router-dom';
 import galleryImage1 from '../images/jpeg/galleryImage1.jpg';
 import galleryImage2 from '../images/jpeg/galleryImage2.jpg';
 import galleryImage3 from '../images/jpeg/galleryImage3.jpg';
@@ -16,7 +17,11 @@ const Gallery = () => (
         </h5>
         <h1>See What We Have Done</h1>
       </div>
-      <button className="button" type="button">Discover More</button>
+      <Link to="/myPortfolio">
+        <button className="button" type="button">
+          Discover More
+        </button>
+      </Link>
     </div>
     <div id="gallery_content">
       <div id="gallery_content1">
