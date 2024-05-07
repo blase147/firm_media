@@ -1,10 +1,7 @@
 import React from 'react';
 import './blog.scss';
-import blogImage1 from '../images/jpeg/galleryImage1.jpg';
-import blogImage2 from '../images/jpeg/galleryImage2.jpg';
-import blogImage3 from '../images/jpeg/galleryImage3.jpg';
-import blogImage4 from '../images/jpeg/galleryImage4.jpg';
-import blogImage5 from '../images/jpeg/galleryImage5.jpg';
+import blogCard1Image1 from '../images/jpeg/blogCard1Image1.jpg';
+import dateIcon from '../images/png/Calendar.png';
 import BlogUpdate from '../blogUpdate/blog_update';
 import MenuBanner from '../banners/menuBanner';
 import blogBanner from '../images/jpeg/homepage_banner.jpg';
@@ -26,17 +23,105 @@ const Blog = () => (
         and how we can help you capture your moments in style."
     />
     <BlogUpdate />
-    <div id="blog_content">
-      <div id="blog_content1">
-        <img src={blogImage1} alt="blog" />
-        <img src={blogImage2} alt="blog" />
+    <div id="blogText">
+      <div>
+        <h5>
+          <span>Blog</span>
+          Archives
+        </h5>
+        <h1>Explore Our Other Blogs</h1>
       </div>
-      <div id="blog_content2">
-        <img src={blogImage3} alt="blog" />
+      <div>
+        <p>
+          Whether you&apos;re planning a wedding, a corporate event, or a family
+          photoshoot, we have the expertise and equipment to bring your vision
+          to life. Contact us today to learn more about our services and how we
+          can help you capture your moments in style.
+        </p>
       </div>
-      <div id="blog_content3">
-        <img src={blogImage4} alt="blog" />
-        <img src={blogImage5} alt="blog" />
+    </div>
+    <div id="blogContent">
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        </p>
+      </div>
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        </p>
+      </div>
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+      <div id="blog_card">
+        <img src={blogCard1Image1} alt="blog_card_image" />
+        <div className="date_icon">
+          <img src={dateIcon} alt="date_icon" />
+          <p>January 10, 2024</p>
+        </div>
+        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
       </div>
     </div>
     <FooterBody />
