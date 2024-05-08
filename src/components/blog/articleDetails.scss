@@ -29,14 +29,9 @@
 #article_text {
   display: flex;
   flex-direction: column;
-  // justify-content: flex-start;
-  // align-content: flex-start;
-  // align-items: flex-start;
   width: 70%;
-  // padding: 20px;
-  // background-color: rgb(8, 231, 94);
   margin-bottom: 100px;
-
+  color: gold;
   img {
     width: 100%;
     margin-bottom: 20px;
@@ -46,18 +41,38 @@
     margin-bottom: 20px;
     margin-right: 0;
   }
+  #shareThisPost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+    margin-top: 30px;
+    border-top: 1px solid #ccc8c8;
+    border-bottom: 1px solid #ccc8c8;
+    color: gold;
+  }
+  p {
+    color: white;
+  }
   #formContainer {
     display: flex;
     flex-direction: column;
     width: 98%;
+    color: gold;
     form {
       width: 100%;
+      color: gold;
       input[type="text"],
       input[type="email"] {
         width: 100%;
         margin-bottom: 10px;
         margin-left: 0;
         padding: 10px;
+        background-color: #291414;
+        color: gold;
+        &::placeholder {
+          color: gold;
+        }
       }
 
       textarea {
@@ -65,6 +80,10 @@
         height: 150px;
         margin-bottom: 10px;
         padding: 10px;
+        background-color: #291414;
+        &::placeholder {
+          color: gold;
+        }
       }
     }
   }
@@ -161,8 +180,11 @@
     }
   }
   #followUs {
-    // width: 100%;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 20px 0px 30px 20px;
+    color: gold;
     background-color: rgb(25, 34, 44);
   }
 }

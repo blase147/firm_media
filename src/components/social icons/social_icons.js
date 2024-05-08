@@ -1,15 +1,37 @@
 import React from 'react';
-import './social_icons.scss';
-import facebook from '../images/png/Facebook Circled.png';
-import instagram from '../images/png/Instagram Circle.png';
+import './social_icons.scss'; // Import your SCSS file for styling
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon component
+import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'; // Import Font Awesome icons
 
-const SocialIcons = () => (
-  <div>
-    <div id="social_icons">
-      <img src={facebook} alt="facebook" />
-      <img src={instagram} alt="instagram" />
+const SocialIcons = () => {
+  const socialMediaPlatforms = [
+    {
+      name: 'Facebook',
+      icon: faFacebookF, // Font Awesome Facebook icon
+      url: 'https://facebook.com',
+    },
+    {
+      name: 'Twitter',
+      icon: faTwitter, // Font Awesome Twitter icon
+      url: 'https://twitter.com',
+    },
+    {
+      name: 'Instagram',
+      icon: faInstagram, // Font Awesome Instagram icon
+      url: 'https://instagram.com',
+    },
+  ];
+
+  return (
+    <div className="social-icons">
+      {socialMediaPlatforms.map((platform) => (
+        <a key={platform.name} href={platform.url} className="social-icon">
+          {/* Render the Font Awesome icon */}
+          <FontAwesomeIcon icon={platform.icon} />
+        </a>
+      ))}
     </div>
-  </div>
-);
+  );
+};
 
 export default SocialIcons;

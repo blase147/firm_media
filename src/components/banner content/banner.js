@@ -14,7 +14,7 @@ const Banner = () => {
   return (
     <div id="banner_cont">
       <div id="banner" style={bannerStyle}>
-        <div>
+        <div className="stickyNav">
           <Nav id="nav" />
         </div>
         <div className="banner_text">

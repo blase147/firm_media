@@ -63,7 +63,7 @@ const ArticleDetails = () => {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <div>
+            <div id="shareThisPost">
               <h2>Share This Post</h2>
               <SocialIcons />
             </div>
@@ -75,11 +75,11 @@ const ArticleDetails = () => {
             <div id="formContainer">
               <form>
                 <div>
+                  <textarea placeholder="Your comment here" />
                   <input type="text" placeholder="Name*" />
                   <input type="email" placeholder="Email*" />
                   <input type="text" placeholder="Website" />
                 </div>
-                <textarea placeholder="Comment">Your comment here</textarea>
                 <button className="button" type="submit">
                   Post Comment
                 </button>

@@ -1,24 +1,27 @@
-#social_icons {
-  position: relative;
+.social-icons {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex-direction: column;
-  width: 50px;
-  right: -20px;
+}
 
-  img {
-    &:hover {
-      cursor: pointer;
-      color: rgb(255, 255, 255);
-      transform: scale(1.2);
-    }
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: transparent;
+  color: gold;
+  border: 1px solid gold;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
 
-    a {
-      margin: 0 10px;
-      color: #000;
-      font-size: 20px;
-      transition: all 0.3s;
-    }
-  }
+.social-icon i {
+  font-size: 50px;
+}
+
+.social-icon:hover {
+  background-color: gold;
+  color: black;
 }
