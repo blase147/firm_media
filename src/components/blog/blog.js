@@ -1,5 +1,6 @@
 import React from 'react';
 import './blog.scss';
+import { Link } from 'react-router-dom';
 import blogCard1Image1 from '../images/jpeg/blogCard1Image1.jpg';
 import dateIcon from '../images/png/Calendar.png';
 import BlogUpdate from '../blogUpdate/blog_update';
@@ -47,7 +48,9 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -60,7 +63,9 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -73,12 +78,13 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </p>
       </div>
       <div id="blog_card">
@@ -87,12 +93,13 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </p>
       </div>
       <div id="blog_card">
@@ -101,12 +108,13 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </p>
       </div>
       <div id="blog_card">
@@ -115,12 +123,13 @@ const Blog = () => (
           <img src={dateIcon} alt="date_icon" />
           <p>January 10, 2024</p>
         </div>
-        <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        <Link to="/articleDetails">
+          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+        </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
         </p>
       </div>
     </div>

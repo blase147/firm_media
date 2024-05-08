@@ -1,10 +1,10 @@
 import React from 'react';
 import './myPortfolio.scss';
 import myPortfolioImage1 from '../images/jpeg/galleryImage1.jpg';
-import myPortfolioImage2 from '../images/jpeg/galleryImage2.jpg';
-import myPortfolioImage3 from '../images/jpeg/galleryImage3.jpg';
-import myPortfolioImage4 from '../images/jpeg/galleryImage4.jpg';
-import myPortfolioImage5 from '../images/jpeg/galleryImage5.jpg';
+// import myPortfolioImage2 from '../images/jpeg/galleryImage2.jpg';
+// import myPortfolioImage3 from '../images/jpeg/galleryImage3.jpg';
+// import myPortfolioImage4 from '../images/jpeg/galleryImage4.jpg';
+// import myPortfolioImage5 from '../images/jpeg/galleryImage5.jpg';
 import portfolioBanner from '../images/jpeg/homepage_banner.jpg';
 import MenuBanner from '../banners/menuBanner';
 import HireUs from '../hire us/hire_us';
@@ -40,24 +40,40 @@ const MyPortfolio = () => (
     <div id="myPortfolio_content">
       <div className="grid-container">
         <div className="grid-item item1">
-          1
+          {/* 1 */}
           <img src={myPortfolioImage1} alt="myPortfolio" />
         </div>
         <div className="grid-item item2">
-          2
-          <img src={myPortfolioImage2} alt="myPortfolio" />
+          {/* 2 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
         </div>
         <div className="grid-item item3">
-          3
-          <img src={myPortfolioImage3} alt="myPortfolio" />
+          {/* 3 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
         </div>
         <div className="grid-item item4">
-          4
-          <img src={myPortfolioImage4} alt="myPortfolio" />
+          {/* 4 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
         </div>
         <div className="grid-item item5">
-          5
-          <img src={myPortfolioImage5} alt="myPortfolio" />
+          {/* 5 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
+        </div>
+        <div className="grid-item item6">
+          {/* 6 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
+        </div>
+        <div className="grid-item item7">
+          {/* 7 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
+        </div>
+        <div className="grid-item item8">
+          {/* 8 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
+        </div>
+        <div className="grid-item item9">
+          {/* 9 */}
+          <img src={myPortfolioImage1} alt="myPortfolio" />
         </div>
       </div>
     </div>

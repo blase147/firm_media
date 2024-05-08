@@ -1,6 +1,6 @@
 import React from 'react';
 import './blog_update.scss';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import blogCard1Image1 from '../images/jpeg/blogCard1Image1.jpg';
 import blogCard1Image2 from '../images/jpeg/blogCard1Image2.jpg';
 import dateIcon from '../images/png/Calendar.png';
@@ -16,9 +16,9 @@ const BlogUpdate = () => (
           </h5>
           <h1>Latest Blog and News</h1>
         </div>
-        <Link to="/blog">
+        <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
           <button className="button" type="button">See More</button>
-        </Link>
+        </a>
       </div>
       <div id="blog_content">
         <div id="blog_card1">

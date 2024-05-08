@@ -9,6 +9,7 @@ import MyPortfolio from './components/gallery/myPortfolio';
 import Blog from './components/blog/blog';
 import Pricing from './components/booking/pricing';
 import BookNow from './components/booking/booknow';
+import ArticleDetails from './components/blog/articleDetails';
 
 const App = () => (
   <Router>
@@ -21,6 +22,7 @@ const App = () => (
       <Route path="/blog" element={<Blog />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/bookNow" element={<BookNow />} />
+      <Route path="*" element={<ArticleDetails />} />
       <Route path="*">&quot;404 Not Found&quot;</Route>
     </Routes>
   </Router>
