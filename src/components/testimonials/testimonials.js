@@ -45,7 +45,7 @@ const Testimonials = () => {
           <span>Their</span>
           Testimonial
         </h5>
-        <h1>What Our Clients Have To Say</h1>
+        <h2>What Our Clients Have To Say</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

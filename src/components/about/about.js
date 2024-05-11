@@ -36,7 +36,7 @@ const About = () => {
             <span>About</span>
             FirmMedia
           </h5>
-          <h1>Where Light Meets Lens, Magic Happens</h1>
+          <h2>Where Light Meets Lens, Magic Happens</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

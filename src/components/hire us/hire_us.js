@@ -27,7 +27,7 @@ const HireUs = () => {
             <span>Hire Us</span>
             Now
           </h5>
-          <h1>Book Our Services and Capture Your Memories for a Lifetime</h1>
+          <h2>Book Our Services and Capture Your Memories for a Lifetime</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

@@ -27,7 +27,7 @@ const FooterBody = () => {
         </div> */}
         <div id="footer1">
           <div id="company_info" className="footer1_item">
-            <h2>FirmMedia</h2>
+            <h3>FirmMedia</h3>
             <p>
               FirmMedia is a full-service digital marketing agency that
               specializes in providing digital marketing solutions to small and
@@ -35,7 +35,7 @@ const FooterBody = () => {
             </p>
           </div>
           <div id="footer1_services" className="footer1_item">
-            <h2>Services</h2>
+            <h3>Services</h3>
             <ul>
               <li>Web Design</li>
               <li>SEO</li>
@@ -49,7 +49,7 @@ const FooterBody = () => {
             </ul>
           </div>
           <div id="footer1_about" className="footer1_item">
-            <h2>About</h2>
+            <h3>About</h3>
             <ul>
               <li>Our Team</li>
               <li>Our Work</li>
@@ -61,7 +61,7 @@ const FooterBody = () => {
             </ul>
           </div>
           <div id="footer1_contact" className="footer1_item">
-            <h2>Company Info</h2>
+            <h3>Company Info</h3>
             <p>Company Name</p>
             <p>Address</p>
             <p>City, State, Zip</p>

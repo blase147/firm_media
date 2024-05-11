@@ -4,7 +4,7 @@ import './newsletter.scss';
 const Newsletter = () => (
   <div id="newsletter">
     <div className="newsletter_text">
-      <h1>Join Our Newsletter</h1>
+      <h2>Join Our Newsletter</h2>
       <p>
         Subscribe to our newsletter to receive early discounts offers, updates
         and info.

@@ -15,7 +15,7 @@ const Gallery = () => (
           <span>Our</span>
           Gallery
         </h5>
-        <h1>See What We Have Done</h1>
+        <h2>See What We Have Done</h2>
       </div>
       <Link to="/myPortfolio">
         <button className="button" type="button">

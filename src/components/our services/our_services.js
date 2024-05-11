@@ -11,7 +11,7 @@ const OurServices = () => (
             <span>Our</span>
             Services
           </h5>
-          <h1>What We Can Provide</h1>
+          <h2>What We Can Provide</h2>
         </div>
         <div>
           <p>

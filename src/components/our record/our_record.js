@@ -5,15 +5,15 @@ const OurRecord = () => (
   <div>
     <div id="our_record">
       <div className="our_record_item">
-        <h1>10+</h1>
+        <h2>10+</h2>
         <p>Years of Experience</p>
       </div>
       <div className="our_record_item">
-        <h1>10k+</h1>
+        <h2>10k+</h2>
         <p>Satisifed Clients</p>
       </div>
       <div className="our_record_item">
-        <h1>100+</h1>
+        <h2>100+</h2>
         <p>Completed Projects</p>
       </div>
     </div>

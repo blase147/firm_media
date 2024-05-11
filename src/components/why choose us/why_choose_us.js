@@ -11,7 +11,7 @@ const WhyChooseUs = () => (
           <span>Why</span>
           Choose Us
         </h5>
-        <h1>Cherish Moments, Choose Us</h1>
+        <h2>Cherish Moments, Choose Us</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

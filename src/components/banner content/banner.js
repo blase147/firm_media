@@ -24,7 +24,7 @@ const Banner = () => {
           <div>
             <h5>
               <span>Welcome</span>
-              to FirmtecsMedia Production
+              to FirmtecsMedia
             </h5>
             <h1>Through Our Lens, Your Moments Shine</h1>
             <p>
