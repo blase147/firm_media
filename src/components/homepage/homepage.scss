@@ -1,10 +1,7 @@
-@import url(../scss/_config.scss);
+@import "../scss/config";
 
 #homepage_container {
-  background-color: #230B0B;
+  background-color: $page-background-color;
   color: white;
-  // .stickyBanner {
-  //   position: sticky;
-  //   position: -webkit-sticky;
-  // }
 }
+

@@ -31,7 +31,7 @@ const Testimonials = () => {
     dots: true,
     infinite: true,
     speed: 500, // Adjust the speed for smoother sliding
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,

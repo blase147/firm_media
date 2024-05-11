@@ -1,9 +1,40 @@
 // _config.scss
-
-
+h1,
+h5 {
+  font-family: "Roboto", sans-serif;
+  color: gold;
+}
+h1 {
+  font-size: 3em;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+h5 {
+  font-size: 1.4em;
+  margin-bottom: -10px;
+}
+h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 7px;
+  margin-bottom: 40px;
+}
+p {
+  color: white;
+  font-size: 1.2em;
+  margin-top: -22px;
+  margin-bottom: 20px; /* Set font size for paragraphs */
+}
+span {
+  color: white;
+  margin-right: 10px;
+}
+button {
+  margin: 0;
+  padding: 0;
+}
 // Color Properties
-$page-background-color: #230B0B; // Page background color
-
+$page-background-color: #230b0b; // Page background color
 
 //input Properties
 $input-border: 1px solid gold; // Input border
@@ -22,7 +53,7 @@ $button-hover-background-color: gold; // Button background color on hover
 $button-hover-border-color: #ffffff; // Button border color on hover
 $button-hover-text-color: #000000; // Button text color on hover
 $button-width: 200px; // Button width
-$button-margin-top-bottom: 30px 0px;
+$button-margin-top-bottom: 20px 0px;
 
 // Button styles
 .button {

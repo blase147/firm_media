@@ -21,7 +21,7 @@ const OurServices = () => (
           </p>
         </div>
       </div>
-      <div id="our_services_images">
+      <div id="our_services_card_container">
         <div className="our_services_item">
           <img
             className="responsive_image"

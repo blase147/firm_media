@@ -7,7 +7,7 @@ const StarRating = ({ totalStars }) => {
   const generateKey = () => Math.random().toString(36);
 
   return (
-    <div>
+    <div id="starRating">
       {[...Array(totalStars)].map(() => (
         <FaStar
           key={generateKey()} // Generate unique key

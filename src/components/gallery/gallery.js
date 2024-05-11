@@ -23,16 +23,20 @@ const Gallery = () => (
         </button>
       </Link>
     </div>
-    <div id="gallery_content">
-      <div id="gallery_content1">
+    <div id="gallery_container">
+      <div id="gallery_content">
         <img src={galleryImage1} alt="gallery" />
+      </div>
+      <div id="gallery_content">
         <img src={galleryImage2} alt="gallery" />
       </div>
-      <div id="gallery_content2">
+      <div id="gallery_content">
         <img src={galleryImage3} alt="gallery" />
       </div>
-      <div id="gallery_content3">
+      <div id="gallery_content">
         <img src={galleryImage4} alt="gallery" />
+      </div>
+      <div id="gallery_content">
         <img src={galleryImage5} alt="gallery" />
       </div>
     </div>

@@ -1,4 +1,7 @@
-#MenuBannerContainer {
+@import "../scss/config";
+
+@media only screen and (min-width: 768px) {
+  #MenuBannerContainer {
     background-color: #230b0b;
     padding-bottom: 100px;
     color: white;
@@ -12,7 +15,7 @@
         margin: auto;
         text-align: center;
         margin-top: 100px;
-  
+
         h1 {
           font-size: 2.9em;
           color: gold;
@@ -25,4 +28,4 @@
       }
     }
   }
-  
+}

@@ -1,26 +1,30 @@
-#OurServicesDetailsContainer {
-  background-color: #230b0b;
-  padding-bottom: 100px;
-  color: white;
-  #OurServicesDetailsBanner {
-    margin-bottom: 100px;
-    #OurServicesDetailsText {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 50%;
-      margin: auto;
-      text-align: center;
-      margin-top: 100px;
+@import "../scss/config";
 
-      h1 {
-        font-size: 2.9em;
-        color: gold;
-      }
-      p {
-        font-size: 1.2em;
-        line-height: 1.5em;
-        color: white;
+@media only screen and (min-width: 768px) {
+  #OurServicesDetailsContainer {
+    background-color: #230b0b;
+    padding-bottom: 100px;
+    color: white;
+    #OurServicesDetailsBanner {
+      margin-bottom: 100px;
+      #OurServicesDetailsText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 100px;
+
+        h1 {
+          font-size: 2.9em;
+          color: gold;
+        }
+        p {
+          font-size: 1.2em;
+          line-height: 1.5em;
+          color: white;
+        }
       }
     }
   }

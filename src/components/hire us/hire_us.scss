@@ -1,58 +1,95 @@
-#hire_us_container {
-  @import "../scss/config";
-  
-  #hire_us {
-    display: flex;
-    flex-direction: column;
-    #hire_us_text {
+@import "../scss/config";
+
+@media only screen and (min-width: 768px) {
+  #hire_us_container {
+    #hire_us {
       display: flex;
       flex-direction: column;
-      text-align: left;
-      width: 75%;
-      margin: auto;
-      z-index: 5000;
-      color: white;
-      h5,
-      h1,
-      p,
-      button {
-        width: 75%;
-      }
-      h5 {
-        font-size: 1.5em;
-        padding: 0;
-        margin-top: 50px;
-        padding: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        span {
+      #hire_us_text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        // width: 75%;
+        margin: auto;
+        z-index: 5000;
+        color: white;
+        h5,
+        h1,
+        p,
+        button {
+          // width: 75%;
+        }
+        h5 {
+          font-size: 1.5em;
+          padding: 0;
+          margin-top: 50px;
+          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          span {
+            color: gold;
+            margin-right: 10px;
+          }
+        }
+        h1 {
+          font-size: 3.5em;
           color: gold;
-          margin-right: 10px;
+          padding: 0;
+          margin: 0;
+        }
+        p {
+          font-size: 1.3em;
         }
       }
-      h1 {
-        font-size: 3.5em;
-        color: gold;
-        padding: 0;
-        margin: 0;
-      }
-      p {
-        font-size: 1.3em;
-      }
-      button {
-        // border: 1px solid gold;
-        // background-color: transparent;
-        // padding: 15px;
-        // color: gold;
-        width: 200px;
-        // font-size: 1em;
-        // font-weight: 900;
-        // margin-top: 20px;
-        // cursor: pointer;
-        // &:hover {
-        //   color: rgb(255, 255, 255);
-        //   background-color: gold;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  #hire_us_container {
+    width: 100%;
+    #hire_us {
+      padding: 10px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      #hire_us_text {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        // width: 75%;
+        // margin: auto;
+        // z-index: 5000;
+        // color: white;
+        // h5,
+        // h1,
+        // p,
+        // button {
+        //   // width: 75%;
         // }
+        // h5 {
+        //   font-size: 1.3em;
+        //   padding: 0;
+        //   margin-top: 50px;
+        //   padding: 0;
+        //   margin-top: 0;
+        //   margin-bottom: 0;
+        //   span {
+        //     color: gold;
+        //     margin-right: 10px;
+        //   }
+        // }
+        // h1 {
+        //   font-size: 2.5em;
+        //   color: gold;
+        //   padding: 0;
+        //   margin: 0;
+        // }
+        // p {
+        //   font-size: 1em;
+        // }
+        button {
+          margin-top: 7px;
+        }
       }
     }
   }

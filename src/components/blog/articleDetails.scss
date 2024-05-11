@@ -1,190 +1,192 @@
 @import "../scss/config";
 
-#article_display {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: $page-background-color;
-  color: white;
-}
-
-#article_container {
-  display: flex;
-  justify-content: flex-end;
-  // align-items: first baseline;
-  // align-content: first baseline;
-  width: 75%;
-  margin: auto;
-  // background-color: green;
-}
-
-#article_content {
-  display: flex;
-  justify-content: space-between;
-  align-content: first baseline;
-  width: 100%;
-  //   background-color: green;
-}
-
-#article_text {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin-bottom: 100px;
-  color: gold;
-  img {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  p {
-    margin-bottom: 20px;
-    margin-right: 0;
-  }
-  #shareThisPost {
+@media only screen and (min-width: 768px) {
+  #article_display {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0px;
-    margin-top: 30px;
-    border-top: 1px solid #ccc8c8;
-    border-bottom: 1px solid #ccc8c8;
-    color: gold;
-  }
-  p {
+    flex-direction: column;
+    justify-content: center;
+    background-color: $page-background-color;
     color: white;
   }
-  #formContainer {
-    display: flex;
-    flex-direction: column;
-    width: 98%;
-    color: gold;
-    form {
-      width: 100%;
-      color: gold;
-      input[type="text"],
-      input[type="email"] {
-        width: 100%;
-        margin-bottom: 10px;
-        margin-left: 0;
-        padding: 10px;
-        background-color: #291414;
-        color: gold;
-        &::placeholder {
-          color: gold;
-        }
-      }
 
-      textarea {
-        width: 100%;
-        height: 150px;
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #291414;
-        &::placeholder {
-          color: gold;
-        }
-      }
-    }
+  #article_container {
+    display: flex;
+    justify-content: flex-end;
+    // align-items: first baseline;
+    // align-content: first baseline;
+    width: 75%;
+    margin: auto;
+    // background-color: green;
   }
-}
 
-#sideBar {
-  display: flex;
-  flex-direction: column;
-  align-items: first baseline;
-  align-content: first baseline;
-  gap: 20px;
-  width: 25%;
-  // padding: 20px;
+  #article_content {
+    display: flex;
+    justify-content: space-between;
+    align-content: first baseline;
+    width: 100%;
+    //   background-color: green;
+  }
 
-  #author {
+  #article_text {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    text-align: center;
-    align-items: center;
-    background-color: rgb(25, 34, 44);
+    width: 70%;
+    margin-bottom: 100px;
+    color: gold;
     img {
-      width: 30%;
-      height: 10vh;
-      border-radius: 50%;
-    }
-    h5 {
-      margin-bottom: 10px;
-      font-size: 1.3em;
-      margin-top: 10px;
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     p {
       margin-bottom: 20px;
-      margin-top: 10px;
+      margin-right: 0;
     }
-  }
-
-  #recentPost {
-    background-color: rgb(25, 34, 44);
-    padding: 10px;
-    .recentPostCard {
+    #shareThisPost {
       display: flex;
-      gap: 20px;
-      img {
-        // width: 30%;
-        height: 8vh;
-      }
-      .recentPostText {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        align-content: first baseline;
-        gap: 10px;
-        margin-top: 0;
-        padding-top: 0;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0px;
+      margin-top: 30px;
+      border-top: 1px solid #ccc8c8;
+      border-bottom: 1px solid #ccc8c8;
+      color: gold;
+    }
+    p {
+      color: white;
+    }
+    #formContainer {
+      display: flex;
+      flex-direction: column;
+      width: 98%;
+      color: gold;
+      form {
+        width: 100%;
+        color: gold;
+        input[type="text"],
+        input[type="email"] {
+          width: 100%;
+          margin-bottom: 10px;
+          margin-left: 0;
+          padding: 10px;
+          background-color: #291414;
+          color: gold;
+          &::placeholder {
+            color: gold;
+          }
+        }
 
-        > p {
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-        .imageDate {
-          display: flex;
-          margin-top: 0;
-          padding-top: 0;
-          img {
-            width: 15%;
-            height: 2vh;
-          }
-          p {
-            margin-top: 0;
-            padding: 0;
+        textarea {
+          width: 100%;
+          height: 150px;
+          margin-bottom: 10px;
+          padding: 10px;
+          background-color: #291414;
+          &::placeholder {
+            color: gold;
           }
         }
       }
     }
   }
-  #questions {
-    > div {
-      margin: 0;
-      h1 {
-        padding: 20px;
-        margin: 0;
-        font-size: 1.9em;
-      }
-      p {
-        padding: 0px 20px;
-        margin: 0;
-      }
-      > div {
-        margin-top: 10px;
-        margin-left: 20px;
-      }
-    }
-  }
-  #followUs {
+
+  #sideBar {
     display: flex;
     flex-direction: column;
-    width: 95%;
-    padding: 20px 0px 30px 20px;
-    color: gold;
-    background-color: rgb(25, 34, 44);
+    align-items: first baseline;
+    align-content: first baseline;
+    gap: 20px;
+    width: 25%;
+    // padding: 20px;
+
+    #author {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+      align-items: center;
+      background-color: rgb(25, 34, 44);
+      img {
+        width: 30%;
+        height: 10vh;
+        border-radius: 50%;
+      }
+      h5 {
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        margin-top: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        margin-top: 10px;
+      }
+    }
+
+    #recentPost {
+      background-color: rgb(25, 34, 44);
+      padding: 10px;
+      .recentPostCard {
+        display: flex;
+        gap: 20px;
+        img {
+          // width: 30%;
+          height: 8vh;
+        }
+        .recentPostText {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          align-content: first baseline;
+          gap: 10px;
+          margin-top: 0;
+          padding-top: 0;
+
+          > p {
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+          .imageDate {
+            display: flex;
+            margin-top: 0;
+            padding-top: 0;
+            img {
+              width: 15%;
+              height: 2vh;
+            }
+            p {
+              margin-top: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+    #questions {
+      > div {
+        margin: 0;
+        h1 {
+          padding: 20px;
+          margin: 0;
+          font-size: 1.9em;
+        }
+        p {
+          padding: 0px 20px;
+          margin: 0;
+        }
+        > div {
+          margin-top: 10px;
+          margin-left: 20px;
+        }
+      }
+    }
+    #followUs {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      padding: 20px 0px 30px 20px;
+      color: gold;
+      background-color: rgb(25, 34, 44);
+    }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './footer_body.scss';
 import footerImage from '../images/jpeg/footer_image.jpg';
-import Newsletter from '../newsletter/newsletter';
+// import Newsletter from '../newsletter/newsletter';
 // import '../newsletter/newsletter.scss';
 
 const FooterBody = () => {
@@ -9,7 +9,7 @@ const FooterBody = () => {
     backgroundImage: `url(${footerImage})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '50vh',
+    height: '113vh',
   };
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -22,9 +22,9 @@ const FooterBody = () => {
   return (
     <div id="footer_body" style={footerImageStyle}>
       <div className="footer_body_content" style={overlayStyle}>
-        <div>
-          <Newsletter id="newsletter" />
-        </div>
+        {/* <div id="newsletter">
+          <Newsletter />
+        </div> */}
         <div id="footer1">
           <div id="company_info" className="footer1_item">
             <h2>FirmMedia</h2>

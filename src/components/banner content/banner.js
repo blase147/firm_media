@@ -9,7 +9,7 @@ const Banner = () => {
     backgroundImage: `url(${homepageBanner})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '70vh',
+    height: '100vh',
   };
   return (
     <div id="banner_cont">
@@ -22,7 +22,10 @@ const Banner = () => {
             <SocialIcons />
           </div>
           <div>
-            <h5>Welcome to FirmtecsMedia Production</h5>
+            <h5>
+              <span>Welcome</span>
+              to FirmtecsMedia Production
+            </h5>
             <h1>Through Our Lens, Your Moments Shine</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc

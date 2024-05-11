@@ -8,12 +8,13 @@ const HireUs = () => {
     backgroundImage: `url(${hireUsImage})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '50vh',
+    maxWidth: '100%',
+    height: '80vh',
   };
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     height: '100%',
-    width: '100%',
+    // width: '100%',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };

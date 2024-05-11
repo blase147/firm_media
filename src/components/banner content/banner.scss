@@ -1,51 +1,100 @@
 @import "../scss/config";
 
-#banner_cont {
-  background-color: blue;
-  margin-bottom: 100px;
-  #banner {
-    color: #fcfbfb;
-    background-color: blue;
-    #social_icons_container {
-      > div {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+@media only screen and (min-width: 769px) {
+  #banner_cont {
+    // background-color: blue;
+    margin-bottom: 100px;
+    #banner {
+      color: #fcfbfb;
+      // background-color: blue;
+      #social_icons_container {
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
         }
-      display: flex;
-      position: absolute;
-      top: 35%;
-      left: -7%;
-      transform: translate(-50%, -50%);
-      justify-content: center;
-      align-items: center;
-      font-size: 2em;
-      .social-icon {
         display: flex;
+        position: absolute;
+        top: 35%;
+        left: -7%;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        .social-icon {
+          display: flex;
+        }
       }
-      }
-    .banner_text {
-      position: absolute;
-      top: 40%;
-      left: 40%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      width: 60%;
-      & h5 {
-        font-size: 2em; /* Set font size for h5 */
-        background-color: green($color: #000000);
-        margin-bottom: 20px;
-        padding-top: 0;
-      }
+      .banner_text {
+        // background-color: blue;
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        width: 60%;
+        & h5 {
+          font-size: 1em; /* Set font size for h5 */
+          background-color: green($color: #000000);
+          margin-bottom: 20px;
+          padding-top: 0;
+        }
 
-      & h1 {
-        font-size: 4.5em; /* Set font size for h1 */
-        margin-top: 0;
-        padding-top: 0;
-      }
+        & h1 {
+          font-size: 2.5em; /* Set font size for h1 */
+          margin-top: 0;
+          padding-top: 0;
+        }
 
-      & p {
-        font-size: 1.8em; /* Set font size for paragraphs */
+        & p {
+          font-size: 1em; /* Set font size for paragraphs */
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #banner_cont {
+    #banner {
+      position: relative;
+      #social_icons_container {
+        > div {
+          display: flex;
+          gap: 10px;
+          // background-color: yellow;
+        }
+        position: absolute;
+        top: -2%;
+        left: 27%;
+        // transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        .social-icon {
+          display: flex;
+        }
+      }
+      .banner_text {
+        position: absolute;
+        text-align: center;
+        margin-top: 200px;
+        top: 38%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        & h5 {
+          // font-size: 1.4em;
+          // margin-bottom: -10px; /* Set font size for h5 */
+        }
+
+        & h1 {
+          // font-size: 3.4em; /* Set font size for h1 */
+        }
+
+        & p {
+          // font-size: 1.2em;
+          // margin-top: -22px;
+          // margin-bottom: -15px; /* Set font size for paragraphs */
+        }
       }
     }
   }

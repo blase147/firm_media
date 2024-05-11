@@ -14,26 +14,22 @@ const About = () => {
   return (
     <div>
       <div id="about">
-        <div id="aboutImage">
-          <div id="side1">
-            <img
-              className="responsive_image"
-              src={aboutImage1}
-              alt="aboutImage"
-            />
-            <img
-              className="responsive_image"
-              src={aboutImage2}
-              alt="aboutImage"
-            />
-          </div>
-          <div id="side2">
-            <img
-              className="responsive_image"
-              src={aboutImage3}
-              alt="aboutImage"
-            />
-          </div>
+        <div className="grid-container">
+          <img
+            className="responsive_image"
+            src={aboutImage1}
+            alt="aboutImage"
+          />
+          <img
+            className="responsive_image"
+            src={aboutImage3}
+            alt="aboutImage"
+          />
+          <img
+            className="responsive_image"
+            src={aboutImage2}
+            alt="aboutImage"
+          />
         </div>
         <div id="about_text">
           <h5>
@@ -43,8 +39,8 @@ const About = () => {
           <h1>Where Light Meets Lens, Magic Happens</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat. Duis aute irure dolor in
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur.
@@ -52,7 +48,9 @@ const About = () => {
           {/* Conditionally render the button based on the current pathname */}
           {!isAboutDetailsPage && (
             <Link to="/aboutDetails">
-              <button className="button" type="button">Discover more</button>
+              <button className="button" type="button">
+                Discover more
+              </button>
             </Link>
           )}
         </div>
