@@ -4,40 +4,40 @@
   #gallery {
     display: flex;
     flex-direction: column;
-    // width: 100%;
-    // margin: 10px;
+    width: 75%;
+    margin: auto;
     // background-color: blue;
     #gallery_text {
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
       justify-content: space-between;
       align-items: last baseline;
       width: 100%;
       // margin: auto;
       color: gold;
+      // & h5 {
+      //   font-size: 1.5em;
+      // }
+      // span {
+      //   color: white;
+      //   margin-right: 10px;
+      // }
 
-      & h5 {
-        font-size: 1.5em;
-      }
-      span {
-        color: white;
-        margin-right: 10px;
-      }
-
-      & h1 {
-        font-size: 3em;
-      }
+      // & h1 {
+      //   font-size: 3em;
+      // }
     }
     #gallery_container {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 15px;
       width: 100%;
-      #gallery_content {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
+      // #gallery_content {
+      //   display: flex;
+      //   flex-direction: column;
+      //   gap: 15px;
+      // }
       #gallery_content2 {
         display: flex;
         flex-direction: column;

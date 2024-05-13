@@ -2,12 +2,12 @@
 
 @media only screen and (min-width: 768px) {
   #port_vid {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // position: relative;
-    // margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 100px;
 
     #port_vid_text {
       text-align: center;
@@ -15,10 +15,10 @@
       position: absolute;
       width: 50%;
 
-      & h1 {
-        font-size: 4em;
-        color: gold;
-      }
+      // & h1 {
+      //   font-size: 4em;
+      //   color: gold;
+      // }
 
       button {
         // width: 200px;

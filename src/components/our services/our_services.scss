@@ -9,7 +9,7 @@
     width: 75%;
     margin: auto;
     margin-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 150px;
 
     #our_sercices_text {
       display: flex;
@@ -18,37 +18,36 @@
       > div {
         display: flex;
         flex-direction: column;
-        // width: 50%;
+        width: 50%;
+        & h5 {
+          font-size: 1.8rem;
+          font-weight: 700;
+          margin-bottom: 10px;
+          padding: 0;
+          margin: 0;
+          span {
+            color: #ffffff;
+            margin-right: 5px;
+          }
+        }
 
-        // & h5 {
-        //   font-size: 1.8rem;
-        //   font-weight: 700;
-        //   margin-bottom: 10px;
-        //   padding: 0;
-        //   margin: 0;
-        //   span {
-        //     color: #ffffff;
-        //     margin-right: 5px;
-        //   }
-        // }
+        & h1 {
+          font-size: 3.6rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+          padding: 0;
+          margin-top: 10px;
+        }
 
-        // & h1 {
-        //   font-size: 3.6rem;
-        //   font-weight: 700;
-        //   margin-bottom: 20px;
-        //   padding: 0;
-        //   margin-top: 10px;
-        // }
-
-        // & p {
-        //   font-size: 1.2rem;
-        //   font-weight: 500;
-        //   margin-top: 20px;
-        //   color: white;
-        // }
+        & p {
+          font-size: 1.2rem;
+          font-weight: 500;
+          margin-top: 20px;
+          color: white;
+        }
       }
     }
-    #our_services_images {
+    #our_services_card_container {
       display: flex;
       justify-content: space-between;
       gap: 25px;
@@ -56,7 +55,6 @@
       margin-top: 50px;
       flex-wrap: wrap;
       // width: 100%;
-
       .our_services_item {
         box-sizing: border-box;
         display: flex;

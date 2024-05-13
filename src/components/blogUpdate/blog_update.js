@@ -25,9 +25,9 @@ const BlogUpdate = () => (
           <img src={blogCard1Image1} alt="blog_card1_image" />
           <div className="date_icon">
             <img src={dateIcon} alt="date_icon" />
-            <p>January 10, 2024</p>
+            <span>January 10, 2024</span>
           </div>
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -41,14 +41,13 @@ const BlogUpdate = () => (
             <div className="blog_update_text">
               <div className="date_icon">
                 <img src={dateIcon} alt="date_icon" />
-                <p>January 10, 2024</p>
+                <span>January 10, 2024</span>
               </div>
-              <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+              <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
           </div>
@@ -57,14 +56,13 @@ const BlogUpdate = () => (
             <div className="blog_update_text">
               <div className="date_icon">
                 <img src={dateIcon} alt="date_icon" />
-                <p>January 10, 2024</p>
+                <span>January 10, 2024</span>
               </div>
-              <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+              <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
           </div>

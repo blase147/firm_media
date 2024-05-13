@@ -1,6 +1,7 @@
 import React from 'react';
 import './footer_body.scss';
 import footerImage from '../images/jpeg/footer_image.jpg';
+import SocialIcons from '../social icons/social_icons';
 // import Newsletter from '../newsletter/newsletter';
 // import '../newsletter/newsletter.scss';
 
@@ -9,14 +10,14 @@ const FooterBody = () => {
     backgroundImage: `url(${footerImage})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '113vh',
+    // height: '113vh',
   };
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    height: '100%',
-    width: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    // height: '100%',
+    // width: '100%',
+    // backgroundSize: 'cover',
+    // backgroundPosition: 'center',
   };
 
   return (
@@ -37,36 +38,29 @@ const FooterBody = () => {
           <div id="footer1_services" className="footer1_item">
             <h3>Services</h3>
             <ul>
-              <li>Web Design</li>
-              <li>SEO</li>
-              <li>PPC</li>
-              <li>Social Media</li>
-              <li>Content Marketing</li>
-              <li>Reputation Management</li>
-              <li>Local SEO</li>
-              <li>Video Marketing</li>
-              <li>Mobile Marketing</li>
+              <li>Photogrphy</li>
+              <li>Videography</li>
+              <li>Drone Shot</li>
+              <li>Studio Photo</li>
+              <li>Equipment Rental</li>
+              <li>Post Production</li>
             </ul>
           </div>
           <div id="footer1_about" className="footer1_item">
-            <h3>About</h3>
+            <h3>About Us</h3>
             <ul>
+              <li>About Us</li>
               <li>Our Team</li>
-              <li>Our Work</li>
-              <li>Our Process</li>
-              <li>Our Blog</li>
-              <li>Our Services</li>
-              <li>Our Clients</li>
-              <li>Our Contact</li>
+              <li>Contact Us</li>
+              <li>FAQ</li>
             </ul>
           </div>
           <div id="footer1_contact" className="footer1_item">
             <h3>Company Info</h3>
-            <p>Company Name</p>
-            <p>Address</p>
+            <p>solarmails2@gmail.com</p>
+            <p>+2348035344730</p>
             <p>City, State, Zip</p>
-            <p>Phone</p>
-            <p>Email</p>
+            <SocialIcons />
           </div>
         </div>
         <div id="copyright">

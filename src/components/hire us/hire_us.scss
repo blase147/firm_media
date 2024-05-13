@@ -8,8 +8,9 @@
       #hire_us_text {
         display: flex;
         flex-direction: column;
-        text-align: left;
-        // width: 75%;
+        align-items: center;
+        text-align: center;
+        width: 75%;
         margin: auto;
         z-index: 5000;
         color: white;
@@ -19,27 +20,27 @@
         button {
           // width: 75%;
         }
-        h5 {
-          font-size: 1.5em;
-          padding: 0;
-          margin-top: 50px;
-          padding: 0;
-          margin-top: 0;
-          margin-bottom: 0;
-          span {
-            color: gold;
-            margin-right: 10px;
-          }
-        }
-        h1 {
-          font-size: 3.5em;
-          color: gold;
-          padding: 0;
-          margin: 0;
-        }
-        p {
-          font-size: 1.3em;
-        }
+        // h5 {
+        //   font-size: 1.5em;
+        //   padding: 0;
+        //   margin-top: 50px;
+        //   padding: 0;
+        //   margin-top: 0;
+        //   margin-bottom: 0;
+        //   span {
+        //     color: gold;
+        //     margin-right: 10px;
+        //   }
+        // }
+        // h1 {
+        //   font-size: 3.5em;
+        //   color: gold;
+        //   padding: 0;
+        //   margin: 0;
+        // }
+        // p {
+        //   font-size: 1.3em;
+        // }
       }
     }
   }

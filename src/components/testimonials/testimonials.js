@@ -67,7 +67,7 @@ const Testimonials = () => {
         >
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="testimonial_card">
-              <StarRating totalStars={testimonial.stars} />
+              <StarRating totalStars={testimonial.stars} id="rating" />
               <p>{testimonial.text}</p>
               <div className="testimonial_image_byline">
                 <img src={testimonial.image} alt="Testimonial" />
