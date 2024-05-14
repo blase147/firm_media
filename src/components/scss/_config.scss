@@ -1,7 +1,8 @@
 // _config.scss
 h1,
 h2,
-h3, h5 {
+h3,
+h5 {
   font-family: "Roboto", sans-serif;
   color: gold;
 }
@@ -12,17 +13,22 @@ h1 {
   line-height: 1em;
 }
 h2 {
-  font-size: 3em;
-  margin-top: 20px;
+  font-size: 2.5em;
+  margin-top: 5px;
   margin-bottom: 35px;
 }
 h5 {
   font-size: 1.4em;
-  margin-bottom: -10px;
+  border-left: 5px solid gold;
+  padding-left: 10px;
+  // padding-top: 0px;
+  // padding-bottom: 0px;
+  // margin-top: 50px;
+  margin-bottom: 1px;
 }
 h3 {
   font-size: 1.8rem;
-  font-weight: 700;
+  // font-weight: 700;
   margin-top: 7px;
   margin-bottom: 40px;
 }

@@ -1,7 +1,18 @@
 @import "../scss/config";
-
 #homepage_container {
   background-color: $page-background-color;
   color: white;
 }
 
+@media only screen and (min-width: 769px) {
+  #homepage_container {
+    background-color: $page-background-color;
+    color: white;
+  }
+}
+@media only screen and (max-width: 769px) {
+  #homepage_container {
+    background-color: $page-background-color;
+    color: white;
+  }
+}

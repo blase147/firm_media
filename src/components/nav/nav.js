@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './nav.scss';
 import { Link } from 'react-router-dom';
+import './nav.scss';
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prevState) => !prevState); // Toggle the state
+    setIsMobileMenuOpen((prevState) => !prevState);
   };
 
   return (
@@ -14,7 +14,7 @@ const Nav = () => {
       <div className="logo">
         <img src="https://via.placeholder.com/50" alt="FirmMedia" />
       </div>
-      <nav className={isMobileMenuOpen ? 'mobile-menu-open' : ''}>
+      <Nav className={isMobileMenuOpen ? 'mobile-menu-open' : ''}>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -38,8 +38,10 @@ const Nav = () => {
             <Link to="/portfolio">Portfolio</Link>
           </li>
         </ul>
-      </nav>
-      <button type="button" className="mobile-menu-breadcrumb" onClick={toggleMobileMenu}>&#9776;</button>
+      </Nav>
+      <button type="button" className="mobile-menu-breadcrumb" onClick={toggleMobileMenu}>
+        &#9776;
+      </button>
     </div>
   );
 };

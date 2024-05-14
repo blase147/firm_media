@@ -10,7 +10,7 @@ import galleryImage5 from '../images/jpeg/galleryImage5.jpg';
 const Gallery = () => (
   <div id="gallery">
     <div id="gallery_text">
-      <div>
+      <div className="gallery_text">
         <h5>
           <span>Our</span>
           Gallery
@@ -19,7 +19,7 @@ const Gallery = () => (
       </div>
       <Link to="/myPortfolio">
         <button className="button" type="button">
-          Discover More
+          See More
         </button>
       </Link>
     </div>

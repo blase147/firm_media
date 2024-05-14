@@ -9,12 +9,12 @@ const BlogUpdate = () => (
   <div>
     <div id="blog_update">
       <div id="blog_text">
-        <div>
+        <div className="blog_text">
           <h5>
             <span>Blog</span>
             Update
           </h5>
-          <h1>Latest Blog and News</h1>
+          <h2>Latest Blog and News</h2>
         </div>
         <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
           <button className="button" type="button">See More</button>

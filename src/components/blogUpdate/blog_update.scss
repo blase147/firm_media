@@ -26,7 +26,7 @@
           width: 100%;
           // height: 35vh;
         }
-        p{
+        p {
           margin-bottom: 0;
         }
       }
@@ -91,72 +91,34 @@
     // width: 100%;
     margin-bottom: 320px;
     color: white;
-    // background-color: green;
     #blog_text {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
+    }
+    .blog_text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 20px 0px;
       text-align: center;
-
-      // h5 {
-      //   font-size: 1.3em;
-      //   span {
-      //     color: gold;
-      //     margin-right: 10px;
-      //   }
-      // }
-      // h1 {
-      //   font-size: 2.5em;
-      //   color: gold;
-      // }
+      h2 {
+        margin: 0;
+      }
     }
     #blog_content {
       display: flex;
       flex-direction: column;
-      // justify-content: space-between;
       gap: 20px;
       width: 100%;
-      // height: 50hv;
       #blog_card1 {
         display: flex;
         flex-direction: column;
-        //   justify-content: center;
-        //   align-items: center;
         background-color: rgb(52, 72, 83);
-        // max-height: 55vh;
-        // width: 100%;
         padding: 10px;
         > img {
           max-width: 100%;
-          // height: 50vh;
         }
-        // .date_icon {
-        //   display: flex;
-        //   align-content: center;
-        //   justify-items: center;
-        //   gap: 10px;
-        //   align-items: center;
-        //   // background-color: blue;
-        //   // text-align: left;
-        //   img {
-        //     // width: 10%;
-        //     height: 2vh;
-        //     margin-top: 20px;
-        //   }
-          // p {
-          //   font-size: 1em;
-          //   padding-bottom: 0;
-          //   margin-bottom: 0;
-          // }
-        // }
-
-        // h1 {
-        //   padding: 0;
-        //   color: gold;
-        //   font-size: 1.2em;
-        //   margin-top: 10px;
-        // }
       }
       .date_icon {
         display: flex;

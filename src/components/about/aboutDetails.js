@@ -28,7 +28,8 @@ const AboutDetails = () => (
     <OurRecord />
     <div id="aboutUsCardContainer">
       <div className="aboutUsCard">
-        <h1>Our Vision</h1>
+        <faCamera />
+        <h3>Our Vision</h3>
         <hr />
         <p>
           OUr mission is to provide our clients with the highest quality
@@ -43,7 +44,7 @@ const AboutDetails = () => (
         </p>
       </div>
       <div className="aboutUsCard">
-        <h1>Our Mision</h1>
+        <h3>Our Mision</h3>
         <hr />
         <p>
           Our Mission is to provide our clients with the highest quality
@@ -58,7 +59,7 @@ const AboutDetails = () => (
         </p>
       </div>
       <div className="aboutUsCard">
-        <h1>Our Motto</h1>
+        <h3>Our Motto</h3>
         <hr />
         <p>
           Our Motto is to provide our clients with the highest quality
@@ -73,13 +74,13 @@ const AboutDetails = () => (
         </p>
       </div>
     </div>
-    <div id="ourSkillsContainer">
+    <div className="aboutUsCard" id="ourSkillsContainer">
       <div id="ourSkillsText">
         <h5>
           <span>Our</span>
           Skills
         </h5>
-        <h1>Our Skills capture What Our Words Can&apos;t</h1>
+        <h2>Our Skills capture What Our Words Can&apos;t</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -104,7 +105,7 @@ const AboutDetails = () => (
             <span>Why Choose</span>
             Us
           </h5>
-          <h1>In Every Click, Perfection</h1>
+          <h2>In Every Click, Perfection</h2>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
