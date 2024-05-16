@@ -22,7 +22,7 @@ const HireUs = () => {
   return (
     <div id="hire_us_container" style={hireUsImageStyle}>
       <div id="hire_us" style={overlayStyle}>
-        <div id="hire_us_text">
+        <div className="h5_h2_p">
           <h5>
             <span>Hire Us</span>
             Now

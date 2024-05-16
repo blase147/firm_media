@@ -15,38 +15,36 @@ h1 {
 h2 {
   font-size: 2.5em;
   margin-top: 5px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 h5 {
   font-size: 1.4em;
   border-left: 5px solid gold;
   padding-left: 10px;
-  // padding-top: 0px;
-  // padding-bottom: 0px;
-  // margin-top: 50px;
   margin-bottom: 1px;
 }
 h3 {
   font-size: 1.8rem;
-  // font-weight: 700;
   margin-top: 7px;
   margin-bottom: 40px;
 }
 p {
   color: white;
   font-size: 1.2em;
-  margin-top: -22px;
+  margin-top: 0px;
   margin-bottom: 20px; /* Set font size for paragraphs */
 }
 span {
   color: white;
   margin-right: 10px;
 }
-button {
-  margin: 0;
-  padding: 0;
+.h5_h2_p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 20px;
+  text-align: center;
 }
-// Color Properties
 $page-background-color: #230b0b; // Page background color
 
 //input Properties
@@ -59,7 +57,7 @@ $input-width: 60%; // Input width
 $button-background-color: transparent; // Button background color
 $button-text-color: gold; // Button text color
 $button-border-radius: 4px; // Button border radius
-$button-padding: 15px 20px; // Button padding
+$button-padding: 15px 20px;
 $button-font-size: 16px; // Button font size
 $button-border: 2px solid gold; // Button border
 $button-hover-background-color: gold; // Button background color on hover
@@ -99,3 +97,5 @@ $button-margin-top-bottom: 20px 0px;
 a {
   text-decoration: none;
 }
+
+

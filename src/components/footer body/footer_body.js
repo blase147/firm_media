@@ -2,6 +2,7 @@ import React from 'react';
 import './footer_body.scss';
 import footerImage from '../images/jpeg/footer_image.jpg';
 import SocialIcons from '../social icons/social_icons';
+import Logo from '../images/png/Logo.png';
 // import Newsletter from '../newsletter/newsletter';
 // import '../newsletter/newsletter.scss';
 
@@ -28,7 +29,7 @@ const FooterBody = () => {
         </div> */}
         <div id="footer1">
           <div id="company_info" className="footer1_item">
-            <h3>FirmMedia</h3>
+            <img src={Logo} alt="company-logo" />
             <p>
               FirmMedia is a full-service digital marketing agency that
               specializes in providing digital marketing solutions to small and

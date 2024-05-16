@@ -107,39 +107,12 @@
       color: gold;
       text-align: center;
       margin: 5px 20px;
-      > div {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-
-        // & h5 {
-        //   font-size: 1.38rem;
-        //   font-weight: 700;
-        //   margin-bottom: 10px;
-        //   padding: 0;
-        //   margin: 0;
-        //   span {
-        //     color: #ffffff;
-        //     margin-right: 5px;
-        //   }
-        // }
-
-        // & h1 {
-        //   font-size: 2.7rem;
-        //   font-weight: 700;
-        //   margin-bottom: -3px;
-        //   padding: 0;
-        //   margin-top: -3px;
-        // }
-
-        // & p {
-        //   font-size: 1rem;
-        //   font-weight: 500;
-        //   margin-top: 20px;
-        //   color: white;
-        //   margin-bottom: -15px;
-        // }
-      }
+      // background-color: green;
+      // > div {
+      //   display: flex;
+      //   flex-direction: column;
+      //   width: 100%;
+      // }
     }
     #our_services_card_container {
       display: flex;
@@ -167,21 +140,21 @@
           object-fit: cover;
         }
 
-        & h3 {
-          font-size: 1.8rem;
-          font-weight: 700;
-          color: rgb(245, 189, 6);
-          // padding: 0;
-          margin-bottom: 10px;
-        }
+        // & h3 {
+        //   font-size: 1.8rem;
+        //   font-weight: 700;
+        //   color: rgb(245, 189, 6);
+        //   // padding: 0;
+        //   margin-bottom: 10px;
+        // }
 
-        & p {
-          font-size: 1.2rem;
-          // margin-top: 10px;
-          color: white;
-          padding: 20px;
-          margin: 0;
-        }
+        // & p {
+        //   font-size: 1.2rem;
+        //   // margin-top: 10px;
+        //   color: white;
+        //   padding: 20px;
+        //   margin: 0;
+        // }
       }
     }
   }

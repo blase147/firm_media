@@ -40,7 +40,7 @@ const Testimonials = () => {
 
   return (
     <div id="testimonials">
-      <div id="testimonials_text">
+      <div className="h5_h2_p">
         <h5>
           <span>Their</span>
           Testimonial

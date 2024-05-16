@@ -72,20 +72,11 @@
     padding: 10px;
 
     #why_choose_us_text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin: 10px;
-      align-items: center;
-
-      h2, p {
-        text-align: center;
-      }
-
       .skills {
         display: flex;
         flex-direction: column;
         width: 100%;
+        text-align: left;
       }
     }
 

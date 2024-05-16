@@ -21,7 +21,7 @@ const Banner = () => {
           <div id="social_icons_container">
             <SocialIcons />
           </div>
-          <div>
+          <div className="h5_h2_p">
             <h5>
               <span>Welcome</span>
               to FirmtecsMedia

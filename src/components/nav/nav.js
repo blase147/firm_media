@@ -1,45 +1,50 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './nav.scss';
+import Logo from '../images/png/Logo.png';
 
 const Nav = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // State to manage the visibility of the navbar
+  const [showNavbar, setShowNavbar] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prevState) => !prevState);
+  // Function to toggle the navbar visibility
+  const handleToggleNavbar = () => {
+    setShowNavbar(!showNavbar); // Toggles the value of showNavbar
   };
 
   return (
     <div id="nav_container">
       <div className="logo">
-        <img src="https://via.placeholder.com/50" alt="FirmMedia" />
+        <img src={Logo} alt="FirmMedia" />
       </div>
-      <Nav className={isMobileMenuOpen ? 'mobile-menu-open' : ''}>
+      {/* Add conditional class based on showNavbar state */}
+      <nav className={`navbar ${showNavbar ? 'show' : 'close'}`}>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/aboutDetails">About</Link>
+            <NavLink to="/aboutDetails">About</NavLink>
           </li>
           <li>
-            <Link to="/ourServicesDetails">Services</Link>
+            <NavLink to="/ourServicesDetails">Services</NavLink>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <NavLink to="/blog">Blog</NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
           <li>
-            <Link to="/pricing">Pricing</Link>
+            <NavLink to="/pricing">Pricing</NavLink>
           </li>
           <li>
-            <Link to="/portfolio">Portfolio</Link>
+            <NavLink to="/portfolio">Portfolio</NavLink>
           </li>
         </ul>
-      </Nav>
-      <button type="button" className="mobile-menu-breadcrumb" onClick={toggleMobileMenu}>
+      </nav>
+      {/* Button to toggle the navbar visibility */}
+      <button type="button" className="mobile_breadcrumb" onClick={handleToggleNavbar}>
         &#9776;
       </button>
     </div>

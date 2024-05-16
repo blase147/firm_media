@@ -9,7 +9,7 @@ const BlogUpdate = () => (
   <div>
     <div id="blog_update">
       <div id="blog_text">
-        <div className="blog_text">
+        <div className="h5_h2_p">
           <h5>
             <span>Blog</span>
             Update

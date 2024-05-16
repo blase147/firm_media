@@ -13,7 +13,7 @@ const MenuBanner = ({ backgroundImage, heading, paragraph }) => {
 
   return (
     <div id="MenuBannerContainer">
-      <div id="MenuBanner" style={bannerStyle}>
+      <div className="h5_h2_p" style={bannerStyle}>
         <Nav />
         <div id="MenuBannerText">
           <h1>{heading}</h1>

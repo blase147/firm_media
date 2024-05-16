@@ -6,7 +6,7 @@ import managementIcon from '../images/png/Management.png';
 const WhyChooseUs = () => (
   <div>
     <div id="why_choose_us">
-      <div id="why_choose_us_text">
+      <div id="why_choose_us_text" className="h5_h2_p">
         <h5>
           <span>Why</span>
           Choose Us

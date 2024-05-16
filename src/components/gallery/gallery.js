@@ -9,8 +9,8 @@ import galleryImage5 from '../images/jpeg/galleryImage5.jpg';
 
 const Gallery = () => (
   <div id="gallery">
-    <div id="gallery_text">
-      <div className="gallery_text">
+    <div>
+      <div className="h5_h2_p">
         <h5>
           <span>Our</span>
           Gallery
