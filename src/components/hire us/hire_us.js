@@ -9,7 +9,7 @@ const HireUs = () => {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     maxWidth: '100%',
-    height: '80vh',
+    // height: '80vh',
   };
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
