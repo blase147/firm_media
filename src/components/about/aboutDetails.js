@@ -8,6 +8,7 @@ import whyChooseUsCardIcon1 from '../images/png/Management.png';
 import FooterBody from '../footer body/footer_body';
 import MenuBanner from '../banners/menuBanner';
 import aboutDetailsBanner from '../images/jpeg/homepage_banner.jpg';
+import NewsLetter from '../newsletter/newsletter';
 
 const AboutDetails = () => (
   <div id="aboutdetailsContainer">
@@ -28,7 +29,6 @@ const AboutDetails = () => (
     <OurRecord />
     <div id="aboutUsCardContainer">
       <div className="aboutUsCard">
-        <faCamera />
         <h3>Our Vision</h3>
         <hr />
         <p>
@@ -74,7 +74,7 @@ const AboutDetails = () => (
         </p>
       </div>
     </div>
-    <div className="aboutUsCard" id="ourSkillsContainer">
+    <div id="ourSkillsContainer">
       <div id="ourSkillsText">
         <h5>
           <span>Our</span>
@@ -164,6 +164,7 @@ const AboutDetails = () => (
         </div>
       </div>
     </div>
+    <NewsLetter />
     <FooterBody />
   </div>
 );

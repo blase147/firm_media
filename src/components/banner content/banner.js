@@ -14,9 +14,9 @@ const Banner = () => {
   return (
     <div id="banner_cont">
       <div id="banner" style={bannerStyle}>
-        <div className="stickyNav">
-          <Nav id="nav" />
-        </div>
+        {/* <div> */}
+        <Nav />
+        {/* </div> */}
         <div className="banner_text">
           <div id="social_icons_container">
             <SocialIcons />

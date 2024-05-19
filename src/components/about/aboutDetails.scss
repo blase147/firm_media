@@ -1,35 +1,23 @@
 @import "../scss/config";
 
-#aboutdetailsContainer {
-  background-color: #230b0b;
-}
 @media only screen and (min-width: 768px) {
   #aboutdetailsContainer {
     background-color: #230b0b;
-    padding-bottom: 100px;
+    // background-color: green;
     color: white;
-    #aboutBanner {
-      margin-bottom: 100px;
-      #aboutDetailsText {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 50%;
-        margin: auto;
-        text-align: center;
-        margin-top: 100px;
-
-        h1 {
-          font-size: 2.9em;
-          color: gold;
-        }
-        p {
-          font-size: 1.2em;
-          line-height: 1.5em;
-          color: white;
-        }
-      }
-    }
+    // #aboutDetailsText {
+    //   display: flex;
+    //   flex-direction: column;
+    //   margin-bottom: 100px;
+    //   background-color: green;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   width: 50%;
+    //   margin: auto;
+    //   text-align: center;
+    //   // margin-top: 100px;
+    // }
     #aboutUsCardContainer {
       display: flex;
       justify-content: center;
@@ -53,67 +41,42 @@
         box-shadow: 0px 0px 10px 0px #000000;
         text-align: left;
         border: 1px solid rgb(255, 255, 255);
-        & h1 {
+        & h3 {
           text-align: left;
           font-size: 1.9em;
           color: gold;
           margin-top: 10px;
+          margin-bottom: 20px;
           text-align: left;
         }
         hr {
+          display: flex;
+          justify-content: flex-start;
           align-items: flex-start;
-          width: 20%;
+          // align-content: flex-start;
+          width: 25%;
           border: 1px solid gold;
           margin-left: 0px;
+          margin-top: 0;
+          margin-bottom: 20px;
         }
-        p {
-          font-size: 1em;
-          color: white;
-          margin-top: 10px;
-        }
+
       }
     }
     #ourSkillsContainer {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       margin: auto;
       width: 75%;
       padding-bottom: 100px;
+      // background-color: green;
       #ourSkillsText {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         width: 45%;
-        margin: auto;
-        text-align: left;
-
-        h5 {
-          font-size: 1.9em;
-          color: gold;
-          padding: 0;
-          margin: 0;
-          span {
-            color: white;
-            margin-right: 8px;
-          }
-        }
-        h1 {
-          font-size: 2.9em;
-          color: gold;
-          // padding: 0;
-          margin-top: 10px;
-          // background-color: rgb(226, 241, 8);
-        }
-        p {
-          font-size: 1.2em;
-          line-height: 1.5em;
-          color: white;
-        }
       }
       img {
         width: 50%;
-        height: 60vh;
+        height: 55vh;
       }
     }
     #whyChooseUsContainer {
@@ -123,7 +86,6 @@
       align-items: center;
       margin: auto;
       width: 75%;
-      // background-color: green;
       #whyChooseUsTextContainer {
         display: flex;
         justify-content: center;
@@ -132,36 +94,14 @@
         //   background-color: rgb(214, 69, 11);
         #whyChooseUsTextTitle {
           width: 45%;
-          // background-color: rgb(16, 165, 224);
-          h5 {
-            font-size: 1.9em;
-            padding: 0;
-            margin: 0;
-            span {
-              color: white;
-              margin-right: 8px;
-            }
-          }
-          h1 {
-            font-size: 3.19em;
-            color: gold;
-            margin-top: 10px;
-          }
-        }
-        p {
-          font-size: 1.2em;
-          line-height: 1.5em;
-          color: white;
-          width: 45%;
         }
       }
       #whyChooseUsCardContainer {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         gap: 30px;
         flex-wrap: wrap;
-        margin-bottom: 100px;
-        // padding: 0;
+        // background-color: rgb(16, 165, 224);
         .whyChooseUsCard {
           display: flex;
           flex-direction: column;
@@ -247,7 +187,7 @@
         margin: 0;
         padding: 0;
       }
-      p{
+      p {
         margin-top: 20px;
       }
     }

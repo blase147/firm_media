@@ -4,32 +4,31 @@
   #nav_container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    align-content: center;
+    // align-items: center;
+    // align-content: center;
     color: #fff;
     font-size: 1.2rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 75%;
-    margin: auto;
+    width: 100%;
+    padding: 30px;
     // background-color: green;
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
       color: #f00;
       img {
-        width: 80px;
-        height: 30px;
+        // width: 80px;
+        // height: 30px;
         margin: 0;
         padding: 0;
       }
     }
     nav {
-      margin: 0px 150px 0px 150px;
+      margin: 30px 150px 0px 150px;
       ul {
         display: flex;
-        justify-items: center;
-        align-items: center;
-        display: flex;
+        // justify-items: center;
+        // align-items: center;
         list-style: none;
         margin: 0;
         li {

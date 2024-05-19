@@ -7,6 +7,7 @@ import Testimonials from '../testimonials/testimonials';
 import MenuBanner from '../banners/menuBanner';
 import OurServicesDetailsBanner from '../images/jpeg/homepage_banner.jpg';
 import GalleryPage from '../gallery/galleryPage';
+import NewsLetter from '../newsletter/newsletter';
 
 const OurServicesDetails = () => (
   <div id="OurServicesDetailsContainer">
@@ -27,6 +28,7 @@ const OurServicesDetails = () => (
     <HireUs />
     <Testimonials />
     <GalleryPage />
+    <NewsLetter />
     <FooterBody />
   </div>
 );

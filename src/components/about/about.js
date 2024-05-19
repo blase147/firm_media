@@ -31,7 +31,7 @@ const About = () => {
             alt="aboutImage"
           />
         </div>
-        <div className="h5_h2_p">
+        <div id="about_text" className="h5_h2_p">
           <h5>
             <span>About</span>
             FirmMedia
