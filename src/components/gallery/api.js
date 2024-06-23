@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'process.env.YOUTUBE-API-KEY';
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 const CHANNEL_ID = 'UCXq1MkTRXF0T_Ugs-YJwLgg'; // or PLAYLIST_ID
 
 export const fetchYouTubeVideos = async () => {

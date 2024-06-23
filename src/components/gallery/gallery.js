@@ -27,7 +27,7 @@ const Gallery = () => {
         </div>
         <Link to="/myPortfolio">
           <button className="button" type="button">
-            See More
+            See More...
           </button>
         </Link>
       </div>
