@@ -1,10 +1,10 @@
 import React from 'react';
 import './footer_body.scss';
+import { faEnvelope, faPhone, faLocation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import footerImage from '../images/jpeg/footer_image.jpg';
 import SocialIcons from '../social icons/social_icons';
 import Logo from '../images/png/Logo.png';
-// import Newsletter from '../newsletter/newsletter';
-// import '../newsletter/newsletter.scss';
 
 const FooterBody = () => {
   const footerImageStyle = {
@@ -58,14 +58,26 @@ const FooterBody = () => {
           </div>
           <div id="footer1_contact" className="footer1_item">
             <h3>Company Info</h3>
-            <p>solarmails2@gmail.com</p>
-            <p>+2348035344730</p>
-            <p>City, State, Zip</p>
+            <div>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <span>Email: example@example.com</span>
+              <br />
+              <FontAwesomeIcon icon={faPhone} />
+              <span>Phone: +1234567890</span>
+              <br />
+              <FontAwesomeIcon icon={faLocation} />
+              <span>286 King Roman, New York</span>
+            </div>
             <SocialIcons />
           </div>
         </div>
         <div id="copyright">
           <p>© 2021 FirmMedia. All Rights Reserved.</p>
+          <div>
+            <p>Disclaimer</p>
+            |
+            <p>Privacy Policy</p>
+          </div>
         </div>
       </div>
     </div>

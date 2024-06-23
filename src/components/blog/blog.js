@@ -7,6 +7,7 @@ import BlogUpdate from '../blogUpdate/blog_update';
 import MenuBanner from '../banners/menuBanner';
 import blogBanner from '../images/jpeg/homepage_banner.jpg';
 import FooterBody from '../footer body/footer_body';
+import NewsLetter from '../newsletter/newsletter';
 
 const Blog = () => (
   <div id="blog">
@@ -30,7 +31,7 @@ const Blog = () => (
           <span>Blog</span>
           Archives
         </h5>
-        <h1>Explore Our Other Blogs</h1>
+        <h3>Explore Our Other Blogs</h3>
       </div>
       <div>
         <p>
@@ -49,7 +50,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -64,7 +65,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -79,7 +80,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -94,7 +95,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -109,7 +110,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -124,7 +125,7 @@ const Blog = () => (
           <p>January 10, 2024</p>
         </div>
         <Link to="/articleDetails">
-          <h1>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h1>
+          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
         </Link>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -133,6 +134,7 @@ const Blog = () => (
         </p>
       </div>
     </div>
+    <NewsLetter />
     <FooterBody />
   </div>
 );

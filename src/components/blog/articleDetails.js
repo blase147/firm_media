@@ -1,6 +1,6 @@
 import React from 'react';
 import './articleDetails.scss';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import articleBanner from '../images/jpeg/homepage_banner.jpg';
 import MenuBanner from '../banners/menuBanner';
@@ -8,13 +8,14 @@ import FooterBody from '../footer body/footer_body';
 import articleImage from '../images/jpeg/galleryImage1.jpg';
 import SocialIcons from '../social icons/social_icons';
 import homepageBanner from '../images/jpeg/footer_image.jpg';
+import Newsletter from '../newsletter/newsletter';
 
 const ArticleDetails = () => {
   const bannerStyle = {
     backgroundImage: `url(${homepageBanner})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '30vh',
+    height: '35vh',
   };
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -64,10 +65,10 @@ const ArticleDetails = () => {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <div id="shareThisPost">
-              <h2>Share This Post</h2>
+              <h3>Share This Post</h3>
               <SocialIcons />
             </div>
-            <h1>Leave a Reply</h1>
+            <h3>Leave a Reply</h3>
             <p>
               Your email address will not be published. Required fields are
               marked *
@@ -95,7 +96,7 @@ const ArticleDetails = () => {
           <div id="sideBar">
             <div id="author">
               <img src={articleImage} alt="date icon" />
-              <h5>Chukwuma Mosanya</h5>
+              <h3>Chukwuma Mosanya</h3>
               <p>
                 Chukwuma Mosanya is a professional photographer and writer. He
                 loves to travel and explore new places. He has been in the
@@ -107,41 +108,47 @@ const ArticleDetails = () => {
               </p>
             </div>
             <div id="recentPost">
-              <h1>Recent Posts</h1>
+              <h2>Recent Posts</h2>
               <div className="recentPostCard">
                 <img src={articleImage} alt="recent post pic" />
                 <div className="recentPostText">
-                  <p>Light and Shadow: Exploring the Art of Photography</p>
+                  <h4>Light and Shadow: Exploring the Art of Photography</h4>
                   <div className="imageDate">
-                    <img src={articleImage} alt="date icon" />
-                    <p>10 Jan, 2024</p>
+                    <p>
+                      <FontAwesomeIcon icon={faCalendarDay} />
+                      10 Jan, 2024
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="recentPostCard">
                 <img src={articleImage} alt="recent post pic" />
                 <div className="recentPostText">
-                  <p>Light and Shadow: Exploring the Art of Photography</p>
+                  <h4>Light and Shadow: Exploring the Art of Photography</h4>
                   <div className="imageDate">
-                    <img src={articleImage} alt="date icon" />
-                    <p>10 Jan, 2024</p>
+                    <p>
+                      <FontAwesomeIcon icon={faCalendarDay} />
+                      10 Jan, 2024
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="recentPostCard">
                 <img src={articleImage} alt="recent post pic" />
                 <div className="recentPostText">
-                  <p>Light and Shadow: Exploring the Art of Photography</p>
+                  <h4>Light and Shadow: Exploring the Art of Photography</h4>
                   <div className="imageDate">
-                    <img src={articleImage} alt="date icon" />
-                    <p>10 Jan, 2024</p>
+                    <p>
+                      <FontAwesomeIcon icon={faCalendarDay} />
+                      10 Jan, 2024
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div id="questions" style={bannerStyle}>
               <div style={overlayStyle}>
-                <h1>Have Any Questions?</h1>
+                <h3>Have Any Questions?</h3>
                 <p>
                   Whether you&apos;re planning a wedding, a corporate event, or a
                   family photoshoot, we have the expertise and equipment to bring
@@ -158,12 +165,13 @@ const ArticleDetails = () => {
               </div>
             </div>
             <div id="followUs">
-              <h1>Follow Us On:</h1>
+              <h3>Follow Us On:</h3>
               <SocialIcons />
             </div>
           </div>
         </div>
       </div>
+      <Newsletter />
       <FooterBody />
     </div>
   );

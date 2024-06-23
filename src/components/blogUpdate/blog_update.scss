@@ -4,12 +4,21 @@
   #blog_update {
     width: 75%;
     margin: auto;
-    color: white;
     #blog_text {
       display: flex;
       justify-content: space-between;
       align-items: last baseline;
       margin-top: 100px;
+      h5, h2, p {
+        margin-left: 0;
+      }
+      > div {
+        display: flex;
+        // justify-content: space-between;
+        align-items: flex-start;
+        // background-color: green;
+
+      }
     }
     #blog_content {
       display: flex;

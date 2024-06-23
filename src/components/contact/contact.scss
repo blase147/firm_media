@@ -1,6 +1,92 @@
 @import "../scss/config";
 
 @media only screen and (min-width: 768px) {
-  #contact {
+  #contactContainer {
+    background-color: $page-background-color;
+    width: 100%;
+    #contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 75%;
+      margin: auto;
+      padding-top: 50px;
+      #contact_text {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+        }
+
+        .input {
+          margin-bottom: 20px;
+          padding: 20px;
+          background-color: #1a1a1b;
+        }
+        #name {
+          width: 93%;
+        }
+        #subject {
+          width: 100%;
+          width: 93%;
+        }
+        textarea {
+          width: 100%;
+          height: 32vh;
+          background-color: #1a1a1b;
+        }
+      }
+    }
+  }
+  #contactCardContainer {
+    width: 75%;
+    margin: auto;
+    #contactCardContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      padding-top: 150px;
+      .contactCard {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px;
+        width: 29%;
+        height: 25vh;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        text-align: left;
+
+        h3 {
+          font-size: 2em;
+          margin-bottom: 20px;
+        }
+        p {
+          font-size: 1.5em;
+        }
+
+        hr {
+          border: 1px solid grey;
+          width: 60%;
+          margin-bottom: 30px;
+          margin-left: 0;
+        }
+      }
+    }
+    .icon_label {
+      margin-right: 20px;
+      font-size: 1em;
+    }
   }
 }
