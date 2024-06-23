@@ -1,6 +1,7 @@
 import React from 'react';
 import './gallery.scss';
 import { Link } from 'react-router-dom';
+import { fetchInstagramPosts } from './insta_api';
 import InstagramPost from './instagramPost';
 
 
