@@ -1,13 +1,22 @@
 import React from 'react';
 import './gallery.scss';
 import { Link } from 'react-router-dom';
-import galleryImage1 from '../images/jpeg/galleryImage1.jpg';
-import galleryImage2 from '../images/jpeg/galleryImage2.jpg';
-import galleryImage3 from '../images/jpeg/galleryImage3.jpg';
-import galleryImage4 from '../images/jpeg/galleryImage4.jpg';
-import galleryImage5 from '../images/jpeg/galleryImage5.jpg';
+import InstagramPost from './instagramPost';
 
-const Gallery = () => (
+
+
+const Gallery = () => {
+  const [instagramPosts, setInstagramPosts] = useState([]);
+ 
+  useEffect(() => {
+  const fetchPosts = async () => {
+    const postData = await fetchInstagramPosts();
+    setInstagramPosts(postData);
+  };
+  fetchPosts();
+}, []);
+
+  return (
   <div id="gallery">
     <div>
       <div className="h5_h2_p">
@@ -25,22 +34,15 @@ const Gallery = () => (
     </div>
     <div id="gallery_container">
       <div id="gallery_content">
-        <img src={galleryImage1} alt="gallery" />
-      </div>
-      <div id="gallery_content">
-        <img src={galleryImage2} alt="gallery" />
-      </div>
-      <div id="gallery_content">
-        <img src={galleryImage3} alt="gallery" />
-      </div>
-      <div id="gallery_content">
-        <img src={galleryImage4} alt="gallery" />
-      </div>
-      <div id="gallery_content">
-        <img src={galleryImage5} alt="gallery" />
+      <div className="instagram-posts">
+          {instagramPosts.map((post) => (
+            <InstagramPost key={post.id} post={post} />
+          ))}
+        </div>
       </div>
     </div>
   </div>
 );
+};
 
 export default Gallery;

@@ -39,7 +39,7 @@ const MyPortfolio = () => {
           <h1>See What We Have Done</h1>
         </div>
         <div>
-          <a href="https://www.youtube.com">
+          <a href="https://www.youtube.com/channel/UCXq1MkTRXF0T_Ugs-YJwLgg">
             <button className="button" type="button">
               See More
             </button>
@@ -48,11 +48,11 @@ const MyPortfolio = () => {
       </div>
       <div id="myPortfolio_content">
         <div className="grid-container">
-          <div className="grid-item item1">
-            {videos.map((video) => (
-              <VideoPlayer key={video.id.videoId} videoId={video.id.videoId} />
-            ))}
-          </div>
+          {/* <div className="grid-item item1"> */}
+          {videos.map((video) => (
+            <VideoPlayer key={video.id.videoId} videoId={video.id.videoId} />
+          ))}
+          {/* </div> */}
         </div>
       </div>
       <HireUs />
