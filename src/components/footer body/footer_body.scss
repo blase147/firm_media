@@ -22,32 +22,37 @@
         margin: auto;
         padding-top: 150px;
         padding-bottom: 30px;
-        .footer1_item {
-          width: 30%;
-          // background-color: red;
-          ul {
-            margin: 0;
-            li {
-              list-style-type: none;
-              position: relative; /* Set position to relative for pseudo-element */
-              padding-left: 0; /* Add padding for arrow */
-              margin-bottom: 3px; /* Add margin between list items */
+        #company_info {
+          img {
+            width: 200px;
+            margin-bottom: 20px;}
+          .footer1_item {
+            width: 30%;
+            // background-color: red;
+            ul {
+              margin: 0;
+              li {
+                list-style-type: none;
+                position: relative; /* Set position to relative for pseudo-element */
+                padding-left: 0; /* Add padding for arrow */
+                margin-bottom: 3px; /* Add margin between list items */
 
-              &:before {
-                content: "\2192"; /* Unicode arrow character (→) */
-                position: absolute;
-                left: -35px;
+                &:before {
+                  content: "\2192"; /* Unicode arrow character (→) */
+                  position: absolute;
+                  left: -35px;
+                }
               }
             }
-          }
-          ~ div {
-            padding: 0px 10px 0px 10px;
-            > div {
-              gap: 10px;
-              span {
-                margin-left: 10px;
+            ~ div {
+              padding: 0px 10px 0px 10px;
+              > div {
+                gap: 10px;
+                span {
+                  margin-left: 10px;
+                }
+                margin-bottom: 15px;
               }
-              margin-bottom: 15px;
             }
           }
         }
@@ -67,7 +72,6 @@
         padding: 30px 0px 30px;
         p {
           margin: 0;
-          
         }
         > div {
           display: flex;

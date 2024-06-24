@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ACCESS_TOKEN = 'process.env.INSTAGRAM-API-KEY';
+const ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_API_KEY;
 
 export const fetchInstagramPosts = async () => {
   const URL = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${ACCESS_TOKEN}`;

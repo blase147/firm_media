@@ -45,6 +45,42 @@
     height: 400px; /* Ensure the image takes up full height of the slide */
     object-fit: cover; /* Ensure the image fills the container while maintaining aspect ratio */
   }
+  #gallery {
+    // Your existing styles
+  }
+  
+  .instagram-feed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .instagram-post {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: calc(33% - 40px);
+    box-sizing: border-box;
+  }
+  
+  .instagram-post img, .instagram-post video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .instagram-post p {
+    margin: 10px 0;
+  }
+  
+  .instagram-post a {
+    display: block;
+    color: #0073e6;
+    text-decoration: none;
+  }
+  
+  .instagram-post a:hover {
+    text-decoration: underline;
+  }
+  
 }
 
 // mobile view

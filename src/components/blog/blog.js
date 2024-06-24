@@ -8,6 +8,7 @@ import MenuBanner from '../banners/menuBanner';
 import blogBanner from '../images/jpeg/homepage_banner.jpg';
 import FooterBody from '../footer body/footer_body';
 import NewsLetter from '../newsletter/newsletter';
+import MediumPosts from './medium_posts';
 
 const Blog = () => (
   <div id="blog">
@@ -133,6 +134,7 @@ const Blog = () => (
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
         </p>
       </div>
+      <MediumPosts />
     </div>
     <NewsLetter />
     <FooterBody />
