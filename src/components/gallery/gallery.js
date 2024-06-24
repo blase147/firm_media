@@ -7,7 +7,7 @@ import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 
 const Gallery = () => {
   const [posts, setPosts] = useState([]);
-  const accessToken = 'IGQWROZAzd2ZAkQteWc2ekhYV25uZAWUtemxIV0k4X1FvbTBlb0lwZAklKUVFBZAjA1NnFXSUloZAjBSRGl6RFpQT2Jla2NBOWhDVGh0U2lmQUVsOVNmVUJRTVRJZAHJvZAk1lLW1PaDdDRzNqcDVhRGtsZAWpESGoySkl6VFkZD';
+  const accessToken = process.env.REACT_APP_YOUTUBE_API_KEY;
 
   useEffect(() => {
     fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${accessToken}`)
