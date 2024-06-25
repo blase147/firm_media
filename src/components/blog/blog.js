@@ -1,8 +1,5 @@
 import React from 'react';
 import './blog.scss';
-import { Link } from 'react-router-dom';
-import blogCard1Image1 from '../images/jpeg/blogCard1Image1.jpg';
-import dateIcon from '../images/png/Calendar.png';
 import BlogUpdate from '../blogUpdate/blog_update';
 import MenuBanner from '../banners/menuBanner';
 import blogBanner from '../images/jpeg/homepage_banner.jpg';
@@ -44,96 +41,6 @@ const Blog = () => (
       </div>
     </div>
     <div id="blogContent">
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
-      <div id="blog_card">
-        <img src={blogCard1Image1} alt="blog_card_image" />
-        <div className="date_icon">
-          <img src={dateIcon} alt="date_icon" />
-          <p>January 10, 2024</p>
-        </div>
-        <Link to="/articleDetails">
-          <h3>Pixeel Perfect, A Beautiful Adventure in Photogrphy</h3>
-        </Link>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        </p>
-      </div>
       <MediumPosts />
     </div>
     <NewsLetter />

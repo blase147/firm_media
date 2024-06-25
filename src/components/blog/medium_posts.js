@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import './blog.scss';
 import Parser from 'rss-parser';
+import dateIcon from '../images/png/Calendar.png';
 
 const MediumPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -59,25 +61,19 @@ const MediumPosts = () => {
   };
 
   return (
-    <div id="medium-posts" style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>Medium Posts</h2>
-      <div
-        className="medium-feed"
-        style={{
-          display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center',
-        }}
-      >
+    <div>
+      <div>
         {posts.length === 0 && <p>No posts to display</p>}
         {posts.map((post) => (
           <div
             key={post.guid}
-            className="medium-post"
-            style={{
-              border: '1px solid #ddd', padding: '10px', width: 'calc(33% - 40px)', boxSizing: 'border-box',
-            }}
+            id="blog_card"
           >
             <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ maxWidth: '100%' }} />
-            <p><em>{formatDate(post.pubDate)}</em></p>
+            <div className="date_icon">
+              <img src={dateIcon} alt="date_icon" />
+              <p><em>{formatDate(post.pubDate)}</em></p>
+            </div>
             <h3>{post.title}</h3>
             <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
             <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
