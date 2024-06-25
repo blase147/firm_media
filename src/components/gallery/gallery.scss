@@ -48,13 +48,13 @@
   #gallery {
     // Your existing styles
   }
-  
+
   .instagram-feed {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .instagram-post {
     // border: 1px solid #ddd;
     padding: 10px;
@@ -63,31 +63,31 @@
     img {
       // width: 400px;
       // height: 400px;
-    // background-color: green;
-    // padding: 30px;
-    border-radius: 10px;
+      // background-color: green;
+      // padding: 30px;
+      border-radius: 10px;
     }
   }
-  
-  .instagram-post img, .instagram-post video {
+
+  .instagram-post img,
+  .instagram-post video {
     width: 100%;
     height: auto;
   }
-  
+
   .instagram-post p {
     margin: 10px 0;
   }
-  
+
   .instagram-post a {
     display: block;
     color: #0073e6;
     text-decoration: none;
   }
-  
+
   .instagram-post a:hover {
     text-decoration: underline;
   }
-  
 }
 
 // mobile view
