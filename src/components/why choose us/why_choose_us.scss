@@ -8,6 +8,8 @@
     margin: auto;
     #why_choose_us_text {
       width: 40%;
+      text-align: left;
+      align-items: flex-start;
 
       & h5 {
         margin: 0;
@@ -32,7 +34,11 @@
         font-size: 1.2em;
       }
     }
+    .skills {
+      text-align: left;
 
+      width: 100%;
+    }
     #why_choose_us_card_container {
       display: flex;
       gap: 20px;

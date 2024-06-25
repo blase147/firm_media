@@ -22,6 +22,7 @@ const Contact = () => (
         photoshoot, we have the expertise and equipment to bring your
         vision to life. Contact us today to learn more about our services
         and how we can help you capture your moments in style."
+      showButton={false} // Do not show button on this page
     />
     <div id="contact">
       <div id="contact_text">

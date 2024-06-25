@@ -17,8 +17,10 @@ const MediumPosts = () => {
 
         console.log('Feed items:', feed.items);
 
-        // Set posts starting from the 4th post
-        setPosts(feed.items.slice(3));
+        // Limit to the second and third posts
+        const limitedPosts = feed.items.slice(1, 3);
+
+        setPosts(limitedPosts);
       } catch (error) {
         console.error('Error fetching Medium posts:', error);
       }
@@ -63,18 +65,29 @@ const MediumPosts = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div>
         {posts.length === 0 && <p>No posts to display</p>}
         {posts.map((post) => (
-          <div key={post.guid} id="blog_card">
-            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ maxWidth: '100%' }} />
-            <div className="date_icon">
-              <img src={dateIcon} alt="date_icon" />
-              <p><em>{formatDate(post.pubDate)}</em></p>
+          <div
+            key={post.guid}
+            id="blog_card"
+            style={{ display: 'flex', marginBottom: '20px' }}
+          >
+
+            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '50%', height: 'auto' }} />
+            <div style={{
+              display: 'flex', flexDirection: 'column', paddingLeft: '20px',
+            }}
+            >
+              <div className="date_icon">
+                <img src={dateIcon} alt="date_icon" />
+                <p><em>{formatDate(post.pubDate)}</em></p>
+              </div>
+              <h3>{post.title}</h3>
+              <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
+              <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
             </div>
-            <h3>{post.title}</h3>
-            <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
-            <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
+
           </div>
         ))}
       </div>

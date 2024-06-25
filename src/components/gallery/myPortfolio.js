@@ -29,6 +29,7 @@ const MyPortfolio = () => {
         paragraph="FirmtecsMedia Production is a media production company
           that specializes in photography and videography. We are dedicated
           to capturing your special moments and making them last a lifetime."
+        showButton={false} // Do not show button on this page
       />
       <div id="myPortfolio_text">
         <div>

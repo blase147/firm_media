@@ -17,8 +17,10 @@ const MediumPosts = () => {
 
         console.log('Feed items:', feed.items);
 
-        // Set posts starting from the 4th post
-        setPosts(feed.items.slice(3));
+        // Limit to the first post only
+        const limitedPosts = feed.items.slice(0, 1);
+
+        setPosts(limitedPosts);
       } catch (error) {
         console.error('Error fetching Medium posts:', error);
       }
@@ -63,10 +65,13 @@ const MediumPosts = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div>
         {posts.length === 0 && <p>No posts to display</p>}
         {posts.map((post) => (
-          <div key={post.guid} id="blog_card">
+          <div
+            key={post.guid}
+            id="blog_card"
+          >
             <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ maxWidth: '100%' }} />
             <div className="date_icon">
               <img src={dateIcon} alt="date_icon" />

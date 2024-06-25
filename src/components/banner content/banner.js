@@ -2,42 +2,26 @@ import React from 'react';
 import './banner.scss';
 import homepageBanner from '../images/jpeg/homepage_banner.jpg';
 import SocialIcons from '../social icons/social_icons';
-import Nav from '../nav/nav';
+import MenuBanner from '../banners/menuBanner';
 
-const Banner = () => {
-  const bannerStyle = {
-    backgroundImage: `url(${homepageBanner})`, // Set the background image dynamically
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: '100vh',
-  };
-  return (
-    <div id="banner_cont">
-      <div id="banner" style={bannerStyle}>
-        {/* <div> */}
-        <Nav />
-        {/* </div> */}
-        <div className="banner_text">
-          <div id="social_icons_container">
-            <SocialIcons />
-          </div>
-          <div className="h5_h2_p">
-            <h5>
-              <span>Welcome</span>
-              to FirmtecsMedia
-            </h5>
-            <h1>Through Our Lens, Your Moments Shine</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              pretium justo at odio dignissim, auctor vesti bulum dui maximus.
-              Integer tristique porttitor urna accumsan egestas. Vestibulum
-              imperdiet fermentum nunc, nec efficitur massa tempus ut.
-            </p>
-            <button className="button" type="button">Get Started</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+const Banner = () => (
+  <div id="banner_cont">
+    <MenuBanner
+      backgroundImage={homepageBanner}
+      socialIcons={<SocialIcons />}
+      welcome={(
+        <>
+          <span>Welcome</span>
+          {' '}
+          to FirmtecsMedia
+        </>
+)}
+      heading="Through Our Lens, Your Moments Shine"
+      paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium justo at odio dignissim, auctor vestibulum dui maximus. Integer tristique porttitor urna accumsan egestas. Vestibulum imperdiet fermentum nunc, nec efficitur massa tempus ut."
+      button="Get Started"
+      showButton // Show button on this page
+    />
+  </div>
+);
+
 export default Banner;

@@ -16,23 +16,20 @@ import Newsletter from '../newsletter/newsletter';
 
 const Homepage = () => (
   <div id="homepage_container">
-    <div>
-      <div>
-        <Banner />
-      </div>
-      <About />
-      <OurRecord />
-      <OurServices />
-      <WhyChooseUs />
-      <Partners />
-      <PortfolioVideos />
-      <Gallery />
-      <Testimonials />
-      <HireUs />
-      <BlogUpdate />
-      <Newsletter />
-      <FooterBody />
-    </div>
+    <Banner />
+    <About />
+    <OurRecord />
+    <OurServices />
+    <WhyChooseUs />
+    <Partners />
+    <PortfolioVideos />
+    <Gallery />
+    <Testimonials />
+    <HireUs />
+    <BlogUpdate />
+    <Newsletter />
+    <FooterBody />
+    {/* </div> */}
   </div>
 );
 

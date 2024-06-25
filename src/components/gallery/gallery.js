@@ -21,7 +21,8 @@ const Gallery = () => {
         });
         console.log('Fetched data:', response.data); // Log fetched data for inspection
         if (response.data && response.data.data) {
-          setPosts(response.data.data);
+          // Limit to the first 9 posts
+          setPosts(response.data.data.slice(0, 9));
         } else {
           console.error('Invalid data structure:', response.data);
         }
