@@ -7,7 +7,7 @@ import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 
 const Gallery = () => {
   const [posts, setPosts] = useState([]);
-  const accessToken = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const accessToken = process.env.REACT_APP_INSTAGRAM_API_KEY;
 
   useEffect(() => {
     fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${accessToken}`)
