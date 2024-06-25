@@ -61,7 +61,6 @@ const Gallery = () => {
           src={post.media_url}
           alt={post.caption || 'Instagram Post'}
           onError={(e) => { e.target.src = 'https://via.placeholder.com/150'; console.error(`Error loading image with URL: ${post.media_url}`); }}
-          style={{ maxWidth: '100%', height: 'auto' }}
         />
       );
     } if (post.media_type === 'VIDEO' && post.media_url) {
@@ -123,7 +122,7 @@ const Gallery = () => {
   };
 
   return (
-    <div id="gallery" style={{ padding: '20px', textAlign: 'center' }}>
+    <div id="gallery">
       <div>
         <div className="h5_h2_p">
           <h5>
@@ -138,14 +137,9 @@ const Gallery = () => {
           </button>
         </Link>
       </div>
-      <div id="gallery_container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <div id="gallery_content" style={{ width: '100%' }}>
-          <div
-            className="instagram-feed"
-            style={{
-              display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center',
-            }}
-          >
+      <div id="gallery_container">
+        <div id="gallery_content">
+          <div className="instagram-feed">
             {posts.length === 0 && <p>No posts to display</p>}
             {' '}
             {/* Show message if no posts */}
@@ -153,9 +147,6 @@ const Gallery = () => {
               <div
                 key={post.id}
                 className="instagram-post"
-                style={{
-                  border: '1px solid #ddd', padding: '10px', width: 'calc(33% - 40px)', boxSizing: 'border-box',
-                }}
               >
                 {renderMedia(post)}
                 {(!post.media_url && !post.thumbnail_url) && <p>Media URL is missing</p>}
