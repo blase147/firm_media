@@ -7,6 +7,8 @@ import aboutDetailsBanner from '../images/jpeg/homepage_banner.jpg';
 import SocialIcons from '../social icons/social_icons';
 import Newsletter from '../newsletter/newsletter';
 import FooterBody from '../footer body/footer_body';
+import GoogleMapComponent from '../GoogleMapComponent';
+import LeafletMapComponent from '../LeafletMapComponent';
 
 const Contact = () => (
   <div id="contactContainer">
@@ -96,7 +98,10 @@ const Contact = () => (
           <p>solarmails2@gmail.com</p>
         </div>
       </div>
-      <div id="googleMap" />
+      <div className="map_container">
+        <LeafletMapComponent />
+      </div>
+      <GoogleMapComponent />
     </div>
     <Newsletter />
     <FooterBody />
