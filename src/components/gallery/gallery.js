@@ -2,31 +2,54 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './gallery.scss';
 import { Link } from 'react-router-dom';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Requires a loader
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
+import axios from 'axios';
 
 const Gallery = () => {
   const [posts, setPosts] = useState([]);
   const accessToken = process.env.REACT_APP_INSTAGRAM_API_KEY;
 
   useEffect(() => {
-    fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${accessToken}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Fetched data:', data); // Log fetched data for inspection
-        if (data && data.data) {
-          setPosts(data.data);
+    const fetchInstagramPosts = async () => {
+      try {
+        const response = await axios.get('https://graph.instagram.com/me/media', {
+          params: {
+            fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp',
+            access_token: accessToken,
+          },
+        });
+        console.log('Fetched data:', response.data); // Log fetched data for inspection
+        if (response.data && response.data.data) {
+          setPosts(response.data.data);
         } else {
-          console.error('Invalid data structure:', data);
+          console.error('Invalid data structure:', response.data);
         }
-      })
-      .catch((error) => console.error('Error fetching Instagram posts:', error));
+      } catch (error) {
+        console.error('Error fetching Instagram posts:', error);
+      }
+    };
+
+    if (accessToken) {
+      fetchInstagramPosts();
+    } else {
+      console.error('Instagram API key not found.');
+    }
   }, [accessToken]);
 
   const fetchCarouselChildren = async (id) => {
-    const response = await fetch(`https://graph.instagram.com/${id}/children?fields=id,media_type,media_url,thumbnail_url&access_token=${accessToken}`);
-    const data = await response.json();
-    return data.data;
+    try {
+      const response = await axios.get(`https://graph.instagram.com/${id}/children`, {
+        params: {
+          fields: 'id,media_type,media_url,thumbnail_url',
+          access_token: accessToken,
+        },
+      });
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching carousel items:', error);
+      return [];
+    }
   };
 
   const renderMedia = (post) => {
@@ -65,9 +88,16 @@ const Gallery = () => {
     const [carouselItems, setCarouselItems] = useState([]);
 
     useEffect(() => {
-      fetchCarouselChildren(postId)
-        .then((items) => setCarouselItems(items))
-        .catch((error) => console.error('Error fetching carousel items:', error));
+      const fetchCarousel = async () => {
+        try {
+          const items = await fetchCarouselChildren(postId);
+          setCarouselItems(items);
+        } catch (error) {
+          console.error('Error fetching carousel items:', error);
+        }
+      };
+
+      fetchCarousel();
     }, [postId]);
 
     return (
