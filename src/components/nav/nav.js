@@ -14,8 +14,8 @@ const Nav = () => {
 
   return (
     <div id="nav_container">
-      <div className="logo">
-        <img src={Logo} alt="FirmMedia" />
+      <div>
+        <img className="logo" src={Logo} alt="FirmMedia" />
       </div>
       {/* Add conditional class based on showNavbar state */}
       <nav className={`navbar ${showNavbar ? 'show' : 'close'}`}>

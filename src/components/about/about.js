@@ -15,21 +15,25 @@ const About = () => {
     <div>
       <div id="about">
         <div className="grid-container">
-          <img
-            className="responsive_image"
-            src={aboutImage1}
-            alt="aboutImage"
-          />
-          <img
-            className="responsive_image"
-            src={aboutImage3}
-            alt="aboutImage"
-          />
-          <img
-            className="responsive_image"
-            src={aboutImage2}
-            alt="aboutImage"
-          />
+          <div id="grid1">
+            <img
+              className="responsive_image"
+              src={aboutImage1}
+              alt="aboutImage"
+            />
+            <img
+              className="responsive_image"
+              src={aboutImage3}
+              alt="aboutImage"
+            />
+          </div>
+          <div id="grid2">
+            <img
+              className="responsive_image"
+              src={aboutImage2}
+              alt="aboutImage"
+            />
+          </div>
         </div>
         <div id="about_text" className="h5_h2_p">
           <h5>

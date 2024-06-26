@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import footerImage from '../images/jpeg/footer_image.jpg';
 import SocialIcons from '../social icons/social_icons';
 import Logo from '../images/png/Logo.png';
+import Copyright from './copyright';
 
 const FooterBody = () => {
   const footerImageStyle = {
@@ -72,7 +73,7 @@ const FooterBody = () => {
           </div>
         </div>
         <div id="copyright">
-          <p>© 2021 FirmMedia. All Rights Reserved.</p>
+          <Copyright />
           <div>
             <p>Disclaimer</p>
             |

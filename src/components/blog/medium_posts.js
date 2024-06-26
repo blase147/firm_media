@@ -74,7 +74,7 @@ const MediumPosts = () => {
             </div>
             <h3>{post.title}</h3>
             <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
-            <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
+            <a href={post.link} target="_blank" rel="noopener noreferrer">Read More..</a>
           </div>
         ))}
       </div>

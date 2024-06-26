@@ -18,7 +18,7 @@ const BlogUpdate = () => (
           </h5>
           <h2>Latest Blog and News</h2>
         </div>
-        <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
+        <a href="https://medium.com/@solarmails2" target="_blank" rel="noreferrer">
           <button className="button" type="button">See More</button>
         </a>
       </div>

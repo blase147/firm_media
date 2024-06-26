@@ -10,15 +10,29 @@
     // gap: 20px;
     padding-top: 100px;
     padding-bottom: 100px;
-    // background-color: red;
     .grid-container {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       width: 60%;
+      #grid1 {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 45%;
+        max-height: 20vh;
+      }
+      #grid2 {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        max-height: 41vh;
+        // background-color: rgb(12, 248, 228);
+      }
 
       .responsive_image {
-        width: 49%;
+        width: 100%;
+        height: 100%;
       }
     }
     #about_text {
@@ -31,9 +45,9 @@
       // background-color: green;
       margin-top: 0;
       padding-top: 0;
-      // h5 {
-      //   margin-top: 0;
-      // }
+      h5 {
+        margin-top: 0;
+      }
     }
   }
 }

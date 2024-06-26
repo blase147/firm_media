@@ -9,83 +9,47 @@
       justify-content: space-between;
       align-items: last baseline;
       margin-top: 100px;
-      h5, h2, p {
-        margin-left: 0;
-      }
+
       > div {
         display: flex;
         // justify-content: space-between;
         align-items: flex-start;
         // background-color: green;
-
       }
     }
     #blog_content {
       display: flex;
-      justify-content: space-between;
+      gap: 20px;
       #blog_card1 {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         align-items: flex-start;
-        background-color: rgb(52, 72, 83);
-        width: 44%;
-        padding: 20px;
-        > img {
-          width: 100%;
-          // height: 35vh;
-        }
-        p {
-          margin-bottom: 0;
-        }
-      }
-
-      .date_icon {
-        display: flex;
-        align-content: flex-start;
-        align-items: center;
-        margin-top: 10px;
-        img {
-          height: 2vh;
-          margin-right: 5px;
+        // padding: 10px;
+        #blog_card1_content {
+          #blogImage {
+            width: 100%;
+          }
+          a {
+            color: rgb(187, 236, 187);
+            font-weight: 900;
+          }
         }
       }
 
       #blog_card2 {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        width: 51%;
-        height: 29vh;
-        .blog_card2_item {
-          display: flex;
-          background-color: rgb(52, 72, 83);
-          img {
-            // width: 50%;
-            height: 27vh;
-            padding: 10px;
+        margin-bottom: 20px;
+        #blog_card2_content {
+          a {
+            color: rgb(187, 236, 187);
+            font-weight: 900;
           }
-          .blog_update_text {
-            display: flex;
-            flex-direction: column;
-            // margin: 0px 20px 20px 0px;
-            width: 50%;
-            // padding: 10px 0px 0px 0px;
-            .date_icon {
-              display: flex;
-              align-content: flex-start;
-              align-items: center;
-              margin-top: 10px;
+        }
 
-              img {
-                width: 8%;
-                height: 2vh;
-                padding: 0;
-                // margin: 0;
-                margin-right: 5px;
-              }
-            }
-          }
+        a {
+          color: rgb(187, 236, 187);
+          font-weight: 900;
         }
       }
     }

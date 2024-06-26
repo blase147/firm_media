@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './blog.scss';
+import '../blogUpdate/blog_update.scss';
 import Parser from 'rss-parser';
 import dateIcon from '../images/png/Calendar.png';
 
@@ -54,7 +54,9 @@ const MediumPosts = () => {
   const createSnippet = (content, length = 100) => {
     if (!content) return '';
     const textContent = content.replace(/<[^>]*>?/gm, ''); // Strip HTML tags
-    return textContent.length > length ? `${textContent.substring(0, length)}...` : textContent;
+    return textContent.length > length
+      ? `${textContent.substring(0, length)}...`
+      : textContent;
   };
 
   const formatDate = (dateString) => {
@@ -64,25 +66,38 @@ const MediumPosts = () => {
   };
 
   return (
-    <div>
-      <div>
-        {posts.length === 0 && <p>No posts to display</p>}
-        {posts.map((post) => (
-          <div
-            key={post.guid}
-            id="blog_card"
-          >
-            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ maxWidth: '100%' }} />
-            <div className="date_icon">
-              <img src={dateIcon} alt="date_icon" />
-              <p><em>{formatDate(post.pubDate)}</em></p>
-            </div>
-            <h3>{post.title}</h3>
-            <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
-            <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
+    <div id="blog_card1" style={{ height: '55vh' }}>
+      {posts.length === 0 && <p>No posts to display</p>}
+      {posts.map((post) => (
+        <div
+          key={post.guid}
+          id="blog_card1_content"
+          style={{ padding: '20px', backgroundColor: 'rgb(52, 72, 83)' }}
+        >
+          <img
+            style={{ height: '44vh' }}
+            id="blogImage"
+            src={extractImageFromContent(
+              post['content:encoded'] || post.content,
+            )}
+            alt={post.title}
+          />
+          <div className="date_icon">
+            <img src={dateIcon} alt="date_icon" />
+            <p>
+              <em>{formatDate(post.pubDate)}</em>
+            </p>
           </div>
-        ))}
-      </div>
+          <h3>{post.title}</h3>
+          <p>
+            {post.contentSnippet
+              || createSnippet(post['content:encoded'] || post.content)}
+          </p>
+          <a href={post.link} target="_blank" rel="noopener noreferrer">
+            Read More...
+          </a>
+        </div>
+      ))}
     </div>
   );
 };

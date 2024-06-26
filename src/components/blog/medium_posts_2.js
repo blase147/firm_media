@@ -64,33 +64,29 @@ const MediumPosts = () => {
   };
 
   return (
-    <div>
-      <div>
-        {posts.length === 0 && <p>No posts to display</p>}
-        {posts.map((post) => (
-          <div
-            key={post.guid}
-            id="blog_card"
-            style={{ display: 'flex', marginBottom: '20px' }}
-          >
+    <div id="blog_card2">
+      {posts.length === 0 && <p>No posts to display</p>}
+      {posts.map((post) => (
+        <div
+          key={post.guid}
+          id="blog_card2_content"
+          style={{ marginBottom: '20px', backgroundColor: 'rgb(52, 72, 83)', padding: '20px' }}
+        >
 
-            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '50%', height: 'auto' }} />
-            <div style={{
-              display: 'flex', flexDirection: 'column', paddingLeft: '20px',
-            }}
-            >
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+            <img id="blogImage" src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '45%', height: '30vh' }} />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="date_icon">
                 <img src={dateIcon} alt="date_icon" />
                 <p><em>{formatDate(post.pubDate)}</em></p>
               </div>
               <h3>{post.title}</h3>
               <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
-              <a href={post.link} target="_blank" rel="noopener noreferrer">Read More on Medium</a>
+              <a href={post.link} target="_blank" rel="noopener noreferrer">Read More...</a>
             </div>
-
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
