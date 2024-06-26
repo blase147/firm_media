@@ -1,5 +1,3 @@
-// src/components/LeafletMapComponent.js
-
 import React from 'react';
 import {
   MapContainer, TileLayer, Marker, Popup,
@@ -8,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 // Fix marker icon issue
-delete L.Icon.Default.prototype._getIconUrl;
+delete L.Icon.Default.prototype.getIconUrl;
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -17,7 +15,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const LeafletMapComponent = () => {
-  const position = [5.482810, 7.009016]; // Replace with your latitude and longitude
+  const position = [40.730610, -73.935242]; // Replace with your latitude and longitude
 
   return (
     <MapContainer center={position} zoom={13} style={{ width: '100%', height: '400px' }}>

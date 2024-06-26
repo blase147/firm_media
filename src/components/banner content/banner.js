@@ -2,11 +2,11 @@ import React from 'react';
 import './banner.scss';
 import homepageBanner from '../images/jpeg/homepage_banner.jpg';
 import SocialIcons from '../social icons/social_icons';
-import MenuBanner from '../banners/menuBanner';
+import HomeBanner from '../banners/homeBanner';
 
 const Banner = () => (
   <div id="banner_cont">
-    <MenuBanner
+    <HomeBanner
       backgroundImage={homepageBanner}
       socialIcons={<SocialIcons />}
       welcome={(

@@ -1,41 +1,41 @@
 @import "../scss/config";
 
 @media only screen and (min-width: 768px) {
-  #MenuBannerContainer {
-    background-color: #230b0b;
-    color: white;
-    #MenuBannerText {
-      margin-bottom: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 50%;
-      margin: auto;
-      text-align: center;
-
-      h1 {
-        font-size: 2.9em;
-        color: gold;
-      }
-      p {
-        font-size: 1.2em;
-        line-height: 1.5em;
-        color: white;
+  #banner_cont {
+    #HomeBannerContainer {
+      background-color: #230b0b;
+      color: white;
+      #banner {
+        #HomeBannerText {
+          // display: flex;
+          // justify-content: flex-start;
+          // align-items: flex-start;
+          text-align: left;
+          // background-color: greenyellow;
+          // margin-bottom: 100px;
+          // display: flex;
+          // flex-direction: column;
+          width: 50%;
+          position: relative;
+          top: 10%;
+          left: 5%;
+        }
       }
     }
   }
 }
 @media only screen and (max-width: 768px) {
-  #MenuBannerContainer {
+  #HomeBannerContainer {
     display: flex;
     flex-direction: column;
     background-color: #230b0b;
     padding-bottom: 100px;
     color: white;
     margin-bottom: 100px;
-    #MenuBanner {
+    #Banner {
       // margin-bottom: 100px;
-      #MenuBannerText {
+      #HomeBannerText {
+        // background-color: greenyellow;
         // display: flex;
         // flex-direction: column;
         // justify-content: center;

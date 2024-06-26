@@ -2,48 +2,30 @@
 
 @media only screen and (min-width: 769px) {
   #banner_cont {
-    // background-color: blue;
-    margin-bottom: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
     #banner {
-      color: #fcfbfb;
+      // color: #fcfbfb;
       // background-color: blue;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
       #social_icons_container {
+        font-size: 1.5em;
+
         > div {
           display: flex;
           flex-direction: column;
           gap: 10px;
         }
-        display: flex;
         position: absolute;
-        top: 50%;
-        left: 25%;
-        transform: translate(-50%, -50%);
-        justify-content: center;
-        align-items: center;
-        font-size: 1.5em;
-        .social-icon {
-          display: flex;
-        }
-      }
-      .banner_text {
-        // background-color: blue;
-        position: absolute;
-        top: 50%;
-        left: 42%;
-        transform: translate(-50%, -50%);
-        text-align: left;
-        width: 50%;
-        & h5 {
-          font-size: 1.8em;
-        }
-
-        & h1 {
-          font-size: 5.9em;
-        }
-
-        // & p {
-        //   font-size: 1em; /* Set font size for paragraphs */
-        // }
+        top: 8%;
+        left: -7%;
+        // transform: translate(-50%, -50%);
+        // justify-content: flex-start;
+        // align-items: flex-start;
       }
     }
   }
