@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './myPortfolio.scss';
 import { fetchYouTubeVideos } from './youtube_api'; // Ensure this path is correct
 import VideoPlayer from './videoplayer';
-import portfolioBanner from '../images/jpeg/homepage_banner.jpg';
+import portfolioBanner from '../images/jpeg/portfolio_banner.jpg';
 import MenuBanner from '../banners/menuBanner';
 import HireUs from '../hire us/hire_us';
 import Testinmonial from '../testimonials/testimonials';

@@ -73,8 +73,15 @@ const MediumPosts = () => {
           style={{ marginBottom: '20px', backgroundColor: 'rgb(52, 72, 83)', padding: '20px' }}
         >
 
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
-            <img id="blogImage" src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '45%', height: '30vh' }} />
+          <div
+            id="blog_image_text"
+            style={{
+              display: 'flex', flexDirection: 'row', gap: '10px', width: '100%',
+            }}
+          >
+            <div style={{ width: '100%' }}>
+              <img id="blogImage" src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '100%', height: '30vh' }} />
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="date_icon">
                 <img src={dateIcon} alt="date_icon" />

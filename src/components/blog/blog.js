@@ -2,7 +2,7 @@ import React from 'react';
 import './blog.scss';
 import BlogUpdate from '../blogUpdate/blog_update';
 import MenuBanner from '../banners/menuBanner';
-import blogBanner from '../images/jpeg/homepage_banner.jpg';
+import blogBanner from '../images/jpeg/blog_banner.avif';
 import FooterBody from '../footer body/footer_body';
 import NewsLetter from '../newsletter/newsletter';
 import MediumPosts from './medium_posts';

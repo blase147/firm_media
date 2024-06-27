@@ -2,7 +2,7 @@ import React from 'react';
 import './about.scss';
 import { Link, useLocation } from 'react-router-dom';
 import aboutImage1 from '../images/jpeg/about_img1.jpg';
-import aboutImage2 from '../images/jpeg/about_img2.jpg';
+import aboutImage2 from '../images/jpeg/about_img2.jpeg';
 import aboutImage3 from '../images/jpeg/about_img3.jpg';
 
 const About = () => {

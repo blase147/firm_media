@@ -3,7 +3,7 @@ import './contact.scss';
 import { faAddressBook, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MenuBanner from '../banners/menuBanner';
-import aboutDetailsBanner from '../images/jpeg/homepage_banner.jpg';
+import aboutDetailsBanner from '../images/jpeg/contact_banner.jpg';
 import SocialIcons from '../social icons/social_icons';
 import Newsletter from '../newsletter/newsletter';
 import FooterBody from '../footer body/footer_body';

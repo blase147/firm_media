@@ -2,12 +2,12 @@ import React from 'react';
 import './aboutDetails.scss';
 import About from './about';
 import OurRecord from '../our record/our_record';
-import aboutImage1 from '../images/jpeg/about_img1.jpg';
+import aboutImage1 from '../images/jpeg/our_skill.jpg';
 import SkillBar from '../why choose us/skills_bar';
 import whyChooseUsCardIcon1 from '../images/png/Management.png';
 import FooterBody from '../footer body/footer_body';
 import MenuBanner from '../banners/menuBanner';
-import aboutDetailsBanner from '../images/jpeg/homepage_banner.jpg';
+import aboutDetailsBanner from '../images/jpeg/about_banner.webp';
 import NewsLetter from '../newsletter/newsletter';
 
 const AboutDetails = () => (

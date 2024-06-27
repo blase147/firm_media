@@ -5,7 +5,7 @@ import FooterBody from '../footer body/footer_body';
 import HireUs from '../hire us/hire_us';
 import Testimonials from '../testimonials/testimonials';
 import MenuBanner from '../banners/menuBanner';
-import OurServicesDetailsBanner from '../images/jpeg/homepage_banner.jpg';
+import OurServicesDetailsBanner from '../images/jpeg/services_banner.avif';
 import GalleryPage from '../gallery/galleryPage';
 import NewsLetter from '../newsletter/newsletter';
 

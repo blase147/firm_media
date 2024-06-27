@@ -1,6 +1,11 @@
 import React from 'react';
 import './our_services.scss';
-import serviceImage1 from '../images/jpeg/service_image1.jpg';
+import photography from '../images/jpeg/photography.jpg';
+import videography from '../images/jpeg/videography.jpg';
+import drone from '../images/jpeg/drone.jpg';
+import studioShoot from '../images/jpeg/studio_shoot.webp';
+import equipment from '../images/jpeg/equipment.jpeg';
+import postProduction from '../images/jpeg/post_production.png';
 
 const OurServices = () => (
   <div id="our_services">
@@ -22,7 +27,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={photography}
           alt="our_services"
         />
         <h3>Photography</h3>
@@ -35,7 +40,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={videography}
           alt="our_services"
         />
         <h3>Videography</h3>
@@ -48,7 +53,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={drone}
           alt="our_services"
         />
         <h3>Drone Shoot</h3>
@@ -61,7 +66,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={studioShoot}
           alt="our_services"
         />
         <h3>Studio Shoot</h3>
@@ -74,7 +79,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={equipment}
           alt="our_services"
         />
         <h3>Equipment Rent</h3>
@@ -87,7 +92,7 @@ const OurServices = () => (
       <div className="our_services_item">
         <img
           className="responsive_image"
-          src={serviceImage1}
+          src={postProduction}
           alt="our_services"
         />
         <h3>Post-Production</h3>
