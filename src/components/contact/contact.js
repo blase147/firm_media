@@ -15,15 +15,10 @@ const Contact = () => (
     <MenuBanner
       backgroundImage={aboutDetailsBanner}
       heading="Contact Us"
-      paragraph="FirmtecsMedia Production is a media production company
-        that specializes in photography and videography. We are dedicated
-        to capturing your special moments and making them last a lifetime.
-        Our team of skilled photographers videographers will work with you
-        to create stunning images and videos that you can cherish forever.
-        Whether you're planning a wedding, a corporate event, or a family
-        photoshoot, we have the expertise and equipment to bring your
-        vision to life. Contact us today to learn more about our services
-        and how we can help you capture your moments in style."
+      paragraph="Reach out to Firm Media today and let's start creating something
+       extraordinary together. Whether you have questions about our services or
+        want to discuss your next project, we're here to help. Contact us now and
+         let's bring your vision to life."
       showButton={false} // Do not show button on this page
     />
     <div id="contact">
@@ -31,9 +26,10 @@ const Contact = () => (
         <h5>Contact Us</h5>
         <h2>Ready to Frame Your Moments? Reach Out Today!</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation.
+          Have questions or ready to start your next project? Reach out to
+          Firm Media today! Our team is here to assist with all your photography,
+          videography, drone shoot, studio session, equipment leasing, and post-production
+          needs. Connect with us to discuss how we can bring your vision to life.
         </p>
         <SocialIcons />
       </div>

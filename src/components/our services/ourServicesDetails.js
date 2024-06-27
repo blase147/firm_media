@@ -14,15 +14,12 @@ const OurServicesDetails = () => (
     <MenuBanner
       backgroundImage={OurServicesDetailsBanner}
       heading="Services"
-      paragraph="FirmtecsMedia Production is a media production company
-    that specializes in photography and videography. We are dedicated
-    to capturing your special moments and making them last a lifetime.
-     Our team of skilled photographers videographers will work with you
-     to create stunning images and videos that you can cherish forever.
-     Whether you're planning a wedding, a corporate event, or a family
-      photoshoot, we have the expertise and equipment to bring your
-      vision to life. Contact us today to learn more about our services
-      and how we can help you capture your moments in style."
+      paragraph="Discover excellence in visual storytelling with Firm Media.
+       From expert photography and videography to dynamic drone shoots and
+        professional studio sessions, we offer comprehensive solutions tailored
+         to your creative needs. Elevate your projects with our reliable equipment
+          leasing and meticulous post-production services. Explore our diverse range
+           of services and bring your vision to life with Firm Media."
       showButton={false} // Do not show button on this page
     />
     <OurServices />

@@ -17,7 +17,14 @@ const Banner = () => (
         </>
 )}
       heading="Through Our Lens, Your Moments Shine"
-      paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium justo at odio dignissim, auctor vestibulum dui maximus. Integer tristique porttitor urna accumsan egestas. Vestibulum imperdiet fermentum nunc, nec efficitur massa tempus ut."
+      paragraph="At Firm Media, we specialize in capturing
+       your most precious moments with professional artistry
+        and precision. Whether you're looking for stunning
+        photography, cinematic videography, breathtaking drone
+         shoots, or intimate studio shoots, we’ve got you covered.
+         Enhance your projects with our top-tier equipment leasing
+         services and impeccable post-production work. Trust Firm
+         Media to bring your vision to life!"
       button="Get Started"
       showButton // Show button on this page
     />

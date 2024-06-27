@@ -47,10 +47,9 @@ const Testimonials = () => {
         </h5>
         <h2>What Our Clients Have To Say</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea
+          Firm Media garners consistent acclaim from clients who appreciate our
+          unwavering commitment to delivering exceptional quality and professionalism
+          in every project.
         </p>
       </div>
       <div id="testimonial_card_container">

@@ -29,10 +29,12 @@ const HireUs = () => {
           </h5>
           <h2>Book Our Services and Capture Your Memories for a Lifetime</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Ready to elevate your visual projects? Firm Media stands ready to
+            bring your ideas to life. Whether you need expert photography, dynamic
+            videography, precise drone shots, or a professional studio environment,
+            we&apos;ve got you covered. Our team offers flexible equipment leasing and
+            meticulous post-production services to ensure your vision exceeds expectations.
+            Contact us today to start collaborating on your next creative endeavor.
           </p>
           <Link to="/bookNow">
             <button className="button" type="button">

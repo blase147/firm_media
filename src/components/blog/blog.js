@@ -12,15 +12,11 @@ const Blog = () => (
     <MenuBanner
       backgroundImage={blogBanner}
       heading="Blog"
-      paragraph="FirmtecsMedia Production is a media production company
-        that specializes in photography and videography. We are dedicated
-        to capturing your special moments and making them last a lifetime.
-        Our team of skilled photographers videographers will work with you
-        to create stunning images and videos that you can cherish forever.
-        Whether you're planning a wedding, a corporate event, or a family
-        photoshoot, we have the expertise and equipment to bring your
-        vision to life. Contact us today to learn more about our services
-        and how we can help you capture your moments in style."
+      paragraph="Welcome to Firm Media's blog, where we dive deep into
+       the world of visual storytelling, photography tips, videography
+        techniques, and industry trends. Stay informed, inspired, and
+         discover new perspectives in the realm of visual arts and media.
+          Join us on a journey of creativity and knowledge sharing."
       showButton={false} // Do not show button on this page
     />
     <BlogUpdate />

@@ -42,12 +42,18 @@ const About = () => {
           </h5>
           <h2>Where Light Meets Lens, Magic Happens</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
+            At Firm Media, we are dedicated to turning your visions into
+            reality through exceptional visual storytelling. Our team
+            of skilled professionals is passionate about capturing and
+            creating moments that matter. With a focus on creativity,
+            quality, and innovation, we strive to deliver outstanding
+            results that exceed your expectations.
+
+            Whether it&apos;s through stunning photography, cinematic videography, or
+            advanced post-production techniques, Firm Media is committed to providing
+            you with the best in the industry. We believe in the power of visuals to
+            tell compelling stories and create lasting impressions. Join us on this
+            journey to make your moments unforgettable.
           </p>
           {/* Conditionally render the button based on the current pathname */}
           {!isAboutDetailsPage && (
