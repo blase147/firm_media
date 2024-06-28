@@ -10,7 +10,7 @@ const MenuBanner = ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '70vh',
+    height: '50vh',
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './myPortfolio.scss';
-import { fetchYouTubeVideos } from './youtube_api'; // Ensure this path is correct
+// import './myPortfolio.scss';
+import { fetchYouTubeVideos } from './youtube_api';
 import VideoPlayer from './videoplayer';
 import portfolioBanner from '../images/jpeg/portfolio_banner.jpg';
 import MenuBanner from '../banners/menuBanner';
@@ -29,7 +29,7 @@ const MyPortfolio = () => {
         paragraph="FirmtecsMedia Production is a media production company
           that specializes in photography and videography. We are dedicated
           to capturing your special moments and making them last a lifetime."
-        showButton={false} // Do not show button on this page
+        showButton={false}
       />
       <div id="myPortfolio_text">
         <div>
@@ -49,11 +49,9 @@ const MyPortfolio = () => {
       </div>
       <div id="myPortfolio_content">
         <div className="grid-container">
-          {/* <div className="grid-item item1"> */}
           {videos.map((video) => (
             <VideoPlayer key={video.id.videoId} videoId={video.id.videoId} />
           ))}
-          {/* </div> */}
         </div>
       </div>
       <HireUs />

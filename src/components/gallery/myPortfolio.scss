@@ -3,6 +3,7 @@
 @media only screen and (min-width: 768px) {
   #myPortfolio {
     background-color: $page-background-color;
+    // background-color: green;
 
     #myPortfolio_text {
       padding-top: 100px;
@@ -18,14 +19,15 @@
 
       > div h5 {
         font-size: 1.5em;
-        padding: 0;
+        padding-left: 10px;
         margin-top: 50px;
         padding: 0;
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         span {
-          color: gold;
+          color: rgb(255, 255, 255);
           margin-right: 10px;
+          margin-left: 10px;
         }
       }
 
