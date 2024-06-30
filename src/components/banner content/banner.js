@@ -10,11 +10,11 @@ const Banner = () => (
       backgroundImage={homepageBanner}
       socialIcons={<SocialIcons />}
       welcome={(
-        <>
+        <div>
           <span>Welcome</span>
           {' '}
           to FirmtecsMedia
-        </>
+        </div>
 )}
       heading="Through Our Lens, Your Moments Shine"
       paragraph="At Firm Media, we specialize in capturing

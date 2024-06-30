@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'; // Add prop-types import
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './slidingGallery.scss';
 
 const SlidingGallery = ({ images }) => {
   const settings = {
@@ -17,7 +18,7 @@ const SlidingGallery = ({ images }) => {
   };
 
   return (
-    <div>
+    <div id="slidingGallery">
       <Slider
         dots={settings.dots}
         infinite={settings.infinite}

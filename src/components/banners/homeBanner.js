@@ -22,7 +22,7 @@ const HomeBanner = ({
           <div id="banner">
             <div id="HomeBannerText">
               <div id="social_icons_container">{socialIcons}</div>
-              <div>
+              <div className="h5_h2_p">
                 <h5>{welcome}</h5>
                 <h1>{heading}</h1>
                 <p>{paragraph}</p>

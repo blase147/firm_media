@@ -21,8 +21,8 @@ const Testimonials = () => {
       id: 2, // Add a unique identifier for each testimonial
       stars: 3,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad',
-      name: 'Chukwuma Mosanya',
-      role: 'Software Engineer',
+      name: 'Emeka Innoson',
+      role: 'Busness Man',
       image: testimonialImage2,
     },
   ];
@@ -36,6 +36,16 @@ const Testimonials = () => {
     autoplay: true,
     autoplaySpeed: 5000,
     adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false, // Optionally hide arrows on small screens
+        },
+      },
+    ],
   };
 
   return (
@@ -54,7 +64,6 @@ const Testimonials = () => {
       </div>
       <div id="testimonial_card_container">
         <Slider
-          className="slider"
           dots={settings.dots}
           infinite={settings.infinite}
           speed={settings.speed}
@@ -63,6 +72,7 @@ const Testimonials = () => {
           autoplay={settings.autoplay}
           autoplaySpeed={settings.autoplaySpeed}
           adaptiveHeight={settings.adaptiveHeight}
+          responsive={settings.responsive}
         >
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="testimonial_card">
