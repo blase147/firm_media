@@ -73,10 +73,12 @@ const AboutDetails = () => (
     </div>
     <div id="ourSkillsContainer">
       <div id="ourSkillsText">
-        <h5>
-          <span>Our</span>
-          Skills
-        </h5>
+        <div className="h5_h2_p">
+          <h5>
+            <span>Our</span>
+            Skills
+          </h5>
+        </div>
         <h2>Our Skills capture What Our Words Can&apos;t</h2>
         <p>
           Firm Media is distinguished by our deep expertise in crafting
