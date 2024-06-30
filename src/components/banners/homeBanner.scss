@@ -33,9 +33,19 @@
       flex-direction: column;
       background-color: #230b0b;
       // padding-bottom: 100px;
-      opacity: 0.9;
+      // opacity: 0.9;
       color: white;
       // margin-bottom: 100px;
+      #banner {
+        #HomeBannerText {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 20px;
+
+        }
+      }
       ~ div {
         > img {
           object-fit: cover;

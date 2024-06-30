@@ -12,7 +12,6 @@
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
-      text-align: left;
       #social_icons_container {
         font-size: 1.5em;
 
@@ -23,7 +22,7 @@
         }
         position: absolute;
         top: 8%;
-        left: -8%;
+        left: -7%;
         // transform: translate(-50%, -50%);
         // justify-content: flex-start;
         // align-items: flex-start;
@@ -43,9 +42,8 @@
           gap: 10px;
         }
         position: absolute;
-        top: -6%;
-        left: 27%;
-        font-size: 1.5em;
+        top: 0%;
+
         .social-icon {
           display: flex;
         }
