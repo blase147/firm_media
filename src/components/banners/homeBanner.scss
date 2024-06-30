@@ -6,15 +6,14 @@
       background-color: #230b0b;
       color: white;
       ~ div {
-        height: 70;
+        height: 70vh;
       }
       #banner {
         #HomeBannerText {
-          // display: flex;
-          // justify-content: flex-start;
-          // align-items: flex-start;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
           text-align: left;
-          // background-color: greenyellow;
           // margin-bottom: 100px;
           // display: flex;
           // flex-direction: column;
@@ -43,6 +42,6 @@
           height: 130vh;
         }
       }
-      }
     }
   }
+}

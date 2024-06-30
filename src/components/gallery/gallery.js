@@ -125,7 +125,7 @@ const Gallery = () => {
   return (
     <div id="gallery">
       <div>
-        <div className="h5_h2_p">
+        <div>
           <h5>
             <span>Our</span>
             Gallery

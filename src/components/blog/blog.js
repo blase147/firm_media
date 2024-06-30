@@ -21,7 +21,7 @@ const Blog = () => (
     />
     <BlogUpdate />
     <div id="blogText">
-      <div className="h5_h2_p">
+      <div>
         <h5>
           <span>Blog</span>
           Archives

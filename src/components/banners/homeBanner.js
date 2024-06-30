@@ -17,12 +17,12 @@ const HomeBanner = ({
   return (
     <div id="banner_cont">
       <div id="HomeBannerContainer" style={bannerStyle}>
-        <div className="h5_h2_p">
-          <Nav />
+        <Nav />
+        <div>
           <div id="banner">
             <div id="HomeBannerText">
               <div id="social_icons_container">{socialIcons}</div>
-              <div className="h5_h2_p">
+              <div>
                 <h5>{welcome}</h5>
                 <h1>{heading}</h1>
                 <p>{paragraph}</p>

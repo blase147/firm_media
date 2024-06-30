@@ -10,7 +10,7 @@ import postProduction from '../images/jpeg/post_production.png';
 const OurServices = () => (
   <div id="our_services">
     <div id="our_sercices_text">
-      <div className="h5_h2_p">
+      <div>
         <h5>
           <span>Our</span>
           Services

@@ -32,7 +32,7 @@ const MyPortfolio = () => {
         showButton={false}
       />
       <div id="myPortfolio_text">
-        <div className="h5_h2_p">
+        <div>
           <h5>
             <span>Our</span>
             Gallery

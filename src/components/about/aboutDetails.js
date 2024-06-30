@@ -73,7 +73,7 @@ const AboutDetails = () => (
     </div>
     <div id="ourSkillsContainer">
       <div id="ourSkillsText">
-        <div className="h5_h2_p">
+        <div>
           <h5>
             <span>Our</span>
             Skills
@@ -101,7 +101,7 @@ const AboutDetails = () => (
     </div>
     <div id="whyChooseUsContainer">
       <div id="whyChooseUsTextContainer">
-        <div id="whyChooseUsTextTitle" className="h5_h2_p">
+        <div id="whyChooseUsTextTitle">
           <h5>
             <span>Why Choose</span>
             Us

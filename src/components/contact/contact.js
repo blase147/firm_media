@@ -22,7 +22,7 @@ const Contact = () => (
       showButton={false} // Do not show button on this page
     />
     <div id="contact">
-      <div id="contact_text" className="h5_h2_p">
+      <div id="contact_text">
         <h5>
           <span>Contact</span>
           {' '}
@@ -37,8 +37,8 @@ const Contact = () => (
         </p>
         <SocialIcons />
       </div>
-      <form>
-        <div>
+      <div className="form">
+        <form>
           <input className="input" id="name" type="text" placeholder="Name" />
           <div>
             <input
@@ -64,8 +64,8 @@ const Contact = () => (
           <button className="button" type="submit">
             Submit
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
     <div id="contactCardContainer">
       <div id="contactCardContent">

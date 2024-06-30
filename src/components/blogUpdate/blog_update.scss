@@ -21,36 +21,8 @@
       display: flex;
       gap: 20px;
       #blog_card1 {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        // padding: 10px;
-        #blog_card1_content {
-          #blogImage {
-            width: 100%;
-          }
-          a {
-            color: rgb(187, 236, 187);
-            font-weight: 900;
-          }
-        }
       }
-
       #blog_card2 {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        #blog_card2_content {
-          a {
-            color: rgb(187, 236, 187);
-            font-weight: 900;
-          }
-        }
-
-        a {
-          color: rgb(187, 236, 187);
-          font-weight: 900;
-        }
       }
     }
   }
