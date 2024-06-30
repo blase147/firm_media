@@ -62,12 +62,14 @@ const MediumPosts = () => {
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        {posts.length === 0 && <p>No posts to display</p>}
-        {posts.map((post) => (
-          <div key={post.guid} id="blog_card">
-            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ maxWidth: '100%' }} />
+    <div id="blog_card">
+      {posts.length === 0 && <p>No posts to display</p>}
+      {posts.map((post) => (
+        <div key={post.guid} id="blog_card_content">
+          <div
+            id="blog_image_text"
+          >
+            <img src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ objectFit: 'cover' }} />
             <div className="date_icon">
               <img src={dateIcon} alt="date_icon" />
               <p><em>{formatDate(post.pubDate)}</em></p>
@@ -76,8 +78,8 @@ const MediumPosts = () => {
             <p>{post.contentSnippet || createSnippet(post['content:encoded'] || post.content)}</p>
             <a href={post.link} target="_blank" rel="noopener noreferrer">Read More..</a>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

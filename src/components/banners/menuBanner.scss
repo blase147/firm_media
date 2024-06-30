@@ -4,6 +4,7 @@
   #MenuBannerContainer {
     background-color: #230b0b;
     color: white;
+    width: 100%;
     #MenuBannerText {
       margin-bottom: 100px;
       display: flex;
@@ -30,9 +31,7 @@
     display: flex;
     flex-direction: column;
     background-color: #230b0b;
-    padding-bottom: 100px;
     color: white;
-    margin-bottom: 100px;
     #MenuBanner {
       // margin-bottom: 100px;
       #MenuBannerText {

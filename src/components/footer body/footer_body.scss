@@ -25,7 +25,8 @@
         #company_info {
           img {
             width: 200px;
-            margin-bottom: 20px;}
+            margin-bottom: 20px;
+          }
           .footer1_item {
             width: 30%;
             // background-color: red;
@@ -87,7 +88,7 @@
     position: relative;
     width: 100%;
     color: white;
-    height: 99vh;
+    // height: 99vh;
     background-color: #230b0b;
     margin-top: 50px;
     .footer_body_content {
@@ -95,23 +96,11 @@
       flex-direction: column;
       background-color: #230b0b;
       align-items: center;
-      // width: 100%;
-      // #newsletter {
-      //   display: flex;
-      //   justify-content: center;
-      //   align-content: center;
-      //   // background-color: green;
-      //   // width: 100%;
-      //   margin: auto;
-      //   padding: 0;
-      //   // position: relative;
-      //   // top: -50px;
-      // }
+
       #footer1 {
         display: flex;
         flex-direction: column;
         // justify-content: space-between;
-        // background-color: red;
         width: 100%;
         margin: auto;
         padding-top: 0;
@@ -119,6 +108,11 @@
         padding: 10px;
         .footer1_item {
           width: 90%;
+          img {
+            width: 200px;
+            margin-bottom: 20px;
+          }
+
           ul {
             margin: 0;
             li {
@@ -135,20 +129,42 @@
             }
           }
         }
+        #footer1_contact {
+          // display: flex;
+          // flex-direction: column;
+          // gap: 20px;
+          > div {
+            // background-color: green;
+            p {
+              color: yellow;
+              margin: 0;
+              padding: 0;
+              span {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
       }
     }
     #copyright {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      width: 95%;
-      margin: auto;
-      // text-align: center;
+      flex-direction: column;
+      width: 100%;
       border-top: 1px solid #ffffff;
-      // margin: 0px 20px;
-      // margin: 10px;
       padding: 30px;
-      // background-color: #02fa86;
+      p {
+        font-size: 1em;
+      }
+
+      #disclaimer {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        // background-color: #02fa86;
+      }
     }
   }
 }

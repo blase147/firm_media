@@ -99,7 +99,7 @@ const AboutDetails = () => (
     </div>
     <div id="whyChooseUsContainer">
       <div id="whyChooseUsTextContainer">
-        <div id="whyChooseUsTextTitle">
+        <div id="whyChooseUsTextTitle" className="h5_h2_p">
           <h5>
             <span>Why Choose</span>
             Us

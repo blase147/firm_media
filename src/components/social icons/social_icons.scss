@@ -33,6 +33,7 @@
 @media only screen and (max-width: 768px) {
   .social-icons {
     display: flex;
+    margin: 20px  0px 20px;
   }
 
   .social-icon {
@@ -48,6 +49,8 @@
     border-radius: 50%;
     transition: background-color 0.3s ease;
     text-decoration: none;
+    font-weight: 900;
+    font-size: 1.5em;
   }
 
   .social-icon i {

@@ -22,8 +22,12 @@ const Contact = () => (
       showButton={false} // Do not show button on this page
     />
     <div id="contact">
-      <div id="contact_text">
-        <h5>Contact Us</h5>
+      <div id="contact_text" className="h5_h2_p">
+        <h5>
+          <span>Contact</span>
+          {' '}
+          Us
+        </h5>
         <h2>Ready to Frame Your Moments? Reach Out Today!</h2>
         <p>
           Have questions or ready to start your next project? Reach out to
@@ -34,31 +38,33 @@ const Contact = () => (
         <SocialIcons />
       </div>
       <form>
-        <input className="input" id="name" type="text" placeholder="Name" />
         <div>
+          <input className="input" id="name" type="text" placeholder="Name" />
+          <div>
+            <input
+              className="input"
+              id="email"
+              type="email"
+              placeholder="Email"
+            />
+            <input
+              className="input"
+              id="phone"
+              type="text"
+              placeholder="Mobile Phone"
+            />
+          </div>
           <input
             className="input"
-            id="email"
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            className="input"
-            id="phone"
+            id="subject"
             type="text"
-            placeholder="Mobile Phone"
+            placeholder="How can we help you?"
           />
+          <textarea className="textarea" placeholder="Comments" />
+          <button className="button" type="submit">
+            Submit
+          </button>
         </div>
-        <input
-          className="input"
-          id="subject"
-          type="text"
-          placeholder="How can we help you?"
-        />
-        <textarea className="textarea" placeholder="Comments" />
-        <button className="button" type="submit">
-          Submit
-        </button>
       </form>
     </div>
     <div id="contactCardContainer">

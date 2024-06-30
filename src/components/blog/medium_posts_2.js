@@ -76,11 +76,11 @@ const MediumPosts = () => {
           <div
             id="blog_image_text"
             style={{
-              display: 'flex', flexDirection: 'row', gap: '10px', width: '100%',
+              gap: '10px', width: '100%',
             }}
           >
             <div style={{ width: '100%' }}>
-              <img id="blogImage" src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '100%', height: '30vh' }} />
+              <img id="blogImage" src={extractImageFromContent(post['content:encoded'] || post.content)} alt={post.title} style={{ width: '100%', height: '30vh', objectFit: 'cover' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="date_icon">

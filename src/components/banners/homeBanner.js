@@ -10,13 +10,14 @@ const HomeBanner = ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '70vh',
+    // height: '70vh',
+    margin: '0',
   };
 
   return (
     <div id="banner_cont">
-      <div id="HomeBannerContainer">
-        <div className="h5_h2_p" style={bannerStyle}>
+      <div id="HomeBannerContainer" style={bannerStyle}>
+        <div className="h5_h2_p">
           <Nav />
           <div id="banner">
             <div id="HomeBannerText">

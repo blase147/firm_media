@@ -60,21 +60,25 @@ const FooterBody = () => {
           <div id="footer1_contact" className="footer1_item">
             <h3>Company Info</h3>
             <div>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <span>Email: example@example.com</span>
-              <br />
-              <FontAwesomeIcon icon={faPhone} />
-              <span>Phone: +1234567890</span>
-              <br />
-              <FontAwesomeIcon icon={faLocation} />
-              <span>286 King Roman, New York</span>
+              <p>
+                <FontAwesomeIcon icon={faEnvelope} />
+                <span>Email: example@example.com</span>
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faPhone} />
+                <span>Phone: +1234567890</span>
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faLocation} />
+                <span>286 King Roman, New York</span>
+              </p>
             </div>
             <SocialIcons />
           </div>
         </div>
         <div id="copyright">
           <Copyright />
-          <div>
+          <div id="disclaimer">
             <p>Disclaimer</p>
             |
             <p>Privacy Policy</p>

@@ -5,6 +5,9 @@
     #HomeBannerContainer {
       background-color: #230b0b;
       color: white;
+      ~ div {
+        height: 70;
+      }
       #banner {
         #HomeBannerText {
           // display: flex;
@@ -25,35 +28,21 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  #HomeBannerContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: #230b0b;
-    padding-bottom: 100px;
-    color: white;
-    margin-bottom: 100px;
-    #Banner {
+  #banner_cont {
+    #HomeBannerContainer {
+      display: flex;
+      flex-direction: column;
+      background-color: #230b0b;
+      // padding-bottom: 100px;
+      opacity: 0.9;
+      color: white;
       // margin-bottom: 100px;
-      #HomeBannerText {
-        // background-color: greenyellow;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        // width: 100%;
-        // margin: auto;
-        // text-align: center;
-        // margin-top: 100px;
-
-        // h1 {
-        //   font-size: 2.9em;
-        //   color: gold;
-        // }
-        // p {
-        //   font-size: 1.2em;
-        //   line-height: 1.5em;
-        //   color: white;
-        // }
+      ~ div {
+        > img {
+          object-fit: cover;
+          height: 130vh;
+        }
+      }
       }
     }
   }
-}

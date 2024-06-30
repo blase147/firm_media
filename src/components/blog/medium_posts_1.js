@@ -66,16 +66,16 @@ const MediumPosts = () => {
   };
 
   return (
-    <div id="blog_card1" style={{ height: '55vh' }}>
+    <div id="blog_card1">
       {posts.length === 0 && <p>No posts to display</p>}
       {posts.map((post) => (
         <div
           key={post.guid}
           id="blog_card1_content"
-          style={{ padding: '20px', backgroundColor: 'rgb(52, 72, 83)' }}
+          style={{ backgroundColor: 'rgb(52, 72, 83)' }}
         >
           <img
-            style={{ height: '44vh' }}
+            style={{ height: '44vh', objectFit: 'cover' }}
             id="blogImage"
             src={extractImageFromContent(
               post['content:encoded'] || post.content,

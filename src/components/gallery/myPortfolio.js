@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './myPortfolio.scss';
+import './myPortfolio.scss';
 import { fetchYouTubeVideos } from './youtube_api';
 import VideoPlayer from './videoplayer';
 import portfolioBanner from '../images/jpeg/portfolio_banner.jpg';
@@ -32,7 +32,7 @@ const MyPortfolio = () => {
         showButton={false}
       />
       <div id="myPortfolio_text">
-        <div>
+        <div className="h5_h2_p">
           <h5>
             <span>Our</span>
             Gallery

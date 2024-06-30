@@ -28,15 +28,17 @@
         flex-direction: column;
         background-color: rgb(52, 72, 83);
         // height: 70vh;
-        width: 30%;
+        width: 25%;
+        object-fit: cover;
         padding: 20px;
         a {
           color: rgb(187, 236, 187);
           font-weight: 900;
         }
         > img {
-          // width: 100%;
-          height: 30vh;
+          width: 100%;
+          height: 30vh; /* Set a fixed height for mobile screens */
+          object-fit: cover; /* Ensure the image covers the entire container and crops the excess */
         }
       }
     }
@@ -53,6 +55,89 @@
     img {
       height: 2vh;
       // margin-top: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #blog {
+    color: white;
+    background-color: #230b0b;
+
+    #blogText {
+      width: 100%;
+      text-align: center;
+      padding-top: 10px;
+      div {
+        margin: 20px;
+      }
+    }
+    #blogContent {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      margin: auto;
+      width: 100%;
+    }
+  }
+  .date_icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    p {
+      margin: 0;
+    }
+    img {
+      height: 2vh;
+    }
+  }
+  #blog_card1 {
+    #blog_card1_content {
+      display: flex;
+      flex-direction: column;
+      a {
+        color: rgb(187, 236, 187);
+        font-weight: 900;
+      }
+      ~ img {
+        width: 100%;
+        margin: auto;
+      }
+    }
+  }
+  #blog_card2 {
+    #blog_card2_content {
+      display: flex;
+      flex-direction: column;
+      a {
+        color: rgb(187, 236, 187);
+        font-weight: 900;
+      }
+      ~ img {
+        width: 100%;
+      }
+    }
+  }
+  #blog_card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    #blog_card_content {
+      background-color: rgb(52, 72, 83);
+      margin-bottom: 20px;
+      padding: 20px 20px 20px;
+      #blog_image_text {
+        > img {
+          width: 100%;
+          height: 30vh;
+          // object-fit: cover;
+        }
+        a {
+          color: rgb(187, 236, 187);
+          font-weight: 900;
+        }
+      }
     }
   }
 }
