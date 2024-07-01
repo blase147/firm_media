@@ -4,7 +4,12 @@ import About from './about';
 import OurRecord from '../our record/our_record';
 import aboutImage1 from '../images/jpeg/our_skill.jpg';
 import SkillBar from '../why choose us/skills_bar';
-import whyChooseUsCardIcon1 from '../images/png/Management.png';
+import ProfessionalTeam from '../images/png/Management.png';
+import Creativity from '../images/png/Creativity.png';
+import Services from '../images/png/Service.png';
+import AffordablePrice from '../images/png/Hot Price Tag.png';
+import BestEquipment from '../images/png/Good Quality.png';
+import FastResponse from '../images/png/Fast Track.png';
 import FooterBody from '../footer body/footer_body';
 import MenuBanner from '../banners/menuBanner';
 import aboutDetailsBanner from '../images/jpeg/about_banner.webp';
@@ -116,7 +121,7 @@ const AboutDetails = () => (
       </div>
       <div id="whyChooseUsCardContainer">
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={ProfessionalTeam} alt="whyChooseUsCardIcon" />
           <h3>Professional Team</h3>
           <p>
             Our team at Firm Media is a collective of passionate creatives
@@ -128,7 +133,7 @@ const AboutDetails = () => (
           </p>
         </div>
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={Creativity} alt="whyChooseUsCardIcon" />
           <h3>Creativity and Innovation</h3>
           <p>
             At Firm Media, creativity and innovation drive everything we do. We
@@ -141,7 +146,7 @@ const AboutDetails = () => (
           </p>
         </div>
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={Services} alt="whyChooseUsCardIcon" />
           <h3>Wide Range of Services</h3>
           <p>
             Firm Media offers a diverse array of services tailored to meet your
@@ -156,7 +161,7 @@ const AboutDetails = () => (
           </p>
         </div>
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={AffordablePrice} alt="whyChooseUsCardIcon" />
           <h3>Affordable Price</h3>
           <p>
             At Firm Media, we believe in quality without compromise. Our
@@ -167,7 +172,7 @@ const AboutDetails = () => (
           </p>
         </div>
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={BestEquipment} alt="whyChooseUsCardIcon" />
           <h3>Best Equipment</h3>
           <p>
             At Firm Media, we pride ourselves on using cutting-edge equipment to
@@ -179,7 +184,7 @@ const AboutDetails = () => (
           </p>
         </div>
         <div className="whyChooseUsCard">
-          <img src={whyChooseUsCardIcon1} alt="whyChooseUsCardIcon" />
+          <img src={FastResponse} alt="whyChooseUsCardIcon" />
           <h3>Fast Response</h3>
           <p>
             At Firm Media, we pride ourselves on our commitment to swift and
