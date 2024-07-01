@@ -1,17 +1,10 @@
 @import "../scss/config";
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
   #banner_cont {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
     #banner {
-      // color: #fcfbfb;
-      // background-color: blue;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      height: 50vh;
+      animation: fadeInSlideUp 1s ease-in-out;
       #social_icons_container {
         font-size: 1.5em;
 
@@ -23,9 +16,7 @@
         position: absolute;
         top: 8%;
         left: -7%;
-        // transform: translate(-50%, -50%);
-        // justify-content: flex-start;
-        // align-items: flex-start;
+        animation: slideInFromLeft 1s ease-in-out;
       }
     }
   }
@@ -58,4 +49,3 @@
     }
   }
 }
-

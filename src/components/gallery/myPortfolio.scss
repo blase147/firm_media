@@ -16,6 +16,7 @@
       z-index: 5000;
       color: white;
       // background-color: yellow;
+      animation: slideInFromLeft 1s ease-in-out;
 
       > div h5 {
         font-size: 1.5em;
@@ -45,6 +46,14 @@
         justify-content: center;
         gap: 10px;
         margin-bottom: 100px;
+        animation: fadeInSlideUp 1s ease-in-out;
+        & iframe {
+          transition: transform 0.5s ease-in-out;
+
+          &:hover {
+            transform: scale(1.04);
+          }
+        }
       }
     }
   }
@@ -77,6 +86,6 @@
       // align-items: center; /* Center the video items horizontally */
       // width: auto;
       // margin: 10px;
-      }
+    }
   }
 }

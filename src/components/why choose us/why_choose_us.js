@@ -1,7 +1,10 @@
 import React from 'react';
 import './why_choose_us.scss';
 import SkillBar from './skills_bar';
-import managementIcon from '../images/png/Management.png';
+import Professional from '../images/png/Management.png';
+import AffordablePrice from '../images/png/Hot Price Tag.png';
+import Creativity from '../images/png/Creativity.png';
+import Services from '../images/png/Service.png';
 
 const WhyChooseUs = () => (
   <div>
@@ -29,7 +32,7 @@ const WhyChooseUs = () => (
       </div>
       <div id="why_choose_us_card_container">
         <div id="why_choose_us_card">
-          <img src={managementIcon} alt="management" />
+          <img src={Professional} alt="PROFESSIONAL ICON" />
           <h3>Professional Team</h3>
           <p>
             Our team at Firm Media is a collective of passionate creatives dedicated
@@ -40,7 +43,7 @@ const WhyChooseUs = () => (
           </p>
         </div>
         <div id="why_choose_us_card">
-          <img src={managementIcon} alt="management" />
+          <img src={AffordablePrice} alt="affordable icon" />
           <h3>Affordable Price</h3>
           <p>
             At Firm Media, we believe in quality without compromise. Our competitive
@@ -51,7 +54,7 @@ const WhyChooseUs = () => (
           </p>
         </div>
         <div id="why_choose_us_card">
-          <img src={managementIcon} alt="management" />
+          <img src={Creativity} alt="creativity icon" />
           <h3>Creativity and Innovation</h3>
           <p>
             At Firm Media, creativity and innovation drive everything we do. We blend artistic
@@ -63,7 +66,7 @@ const WhyChooseUs = () => (
           </p>
         </div>
         <div id="why_choose_us_card">
-          <img src={managementIcon} alt="management" />
+          <img src={Services} alt="services icon" />
           <h3>Wide Range of Services</h3>
           <p>
             Firm Media offers a diverse array of services tailored to meet your visual conten

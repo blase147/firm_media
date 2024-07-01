@@ -20,6 +20,7 @@
         width: 50%;
         margin-top: 100px;
       }
+      animation: fadeInSlideUp 1s ease-in-out;
     }
 
     #price_card_container {
@@ -28,6 +29,7 @@
       flex-wrap: wrap;
       width: 75%;
       margin-top: 20px;
+      // animation: fadeInSlideUp 1s ease-in-out;
 
       .price_card {
         display: flex;
@@ -38,6 +40,12 @@
         padding: 40px 20px;
         color: rgb(255, 255, 255);
         border-radius: 10px;
+        animation: fadeInSlideUp 1s ease-in-out;
+        transition: transform 0.5s ease-in-out;
+
+        &:hover {
+          transform: scale(1.04);
+        }
         ul {
           padding: 0; /* Remove default padding */
           margin: 0; /* Remove default margin */
@@ -98,6 +106,7 @@
         width: 50%;
         margin-top: 100px;
       }
+      // animation: slideInFromLeft 1s ease-in-out;
     }
 
     #equipment_card_container {
@@ -114,10 +123,11 @@
         width: 100%;
         border: solid 1px white;
         padding: 20px;
+        transition: transform 0.5s ease-in-out;
 
-        // > div {
-        //   width: 25%;
-        // }
+        &:hover {
+          transform: scale(1.04);
+        }
 
         img {
           max-width: 25%;
@@ -228,7 +238,7 @@
         // width: 100%;
         border: solid 1px white;
         background-color: #5c4545;
-        padding: 20px  20px;
+        padding: 20px 20px;
         color: rgb(255, 255, 255);
         border-radius: 10px;
         margin: 0px;

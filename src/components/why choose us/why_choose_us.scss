@@ -19,6 +19,7 @@
           color: white;
           margin-right: 10px;
         }
+        animation: slideInFromLeft 1s ease-in-out;
       }
 
       & h2 {
@@ -26,18 +27,20 @@
         font-size: 3.5em;
         padding: 0;
         margin: 0;
+        animation: slideInFromLeft 1s ease-in-out;
       }
 
       & p {
         margin-top: 40px;
         margin-bottom: 40px;
         font-size: 1.2em;
+        animation: slideInFromLeft 1s ease-in-out;
       }
     }
     .skills {
       text-align: left;
-
       width: 100%;
+      animation: fadeInSlideUp 1s ease-in-out;
     }
     #why_choose_us_card_container {
       display: flex;
@@ -53,6 +56,12 @@
         border: 1px solid #f0f0f0;
         padding: 20px 20px 0px 20px;
         text-align: center;
+        animation: fadeInSlideUp 1s ease-in-out;
+        transition: transform 0.5s ease-in-out;
+
+        &:hover {
+          transform: scale(1.04);
+        }
         img {
           width: 50px;
           margin-bottom: 10px;

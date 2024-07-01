@@ -14,6 +14,7 @@
     z-index: 50000;
     position: relative;
     bottom: -90px;
+    animation: fadeInSlideUp 1s ease-in-out;
 
     .newsletter_text {
       width: 45%;

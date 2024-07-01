@@ -9,7 +9,7 @@
       justify-content: space-between;
       align-items: last baseline;
       margin-top: 100px;
-
+      animation: slideInFromLeft 1s ease-in-out;
       > div {
         display: flex;
         // justify-content: space-between;

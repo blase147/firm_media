@@ -1,27 +1,29 @@
 @import "../scss/config";
 
 @media only screen and (min-width: 768px) {
-  #MenuBannerContainer {
-    background-color: #230b0b;
-    color: white;
-    width: 100%;
-    #MenuBannerText {
-      margin-bottom: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 50%;
-      margin: auto;
-      text-align: center;
-
-      h1 {
-        font-size: 2.9em;
-        color: gold;
-      }
-      p {
-        font-size: 1.2em;
-        line-height: 1.5em;
-        color: white;
+  #banner_cont {
+    #MenuBannerContainer {
+      background-color: #230b0b;
+      color: white;
+      width: 100%;
+      #MenuBannerText {
+        margin-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        animation: fadeInSlideUp 1s ease-in-out;
+        h1 {
+          font-size: 2.9em;
+          color: gold;
+        }
+        p {
+          font-size: 1.2em;
+          line-height: 1.5em;
+          color: white;
+        }
       }
     }
   }

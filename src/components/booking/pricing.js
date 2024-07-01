@@ -1,7 +1,7 @@
 import React from 'react';
 import './pricing.scss';
 import MenuBanner from '../banners/menuBanner';
-import PricingBanner from '../images/jpeg/services_banner.avif';
+import PricingBanner from '../images/jpeg/pricing.jpg';
 import FooterBody from '../footer body/footer_body';
 import NewsLetter from '../newsletter/newsletter';
 import Testimonials from '../testimonials/testimonials';
@@ -45,14 +45,14 @@ const Pricing = () => (
           <h3>Basic</h3>
           <h2>
             <span className="currency">N</span>
-            100,000
+            15,000
             <span>/session</span>
           </h2>
         </div>
         <ul>
           <li>1 hour session</li>
           <li>10 Photos</li>
-          <li>1 Photos/Video Editing</li>
+          <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
         <button type="button" className="button">Book</button>
@@ -62,14 +62,14 @@ const Pricing = () => (
           <h3>Regular</h3>
           <h2>
             <span className="currency">N</span>
-            150,000
+            25,000
             <span>/session</span>
           </h2>
         </div>
         <ul>
           <li>3 hour session</li>
           <li>25 Photos</li>
-          <li>1 Photos/Video Editing</li>
+          <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
         <button type="button" className="button">Book</button>
@@ -79,14 +79,14 @@ const Pricing = () => (
           <h3>Premium</h3>
           <h2>
             <span className="currency">N</span>
-            200,000
+            50,000
             <span>/session</span>
           </h2>
         </div>
         <ul>
           <li>4 hour session</li>
           <li>35 Photos</li>
-          <li>1 Photos/Video Editing</li>
+          <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
         <button type="button" className="button">Book</button>
@@ -96,13 +96,13 @@ const Pricing = () => (
           <h3>Platinum</h3>
           <h2>
             <span className="currency">N</span>
-            250,000
+            200,000
             <span>/session</span>
           </h2>
         </div>
         <ul>
-          <li>Unlimitd Time</li>
-          <li>Unlimitd Photos</li>
+          <li>Unlimited Time</li>
+          <li>Unlimited Photos</li>
           <li>Photos/Video Editing</li>
           <li>Digital Files</li>
         </ul>

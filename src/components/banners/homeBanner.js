@@ -17,16 +17,18 @@ const HomeBanner = ({
   return (
     <div id="banner_cont">
       <div id="HomeBannerContainer" style={bannerStyle}>
-        <Nav />
-        <div>
-          <div id="banner">
-            <div id="HomeBannerText">
-              <div id="social_icons_container">{socialIcons}</div>
-              <div>
-                <h5>{welcome}</h5>
-                <h1>{heading}</h1>
-                <p>{paragraph}</p>
-                {showButton && <button className="button" type="button">{button}</button>}
+        <div className="h5_h2_p">
+          <Nav />
+          <div>
+            <div id="banner">
+              <div id="HomeBannerText">
+                <div id="social_icons_container">{socialIcons}</div>
+                <div>
+                  <h5>{welcome}</h5>
+                  <h1>{heading}</h1>
+                  <p>{paragraph}</p>
+                  {showButton && <button className="button" type="button">{button}</button>}
+                </div>
               </div>
             </div>
           </div>
