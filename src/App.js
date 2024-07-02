@@ -8,8 +8,7 @@ import Contact from './components/contact/contact';
 import MyPortfolio from './components/gallery/myPortfolio';
 import Blog from './components/blog/blog';
 import Pricing from './components/booking/pricing';
-import BookNow from './components/booking/booknow';
-import ArticleDetails from './components/blog/articleDetails';
+import BookingForm from './components/booking/booking_form';
 
 const App = () => (
   <Router>
@@ -21,8 +20,7 @@ const App = () => (
       <Route path="/portfolio" element={<MyPortfolio />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/pricing" element={<Pricing />} />
-      <Route path="/bookNow" element={<BookNow />} />
-      <Route path="*" element={<ArticleDetails />} />
+      <Route path="/booking_form" element={<BookingForm />} />
       <Route path="*">&quot;404 Not Found&quot;</Route>
     </Routes>
   </Router>

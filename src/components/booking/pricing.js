@@ -1,5 +1,6 @@
 import React from 'react';
 import './pricing.scss';
+import { Link } from 'react-router-dom';
 import MenuBanner from '../banners/menuBanner';
 import PricingBanner from '../images/jpeg/pricing.jpg';
 import FooterBody from '../footer body/footer_body';
@@ -55,7 +56,9 @@ const Pricing = () => (
           <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
-        <button type="button" className="button">Book</button>
+        <Link to="/booking_form">
+          <button type="button" className="button">Book</button>
+        </Link>
       </div>
       <div className="price_card">
         <div className="price">
@@ -72,7 +75,9 @@ const Pricing = () => (
           <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
-        <button type="button" className="button">Book</button>
+        <Link to="/booking_form">
+          <button type="button" className="button">Book</button>
+        </Link>
       </div>
       <div className="price_card">
         <div className="price">
@@ -89,7 +94,9 @@ const Pricing = () => (
           <li>Photos/Video Editing</li>
           <li>Digital files</li>
         </ul>
-        <button type="button" className="button">Book</button>
+        <Link to="/booking_form">
+          <button type="button" className="button">Book</button>
+        </Link>
       </div>
       <div className="price_card">
         <div className="price">
@@ -106,7 +113,9 @@ const Pricing = () => (
           <li>Photos/Video Editing</li>
           <li>Digital Files</li>
         </ul>
-        <button type="button" className="button">Book</button>
+        <Link to="/booking_form">
+          <button type="button" className="button">Book</button>
+        </Link>
       </div>
     </div>
     <div id="equipmentText">
@@ -215,7 +224,6 @@ const Pricing = () => (
           <button type="button" className="button">Rent</button>
         </div>
       </div>
-
     </div>
     <Testimonials />
     <NewsLetter />
