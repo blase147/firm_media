@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import createBooking from '../../services/api';
+import { createBooking } from '../../services/api';
+import BookingList from '../BookingsList';
 
 const BookingForm = () => {
   const [service, setService] = useState('');
@@ -30,27 +31,30 @@ const BookingForm = () => {
   };
 
   return (
-    <form onSubmit={handleBooking}>
-      <input type="text" value={service} onChange={(e) => setService(e.target.value)} placeholder="Service" required />
-      <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} placeholder="Date" required />
-      <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="Duration (hours)" required />
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <button type="submit">Book and Pay</button>
-      {loading && <p>Loading...</p>}
-      {error && (
-      <p>
-        Error:
-        {error}
-      </p>
-      )}
-      {success && (
-      <p>
-        Success:
-        {success}
-      </p>
-      )}
-    </form>
+    <div>
+      <form onSubmit={handleBooking}>
+        <input type="text" value={service} onChange={(e) => setService(e.target.value)} placeholder="Service" required />
+        <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} placeholder="Date" required />
+        <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="Duration (hours)" required />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+        <button type="submit">Book and Pay</button>
+        {loading && <p>Loading...</p>}
+        {error && (
+        <p>
+          Error:
+          {error}
+        </p>
+        )}
+        {success && (
+        <p>
+          Success:
+          {success}
+        </p>
+        )}
+      </form>
+      <BookingList />
+    </div>
   );
 };
 

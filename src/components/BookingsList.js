@@ -1,6 +1,5 @@
-// src/components/BookingsList.js
 import React, { useState, useEffect } from 'react';
-import { getBookings } from '../services/api';
+import { getBookings } from '../services/api'; // Ensure the correct path to the api file
 
 const BookingsList = () => {
   const [bookings, setBookings] = useState([]);
@@ -12,8 +11,8 @@ const BookingsList = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await getBookings();
-        setBookings(response.data);
+        const data = await getBookings(); // Fetch bookings data
+        setBookings(data); // Set the bookings state
       } catch (err) {
         setError('Failed to fetch bookings.');
       } finally {
@@ -22,17 +21,19 @@ const BookingsList = () => {
     };
 
     fetchBookings();
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
     <div>
       {loading && <p>Loading...</p>}
       {error && (
-      <p>
-        Error:
-        {error}
-      </p>
+        <p>
+          Error:
+          {' '}
+          {error}
+        </p>
       )}
+      {!loading && !error && bookings.length === 0 && <p>No bookings found.</p>}
       <ul>
         {bookings.map((booking) => (
           <li key={booking.id}>
