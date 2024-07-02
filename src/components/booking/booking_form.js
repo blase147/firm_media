@@ -33,26 +33,58 @@ const BookingForm = () => {
   return (
     <div>
       <form onSubmit={handleBooking}>
-        <input type="text" value={service} onChange={(e) => setService(e.target.value)} placeholder="Service" required />
-        <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} placeholder="Date" required />
-        <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="Duration (hours)" required />
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+        <input
+          type="text"
+          value={service}
+          onChange={(e) => setService(e.target.value)}
+          placeholder="Service"
+          required
+        />
+        <input
+          type="datetime-local"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          placeholder="Date"
+          required
+        />
+        <input
+          type="number"
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
+          placeholder="Duration (hours)"
+          required
+        />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          required
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
         <button type="submit">Book and Pay</button>
-        {loading && <p>Loading...</p>}
-        {error && (
-        <p>
-          Error:
-          {error}
-        </p>
-        )}
-        {success && (
-        <p>
-          Success:
-          {success}
-        </p>
-        )}
       </form>
+
+      {loading && <p>Loading...</p>}
+      {error && (
+      <p style={{ color: 'red' }}>
+        Error:
+        {error}
+      </p>
+      )}
+      {success && (
+      <p style={{ color: 'green' }}>
+        Success:
+        {success}
+      </p>
+      )}
+
       <BookingList />
     </div>
   );
