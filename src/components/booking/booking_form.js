@@ -5,6 +5,7 @@ import BookingList from '../BookingsList';
 const BookingForm = () => {
   const [service, setService] = useState('');
   const [date, setDate] = useState('');
+  const [time, setTime] = useState(''); // State for Time
   const [duration, setDuration] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,13 +14,20 @@ const BookingForm = () => {
   const [success, setSuccess] = useState(null);
 
   const handleBooking = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(null);
+
     const bookingData = {
-      service, date, duration, name, email,
+      service,
+      date,
+      time, // Include Time in booking data
+      duration,
+      name,
+      email,
     };
+
     try {
       await createBooking(bookingData);
       setSuccess('Booking created successfully!');
@@ -41,10 +49,17 @@ const BookingForm = () => {
           required
         />
         <input
-          type="datetime-local"
+          type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          placeholder="Date"
+          placeholder="Start Date"
+          required
+        />
+        <input
+          type="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          placeholder="Start Time"
           required
         />
         <input
@@ -68,21 +83,21 @@ const BookingForm = () => {
           placeholder="Email"
           required
         />
-        <button type="submit">Book and Pay</button>
+        <button type="submit" disabled={loading}>Book and Pay</button>
       </form>
 
       {loading && <p>Loading...</p>}
       {error && (
-      <p style={{ color: 'red' }}>
-        Error:
-        {error}
-      </p>
+        <p style={{ color: 'red' }}>
+          Error:
+          {error}
+        </p>
       )}
       {success && (
-      <p style={{ color: 'green' }}>
-        Success:
-        {success}
-      </p>
+        <p style={{ color: 'green' }}>
+          Success:
+          {success}
+        </p>
       )}
 
       <BookingList />
