@@ -81,136 +81,137 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="booking-form">
-      <h2>Book a Service</h2>
-      <form onSubmit={handleBooking}>
-        <div>
-          <label htmlFor="service">
-            Service:
-            <select
-              id="service"
-              value={service}
-              onChange={(e) => setService(e.target.value)}
-              required
-            >
-              <option value="">Select a service</option>
-              <option value="wedding">Wedding</option>
-              <option value="portrait">Portrait</option>
-              <option value="corporate">Corporate</option>
-              <option value="event">Event</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="plan">
-            Plan:
-            <select
-              id="plan"
-              value={plan}
-              onChange={handlePlanChange}
-              required
-            >
-              <option value="">Select a Plan</option>
-              <option value="basic">Basic</option>
-              <option value="regular">Regular</option>
-              <option value="premium">Premium</option>
-              <option value="platinum">Platinum</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="date">
-            Start Date:
-            <input
-              id="date"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              placeholder="Start Date"
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="time">
-            Start Time:
-            <input
-              id="time"
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              placeholder="Start Time"
-              required
-            />
-          </label>
-        </div>
-        <input
-          id="duration"
-          type="hidden"
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-          required
-        />
-        <div>
-          <label htmlFor="name">
-            Name:
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="email">
-            Email:
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="phone">
-            Phone:
-            <input
-              id="phone"
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Phone number"
-              required
-            />
-          </label>
-        </div>
-        <button type="submit" disabled={loading}>Book and Pay</button>
-      </form>
+    <div id="booking_form_container">
+      <div className="booking-form">
+        <h2>Book a Service</h2>
+        <form onSubmit={handleBooking}>
+          <div>
+            <label htmlFor="service">
+              Service:
+              <select
+                id="service"
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                required
+              >
+                <option value="">Select a service</option>
+                <option value="wedding">Wedding</option>
+                <option value="portrait">Portrait</option>
+                <option value="corporate">Corporate</option>
+                <option value="event">Event</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="plan">
+              Plan:
+              <select
+                id="plan"
+                value={plan}
+                onChange={handlePlanChange}
+                required
+              >
+                <option value="">Select a Plan</option>
+                <option value="basic">Basic</option>
+                <option value="regular">Regular</option>
+                <option value="premium">Premium</option>
+                <option value="platinum">Platinum</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="date">
+              Start Date:
+              <input
+                id="date"
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                placeholder="Start Date"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="time">
+              Start Time:
+              <input
+                id="time"
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                placeholder="Start Time"
+                required
+              />
+            </label>
+          </div>
+          <input
+            id="duration"
+            type="hidden"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            required
+          />
+          <div>
+            <label htmlFor="name">
+              Name:
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="email">
+              Email:
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="phone">
+              Phone:
+              <input
+                id="phone"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone number"
+                required
+              />
+            </label>
+          </div>
+          <button type="submit" disabled={loading}>Book and Pay</button>
+        </form>
 
-      {loading && <p>Loading...</p>}
-      {error && (
+        {loading && <p>Loading...</p>}
+        {error && (
         <p className="error">
           Error:
           {' '}
           {error}
         </p>
-      )}
-      {success && (
+        )}
+        {success && (
         <p className="success">
           Success:
           {' '}
           {success}
         </p>
-      )}
+        )}
 
-      {plan && plans[plan] && (
+        {plan && plans[plan] && (
         <div className="plan-details">
           <h3>Selected Plan Details</h3>
           <p>
@@ -236,10 +237,11 @@ const BookingForm = () => {
             {plans[plan].files}
           </p>
         </div>
-      )}
-      <div>
-        <h3>Booked Schedule</h3>
-        <BookingList />
+        )}
+        <div>
+          <h3>Booked Schedule</h3>
+          <BookingList />
+        </div>
       </div>
     </div>
   );
