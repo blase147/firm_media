@@ -1,5 +1,3 @@
-// BookingForm.js
-
 import React, { useState } from 'react';
 import { createBooking } from '../../services/api';
 import BookingList from '../BookingsList';
@@ -18,6 +16,7 @@ const BookingForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
 
   const plans = {
     basic: {
@@ -56,6 +55,12 @@ const BookingForm = () => {
     setError(null);
     setSuccess(null);
 
+    if (!isPaymentConfirmed) {
+      setError('Please confirm your payment before submitting the form.');
+      setLoading(false);
+      return;
+    }
+
     const bookingData = {
       service,
       date,
@@ -81,6 +86,10 @@ const BookingForm = () => {
     const selectedPlan = e.target.value;
     setPlan(selectedPlan);
     setDuration(plans[selectedPlan].session || '');
+  };
+
+  const handlePaymentSuccess = () => {
+    setIsPaymentConfirmed(true);
   };
 
   return (
@@ -197,7 +206,11 @@ const BookingForm = () => {
             </label>
           </div>
           {/* Pass amount and email to PaymentButton */}
-          <PaymentButton amount={plans[plan]?.price * 100} email={email} />
+          <PaymentButton
+            amount={plans[plan]?.price * 100}
+            email={email}
+            onSuccess={handlePaymentSuccess}
+          />
           <button type="submit" disabled={loading}>
             Submit Booking
           </button>
