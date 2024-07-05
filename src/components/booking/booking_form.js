@@ -220,6 +220,8 @@ const BookingForm = () => {
           <p>
             Session:
             {plans[plan].session}
+            {' '}
+            hours(s)
           </p>
           <p>
             Photos:
