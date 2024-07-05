@@ -1,7 +1,10 @@
+// BookingForm.js
+
 import React, { useState } from 'react';
 import { createBooking } from '../../services/api';
 import BookingList from '../BookingsList';
 import './booking_form.scss'; // Import your SCSS file
+import PaymentButton from '../payment/PaymentButton';
 
 const BookingForm = () => {
   const [service, setService] = useState('');
@@ -15,33 +18,6 @@ const BookingForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-
-  const handleBooking = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
-
-    const bookingData = {
-      service,
-      date,
-      time,
-      duration,
-      name,
-      email,
-      plan,
-      phone,
-    };
-
-    try {
-      await createBooking(bookingData);
-      setSuccess('Booking created successfully!');
-    } catch (err) {
-      setError('Failed to create booking.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const plans = {
     basic: {
@@ -72,6 +48,33 @@ const BookingForm = () => {
       editing: 'Photos/Video Editing',
       files: 'Digital files',
     },
+  };
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(null);
+
+    const bookingData = {
+      service,
+      date,
+      time,
+      duration,
+      name,
+      email,
+      plan,
+      phone,
+    };
+
+    try {
+      await createBooking(bookingData);
+      setSuccess('Booking created successfully!');
+    } catch (err) {
+      setError('Failed to create booking.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePlanChange = (e) => {
@@ -146,8 +149,9 @@ const BookingForm = () => {
               />
             </label>
           </div>
+          {/* Duration can be hidden or shown based on your UI/UX design */}
+          {/* Ensure the value is passed to PaymentButton for amount calculation */}
           <input
-            id="duration"
             type="hidden"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
@@ -192,52 +196,47 @@ const BookingForm = () => {
               />
             </label>
           </div>
-          <button type="submit" disabled={loading}>Book and Pay</button>
+          {/* Pass amount and email to PaymentButton */}
+          <PaymentButton amount={plans[plan]?.price * 100} email={email} />
+          <button type="submit" disabled={loading}>
+            Submit Booking
+          </button>
         </form>
 
         {loading && <p>Loading...</p>}
-        {error && (
-        <p className="error">
-          Error:
-          {' '}
-          {error}
-        </p>
-        )}
-        {success && (
-        <p className="success">
-          Success:
-          {' '}
-          {success}
-        </p>
-        )}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
 
         {plan && plans[plan] && (
-        <div className="plan-details">
-          <h3>Selected Plan Details</h3>
-          <p>
-            Price:
-            {plans[plan].price}
-          </p>
-          <p>
-            Session:
-            {plans[plan].session}
-            {' '}
-            hours(s)
-          </p>
-          <p>
-            Photos:
-            {plans[plan].photos}
-          </p>
-          <p>
-            Editing:
-            {plans[plan].editing}
-          </p>
-          <p>
-            Files:
-            {plans[plan].files}
-          </p>
-        </div>
+          <div className="plan-details">
+            <h3>Selected Plan Details</h3>
+            <p>
+              Price:
+              {plans[plan].price}
+              {' '}
+              Naira
+            </p>
+            <p>
+              Session:
+              {plans[plan].session}
+              {' '}
+              hour(s)
+            </p>
+            <p>
+              Photos:
+              {plans[plan].photos}
+            </p>
+            <p>
+              Editing:
+              {plans[plan].editing}
+            </p>
+            <p>
+              Files:
+              {plans[plan].files}
+            </p>
+          </div>
         )}
+
         <div>
           <h3>Booked Schedule</h3>
           <BookingList />
