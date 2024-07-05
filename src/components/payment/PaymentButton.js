@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import PaystackPop from '@paystack/inline-js';
 
 const PaymentButton = ({ amount, email, onSuccess }) => {
+  const [error, setError] = useState(null);
+
   const handlePayment = () => {
+    if (!amount || !email) {
+      setError('Please fill in all required fields before proceeding with the payment.');
+      return;
+    }
+
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY || 'pk_test_bd0def46d2f05d8fa2c663a54ea21a32d6297629',
+      key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY || 'your-public-key', // Replace with your Paystack public key
       amount,
       email,
       onSuccess: (transaction) => {
@@ -20,13 +27,13 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
   };
 
   return (
-    <button type="button" onClick={handlePayment}>
-      Pay
-      {' '}
-      {amount / 100}
-      {' '}
-      Naira
-    </button>
+    <div>
+      {error && <p className="error">{error}</p>}
+      <button type="button" onClick={handlePayment}>
+        Pay {amount / 100}
+        Naira
+      </button>
+    </div>
   );
 };
 
