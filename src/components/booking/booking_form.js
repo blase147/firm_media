@@ -67,7 +67,7 @@ const BookingForm = () => {
     },
     platinum: {
       price: 200000,
-      session: 5,
+      session: 24,
       photos: 50,
       editing: 'Photos/Video Editing',
       files: 'Digital files',
@@ -235,8 +235,10 @@ const BookingForm = () => {
           </p>
         </div>
       )}
-
-      <BookingList />
+      <div>
+        <h3>Booked Schedule</h3>
+        <BookingList />
+      </div>
     </div>
   );
 };

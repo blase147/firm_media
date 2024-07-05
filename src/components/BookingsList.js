@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getBookings } from '../services/api'; // Ensure the correct path to the api file
+import './BookingList.scss'; // Import your SCSS file
 
 const BookingsList = () => {
   const [bookings, setBookings] = useState([]);
@@ -24,16 +25,17 @@ const BookingsList = () => {
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
-    <div>
-      {loading && <p>Loading...</p>}
+    <div className="bookings-list-container">
+      {loading && <p className="loading-message">Loading...</p>}
       {error && (
-        <p>
+        <p className="error-message">
           Error:
+          {' '}
           {error}
         </p>
       )}
-      {!loading && !error && bookings.length === 0 && <p>No bookings found.</p>}
-      <ul>
+      {!loading && !error && bookings.length === 0 && <p className="no-bookings-message">No bookings found.</p>}
+      <ul className="bookings-list">
         {bookings.map((booking) => {
           const formattedDate = new Date(booking.date).toLocaleDateString();
           const time = new Date(booking.time).toLocaleTimeString([], {
@@ -42,19 +44,25 @@ const BookingsList = () => {
           });
 
           return (
-            <li key={booking.id}>
-              {booking.service}
-              {'  '}
-              on
-              {formattedDate}
-              {'  '}
-              at
-              {time}
-              {'  '}
-              for
-              {booking.duration}
-              {'  '}
-              hours
+            <li key={booking.id} className="booking-item">
+              <p style={{ color: 'white' }}>
+                <span style={{ color: 'white' }} className="booking-service">{booking.service}</span>
+                <span style={{ color: 'white' }} className="booking-details">
+                  on
+                  {' '}
+                  <span className="booking-date">{formattedDate}</span>
+                  {' '}
+                  at
+                  {' '}
+                  <span style={{ color: 'white' }} className="booking-time">{time}</span>
+                  {' '}
+                  for
+                  {' '}
+                  <span className="booking-duration">{booking.duration}</span>
+                  {' '}
+                  hours
+                </span>
+              </p>
             </li>
           );
         })}
