@@ -29,25 +29,35 @@ const BookingsList = () => {
       {error && (
         <p>
           Error:
-          {' '}
           {error}
         </p>
       )}
       {!loading && !error && bookings.length === 0 && <p>No bookings found.</p>}
       <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            {booking.service}
-            {' '}
-            on
-            {new Date(booking.date).toLocaleString()}
-            {' '}
-            for
-            {booking.duration}
-            {' '}
-            hours
-          </li>
-        ))}
+        {bookings.map((booking) => {
+          const formattedDate = new Date(booking.date).toLocaleDateString();
+          const time = new Date(booking.time).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+
+          return (
+            <li key={booking.id}>
+              {booking.service}
+              {'  '}
+              on
+              {formattedDate}
+              {'  '}
+              at
+              {time}
+              {'  '}
+              for
+              {booking.duration}
+              {'  '}
+              hours
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
