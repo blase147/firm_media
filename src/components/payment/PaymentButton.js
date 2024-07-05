@@ -30,7 +30,9 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
     <div>
       {error && <p className="error">{error}</p>}
       <button type="button" onClick={handlePayment}>
-        Pay {amount / 100}
+        Pay
+        {' '}
+        {amount / 100}
         Naira
       </button>
     </div>
