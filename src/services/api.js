@@ -1,8 +1,10 @@
+// Function to retrieve CSRF token from meta tag
 const getCsrfToken = () => {
   const token = document.querySelector('meta[name="csrf-token"]');
   return token && token.getAttribute('content');
 };
 
+// Function to create a booking via API
 const createBooking = async (bookingData) => {
   try {
     const csrfToken = getCsrfToken();
@@ -13,7 +15,8 @@ const createBooking = async (bookingData) => {
         'X-CSRF-Token': csrfToken,
       },
       body: JSON.stringify({ booking: bookingData }),
-      credentials: 'same-origin',
+      mode: 'cors', // Ensure CORS is enabled
+      credentials: 'same-origin', // Send cookies (including CSRF token)
     });
 
     if (!response.ok) {
@@ -27,6 +30,7 @@ const createBooking = async (bookingData) => {
   }
 };
 
+// Function to fetch bookings data from API
 const getBookings = async () => {
   try {
     const csrfToken = getCsrfToken();
@@ -36,7 +40,8 @@ const getBookings = async () => {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken,
       },
-      credentials: 'same-origin',
+      mode: 'cors', // Ensure CORS is enabled
+      credentials: 'same-origin', // Send cookies (including CSRF token)
     });
 
     if (!response.ok) {

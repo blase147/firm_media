@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
 import { createBooking } from '../../services/api';
 import BookingList from '../BookingsList';
-import './booking_form.scss'; // Import your SCSS file
+import './booking_form.scss';
 import PaymentButton from '../payment/PaymentButton';
+import Receipt from '../Receipt/Receipt';
+
+Modal.setAppElement('#root'); // Set the app element for accessibility
 
 const BookingForm = () => {
   const [service, setService] = useState('');
-  const [plan, setPlan] = useState(''); // State for Plan
+  const [plan, setPlan] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState(''); // State for Phone
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
+  const [paymentRefId, setPaymentRefId] = useState('');
+  const [booking, setBooking] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const plans = {
     basic: {
@@ -70,11 +80,14 @@ const BookingForm = () => {
       email,
       plan,
       phone,
+      paymentRefId,
     };
 
     try {
       await createBooking(bookingData);
+      setBooking(bookingData);
       setSuccess('Booking created successfully!');
+      setModalIsOpen(true); // Open the modal after successful booking
     } catch (err) {
       setError('Failed to create booking.');
     } finally {
@@ -85,11 +98,17 @@ const BookingForm = () => {
   const handlePlanChange = (e) => {
     const selectedPlan = e.target.value;
     setPlan(selectedPlan);
-    setDuration(plans[selectedPlan].session || '');
+    setDuration(plans[selectedPlan.toLowerCase()].session || '');
   };
 
-  const handlePaymentSuccess = () => {
+  const handlePaymentSuccess = (reference) => {
     setIsPaymentConfirmed(true);
+    setPaymentRefId(reference);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    navigate('/pricing'); // Redirect to the pricing page after closing modal
   };
 
   return (
@@ -107,11 +126,11 @@ const BookingForm = () => {
                 required
               >
                 <option value="">Select a service</option>
-                <option value="wedding">Wedding</option>
-                <option value="portrait">Portrait</option>
-                <option value="corporate">Corporate</option>
-                <option value="event">Event</option>
-                <option value="other">Other</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Portrait">Portrait</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Event">Event</option>
+                <option value="Other">Other</option>
               </select>
             </label>
           </div>
@@ -140,7 +159,6 @@ const BookingForm = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                placeholder="Start Date"
                 required
               />
             </label>
@@ -153,19 +171,10 @@ const BookingForm = () => {
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                placeholder="Start Time"
                 required
               />
             </label>
           </div>
-          {/* Duration can be hidden or shown based on your UI/UX design */}
-          {/* Ensure the value is passed to PaymentButton for amount calculation */}
-          <input
-            type="hidden"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            required
-          />
           <div>
             <label htmlFor="name">
               Name:
@@ -174,7 +183,6 @@ const BookingForm = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
                 required
               />
             </label>
@@ -187,7 +195,6 @@ const BookingForm = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
                 required
               />
             </label>
@@ -200,12 +207,10 @@ const BookingForm = () => {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="Phone number"
                 required
               />
             </label>
           </div>
-          {/* Pass amount and email to PaymentButton */}
           <PaymentButton
             amount={plans[plan]?.price * 100}
             email={email}
@@ -215,46 +220,62 @@ const BookingForm = () => {
             Submit Booking
           </button>
         </form>
-
         {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
-
-        {plan && plans[plan] && (
+        {plan && plans[plan.toLowerCase()] && (
           <div className="plan-details">
             <h3>Selected Plan Details</h3>
             <p>
               Price:
-              {plans[plan].price}
+              {plans[plan.toLowerCase()].price}
               {' '}
               Naira
             </p>
             <p>
               Session:
-              {plans[plan].session}
               {' '}
-              hour(s)
+              {plans[plan.toLowerCase()].session}
+              {' '}
+              {plans[plan.toLowerCase()].session === 1 ? 'Hour' : 'Hours'}
             </p>
             <p>
               Photos:
-              {plans[plan].photos}
+              {plans[plan.toLowerCase()].photos}
+              {' '}
+              Edited Photos
             </p>
             <p>
               Editing:
-              {plans[plan].editing}
+              {plans[plan.toLowerCase()].editing}
             </p>
             <p>
               Files:
-              {plans[plan].files}
+              {plans[plan.toLowerCase()].files}
             </p>
           </div>
         )}
-
-        <div>
-          <h3>Booked Schedule</h3>
-          <BookingList />
+        <div className="modal-container">
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Booking Receipt"
+            className="modal"
+            overlayClassName="modal-overlay"
+          >
+            <div className="modal-content">
+              <h2>Booking Receipt</h2>
+              {booking && <Receipt booking={booking} />}
+              <button type="button" onClick={closeModal}>
+                Close
+              </button>
+            </div>
+          </Modal>
         </div>
       </div>
+      <BookingList />
+
+      {/* Modal for the receipt */}
     </div>
   );
 };

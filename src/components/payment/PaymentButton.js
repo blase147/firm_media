@@ -18,7 +18,7 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
       email,
       onSuccess: (transaction) => {
         alert(`Payment Successful! Reference: ${transaction.reference}`);
-        onSuccess(); // Call the onSuccess callback
+        onSuccess(transaction.reference); // Pass the payment reference to the parent component
       },
       onCancel: () => {
         alert('Payment Cancelled');
@@ -33,6 +33,7 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
         Pay
         {' '}
         {amount / 100}
+        {' '}
         Naira
       </button>
     </div>

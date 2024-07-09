@@ -9,6 +9,7 @@ import MyPortfolio from './components/gallery/myPortfolio';
 import Blog from './components/blog/blog';
 import Pricing from './components/booking/pricing';
 import BookingForm from './components/booking/booking_form';
+import OAuthCallback from './components/OAuthCallback '; // Ensure this import is correct
 
 const App = () => (
   <Router>
@@ -21,7 +22,8 @@ const App = () => (
       <Route path="/blog" element={<Blog />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/booking_form" element={<BookingForm />} />
-      <Route path="*">&quot;404 Not Found&quot;</Route>
+      <Route path="/oauth2callback" element={<OAuthCallback />} />
+      <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>
   </Router>
 );
