@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { createBooking } from '../../services/api';
 import BookingList from '../BookingsList';
-import './booking_form.scss';
+import './booking_form.scss'; // Import your SCSS file
 import PaymentButton from '../payment/PaymentButton';
 import Receipt from '../Receipt/Receipt';
 
@@ -20,7 +20,7 @@ const BookingForm = () => {
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
   const [paymentRefId, setPaymentRefId] = useState('');
   const [booking, setBooking] = useState(null);
@@ -29,33 +29,17 @@ const BookingForm = () => {
   const navigate = useNavigate();
 
   const plans = {
-    basic: {
-      price: 15000,
-      session: 1,
-      photos: 10,
-      editing: 'Photos/Video Editing',
-      files: 'Digital files',
+    Basic: {
+      price: 15000, session: 1, photos: 10, editing: 'Photos/Video Editing', files: 'Digital files',
     },
-    regular: {
-      price: 25000,
-      session: 3,
-      photos: 25,
-      editing: 'Photos/Video Editing',
-      files: 'Digital files',
+    Regular: {
+      price: 25000, session: 3, photos: 25, editing: 'Photos/Video Editing', files: 'Digital files',
     },
-    premium: {
-      price: 50000,
-      session: 4,
-      photos: 35,
-      editing: 'Photos/Video Editing',
-      files: 'Digital files',
+    Premium: {
+      price: 50000, session: 4, photos: 35, editing: 'Photos/Video Editing', files: 'Digital files',
     },
-    platinum: {
-      price: 200000,
-      session: 24,
-      photos: 50,
-      editing: 'Photos/Video Editing',
-      files: 'Digital files',
+    Platinum: {
+      price: 200000, session: 24, photos: 50, editing: 'Photos/Video Editing', files: 'Digital files',
     },
   };
 
@@ -63,7 +47,7 @@ const BookingForm = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(null);
+    setSuccessMessage('');
 
     if (!isPaymentConfirmed) {
       setError('Please confirm your payment before submitting the form.');
@@ -86,8 +70,8 @@ const BookingForm = () => {
     try {
       await createBooking(bookingData);
       setBooking(bookingData);
-      setSuccess('Booking created successfully!');
-      setModalIsOpen(true); // Open the modal after successful booking
+      setSuccessMessage('Booking created successfully!');
+      setModalIsOpen(true);
     } catch (err) {
       setError('Failed to create booking.');
     } finally {
@@ -98,7 +82,7 @@ const BookingForm = () => {
   const handlePlanChange = (e) => {
     const selectedPlan = e.target.value;
     setPlan(selectedPlan);
-    setDuration(plans[selectedPlan.toLowerCase()].session || '');
+    setDuration(plans[selectedPlan]?.session || '');
   };
 
   const handlePaymentSuccess = (reference) => {
@@ -108,7 +92,7 @@ const BookingForm = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
-    navigate('/pricing'); // Redirect to the pricing page after closing modal
+    navigate('/pricing');
   };
 
   return (
@@ -139,15 +123,15 @@ const BookingForm = () => {
               Plan:
               <select
                 id="plan"
-                value={plan}
+                value={plan} // Set value directly from state
                 onChange={handlePlanChange}
                 required
               >
                 <option value="">Select a Plan</option>
-                <option value="basic">Basic</option>
-                <option value="regular">Regular</option>
-                <option value="premium">Premium</option>
-                <option value="platinum">Platinum</option>
+                <option value="Basic">Basic</option>
+                <option value="Regular">Regular</option>
+                <option value="Premium">Premium</option>
+                <option value="Platinum">Platinum</option>
               </select>
             </label>
           </div>
@@ -159,6 +143,7 @@ const BookingForm = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                placeholder="Start Date"
                 required
               />
             </label>
@@ -171,10 +156,17 @@ const BookingForm = () => {
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
+                placeholder="Start Time"
                 required
               />
             </label>
           </div>
+          <input
+            type="hidden"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            required
+          />
           <div>
             <label htmlFor="name">
               Name:
@@ -183,6 +175,7 @@ const BookingForm = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
                 required
               />
             </label>
@@ -195,6 +188,7 @@ const BookingForm = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
                 required
               />
             </label>
@@ -207,6 +201,7 @@ const BookingForm = () => {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone number"
                 required
               />
             </label>
@@ -222,60 +217,60 @@ const BookingForm = () => {
         </form>
         {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-        {plan && plans[plan.toLowerCase()] && (
+        {successMessage && <p className="success">{successMessage}</p>}
+        {plan && plans[plan] && (
           <div className="plan-details">
             <h3>Selected Plan Details</h3>
             <p>
               Price:
-              {plans[plan.toLowerCase()].price}
+              {' '}
+              {plans[plan].price}
               {' '}
               Naira
             </p>
             <p>
               Session:
               {' '}
-              {plans[plan.toLowerCase()].session}
+              {plans[plan].session}
               {' '}
-              {plans[plan.toLowerCase()].session === 1 ? 'Hour' : 'Hours'}
+              {plans[plan].session === 1 ? 'Hour' : 'Hours'}
             </p>
             <p>
               Photos:
-              {plans[plan.toLowerCase()].photos}
+              {' '}
+              {plans[plan].photos}
               {' '}
               Edited Photos
             </p>
             <p>
               Editing:
-              {plans[plan.toLowerCase()].editing}
+              {' '}
+              {plans[plan].editing}
             </p>
             <p>
               Files:
-              {plans[plan.toLowerCase()].files}
+              {' '}
+              {plans[plan].files}
             </p>
           </div>
         )}
-        <div className="modal-container">
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            contentLabel="Booking Receipt"
-            className="modal"
-            overlayClassName="modal-overlay"
-          >
-            <div className="modal-content">
-              <h2>Booking Receipt</h2>
-              {booking && <Receipt booking={booking} />}
-              <button type="button" onClick={closeModal}>
-                Close
-              </button>
-            </div>
-          </Modal>
-        </div>
       </div>
       <BookingList />
 
-      {/* Modal for the receipt */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Receipt Modal"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <h2>Booking Receipt</h2>
+        {successMessage && (
+          <div className="success-message">{successMessage}</div>
+        )}
+        {booking && <Receipt booking={booking} />}
+        <button type="button" onClick={closeModal}>Cancel</button>
+      </Modal>
     </div>
   );
 };
