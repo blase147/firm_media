@@ -10,6 +10,9 @@ import Blog from './components/blog/blog';
 import Pricing from './components/booking/pricing';
 import BookingForm from './components/booking/booking_form';
 import OAuthCallback from './components/OAuthCallback '; // Ensure this import is correct
+import EquipmentList from './components/rent/equipmentList';
+import EquipmentForm from './components/rent/equipmentForm';
+import GearsForm from './components/rent/gearsForm';
 
 const App = () => (
   <Router>
@@ -22,6 +25,9 @@ const App = () => (
       <Route path="/blog" element={<Blog />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/booking_form" element={<BookingForm />} />
+      <Route path="/equipmentList" element={<EquipmentList />} />
+      <Route path="/equipmentForm" element={<EquipmentForm />} />
+      <Route path="/gearsForm" element={<GearsForm />} />
       <Route path="/oauth2callback" element={<OAuthCallback />} />
       <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>
