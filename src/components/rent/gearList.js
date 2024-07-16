@@ -33,17 +33,9 @@ const GearsList = () => {
   }, [status, dispatch]);
 
   const handlePaymentSuccess = (reference, gearId) => {
-    setPaymentRefId(paymentRefId.reference); // Set payment reference ID on success
     dispatch(rentGear({ gearId, paymentRefId: reference.reference }));
+    setPaymentRefId(paymentRefId.reference); // Set payment reference ID on success
   };
-
-  // const handleRent = (gearId) => {
-  //   if (paymentRefId) {
-  //     dispatch(rentGear({ gearId, paymentRefId }));
-  //   } else {
-  //     alert('Please confirm your payment before renting.');
-  //   }
-  // };
 
   const handleCancelRent = (gearId) => {
     dispatch(cancelRentGear(gearId)); // Cancel rent action
@@ -106,22 +98,19 @@ const GearsList = () => {
                   </button>
                 </>
               ) : (
-                <>
-                  <PaymentButton
-                    amount={gear.pricePerHour}
-                    email={currentUser.email}
-                    value="Rent"
-                    onSuccess={(reference) => handlePaymentSuccess(reference, gear.id)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(gear.id)}
-                  >
-                    Delete
-                  </button>
-
-                </>
+                <PaymentButton
+                  amount={gear.pricePerHour}
+                  email={currentUser?.email} // Access email safely using optional chaining
+                  value="Rent"
+                  onSuccess={(reference) => handlePaymentSuccess(reference, gear.id)}
+                />
               )}
+              <button
+                type="button"
+                onClick={() => handleDelete(gear.id)}
+              >
+                Delete
+              </button>
             </div>
             {rentStatus === 'loading' && <p>Renting gear...</p>}
             {rentStatus === 'succeeded' && <p>Gear rented successfully!</p>}
