@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../Redux/Reducers/authSlice';
+import { logout, fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './nav.scss';
 import Logo from '../images/png/Logo.png';
 
 const Nav = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.auth.loggedIn);
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('isAuthenticated:', isAuthenticated);
-    console.log('currentUser:', currentUser);
-
-    if (isAuthenticated) {
-      navigate('/'); // Redirect to homepage after successful login
+    if (!isAuthenticated) {
+      dispatch(fetchCurrentUser());
     }
-  }, [isAuthenticated, currentUser, navigate]);
+  }, [dispatch, isAuthenticated]);
 
   const handleToggleNavbar = () => {
-    setShowNavbar(!showNavbar); // Toggles the value of showNavbar
+    setShowNavbar(!showNavbar);
   };
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login');
   };
+
+  let navContent;
+  if (isLoading) {
+    navContent = <span>Loading...</span>;
+  } else if (isAuthenticated) {
+    navContent = (
+      <div>
+        <button type="button" onClick={handleLogout}>
+          Logout
+        </button>
+        <span>{currentUser?.email}</span>
+      </div>
+    );
+  } else {
+    navContent = (
+      <>
+        <Link to="/signup">Signup</Link>
+        <Link to="/login">Login</Link>
+      </>
+    );
+  }
 
   return (
     <div id="nav_container">
@@ -60,21 +80,7 @@ const Nav = () => {
         </ul>
       </nav>
       <div>
-        {isAuthenticated ? (
-          <div>
-            <button type="button" onClick={handleLogout}>
-              Logout
-            </button>
-            <span>{currentUser?.email}</span>
-            {' '}
-            {/* Display current user email */}
-          </div>
-        ) : (
-          <>
-            <Link to="/signup">Signup</Link>
-            <Link to="/login">Login</Link>
-          </>
-        )}
+        {navContent}
       </div>
       <button type="button" className="mobile_breadcrumb" onClick={handleToggleNavbar}>
         &#9776;
