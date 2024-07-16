@@ -4,9 +4,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 /* eslint-disable camelcase */
-export const signup = createAsyncThunk('user/signup', async ({ full_name, email, password }) => {
+export const signup = createAsyncThunk('user/signup', async ({
+  full_name, email, password, password_confirmation,
+}) => {
   const response = await axios.post('http://localhost:5000/signup', {
-    user: { full_name, email, password },
+    user: {
+      full_name, email, password, password_confirmation,
+    },
   });
   return response.data;
 });
@@ -14,21 +18,23 @@ export const signup = createAsyncThunk('user/signup', async ({ full_name, email,
 const signupSlice = createSlice({
   name: 'user',
   initialState: {
-    data: null, status: 'idle', error: null,
+    user: null,
+    loading: false,
+    error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state) => {
-        state.status = 'loading';
+        state.loading = true;
       })
       .addCase(signup.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.data = action.payload;
+        state.loading = false;
+        state.user = action.payload;
       })
       .addCase(signup.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

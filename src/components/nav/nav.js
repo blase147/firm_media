@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../../Redux/Reducers/authSlice'; // Adjust the path as per your project structure
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../Redux/Reducers/authSlice';
 import './nav.scss';
 import Logo from '../images/png/Logo.png';
 
@@ -9,22 +9,23 @@ const Nav = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // const currentUser = useSelector((state) => state.auth.currentUser);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const navigate = useNavigate();
 
-  // Function to toggle the navbar visibility
+  useEffect(() => {
+    console.log('isAuthenticated:', isAuthenticated);
+    console.log('currentUser:', currentUser);
+
+    if (isAuthenticated) {
+      navigate('/'); // Redirect to homepage after successful login
+    }
+  }, [isAuthenticated, currentUser, navigate]);
+
   const handleToggleNavbar = () => {
     setShowNavbar(!showNavbar); // Toggles the value of showNavbar
   };
 
-  // Function to handle login (dispatching login action)
-  const handleLogin = () => {
-    // Replace with actual login logic
-    dispatch(login({ username: 'exampleUser', password: 'examplePassword' }));
-  };
-
-  // Function to handle logout (dispatching logout action)
   const handleLogout = () => {
-    // Replace with actual logout logic
     dispatch(logout());
   };
 
@@ -33,7 +34,6 @@ const Nav = () => {
       <div>
         <img className="logo" src={Logo} alt="FirmMedia" />
       </div>
-      {/* Add conditional class based on showNavbar state */}
       <nav className={`navbar ${showNavbar ? 'show' : 'close'}`}>
         <ul>
           <li>
@@ -60,21 +60,22 @@ const Nav = () => {
         </ul>
       </nav>
       <div>
-        {/* Conditional rendering for Signup/Login or Logout */}
         {isAuthenticated ? (
-          <button type="button" onClick={handleLogout}>
-            Logout
-          </button>
+          <div>
+            <button type="button" onClick={handleLogout}>
+              Logout
+            </button>
+            <span>{currentUser?.email}</span>
+            {' '}
+            {/* Display current user email */}
+          </div>
         ) : (
           <>
             <Link to="/signup">Signup</Link>
-            <Link to="/login" onClick={handleLogin}>
-              Login
-            </Link>
+            <Link to="/login">Login</Link>
           </>
         )}
       </div>
-      {/* Button to toggle the navbar visibility */}
       <button type="button" className="mobile_breadcrumb" onClick={handleToggleNavbar}>
         &#9776;
       </button>
