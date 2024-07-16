@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../../Redux/Reducers/authSlice'; // Adjust the path as per your project structure
 import './nav.scss';
 import Logo from '../images/png/Logo.png';
 
 const Nav = () => {
-  // State to manage the visibility of the navbar
   const [showNavbar, setShowNavbar] = useState(false);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const currentUser = useSelector((state) => state.auth.currentUser);
 
   // Function to toggle the navbar visibility
   const handleToggleNavbar = () => {
     setShowNavbar(!showNavbar); // Toggles the value of showNavbar
+  };
+
+  // Function to handle login (dispatching login action)
+  const handleLogin = () => {
+    // Replace with actual login logic
+    dispatch(login({ username: 'exampleUser', password: 'examplePassword' }));
+  };
+
+  // Function to handle logout (dispatching logout action)
+  const handleLogout = () => {
+    // Replace with actual logout logic
+    dispatch(logout());
   };
 
   return (
@@ -43,6 +59,21 @@ const Nav = () => {
           </li>
         </ul>
       </nav>
+      <div>
+        {/* Conditional rendering for Signup/Login or Logout */}
+        {isAuthenticated ? (
+          <button type="button" onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login" onClick={handleLogin}>
+              Login
+            </Link>
+          </>
+        )}
+      </div>
       {/* Button to toggle the navbar visibility */}
       <button type="button" className="mobile_breadcrumb" onClick={handleToggleNavbar}>
         &#9776;

@@ -4,10 +4,10 @@ import { createEquipment } from '../../services/equipmentAPI';
 
 const EquipmentForm = () => {
   const [name, setName] = useState('');
-  const [equipmentType, setEquipmentType] = useState('');
+  const [type, setType] = useState('');
   const [description, setDescription] = useState('');
-  const [pricePerHour, setPricePerHour] = useState('');
-  const [image, setImage] = useState(null);
+  const [pricePerDay, setPricePerDay] = useState('');
+  const [imageUrl, setImageUrl] = useState(''); // New state for image URL
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
@@ -18,18 +18,22 @@ const EquipmentForm = () => {
     setError(null);
     setSuccessMessage('');
 
-    const formData = new FormData();
-    formData.append('equipment[name]', name);
-    formData.append('equipment[equipment_type]', equipmentType);
-    formData.append('equipment[description]', description);
-    formData.append('equipment[price_per_hour]', pricePerHour);
-    formData.append('equipment[image]', image);
-
     try {
+      // Assuming imageUrl is set elsewhere, e.g., from an input field or another API call
+      const formData = {
+        equipment: {
+          name,
+          type,
+          description,
+          price_per_day: pricePerDay,
+          image_url: imageUrl,
+        },
+      };
+
       await createEquipment(formData);
       setSuccessMessage('Equipment created successfully!');
     } catch (error) {
-      setError('Failed to create equipment.');
+      setError('Failed to create Equipment.');
     } finally {
       setLoading(false);
     }
@@ -42,10 +46,12 @@ const EquipmentForm = () => {
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        required
       />
       <select
-        value={equipmentType}
-        onChange={(e) => setEquipmentType(e.target.value)}
+        value={type}
+        onChange={(e) => setType(e.target.value)}
+        required
       >
         <option value="">Select Equipment Type</option>
         <option value="Camera">Camera</option>
@@ -57,16 +63,21 @@ const EquipmentForm = () => {
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        required
       />
       <input
         type="number"
-        placeholder="Price per hour"
-        value={pricePerHour}
-        onChange={(e) => setPricePerHour(e.target.value)}
+        placeholder="Price per day"
+        value={pricePerDay}
+        onChange={(e) => setPricePerDay(e.target.value)}
+        required
       />
       <input
-        type="file"
-        onChange={(e) => setImage(e.target.files[0])}
+        type="text"
+        placeholder="Image URL"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
+        required
       />
       <button type="submit" disabled={loading}>Create Equipment</button>
       {loading && <p>Loading...</p>}

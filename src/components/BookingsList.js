@@ -13,7 +13,7 @@ const BookingsList = () => {
       setError(null);
       try {
         const data = await getBookings(); // Fetch bookings data
-        setBookings(data); // Set the bookings state
+        setBookings(Array.isArray(data) ? data : []); // Ensure data is an array
       } catch (err) {
         setError('Failed to fetch bookings.');
       } finally {
@@ -28,11 +28,10 @@ const BookingsList = () => {
     <div className="bookings-list-container">
       {loading && <p className="loading-message">Loading...</p>}
       {error && (
-        <p className="error-message">
-          Error:
-          {' '}
-          {error}
-        </p>
+      <p className="error-message">
+        Error:
+        {error}
+      </p>
       )}
       {!loading && !error && bookings.length === 0 && <p className="no-bookings-message">No bookings found.</p>}
       <ul className="bookings-list">
@@ -46,15 +45,15 @@ const BookingsList = () => {
           return (
             <li key={booking.id} className="booking-item">
               <p style={{ color: 'white' }}>
-                <span style={{ color: 'white' }} className="booking-service">{booking.service}</span>
-                <span style={{ color: 'white' }} className="booking-details">
+                <span className="booking-service">{booking.service}</span>
+                <span className="booking-details">
                   on
                   {' '}
                   <span className="booking-date">{formattedDate}</span>
                   {' '}
                   at
                   {' '}
-                  <span style={{ color: 'white' }} className="booking-time">{time}</span>
+                  <span className="booking-time">{time}</span>
                   {' '}
                   for
                   {' '}

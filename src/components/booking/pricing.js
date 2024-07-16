@@ -6,10 +6,11 @@ import PricingBanner from '../images/jpeg/pricing.jpg';
 import FooterBody from '../footer body/footer_body';
 import NewsLetter from '../newsletter/newsletter';
 import Testimonials from '../testimonials/testimonials';
-import CameraLens from '../images/jpeg/camera_lens.jpg';
-import Camera from '../images/jpeg/camera.jpeg';
-import Drone from '../images/jpeg/drone.jpg';
-import VideoLight from '../images/jpeg/video_light.webp';
+// import CameraLens from '../images/jpeg/camera_lens.jpg';
+// import Camera from '../images/jpeg/camera.jpeg';
+// import Drone from '../images/jpeg/drone.jpg';
+// import VideoLight from '../images/jpeg/video_light.webp';
+import GearsList from '../rent/gearList';
 
 const Pricing = () => (
   <div id="pricing">
@@ -136,94 +137,7 @@ const Pricing = () => (
       </div>
     </div>
     <div id="equipment_card_container">
-      <div className="equipment_card">
-        <img src={CameraLens} alt="Equipment" />
-        <div className="equipment_price_per_hour">
-          <h3>Camera Lens</h3>
-          <h4>
-            <span className="currency">N</span>
-            1000
-            <span>/hour</span>
-          </h4>
-        </div>
-        <div className="equipment_description">
-          <ul>
-            <li>Camera Lens</li>
-            <li>Aperture: f/1.4</li>
-            <li>Focus: 50mm</li>
-            <li>Weight: 1.3 lbs</li>
-          </ul>
-        </div>
-        <div className="rent">
-          <button type="button" className="button">Rent</button>
-        </div>
-      </div>
-      <div className="equipment_card">
-        <img src={Camera} alt="Equipment" />
-        <div className="equipment_price_per_hour">
-          <h3>Camera</h3>
-          <h4>
-            <span className="currency">N</span>
-            1000
-            <span>/hour</span>
-          </h4>
-        </div>
-        <div className="equipment_description">
-          <ul>
-            <li>SkySense Sky Recognition</li>
-            <li>QuantumSpeed Burst Shooting</li>
-            <li>AutoZoom Smart Framing</li>
-            <li>MoonlightCapture Night Mode</li>
-          </ul>
-        </div>
-        <div className="rent">
-          <button type="button" className="button">Rent</button>
-        </div>
-      </div>
-      <div className="equipment_card">
-        <img src={Drone} alt="Equipment" />
-        <div className="equipment_price_per_hour">
-          <h3>Drone</h3>
-          <h4>
-            <span className="currency">N</span>
-            1000
-            <span>/hour</span>
-          </h4>
-        </div>
-        <div className="equipment_description">
-          <ul>
-            <li>SkyView 360° Panoramic Capture</li>
-            <li>SkyLink HD Live Streaming</li>
-            <li>FlightSteady Gyro Stabilization</li>
-            <li>SkyTrack Object Tracking</li>
-          </ul>
-        </div>
-        <div className="rent">
-          <button type="button" className="button">Rent</button>
-        </div>
-      </div>
-      <div className="equipment_card">
-        <img src={VideoLight} alt="Equipment" />
-        <div className="equipment_price_per_hour">
-          <h3>Video Light</h3>
-          <h4>
-            <span className="currency">N</span>
-            1000
-            <span>/hour</span>
-          </h4>
-        </div>
-        <div className="equipment_description">
-          <ul>
-            <li>Variegated Colours</li>
-            <li>4 Hours Battery Span</li>
-            <li>Rechargable</li>
-            <li>Portable</li>
-          </ul>
-        </div>
-        <div className="rent">
-          <button type="button" className="button">Rent</button>
-        </div>
-      </div>
+      <GearsList />
     </div>
     <Testimonials />
     <NewsLetter />

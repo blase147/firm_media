@@ -8,7 +8,7 @@ const getCsrfToken = () => {
 const createBooking = async (bookingData) => {
   try {
     const csrfToken = getCsrfToken();
-    const response = await fetch('http://localhost:4000/bookings', {
+    const response = await fetch('http://localhost:5000/api/v1/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const createBooking = async (bookingData) => {
 const getBookings = async () => {
   try {
     const csrfToken = getCsrfToken();
-    const response = await fetch('http://localhost:4000/bookings', {
+    const response = await fetch('http://localhost:5000/api/v1/bookings', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
