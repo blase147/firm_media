@@ -14,7 +14,7 @@ const Nav = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (isAuthenticated) {
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, isAuthenticated]);
@@ -37,7 +37,7 @@ const Nav = () => {
         <button type="button" onClick={handleLogout}>
           Logout
         </button>
-        <span>{currentUser?.email}</span>
+        <span>{currentUser?.email || 'Current User Absent'}</span>
       </div>
     );
   } else {

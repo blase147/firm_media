@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchGears,
@@ -11,7 +11,6 @@ import './gearList.scss';
 import PaymentButton from '../payment/PaymentButton';
 
 const GearsList = () => {
-  const [paymentRefId, setPaymentRefId] = useState(null);
   const dispatch = useDispatch();
   const {
     gears,
@@ -34,7 +33,6 @@ const GearsList = () => {
 
   const handlePaymentSuccess = (reference, gearId) => {
     dispatch(rentGear({ gearId, paymentRefId: reference.reference }));
-    setPaymentRefId(paymentRefId.reference); // Set payment reference ID on success
   };
 
   const handleCancelRent = (gearId) => {
@@ -100,7 +98,7 @@ const GearsList = () => {
               ) : (
                 <PaymentButton
                   amount={gear.pricePerHour}
-                  email={currentUser?.email} // Access email safely using optional chaining
+                  email={currentUser.email} // Access email safely using optional chaining
                   value="Rent"
                   onSuccess={(reference) => handlePaymentSuccess(reference, gear.id)}
                 />

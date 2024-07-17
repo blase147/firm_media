@@ -5,7 +5,7 @@ import dateIcon from '../images/png/Calendar.png';
 
 const MediumPosts = () => {
   const [posts, setPosts] = useState([]);
-  const rssUrl = 'http://localhost:5000/fetch-medium-posts';
+  const rssUrl = 'http://localhost:7000/fetch-medium-posts';
 
   useEffect(() => {
     const fetchMediumPosts = async () => {

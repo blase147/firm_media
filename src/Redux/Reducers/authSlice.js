@@ -45,20 +45,29 @@ export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
   async (_, thunkAPI) => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return thunkAPI.rejectWithValue('No token found');
+      }
+
       const response = await axios.get(`${BASE_URL}/current_user`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-      // console.log(response.data.data);
+
+      console.log('fetchCurrentUser response:', response);
 
       if (response.status === 200) {
-        return response.data.data;
+        return response.data; // the response structure matches what you are returning
       }
 
+      console.error('Request failed:', response);
       return thunkAPI.rejectWithValue('Request failed');
     } catch (error) {
+      console.error('fetchCurrentUser error:', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -69,10 +78,12 @@ const authSlice = createSlice({
   initialState: {
     id: null,
     name: null,
-    token: null,
+    email: null,
+    token: localStorage.getItem('token') || null,
     isLoading: false,
     error: null,
-    loggedIn: false,
+    loggedIn: !!localStorage.getItem('token'),
+    currentUser: null,
   },
   reducers: {
     setUserId: (state, action) => {
@@ -89,7 +100,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.loggedIn = true;
-        state.id = action.payload.id;
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.error.message;
@@ -98,6 +108,11 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.loggedIn = false;
         state.id = null;
+        state.name = null;
+        state.email = null;
+        state.token = null;
+        state.currentUser = null;
+        localStorage.removeItem('token');
       })
       .addCase(fetchCurrentUser.pending, (state) => {
         state.isLoading = true;
@@ -107,6 +122,9 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.id = action.payload.id;
         state.name = action.payload.full_name;
+        state.email = action.payload.email;
+        state.currentUser = action.payload; // Update the currentUser state
+        state.loggedIn = true;
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         state.isLoading = false;
