@@ -156,7 +156,7 @@ const GearsList = () => {
                 </ul>
               </div>
               <div className="rent">
-                {gear.rented ? (
+                {gear.is_rented_now ? (
                   <>
                     <button
                       type="button"
@@ -172,6 +172,12 @@ const GearsList = () => {
                       onClick={() => handleCancelRent(gear.id)}
                     >
                       Cancel Rent
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(gear.id)}
+                    >
+                      Delete Gear
                     </button>
                   </>
                 ) : (
@@ -206,14 +212,6 @@ const GearsList = () => {
                     )}
                   </>
                 )}
-              </div>
-              <div className="delete_gear">
-                <button
-                  type="button"
-                  onClick={() => handleDelete(gear.id)}
-                >
-                  Delete Gear
-                </button>
               </div>
             </div>
           );

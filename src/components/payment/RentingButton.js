@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import PaystackPop from '@paystack/inline-js';
+import './RentingButton.scss';
 
 const RentButton = ({
   amount,
@@ -33,8 +34,8 @@ const RentButton = ({
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleClick}>
+    <div className="rentNowBtnCont">
+      <button className="rentNowBtn" type="button" onClick={handleClick}>
         Rent Now
       </button>
       {isAvailable === false && <p>Gear is not available for the selected time and date.</p>}

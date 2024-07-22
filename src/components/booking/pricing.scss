@@ -217,16 +217,23 @@
           button,
           input {
             width: 80%;
-          }
-          #rentFomCont {
-            display: flex;
-            flex-direction: column;
-            // justify-content: center;
-            // align-items: center;
-            margin: auto;
-            gap: 10px;
             margin: 5px;
           }
+          > div {
+            width: 80%;
+            button {
+              width: 100%;
+            }
+          }
+          // #rentFormCont {
+          //   display: flex;
+          //   flex-direction: column;
+          //   // justify-content: center;
+          //   // align-items: center;
+          //   margin: auto;
+          //   gap: 10px;
+          //   margin: 5px;
+          // }
         }
       }
     }
