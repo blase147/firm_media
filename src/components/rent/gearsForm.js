@@ -29,8 +29,7 @@ const GearsForm = () => {
   };
 
   return (
-    <div id="crentingFormContainer">
-
+    <div id="rentingFormContainer">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">
@@ -70,7 +69,7 @@ const GearsForm = () => {
         </div>
         <div>
           <label htmlFor="pricePerHour">
-            Price per day
+            Price per hour
             <input
               type="number"
               id="pricePerHour"
@@ -98,10 +97,7 @@ const GearsForm = () => {
       <div id="equipment_card_container">
         <GearsList />
       </div>
-      {' '}
-
     </div>
-
   );
 };
 

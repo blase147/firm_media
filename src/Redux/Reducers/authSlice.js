@@ -9,9 +9,8 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
   const response = await axios.post(`${BASE_URL}/login`, {
     user: { email, password },
   });
-  // console.log(response);
+
   if (response.status >= 200 && response.status < 300) {
-    // const token = response.headers.get('Authorization');
     const authorizationHeader = response.headers.authorization;
     const token = authorizationHeader ? authorizationHeader.split(' ')[1] : null;
     localStorage.setItem('token', token);
@@ -20,58 +19,48 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
   throw new Error(response);
 });
 
-export const logout = createAsyncThunk(
-  'auth/logout',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.delete(`${BASE_URL}/logout`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/logout`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
 
-      if (response.status === 200) {
-        localStorage.removeItem('token');
-        return { success: true };
-      }
-      return thunkAPI.rejectWithValue('Logout failed');
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+    if (response.status === 200) {
+      localStorage.removeItem('token');
+      return { success: true };
     }
-  },
-);
+    return thunkAPI.rejectWithValue('Logout failed');
+  } catch (error) {
+    localStorage.removeItem('token'); // Ensure token is removed even if backend fails
+    return thunkAPI.rejectWithValue('Logout failed');
+  }
+});
 
-export const fetchCurrentUser = createAsyncThunk(
-  'auth/fetchCurrentUser',
-  async (_, thunkAPI) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('No token found');
-        return thunkAPI.rejectWithValue('No token found');
-      }
-
-      const response = await axios.get(`${BASE_URL}/current_user`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      console.log('fetchCurrentUser response:', response);
-
-      if (response.status === 200) {
-        return response.data; // the response structure matches what you are returning
-      }
-
-      console.error('Request failed:', response);
-      return thunkAPI.rejectWithValue('Request failed');
-    } catch (error) {
-      console.error('fetchCurrentUser error:', error);
-      return thunkAPI.rejectWithValue(error.message);
+export const fetchCurrentUser = createAsyncThunk('auth/fetchCurrentUser', async (_, thunkAPI) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return thunkAPI.rejectWithValue('No token found');
     }
-  },
-);
+
+    const response = await axios.get(`${BASE_URL}/current_user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      return response.data;
+    }
+
+    return thunkAPI.rejectWithValue('Request failed');
+  } catch (error) {
+    return thunkAPI.rejectWithValue('Request failed');
+  }
+});
 
 const authSlice = createSlice({
   name: 'auth',
@@ -88,6 +77,14 @@ const authSlice = createSlice({
   reducers: {
     setUserId: (state, action) => {
       state.id = action.payload;
+    },
+    clearAuthState: (state) => {
+      state.id = null;
+      state.name = null;
+      state.email = null;
+      state.token = null;
+      state.loggedIn = false;
+      state.currentUser = null;
     },
   },
   extraReducers: (builder) => {
@@ -114,6 +111,15 @@ const authSlice = createSlice({
         state.currentUser = null;
         localStorage.removeItem('token');
       })
+      .addCase(logout.rejected, (state) => { // Handle rejected case
+        state.loggedIn = false;
+        state.id = null;
+        state.name = null;
+        state.email = null;
+        state.token = null;
+        state.currentUser = null;
+        localStorage.removeItem('token');
+      })
       .addCase(fetchCurrentUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -123,7 +129,7 @@ const authSlice = createSlice({
         state.id = action.payload.id;
         state.name = action.payload.full_name;
         state.email = action.payload.email;
-        state.currentUser = action.payload; // Update the currentUser state
+        state.currentUser = action.payload;
         state.loggedIn = true;
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
@@ -133,5 +139,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUserId } = authSlice.actions;
+export const { setUserId, clearAuthState } = authSlice.actions;
 export default authSlice.reducer;
