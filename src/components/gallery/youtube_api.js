@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-const CHANNEL_ID = 'UCXq1MkTRXF0T_Ugs-YJwLgg'; // or PLAYLIST_ID
+const CHANNEL_ID = 'UCwr0jDqS6WW03baKcf5qJhg'; // or PLAYLIST_ID
 
 export const fetchYouTubeVideos = async () => {
   const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10`;

@@ -11,19 +11,20 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
   });
 
   if (response.status >= 200 && response.status < 300) {
-    const authorizationHeader = response.headers.authorization;
+    const { authorization: authorizationHeader } = response.headers;
     const token = authorizationHeader ? authorizationHeader.split(' ')[1] : null;
     localStorage.setItem('token', token);
     return token;
   }
-  throw new Error(response);
+  throw new Error(response.statusText);
 });
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
+    const token = localStorage.getItem('token');
     const response = await axios.delete(`${BASE_URL}/logout`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -75,8 +76,8 @@ const authSlice = createSlice({
     currentUser: null,
   },
   reducers: {
-    setUserId: (state, action) => {
-      state.id = action.payload;
+    setUserId: (state, { payload }) => {
+      state.id = payload;
     },
     clearAuthState: (state) => {
       state.id = null;
@@ -92,14 +93,14 @@ const authSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(login.fulfilled, (state, action) => {
-        state.token = action.payload;
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.token = payload;
         state.isLoading = false;
         state.error = null;
         state.loggedIn = true;
       })
-      .addCase(login.rejected, (state, action) => {
-        state.error = action.error.message;
+      .addCase(login.rejected, (state, { error }) => {
+        state.error = error.message;
         state.isLoading = false;
       })
       .addCase(logout.fulfilled, (state) => {
@@ -111,7 +112,7 @@ const authSlice = createSlice({
         state.currentUser = null;
         localStorage.removeItem('token');
       })
-      .addCase(logout.rejected, (state) => { // Handle rejected case
+      .addCase(logout.rejected, (state) => {
         state.loggedIn = false;
         state.id = null;
         state.name = null;
@@ -124,17 +125,17 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.id = action.payload.id;
-        state.name = action.payload.full_name;
-        state.email = action.payload.email;
-        state.currentUser = action.payload;
+        state.id = payload.id;
+        state.name = payload.full_name;
+        state.email = payload.email;
+        state.currentUser = payload;
         state.loggedIn = true;
       })
-      .addCase(fetchCurrentUser.rejected, (state, action) => {
+      .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = payload;
       });
   },
 });

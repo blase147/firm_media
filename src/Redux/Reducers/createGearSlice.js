@@ -2,8 +2,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const createGear = createAsyncThunk('gears/create', async (formData) => {
-  const response = await axios.post('http://localhost:5000/api/v1/gears', { gear: formData });
+export const createGear = createAsyncThunk('gears/create', async (formData, { getState }) => {
+  // Retrieve the authentication token from the Redux store or localStorage/sessionStorage
+  const { token } = getState().auth; // Assuming you store the token in auth slice
+
+  const response = await axios.post('http://localhost:5000/api/v1/gears', { gear: formData }, {
+    headers: {
+      Authorization: `Bearer ${token}`, // Include token in Authorization header
+    },
+  });
+
   return response.data;
 });
 

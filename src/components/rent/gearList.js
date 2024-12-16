@@ -1,39 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchGears, rentGear, cancelRentGear, deleteGear,
+  fetchGears, deleteGear,
 } from '../../Redux/Reducers/gearSlice';
+import {
+  createRental, cancelRental,
+} from '../../Redux/Reducers/rentalSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
-import RentButton from '../payment/RentingButton';
-
-// Function to calculate end date and time
-const calculateEndDateTime = (rentalDateTime, rentalDuration) => {
-  if (!rentalDateTime || !rentalDuration) return null;
-
-  // Add duration (in hours) to rental datetime
-  const endDateTime = new Date(rentalDateTime);
-  endDateTime.setHours(endDateTime.getHours() + rentalDuration);
-
-  return endDateTime;
-};
-
-// Function to format end date and time
-const formatEndDateTime = (endDateTime) => {
-  if (!endDateTime) {
-    return 'Invalid Date';
-  }
-  const options = {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-    timeZone: 'UTC', // Ensure the time is displayed in UTC
-  };
-  return endDateTime.toLocaleString('en-GB', options).replace(',', ' by');
-};
+import RentButton from '../payment/RentingButton'; // Ensure this import is correct
 
 const GearsList = () => {
   const dispatch = useDispatch();
@@ -52,10 +27,19 @@ const GearsList = () => {
 
   const handleCheckAvailability = async (gearId, selectedDateTime, selectedHours) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/gears/${gearId}/check_availability`, {
+      const token = localStorage.getItem('token'); // Match the key used in authSlice
+      console.log('Retrieved token:', token); // Debug line
+      if (!token) {
+        console.error('No authentication token found');
+        return false;
+      }
+
+      console.log('Making API call to check availability');
+      const response = await fetch(`http://localhost:5000/api/v1/gears/${gearId}/rentals/check_availability`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           rental_datetime: selectedDateTime.toISOString(),
@@ -64,13 +48,16 @@ const GearsList = () => {
       });
 
       if (!response.ok) {
+        const error = await response.json();
+        console.error('API Error:', error);
         throw new Error('Failed to check availability');
       }
 
       const data = await response.json();
+      console.log('API Response:', data);
       return data.available;
     } catch (error) {
-      console.error(error);
+      console.error('Error checking availability:', error);
       return false;
     }
   };
@@ -78,11 +65,18 @@ const GearsList = () => {
   const handleProceedToPayment = async (gearId) => {
     const selectedDateTime = dateTime;
     const selectedHours = hours;
+
+    console.log('Checking availability for gear:', gearId);
+    console.log('Selected DateTime:', selectedDateTime);
+    console.log('Selected Hours:', selectedHours);
+
     const isAvailable = await handleCheckAvailability(
       gearId,
       selectedDateTime,
       selectedHours,
     );
+
+    console.log('Availability:', isAvailable);
     return isAvailable;
   };
 
@@ -91,18 +85,29 @@ const GearsList = () => {
     const selectedHours = hours;
 
     console.log('Payment successful with reference:', reference);
-    dispatch(
-      rentGear({
-        gearId,
-        paymentRefId: reference.reference,
-        rentalDuration: selectedHours,
-        rentalDatetime: selectedDateTime.toISOString(),
-      }),
-    );
+
+    try {
+      const resultAction = await dispatch(
+        createRental({
+          gearId,
+          paymentRefId: reference.reference,
+          rentalDuration: selectedHours,
+          rentalDatetime: selectedDateTime.toISOString(),
+        }),
+      );
+
+      if (createRental.fulfilled.match(resultAction)) {
+        console.log('Rental created:', resultAction.payload);
+      } else {
+        console.error('Failed to create rental:', resultAction.error);
+      }
+    } catch (error) {
+      console.error('Error creating rental:', error);
+    }
   };
 
   const handleCancelRent = (gearId) => {
-    dispatch(cancelRentGear(gearId));
+    dispatch(cancelRental(gearId));
   };
 
   const handleDelete = (gearId) => {
@@ -125,12 +130,10 @@ const GearsList = () => {
     <div id="gearListContainer">
       <h2>Gears List</h2>
       <ul>
-        {gears.map((gear) => {
-          // Calculate and format rental end date time
-          const rentalEndDateTime = calculateEndDateTime(
-            new Date(gear.rental_datetime), gear.rental_duration,
-          );
-          const formattedEndDateTime = formatEndDateTime(rentalEndDateTime);
+        {Array.isArray(gears) && gears.map((gear) => {
+          const rentalEndDateTime = gear.rental_end_datetime
+            ? new Date(gear.rental_end_datetime)
+            : null;
 
           return (
             <div className="equipment_card" key={gear.id}>
@@ -165,7 +168,7 @@ const GearsList = () => {
                     >
                       Rented until
                       {' '}
-                      {formattedEndDateTime || 'N/A'}
+                      {rentalEndDateTime ? rentalEndDateTime.toLocaleString() : 'N/A'}
                     </button>
                     <button
                       type="button"
@@ -207,8 +210,9 @@ const GearsList = () => {
                         onProceedToPayment={() => handleProceedToPayment(gear.id)}
                         onSuccess={(transaction) => handlePaymentSuccess(transaction, gear.id)}
                       />
+
                     ) : (
-                      <p>Please log in to proceed with the rental.</p>
+                      <p>Please log in to rent this gear.</p>
                     )}
                   </>
                 )}

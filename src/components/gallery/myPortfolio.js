@@ -40,7 +40,7 @@ const MyPortfolio = () => {
           <h1>See What We Have Done</h1>
         </div>
         <div>
-          <a href="https://www.youtube.com/channel/UCXq1MkTRXF0T_Ugs-YJwLgg">
+          <a href="https://studio.youtube.com/channel/UCwr0jDqS6WW03baKcf5qJhg">
             <button className="button" type="button">
               See More
             </button>
