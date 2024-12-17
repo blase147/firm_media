@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchGears, deleteGear,
+  fetchGears, deleteGear, rentGear, cancelRentGear,
 } from '../../Redux/Reducers/gearSlice';
-import {
-  createRental, cancelRental,
-} from '../../Redux/Reducers/rentalSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton'; // Ensure this import is correct
@@ -35,7 +32,7 @@ const GearsList = () => {
       }
 
       console.log('Making API call to check availability');
-      const response = await fetch(`http://localhost:5000/api/v1/gears/${gearId}/rentals/check_availability`, {
+      const response = await fetch(`http://localhost:5000/api/v1/gears/${gearId}/check_availability`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +85,7 @@ const GearsList = () => {
 
     try {
       const resultAction = await dispatch(
-        createRental({
+        rentGear({
           gearId,
           paymentRefId: reference.reference,
           rentalDuration: selectedHours,
@@ -96,7 +93,7 @@ const GearsList = () => {
         }),
       );
 
-      if (createRental.fulfilled.match(resultAction)) {
+      if (rentGear.fulfilled.match(resultAction)) {
         console.log('Rental created:', resultAction.payload);
       } else {
         console.error('Failed to create rental:', resultAction.error);
@@ -107,7 +104,7 @@ const GearsList = () => {
   };
 
   const handleCancelRent = (gearId) => {
-    dispatch(cancelRental(gearId));
+    dispatch(cancelRentGear(gearId));
   };
 
   const handleDelete = (gearId) => {

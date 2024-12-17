@@ -14,13 +14,33 @@ export const rentGear = createAsyncThunk(
   'gears/rentGear',
   async ({
     gearId, paymentRefId, rentalDuration, rentalDatetime,
-  }) => {
-    const response = await axios.post(`${BASE_URL}/gears/${gearId}/rent`, {
-      payment_ref_id: paymentRefId,
-      rental_datetime: rentalDatetime,
-      rental_duration: rentalDuration,
-    });
-    return response.data;
+  }, { getState }) => {
+    try {
+      // Retrieve the authentication token (modify based on your state management)
+      const { token } = getState().auth; // Assuming you store auth in Redux state
+
+      // Make the POST request with the Authorization header
+      const response = await axios.post(
+        `${BASE_URL}/gears/${gearId}/rent`,
+        {
+          rental: {
+            payment_ref_id: paymentRefId,
+            rental_datetime: rentalDatetime,
+            rental_duration: rentalDuration,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token here
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error('Error renting gear:', error.response?.data || error.message);
+      throw error;
+    }
   },
 );
 
