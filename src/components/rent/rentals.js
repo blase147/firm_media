@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRentals } from '../../Redux/Reducers/rentalSlice';
-import './rentals.scss'; // Import the CSS file
-
-const getRentalStatus = (isRentedNow) => {
-  if (isRentedNow === true) return 'Yes';
-  if (isRentedNow === false) return 'No';
-  return 'Unknown';
-};
+import './rentals.scss'; // Import the SCSS file
 
 const Rentals = () => {
   const dispatch = useDispatch();
   const { rentals, status, error } = useSelector((state) => state.rentals);
 
+  // Fetch rentals
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchRentals());
@@ -22,9 +17,8 @@ const Rentals = () => {
   if (status === 'loading') return <div className="loading">Loading...</div>;
   if (status === 'failed') {
     return (
-      <div className="failed">
+      <div className="error">
         Error:
-        {' '}
         {error}
       </div>
     );
@@ -33,51 +27,38 @@ const Rentals = () => {
   return (
     <div className="rentals-container">
       <h2>Rentals</h2>
-      <ul>
-        {Array.isArray(rentals)
-          && rentals.map((rental) => (
-            <li key={rental.id}>
-              <h3>
-                Rental ID:
-                {rental.id}
-              </h3>
-              <p>
-                <strong>Gear ID:</strong>
+      <table>
+        <thead>
+          <tr>
+            <th>Rental ID</th>
+            <th>Gear ID</th>
+            <th>Customer Name</th>
+            <th>Rental Date</th>
+            <th>Rental Duration</th>
+            <th>Rental End</th>
+            <th>Payment Ref</th>
+            <th>Is Rented</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(rentals) && rentals.map((rental) => (
+            <tr key={rental.id}>
+              <td>{rental.id}</td>
+              <td>{rental.gear?.id || 'N/A'}</td>
+              <td>{rental.user?.full_name || 'N/A'}</td>
+              <td>{new Date(rental.rental_datetime).toLocaleString()}</td>
+              <td>
+                {rental.rental_duration}
                 {' '}
-                <span>{rental.gear_id}</span>
-              </p>
-              <p>
-                <strong>Rental Date:</strong>
-                {' '}
-                <span>{new Date(rental.rental_datetime).toLocaleString()}</span>
-              </p>
-              <p>
-                <strong>Rental Duration:</strong>
-                {' '}
-                <span>
-                  {rental.rental_duration}
-                  {' '}
-                  hour(s)
-                </span>
-              </p>
-              <p>
-                <strong>Rental End:</strong>
-                {' '}
-                <span>{new Date(rental.rental_end_datetime).toLocaleString()}</span>
-              </p>
-              <p>
-                <strong>Payment Ref:</strong>
-                <span>{getRentalStatus(rental.is_rented_now)}</span>
-                <span>{rental.payment_ref_id}</span>
-              </p>
-              <p>
-                <strong>Is Rented:</strong>
-                {' '}
-                <span>{getRentalStatus(rental.is_rented_now)}</span>
-              </p>
-            </li>
+                hour(s)
+              </td>
+              <td>{new Date(rental.rental_end_datetime).toLocaleString()}</td>
+              <td>{rental.payment_ref_id}</td>
+              <td>{rental.is_rented_now ? 'Yes' : 'No'}</td>
+            </tr>
           ))}
-      </ul>
+        </tbody>
+      </table>
     </div>
   );
 };

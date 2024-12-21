@@ -1,25 +1,42 @@
 #rentingFormContainer {
   background-color: #460505;
   color: rgb(241, 238, 238);
+
+  & div {
+    // width: 90%;
+    margin: auto;
+    padding-top: 20px;
+    margin-bottom: 50px;
+  }
+
   #gearListContainer {
     p {
       color: rgb(235, 227, 227);
     }
-    // ul li {
-    //   color: rgb(233, 220, 220);
-    // }
   }
+
   // Form container
-  .form {
+  form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #0fb847;
     border: 1px solid #ddd;
     border-radius: 5px;
+
     label {
       color: gold;
     }
+    // Button styles
+    // button {
+    //   background-color: #007bff;
+    //   color: #fff;
+    //   border: none;
+    //   padding: 20px 20px;
+    //   cursor: pointer;
+    //   border-radius: 3px;
+    //   width: 100%;
+    // }
   }
 
   // Label styles
@@ -63,9 +80,10 @@
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 20px 20px;
     cursor: pointer;
     border-radius: 3px;
+    width: 100%;
   }
 
   button:disabled {
@@ -101,105 +119,159 @@
       color: #fff;
     }
   }
-  #equipment_card_container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 75%;
-    color: white;
 
-    .equipment_card {
+  // #equipment_card_container {
+  //  width: 90%;
+  //  background-color: #e310a7;
+  // }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  #rentingFormContainer {
+    padding: 15px;
+
+    .form {
+      padding: 15px;
+    }
+
+    #equipment_card_container {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      width: 100%;
-      border: solid 1px white;
-      padding: 20px;
-      transition: transform 0.5s ease-in-out;
+      gap: 30px;
+      // width: 75%;
+      color: white;
+      margin: 30px;
 
-      &:hover {
-        transform: scale(1.04);
-      }
-
-      img {
-        max-width: 25%;
-        object-fit: cover;
-      }
-
-      .equipment_price_per_hour {
+      .equipment_card {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        text-align: left;
-        width: 25%;
-        padding: 20px;
-        h3 {
-          margin-bottom: 30px;
-        }
-
-        h4 {
-          color: rgb(241, 168, 10);
-          font-size: 2em;
-          font-weight: 900;
-
-          .currency {
-            vertical-align: super;
-            font-size: 0.7em;
-            color: rgb(241, 168, 10);
-          }
-
-          span {
-            font-size: 0.52em;
-            color: rgb(255, 255, 255);
-            padding-left: 10px;
-          }
-        }
-      }
-
-      .equipment_description {
-        border-left: 1px solid #ffffff;
-        border-right: 1px solid white;
-        // padding: 20px;
-        list-style: none; /* Remove default bullets */
-        // background-color: yellow;
-        width: 25%;
-        padding: 50px;
-        font-size: 1.2em;
-      }
-
-      .equipment_description ul {
-        padding: 0; /* Remove default padding */
-        margin: 0; /* Remove default margin */
-        list-style: none; /* Remove default bullets */
-      }
-
-      .equipment_description li {
-        position: relative; /* Create a positioning context for the ::before pseudo-element */
-        padding-left: 25px; /* Space for the checkmark */
-      }
-
-      .equipment_description li::before {
-        content: "✔"; /* Unicode checkmark character */
-        position: absolute; /* Position it absolutely within the relative li */
-        left: 0; /* Position it to the left */
-        color: green; /* Change the color of the checkmark if desired */
-        font-size: 1.2em; /* Adjust size if needed */
-      }
-      .rent {
-        display: flex;
-        justify-content: center;
         align-items: center;
-        // background-color: green;
-        width: 20%;
-        button {
-          width: 50%;
+        width: 100%;
+        border: solid 1px white;
+        padding: 20px;
+
+        // > div {
+        //   width: 25%;
+        // }
+
+        // img {
+        //   max-width: 70%;
+        //   object-fit: cover;
+        // }
+
+        .equipment_price_per_hour {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          width: 100%;
+          padding: 20px;
+
+          h3 {
+            margin-bottom: 30px;
+          }
+
+          h4 {
+            color: rgb(241, 168, 10);
+            font-size: 2em;
+            font-weight: 900;
+
+            .currency {
+              vertical-align: super;
+              font-size: 0.7em;
+              color: rgb(241, 168, 10);
+            }
+
+            // span {
+            //   font-size: 0.52em;
+            //   color: rgb(255, 255, 255);
+            //   padding-left: 10px;
+            // }
+          }
+        }
+
+        .equipment_description {
+          border-top: 1px solid #fff;
+          border-bottom: 1px solid white;
+          // padding: 20px;
+          list-style: none; /* Remove default bullets */
+          // background-color: yellow;
+          width: 100%;
+          padding: 10px;
+          font-size: 1.2em;
+        }
+
+        .equipment_description ul {
+          padding: 0; /* Remove default padding */
+          margin: 0; /* Remove default margin */
+          list-style: none; /* Remove default bullets */
+        }
+
+        .equipment_description li {
+          position: relative; /* Create a positioning context for the ::before pseudo-element */
+          padding-left: 25px; /* Space for the checkmark */
+        }
+
+        .equipment_description li::before {
+          content: "✔"; /* Unicode checkmark character */
+          position: absolute; /* Position it absolutely within the relative li */
+          left: 0; /* Position it to the left */
+          color: green; /* Change the color of the checkmark if desired */
+          font-size: 1.2em; /* Adjust size if needed */
+        }
+
+        .rent {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // background-color: green;
+          width: 100%;
+          // button {
+          //   // margin-top: 40px;
+          //   // width: 50%;
+          // }
         }
       }
     }
   }
-  #gearListContainer {
-    p {
-      color: black;
+}
+
+/* Mobile Styling for Smaller Screens */
+@media (max-width: 480px) {
+  #rentingFormContainer {
+    padding: 10px;
+
+    .form {
+      padding: 10px;
     }
+
+    // #equipment_card_container {
+    //   width: 100%;
+    // }
+
+    // .equipment_card {
+    //   padding: 10px;
+    //   flex-direction: column;
+    //   align-items: flex-start;
+    //   gap: 10px;
+    // }
+
+    // .equipment_price_per_hour,
+    // .equipment_description {
+    //   width: 100%;
+    //   padding: 10px;
+    // }
+
+    // .equipment_description {
+    //   font-size: 0.9em;
+    // }
+
+    // button {
+    //   width: 100%;
+    //   padding: 10px;
+    // }
   }
 }

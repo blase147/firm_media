@@ -6,6 +6,7 @@
       background-color: #230b0b;
       color: white;
       width: 100%;
+
       #MenuBannerText {
         margin-bottom: 100px;
         display: flex;
@@ -15,10 +16,12 @@
         margin: auto;
         text-align: center;
         animation: fadeInSlideUp 1s ease-in-out;
+
         h1 {
           font-size: 2.9em;
           color: gold;
         }
+
         p {
           font-size: 1.2em;
           line-height: 1.5em;
@@ -28,12 +31,14 @@
     }
   }
 }
+
 @media only screen and (max-width: 768px) {
   #MenuBannerContainer {
     display: flex;
     flex-direction: column;
     background-color: #230b0b;
     color: white;
+
     #MenuBanner {
       // margin-bottom: 100px;
       #MenuBannerText {

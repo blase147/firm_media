@@ -30,6 +30,7 @@
     width: 70%;
     // margin-bottom: 50px;
     color: gold;
+
     img {
       width: 100%;
       margin-bottom: 20px;
@@ -39,10 +40,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0px;
+      padding: 20px 0;
       margin-top: 30px;
       border-top: 1px solid #ccc8c8;
       border-bottom: 1px solid #ccc8c8;
+
       h3 {
         margin-top: 0;
       }
@@ -53,9 +55,11 @@
       flex-direction: column;
       width: 98%;
       color: gold;
+
       form {
         width: 100%;
         color: gold;
+
         input[type="text"],
         input[type="email"] {
           width: 100%;
@@ -64,6 +68,7 @@
           padding: 10px;
           background-color: #291414;
           color: gold;
+
           &::placeholder {
             color: gold;
           }
@@ -75,6 +80,7 @@
           margin-bottom: 10px;
           padding: 10px;
           background-color: #291414;
+
           &::placeholder {
             color: gold;
           }
@@ -98,6 +104,7 @@
       text-align: center;
       align-items: center;
       background-color: rgb(25, 34, 44);
+
       img {
         width: 30%;
         height: 10vh;
@@ -108,23 +115,29 @@
     #recentPost {
       background-color: rgb(25, 34, 44);
       padding: 10px;
+
       .recentPostCard {
         display: flex;
         gap: 10px;
+
         img {
           height: 10vh;
         }
+
         .recentPostText {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+
           > p {
             padding-bottom: 0;
             margin-bottom: 5px;
           }
+
           .imageDate {
             margin-top: 0;
             padding: 0;
+
             p {
               margin-top: 0;
               padding: 0;
@@ -133,25 +146,31 @@
         }
       }
     }
+
     #questions {
       display: flex;
+
       > div {
-        padding: 0px 10px 0px 10px;
+        padding: 0 10px 0 10px;
+
         > div {
           gap: 10px;
+
           span {
             margin-left: 10px;
           }
         }
       }
     }
+
     #followUs {
       display: flex;
       flex-direction: column;
       width: 95%;
-      padding: 0px 0px 30px 20px;
+      padding: 0 0 30px 20px;
       color: gold;
       background-color: rgb(25, 34, 44);
+
       h3 {
         margin-bottom: 10px;
       }
@@ -189,6 +208,7 @@
     width: 70%;
     margin-bottom: 100px;
     color: gold;
+
     img {
       width: 100%;
       margin-bottom: 20px;
@@ -198,7 +218,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0px;
+      padding: 20px 0;
       margin-top: 30px;
       border-top: 1px solid #ccc8c8;
       border-bottom: 1px solid #ccc8c8;
@@ -210,9 +230,11 @@
       flex-direction: column;
       width: 98%;
       color: gold;
+
       form {
         width: 100%;
         color: gold;
+
         input[type="text"],
         input[type="email"] {
           width: 100%;
@@ -221,6 +243,7 @@
           padding: 10px;
           background-color: #291414;
           color: gold;
+
           &::placeholder {
             color: gold;
           }
@@ -232,6 +255,7 @@
           margin-bottom: 10px;
           padding: 10px;
           background-color: #291414;
+
           &::placeholder {
             color: gold;
           }
@@ -255,6 +279,7 @@
       text-align: center;
       align-items: center;
       background-color: rgb(25, 34, 44);
+
       img {
         width: 30%;
         height: 10vh;
@@ -265,23 +290,29 @@
     #recentPost {
       background-color: rgb(25, 34, 44);
       padding: 10px;
+
       .recentPostCard {
         display: flex;
         gap: 10px;
+
         img {
           height: 10vh;
         }
+
         .recentPostText {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+
           > p {
             padding-bottom: 0;
             margin-bottom: 5px;
           }
+
           .imageDate {
             margin-top: 0;
             padding: 0;
+
             p {
               margin-top: 0;
               padding: 0;
@@ -290,25 +321,31 @@
         }
       }
     }
+
     #questions {
       display: flex;
+
       > div {
-        padding: 0px 10px 0px 10px;
+        padding: 0 10px 0 10px;
+
         > div {
           gap: 10px;
+
           span {
             margin-left: 10px;
           }
         }
       }
     }
+
     #followUs {
       display: flex;
       flex-direction: column;
       width: 95%;
-      padding: 0px 0px 30px 20px;
+      padding: 0 0 30px 20px;
       color: gold;
       background-color: rgb(25, 34, 44);
+
       h3 {
         margin-bottom: 10px;
       }

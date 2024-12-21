@@ -50,7 +50,7 @@
 
       // @extend %btn-properties;
 
-    //   border: $border;
+      //   border: $border;
       position: relative;
 
       .icon {
@@ -70,8 +70,8 @@
 
         &:hover {
           background-color: inherit;
-        //   background-color: $secondary-color;
-        //   color: $text-color;
+          //   background-color: $secondary-color;
+          //   color: $text-color;
         }
       }
 

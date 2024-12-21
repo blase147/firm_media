@@ -1,42 +1,41 @@
 .receipt {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  
-    .logo {
-      max-width: 150px;
-      margin-bottom: 20px;
-    }
-  
-    h2 {
-      margin-bottom: 20px;
-    }
-  
-    p {
-      margin: 10px 0;
-    }
-  
-    .receipt-buttons {
-      margin-top: 20px;
-  
-      button {
-        margin: 5px;
-        padding: 10px 20px;
-        border: none;
-        background: #007bff;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 5px;
-  
-        &:hover {
-          background: #0056b3;
-        }
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  .logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  .receipt-buttons {
+    margin-top: 20px;
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:hover {
+        background: #0056b3;
       }
     }
   }
-  
+}

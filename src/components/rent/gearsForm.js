@@ -31,73 +31,77 @@ const GearsForm = () => {
 
   return (
     <div id="rentingFormContainer">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">
-            Name
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">
+              Name
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="type">
+              Type
+              <select
+                id="type"
+                value={gearType}
+                onChange={(e) => setGearType(e.target.value)}
+              >
+                <option value="camera">Camera</option>
+                <option value="lens">Lens</option>
+                <option value="accessory">Accessory</option>
+                {/* Add other options as needed */}
+              </select>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="description">
+              Description
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="pricePerHour">
+              Price per hour
+              <input
+                type="number"
+                id="pricePerHour"
+                value={pricePerHour}
+                onChange={(e) => setPricePerHour(e.target.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="imageUrl">
+              Image URL
+              <input
+                type="text"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+          {error && <p>{error}</p>}
+        </form>
+        <div id="equipment_card_container">
+          <GearsList />
+          <Rentals />
         </div>
-        <div>
-          <label htmlFor="type">
-            Type
-            <select
-              id="type"
-              value={gearType}
-              onChange={(e) => setGearType(e.target.value)}
-            >
-              <option value="camera">Camera</option>
-              <option value="lens">Lens</option>
-              <option value="accessory">Accessory</option>
-              {/* Add other options as needed */}
-            </select>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="description">
-            Description
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="pricePerHour">
-            Price per hour
-            <input
-              type="number"
-              id="pricePerHour"
-              value={pricePerHour}
-              onChange={(e) => setPricePerHour(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="imageUrl">
-            Image URL
-            <input
-              type="text"
-              id="imageUrl"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-            />
-          </label>
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Submitting...' : 'Submit'}
-        </button>
-        {error && <p>{error}</p>}
-      </form>
-      <div id="equipment_card_container">
-        <GearsList />
-        <Rentals />
       </div>
     </div>
   );

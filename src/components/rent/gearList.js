@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Modal from 'react-modal'; // Ensure Modal is properly installed
 import {
   fetchGears, deleteGear, rentGear, cancelRentGear,
 } from '../../Redux/Reducers/gearSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton'; // Ensure this import is correct
+import Receipt from './receipt';
+
+Modal.setAppElement('#root'); // Set the app element for accessibility
 
 const GearsList = () => {
   const dispatch = useDispatch();
@@ -14,6 +18,10 @@ const GearsList = () => {
 
   const [hours, setHours] = useState(1);
   const [dateTime, setDateTime] = useState(new Date());
+  const [successMessage, setSuccessMessage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedGear, setSelectedGear] = useState(null);
+  const [paymentReference, setPaymentReference] = useState('');
 
   useEffect(() => {
     if (status === 'idle') {
@@ -22,66 +30,9 @@ const GearsList = () => {
     dispatch(fetchCurrentUser());
   }, [status, dispatch]);
 
-  const handleCheckAvailability = async (gearId, selectedDateTime, selectedHours) => {
-    try {
-      const token = localStorage.getItem('token'); // Match the key used in authSlice
-      console.log('Retrieved token:', token); // Debug line
-      if (!token) {
-        console.error('No authentication token found');
-        return false;
-      }
-
-      console.log('Making API call to check availability');
-      const response = await fetch(`http://localhost:5000/api/v1/gears/${gearId}/check_availability`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          rental_datetime: selectedDateTime.toISOString(),
-          rental_duration: selectedHours,
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        console.error('API Error:', error);
-        throw new Error('Failed to check availability');
-      }
-
-      const data = await response.json();
-      console.log('API Response:', data);
-      return data.available;
-    } catch (error) {
-      console.error('Error checking availability:', error);
-      return false;
-    }
-  };
-
-  const handleProceedToPayment = async (gearId) => {
-    const selectedDateTime = dateTime;
-    const selectedHours = hours;
-
-    console.log('Checking availability for gear:', gearId);
-    console.log('Selected DateTime:', selectedDateTime);
-    console.log('Selected Hours:', selectedHours);
-
-    const isAvailable = await handleCheckAvailability(
-      gearId,
-      selectedDateTime,
-      selectedHours,
-    );
-
-    console.log('Availability:', isAvailable);
-    return isAvailable;
-  };
-
   const handlePaymentSuccess = async (reference, gearId) => {
     const selectedDateTime = dateTime;
     const selectedHours = hours;
-
-    console.log('Payment successful with reference:', reference);
 
     try {
       const resultAction = await dispatch(
@@ -94,7 +45,10 @@ const GearsList = () => {
       );
 
       if (rentGear.fulfilled.match(resultAction)) {
-        console.log('Rental created:', resultAction.payload);
+        setSuccessMessage(`Successfully rented gear: ${gearId}`);
+        setPaymentReference(reference.reference);
+        setSelectedGear(gears.find((gear) => gear.id === gearId));
+        setModalIsOpen(true);
       } else {
         console.error('Failed to create rental:', resultAction.error);
       }
@@ -103,12 +57,10 @@ const GearsList = () => {
     }
   };
 
-  const handleCancelRent = (gearId) => {
-    dispatch(cancelRentGear(gearId));
-  };
-
-  const handleDelete = (gearId) => {
-    dispatch(deleteGear(gearId));
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedGear(null);
+    setPaymentReference('');
   };
 
   const handleDateTimeChange = (event) => {
@@ -126,6 +78,7 @@ const GearsList = () => {
   return (
     <div id="gearListContainer">
       <h2>Gears List</h2>
+      {successMessage && <div className="success-message">{successMessage}</div>}
       <ul>
         {Array.isArray(gears) && gears.map((gear) => {
           const rentalEndDateTime = gear.rental_end_datetime
@@ -134,14 +87,16 @@ const GearsList = () => {
 
           return (
             <div className="equipment_card" key={gear.id}>
-              <img
-                src={gear.imageUrl}
-                alt={gear.gearType}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://via.placeholder.com/150';
-                }}
-              />
+              <div className="equipment_img">
+                <img
+                  src={gear.imageUrl}
+                  alt={gear.gearType}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://via.placeholder.com/150';
+                  }}
+                />
+              </div>
               <div className="equipment_price_per_hour">
                 <h3>{gear.gearType}</h3>
                 <h4>
@@ -169,13 +124,13 @@ const GearsList = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleCancelRent(gear.id)}
+                      onClick={() => dispatch(cancelRentGear(gear.id))}
                     >
                       Cancel Rent
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleDelete(gear.id)}
+                      onClick={() => dispatch(deleteGear(gear.id))}
                     >
                       Delete Gear
                     </button>
@@ -204,10 +159,9 @@ const GearsList = () => {
                       <RentButton
                         amount={gear.pricePerHour * hours * 100} // Amount in kobo
                         email={currentUser.email}
-                        onProceedToPayment={() => handleProceedToPayment(gear.id)}
+                        onProceedToPayment={() => Promise.resolve(true)}
                         onSuccess={(transaction) => handlePaymentSuccess(transaction, gear.id)}
                       />
-
                     ) : (
                       <p>Please log in to rent this gear.</p>
                     )}
@@ -218,6 +172,24 @@ const GearsList = () => {
           );
         })}
       </ul>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Receipt Modal"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <h2>Booking Receipt</h2>
+        {selectedGear && (
+          <Receipt
+            equipment={selectedGear}
+            paymentReference={paymentReference}
+          />
+        )}
+        <button type="button" onClick={closeModal}>
+          Close
+        </button>
+      </Modal>
     </div>
   );
 };

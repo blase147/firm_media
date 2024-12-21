@@ -6,9 +6,10 @@
       background-color: #230b0b;
       color: white;
       height: 88vh;
-  
+
       #banner {
         margin-top: 90px;
+
         #HomeBannerText {
           display: flex;
           justify-content: flex-start;
@@ -23,6 +24,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 768px) {
   #banner_cont {
     #HomeBannerContainer {
@@ -43,6 +45,7 @@
           animation: slideInFromLeft 1s ease-in-out;
         }
       }
+
       ~ div {
         > img {
           object-fit: cover;

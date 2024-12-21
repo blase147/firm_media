@@ -93,6 +93,7 @@ $button-hover-color: #1976d2;
       }
     }
   }
+
   .modal {
     position: fixed;
     top: 50%;
@@ -107,7 +108,7 @@ $button-hover-color: #1976d2;
     overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
   .modal-overlay {
     position: fixed;
     top: 0;

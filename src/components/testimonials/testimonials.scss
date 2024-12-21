@@ -17,22 +17,26 @@
       width: 40%;
       // padding-top: 0;
       // margin-top: 0;
-animation: slideInFromLeft 1s ease-in-out;
+      animation: slideInFromLeft 1s ease-in-out;
     }
 
     #testimonial_card_container {
       width: 55%;
+
       .testimonial_card {
         #rating {
           background-color: green;
         }
+
         p {
           margin-top: 10px;
           // background-color: green;
         }
       }
+
       .slider {
         margin-left: 50px;
+
         .testimonial_card {
           display: flex;
           flex-direction: column;
@@ -62,13 +66,14 @@ animation: slideInFromLeft 1s ease-in-out;
 
               p {
                 padding: 0;
-                margin: 5px 0px;
+                margin: 5px 0;
               }
             }
           }
         }
       }
     }
+
     .slick-prev {
       color: green;
     }
@@ -79,6 +84,7 @@ animation: slideInFromLeft 1s ease-in-out;
       text-align: center;
       padding: 0;
     }
+
     li {
       display: inline-block;
       margin: 0 5px;
@@ -123,6 +129,7 @@ animation: slideInFromLeft 1s ease-in-out;
       margin: 0;
       background-color: rgb(56, 60, 71);
       padding: 20px;
+
       .slider {
         display: flex;
         flex-direction: column;
@@ -155,7 +162,7 @@ animation: slideInFromLeft 1s ease-in-out;
       }
 
       #starRating {
-        padding: 20px 0px;
+        padding: 20px 0;
       }
     }
 
@@ -200,6 +207,7 @@ animation: slideInFromLeft 1s ease-in-out;
       justify-content: center;
       align-items: center;
     }
+
     .slick-slide img {
       // display: block;
       margin: 0 auto; /* Center the image */

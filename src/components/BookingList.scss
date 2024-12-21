@@ -1,67 +1,67 @@
 .bookings-list-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  
-    .loading-message {
-      color: #333;
-      font-size: 1.2em;
-    }
-  
-    .error-message {
-      color: #d9534f;
-      font-size: 1.2em;
-    }
-  
-    .no-bookings-message {
-      color: #666;
-      font-size: 1.2em;
-    }
-  
-    .bookings-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-      color: #0e0000;
-  
-      .booking-item {
-        background: #2c0101;
-        margin-bottom: 10px;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        // justify-content: space-between;
-        // transition: transform 0.2s, box-shadow 0.2s;
-        color: #fafafa;
-        p {
-            color: #0e0000;
-            // background-color: yellow;
-        }
-  
-        // &:hover {
-        //   transform: translateY(-2px);
-        //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        // }
-  
-        .booking-service {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+
+  .loading-message {
+    color: #333;
+    font-size: 1.2em;
+  }
+
+  .error-message {
+    color: #d9534f;
+    font-size: 1.2em;
+  }
+
+  .no-bookings-message {
+    color: #666;
+    font-size: 1.2em;
+  }
+
+  .bookings-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    color: #0e0000;
+
+    .booking-item {
+      background: #2c0101;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      // justify-content: space-between;
+      // transition: transform 0.2s, box-shadow 0.2s;
+      color: #fafafa;
+
+      p {
+        color: #0e0000;
+        // background-color: yellow;
+      }
+
+      // &:hover {
+      //   transform: translateY(-2px);
+      //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      // }
+
+      .booking-service {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #333;
+      }
+
+      .booking-details {
+        color: #666;
+        font-size: 0.9em;
+
+        .booking-date,
+        .booking-time,
+        .booking-duration {
           font-weight: bold;
-          margin-right: 10px;
-          color: #333;
-        }
-  
-        .booking-details {
-          color: #666;
-          font-size: 0.9em;
-  
-          .booking-date,
-          .booking-time,
-          .booking-duration {
-            font-weight: bold;
-            margin: 0 5px;
-          }
+          margin: 0 5px;
         }
       }
     }
   }
-  
+}

@@ -7,43 +7,51 @@ h5 {
   font-family: "Roboto", sans-serif;
   color: gold;
 }
+
 h1 {
   font-size: 4.3em;
   margin-top: 20px;
   margin-bottom: 35px;
   line-height: 1em;
 }
+
 h2 {
   font-size: 2.5em;
   margin-top: 5px;
   margin-bottom: 15px;
 }
+
 h4 {
   font-size: 1.1em;
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 10px;
 }
+
 h5 {
   font-size: 1.4em;
   border-left: 5px solid gold;
   padding-left: 10px;
   margin-bottom: 15px;
 }
+
 h3 {
   font-size: 1.8rem;
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
+
 p {
   color: white;
   font-size: 1.2em;
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 20px; /* Set font size for paragraphs */
 }
+
 span {
   color: white;
   margin-right: 10px;
 }
+
 .h5_h2_p {
   display: flex;
   flex-direction: column;
@@ -67,10 +75,10 @@ $button-padding: 15px 20px;
 $button-font-size: 16px; // Button font size
 $button-border: 2px solid gold; // Button border
 $button-hover-background-color: gold; // Button background color on hover
-$button-hover-border-color: #ffffff; // Button border color on hover
-$button-hover-text-color: #000000; // Button text color on hover
+$button-hover-border-color: #fff; // Button border color on hover
+$button-hover-text-color: #000; // Button text color on hover
 $button-width: 200px; // Button width
-$button-margin-top-bottom: 20px 0px;
+$button-margin-top-bottom: 20px 0;
 
 // Button styles
 .button {
@@ -110,6 +118,7 @@ a {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -121,6 +130,7 @@ a {
     opacity: 0;
     transform: translateX(100%);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -132,6 +142,7 @@ a {
     opacity: 0;
     transform: scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);

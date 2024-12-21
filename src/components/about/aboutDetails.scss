@@ -16,6 +16,7 @@
       width: 75%;
       padding-bottom: 100px;
       animation: slideInFromLeft 1s ease-in-out;
+
       .aboutUsCard {
         display: flex;
         flex-direction: column;
@@ -26,14 +27,16 @@
         padding: 20px;
         background-color: transparent;
         border-radius: 2px;
-        box-shadow: 0px 0px 10px 0px #000000;
+        box-shadow: 0 0 10px 0 #000;
         text-align: left;
         border: 1px solid rgb(255, 255, 255);
         transition: transform 0.5s ease-in-out;
 
         &:hover {
           transform: scale(1.04);
-        }& h3 {
+        }
+
+        & h3 {
           text-align: left;
           font-size: 1.9em;
           color: gold;
@@ -41,6 +44,7 @@
           margin-bottom: 20px;
           text-align: left;
         }
+
         hr {
           display: flex;
           justify-content: flex-start;
@@ -48,13 +52,13 @@
           // align-content: flex-start;
           width: 25%;
           border: 1px solid gold;
-          margin-left: 0px;
+          margin-left: 0;
           margin-top: 0;
           margin-bottom: 20px;
         }
-
       }
     }
+
     #ourSkillsContainer {
       display: flex;
       justify-content: space-between;
@@ -66,11 +70,13 @@
       #ourSkillsText {
         width: 45%;
       }
+
       img {
         width: 50%;
         height: 55vh;
       }
     }
+
     #whyChooseUsContainer {
       display: flex;
       flex-direction: column;
@@ -78,16 +84,18 @@
       align-items: center;
       margin: auto;
       width: 75%;
+
       #whyChooseUsTextContainer {
         display: flex;
         justify-content: center;
         align-items: last baseline;
         justify-content: space-between;
-          // background-color: rgb(214, 69, 11);
+        // background-color: rgb(214, 69, 11);
         #whyChooseUsTextTitle {
           width: 45%;
         }
       }
+
       #whyChooseUsCardContainer {
         display: flex;
         justify-content: space-between;
@@ -108,7 +116,9 @@
 
           &:hover {
             transform: scale(1.04);
-          }img {
+          }
+
+          img {
             width: 10%;
             // height: 50vh;
           }
@@ -117,6 +127,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 768px) {
   #aboutdetailsContainer {
     background-color: #230b0b;
@@ -124,8 +135,10 @@
     padding-left: 10px;
     padding-right: 10px;
     color: white;
+
     #aboutBanner {
       margin-bottom: 100px;
+
       #aboutDetailsText {
         display: flex;
         flex-direction: column;
@@ -147,6 +160,7 @@
       }
     }
   }
+
   #aboutUsCardContainer {
     display: flex;
     flex-direction: column;
@@ -166,29 +180,34 @@
       padding: 20px;
       background-color: transparent;
       border-radius: 2px;
-      box-shadow: 0px 0px 10px 0px #000000;
+      box-shadow: 0 0 10px 0 #000;
       text-align: left;
       border: 1px solid rgb(255, 255, 255);
+
       hr {
         align-items: flex-start;
         width: 20%;
         border: 1px solid gold;
-        margin-left: 0px;
+        margin-left: 0;
       }
+
       img {
         width: 100%;
         background-color: red;
         padding: 20px;
       }
+
       h3 {
         margin: 0;
         padding: 0;
       }
+
       p {
         margin-top: 20px;
       }
     }
   }
+
   #ourSkillsContainer {
     display: flex;
     flex-direction: column;
@@ -233,11 +252,13 @@
       //   color: white;
       // }
     }
+
     img {
       width: 100%;
       // height: 60vh;
     }
   }
+
   #whyChooseUsContainer {
     display: flex;
     flex-direction: column;
@@ -258,6 +279,7 @@
         // background-color: rgb(16, 165, 224);
       }
     }
+
     #whyChooseUsCardContainer {
       display: flex;
       flex-direction: column;
@@ -265,6 +287,7 @@
       width: 100%;
       gap: 30px;
       margin-bottom: 50px;
+
       .whyChooseUsCard {
         display: flex;
         flex-direction: column;
@@ -273,6 +296,7 @@
         // width: 100%;
         padding: 10px;
         border: 1px solid rgb(255, 255, 255);
+
         img {
           width: 10%;
           // height: 50vh;

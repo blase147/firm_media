@@ -16,10 +16,12 @@
       justify-content: space-between;
       align-items: last baseline;
       width: 75%;
+
       & div {
         width: 50%;
         margin-top: 100px;
       }
+
       animation: fadeInSlideUp 1s ease-in-out;
     }
 
@@ -39,7 +41,7 @@
         width: auto;
         border: solid 1px white;
         background-color: #5c4545;
-        padding: 40px 0px 50px;
+        padding: 40px 0 50px;
         color: rgb(255, 255, 255);
         border-radius: 10px;
         animation: fadeInSlideUp 1s ease-in-out;
@@ -48,6 +50,7 @@
         &:hover {
           transform: scale(1.04);
         }
+
         ul {
           // padding: 0; /* Remove default padding */
           margin: 0; /* Remove default margin */
@@ -74,7 +77,6 @@
         h2 {
           margin-bottom: 0;
           margin-top: 30px;
-
           color: rgb(241, 168, 10);
         }
 
@@ -82,8 +84,9 @@
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
-          padding: 0px 30px 0px 30px;
+          padding: 0 30px 0 30px;
           margin-bottom: 30px;
+
           .currency {
             vertical-align: super;
             font-size: 0.7em;
@@ -112,133 +115,16 @@
       justify-content: space-between;
       align-items: last baseline;
       width: 75%;
+
       & div {
         width: 50%;
         margin-top: 100px;
       }
       // animation: slideInFromLeft 1s ease-in-out;
     }
-
-    #equipment_card_container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      width: 75%;
-      color: white;
-      gap: 30px;
-
-      .equipment_card {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        border: solid 1px white;
-        padding: 20px;
-        transition: transform 0.5s ease-in-out;
-        margin-bottom: 30px;
-
-        &:hover {
-          transform: scale(1.04);
-        }
-
-        img {
-          max-width: 25%;
-          object-fit: cover;
-        }
-
-        .equipment_price_per_hour {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: left;
-          width: 25%;
-          padding: 20px;
-          h3 {
-            margin-bottom: 30px;
-          }
-
-          h4 {
-            color: rgb(241, 168, 10);
-            font-size: 2em;
-            font-weight: 900;
-
-            .currency {
-              vertical-align: super;
-              font-size: 0.7em;
-              color: rgb(241, 168, 10);
-            }
-
-            span {
-              font-size: 0.52em;
-              color: rgb(255, 255, 255);
-              padding-left: 10px;
-            }
-          }
-        }
-
-        .equipment_description {
-          border-left: 1px solid #ffffff;
-          border-right: 1px solid white;
-          // padding: 20px;
-          list-style: none; /* Remove default bullets */
-          // background-color: yellow;
-          width: 25%;
-          padding: 50px;
-          font-size: 1.2em;
-        }
-
-        .equipment_description ul {
-          padding: 0; /* Remove default padding */
-          margin: 0; /* Remove default margin */
-          list-style: none; /* Remove default bullets */
-        }
-
-        .equipment_description li {
-          position: relative; /* Create a positioning context for the ::before pseudo-element */
-          padding-left: 25px; /* Space for the checkmark */
-        }
-
-        .equipment_description li::before {
-          content: "✔"; /* Unicode checkmark character */
-          position: absolute; /* Position it absolutely within the relative li */
-          left: 0; /* Position it to the left */
-          color: green; /* Change the color of the checkmark if desired */
-          font-size: 1.2em; /* Adjust size if needed */
-        }
-        .rent {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          // background-color: green;
-          width: 80%;
-          margin: auto;
-          button,
-          input {
-            width: 80%;
-            margin: 5px;
-          }
-          > div {
-            width: 80%;
-            button {
-              width: 100%;
-            }
-          }
-          // #rentFormCont {
-          //   display: flex;
-          //   flex-direction: column;
-          //   // justify-content: center;
-          //   // align-items: center;
-          //   margin: auto;
-          //   gap: 10px;
-          //   margin: 5px;
-          // }
-        }
-      }
-    }
   }
 }
+
 @media only screen and (max-width: 768px) {
   #pricing {
     background-color: $page-background-color;
@@ -309,6 +195,7 @@
           flex-direction: column;
           // text-wrap: wrap;
           margin-bottom: 30px;
+
           .currency {
             vertical-align: super;
             // font-size: 0.1em;
@@ -366,10 +253,10 @@
         //   width: 25%;
         // }
 
-        img {
-          max-width: 70%;
-          object-fit: cover;
-        }
+        // img {
+        //   max-width: 70%;
+        //   object-fit: cover;
+        // }
 
         .equipment_price_per_hour {
           display: flex;
@@ -378,6 +265,7 @@
           text-align: center;
           width: 100%;
           padding: 20px;
+
           h3 {
             margin-bottom: 30px;
           }
@@ -393,16 +281,16 @@
               color: rgb(241, 168, 10);
             }
 
-            span {
-              font-size: 0.52em;
-              color: rgb(255, 255, 255);
-              padding-left: 10px;
-            }
+            // span {
+            //   font-size: 0.52em;
+            //   color: rgb(255, 255, 255);
+            //   padding-left: 10px;
+            // }
           }
         }
 
         .equipment_description {
-          border-top: 1px solid #ffffff;
+          border-top: 1px solid #fff;
           border-bottom: 1px solid white;
           // padding: 20px;
           list-style: none; /* Remove default bullets */
@@ -430,16 +318,17 @@
           color: green; /* Change the color of the checkmark if desired */
           font-size: 1.2em; /* Adjust size if needed */
         }
+
         .rent {
           display: flex;
           justify-content: center;
           align-items: center;
           // background-color: green;
           width: 100%;
-          button {
-            margin-top: 40px;
-            width: 50%;
-          }
+          // button {
+          //   // margin-top: 40px;
+          //   // width: 50%;
+          // }
         }
       }
     }

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 import './receipt.scss';
 
 const Receipt = ({ equipment, paymentReference }) => {
@@ -74,12 +75,24 @@ const Receipt = ({ equipment, paymentReference }) => {
         {equipment.description}
       </p>
       <div className="receipt-buttons">
-        <button onClick={handlePrint}>Print</button>
-        <button onClick={handleDownload}>Download</button>
-        <button onClick={handleShare}>Share</button>
+        <button type="button" onClick={handlePrint}>Print</button>
+        <button type="button" onClick={handleDownload}>Download</button>
+        <button type="button" onClick={handleShare}>Share</button>
       </div>
     </div>
   );
+};
+
+// PropTypes validation
+Receipt.propTypes = {
+  equipment: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price_per_hour: PropTypes.number.isRequired,
+    hours: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+  paymentReference: PropTypes.string.isRequired,
 };
 
 export default Receipt;

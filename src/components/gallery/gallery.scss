@@ -14,6 +14,7 @@
       align-items: last baseline;
       width: 100%;
     }
+
     .carousel-item {
       transition: transform 0.5s ease-in-out;
 
@@ -21,6 +22,7 @@
         transform: scale(1.04);
       }
     }
+
     img {
       transition: transform 0.5s ease-in-out;
 
@@ -28,6 +30,7 @@
         transform: scale(1.04);
       }
     }
+
     #gallery_container {
       display: flex;
       justify-content: center;
@@ -39,6 +42,7 @@
         display: flex;
         flex-direction: column;
       }
+
       #gallery_content3 {
         display: flex;
         flex-direction: column;
@@ -46,10 +50,12 @@
       }
     }
   }
+
   #gallerySliderContainer {
     margin-top: 50px;
     // margin-bottom: 50px;
   }
+
   .sliding-gallery-container .slick-slide {
     display: flex !important; /* Ensure the slides take up full width */
   }
@@ -119,6 +125,7 @@
       flex-direction: column;
       gap: 10px;
       width: 100%;
+
       #gallery_content {
         .instagram-feed {
           display: flex;
@@ -128,6 +135,7 @@
 
         .instagram-post {
           padding: 10px;
+
           img {
             border-radius: 10px;
             // width: 100%;
@@ -158,6 +166,7 @@
       }
     }
   }
+
   .gallery-image {
     width: 100%;
     height: 30vh; /* Set a fixed height for mobile screens */

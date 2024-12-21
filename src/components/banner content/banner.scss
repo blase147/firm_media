@@ -5,6 +5,7 @@
     #banner {
       height: 50vh;
       animation: fadeInSlideUp 1s ease-in-out;
+
       #social_icons_container {
         font-size: 1.5em;
 
@@ -13,6 +14,7 @@
           flex-direction: column;
           gap: 10px;
         }
+
         position: absolute;
         top: 8%;
         left: -7%;
@@ -27,11 +29,13 @@
     #banner {
       position: relative;
       margin-top: 50px;
+
       #social_icons_container {
         > div {
           display: flex;
           gap: 10px;
         }
+
         position: absolute;
         top: 0%;
 
@@ -39,6 +43,7 @@
           display: flex;
         }
       }
+
       .banner_text {
         margin-top: 150px;
         display: flex;
