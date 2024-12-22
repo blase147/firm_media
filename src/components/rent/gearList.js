@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from 'react-modal'; // Ensure Modal is properly installed
+import Modal from 'react-modal';
 import {
   fetchGears, deleteGear, rentGear, cancelRentGear,
 } from '../../Redux/Reducers/gearSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
-import RentButton from '../payment/RentingButton'; // Ensure this import is correct
+import RentButton from '../payment/RentingButton';
 import Receipt from './receipt';
 
-Modal.setAppElement('#root'); // Set the app element for accessibility
+Modal.setAppElement('#root'); // Accessibility requirement
 
 const GearsList = () => {
   const dispatch = useDispatch();
@@ -23,31 +23,39 @@ const GearsList = () => {
   const [selectedGear, setSelectedGear] = useState(null);
   const [paymentReference, setPaymentReference] = useState('');
 
+  // Fetch gears and current user on mount
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchGears());
-    }
+    if (status === 'idle') dispatch(fetchGears());
     dispatch(fetchCurrentUser());
   }, [status, dispatch]);
 
   const handlePaymentSuccess = async (reference, gearId) => {
-    const selectedDateTime = dateTime;
-    const selectedHours = hours;
-
     try {
       const resultAction = await dispatch(
         rentGear({
           gearId,
           paymentRefId: reference.reference,
-          rentalDuration: selectedHours,
-          rentalDatetime: selectedDateTime.toISOString(),
+          rentalDuration: hours,
+          rentalDatetime: dateTime.toISOString(),
         }),
       );
 
       if (rentGear.fulfilled.match(resultAction)) {
         setSuccessMessage(`Successfully rented gear: ${gearId}`);
         setPaymentReference(reference.reference);
-        setSelectedGear(gears.find((gear) => gear.id === gearId));
+
+        // Log the resultAction payload
+        console.log('Rental Data from resultAction: ', resultAction.payload);
+
+        const rentalData = {
+          ...gears.find((gear) => gear.id === gearId),
+          rentalId: resultAction.payload.rentalId || resultAction.payload.id,
+          customerName: currentUser.name,
+          rentalEndDatetime: new Date(new Date(dateTime).getTime() + hours * 60 * 60 * 1000),
+        };
+        console.log('Final Rental Data: ', rentalData); // Log the final rental data
+
+        setSelectedGear(rentalData);
         setModalIsOpen(true);
       } else {
         console.error('Failed to create rental:', resultAction.error);
@@ -60,20 +68,15 @@ const GearsList = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedGear(null);
-    setPaymentReference('');
+    setPaymentReference(''); // Reset payment reference on close
   };
 
   const handleDateTimeChange = (event) => {
     setDateTime(new Date(event.target.value));
   };
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (status === 'failed') {
-    return <div>{gearsError}</div>;
-  }
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>{gearsError}</div>;
 
   return (
     <div id="gearListContainer">
@@ -143,7 +146,8 @@ const GearsList = () => {
                         id={`duration-${gear.id}`}
                         type="number"
                         value={hours}
-                        onChange={(e) => setHours(parseInt(e.target.value, 10))}
+                        min="1"
+                        onChange={(e) => setHours(parseInt(e.target.value, 10) || 1)}
                       />
                     </label>
                     <label htmlFor={`datetime-${gear.id}`}>
@@ -176,15 +180,17 @@ const GearsList = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Receipt Modal"
-        className="modal"
-        overlayClassName="modal-overlay"
+        className="modal2"
+        overlayClassName="modal2-overlay"
       >
-        <h2>Booking Receipt</h2>
-        {selectedGear && (
+        <h2>Your Rented Gear Receipt</h2>
+        {selectedGear ? (
           <Receipt
-            equipment={selectedGear}
+            gear={selectedGear}
             paymentReference={paymentReference}
           />
+        ) : (
+          <p>No rental found with the given ID.</p> // Add this fallback if selectedGear is null
         )}
         <button type="button" onClick={closeModal}>
           Close
