@@ -1,164 +1,113 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRentals } from '../../Redux/Reducers/rentalSlice';
+import React from 'react';
 import './receipt.scss';
 
-const Receipt = ({ paymentReference }) => {
-  const dispatch = useDispatch();
-  const { rentals, status, error } = useSelector((state) => state.rentals);
-  const [rentalDetails, setRentalDetails] = useState(null);
+const Receipt = ({
+  paymentReference,
+  gear,
+  user,
+  rentalDateTime,
+  rentalDuration,
+  rentalEndDateTime,
+  pricePerHour,
+}) => {
+  console.log({
+    paymentReference,
+    gear,
+    user,
+    rentalDateTime,
+    rentalDuration,
+    rentalEndDateTime,
+    pricePerHour,
+  });
 
-  // Fetch rental data when the component mounts
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchRentals());
-    }
-  }, [status, dispatch]);
+  // Calculate cumulative price, ensuring both pricePerHour and rentalDuration are valid numbers
+  const cumulativePrice = (pricePerHour && rentalDuration && !Number.isNaN(pricePerHour)
+  && !Number.isNaN(rentalDuration))
+    ? pricePerHour * rentalDuration
+    : 0;
 
-  // Match payment reference with rentals
-  useEffect(() => {
-    if (Array.isArray(rentals) && paymentReference) {
-      const rental = rentals.find(
-        (r) => String(r.payment_ref_id).trim() === String(paymentReference).trim(),
-      );
+  // Function to format date (if valid)
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toString() === 'Invalid Date' ? 'N/A' : date.toLocaleString();
+  };
 
-      if (rental) {
-        console.log('✅ Matching Rental Found:', rental);
-        setRentalDetails(rental);
-      } else {
-        console.warn('⚠️ No Rental Found for Reference:', paymentReference);
-        console.warn('Available References:', rentals.map((r) => r.payment_ref_id));
-        setRentalDetails(null);
-      }
-    }
-  }, [rentals, paymentReference]);
+  const handlePrint = () => {
+    window.print(); // Or implement custom print logic
+  };
 
-  // Handle Loading State
-  if (status === 'loading') return <div className="loading">Loading...</div>;
-
-  // Handle Error State
-  if (status === 'failed') {
-    return (
-      <div className="error">
-        <strong>Error:</strong>
-        {' '}
-        {error || 'Failed to fetch rental details.'}
-      </div>
-    );
-  }
-
-  // Handle No Rental Found
-  if (!rentalDetails) {
-    return <div className="error">No rental found with the given payment reference.</div>;
-  }
-
-  // Destructure rental details
-  const {
-    gear = {},
-    user = {},
-    rental_datetime: rentalDateTime,
-    rental_duration: rentalDuration,
-    rental_end_datetime: rentalEndDateTime,
-    is_rented_now: isRentedNow,
-  } = rentalDetails || {};
-
-  const pricePerHour = gear?.price_per_hour || 0;
-  const cumulativePrice = pricePerHour * rentalDuration;
-
-  // Print Receipt
-  const handlePrint = () => window.print();
-
-  // Download Receipt
   const handleDownload = () => {
-    const receiptContent = `
-      <html>
-        <head><title>Rental Receipt</title></head>
-        <body>
-          <h2>Rental Receipt</h2>
-          <p><strong>Payment Reference:</strong> ${paymentReference}</p>
-          <p><strong>Gear ID:</strong> ${gear?.id || 'N/A'}</p>
-          <p><strong>Gear Type:</strong> ${gear?.type || 'N/A'}</p>
-          <p><strong>Price per Hour:</strong> ${pricePerHour} Naira</p>
-          <p><strong>Cumulative Price:</strong> ${cumulativePrice} Naira</p>
-          <p><strong>Customer Name:</strong> ${user?.full_name || 'N/A'}</p>
-          <p><strong>Rental Date:</strong> ${new Date(rentalDateTime).toLocaleString()}</p>
-          <p><strong>Rental Duration:</strong> ${rentalDuration} hour(s)</p>
-          <p><strong>Rental End:</strong> ${new Date(rentalEndDateTime).toLocaleString()}</p>
-          <p><strong>Is Rented:</strong> ${isRentedNow ? 'Yes' : 'No'}</p>
-        </body>
-      </html>
-    `;
-    const blob = new Blob([receiptContent], { type: 'text/html' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `rental_receipt_${paymentReference}.html`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    alert('Download functionality not implemented yet!');
   };
 
-  // Share Receipt
   const handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: 'Rental Receipt',
-          text: 'Here are the details of my rental receipt.',
-          url: window.location.href,
-        })
-        .catch((error) => console.error('Error sharing:', error));
-    } else {
-      alert('Sharing is not supported on your browser.');
-    }
+    alert('Share functionality not implemented yet!');
   };
+
+  // Fallback image if gear's imageUrl is missing
+  const gearImage = gear?.imageUrl || '/src/components/images/jpeg/camera.jpeg';
+
+  // Fallback values for missing gear data
+  const gearId = gear?.id || 'N/A';
+  const gearType = gear?.gearType || 'N/A';
+  const gearDescription = gear?.description || 'N/A';
+  const gearPricePerHour = gear?.pricePerHour || 'N/A';
+
+  // Ensure user and rental data are properly handled
+  const userFullName = user?.full_name || 'N/A';
+  const formattedRentalDate = rentalDateTime ? formatDate(rentalDateTime) : 'N/A';
+  const formattedRentalEndDate = rentalEndDateTime ? formatDate(rentalEndDateTime) : 'N/A';
 
   return (
     <div className="receipt">
+      <h2>Rental Receipt</h2>
       <img
-        src={gear?.image_url || '/path/to/default-image.png'}
+        src={gearImage}
         alt="Gear"
         className="gear-image"
       />
-      <h2>Rental Receipt</h2>
       <p>
         <strong>Payment Reference:</strong>
         {' '}
-        {paymentReference}
+        {paymentReference || 'N/A'}
       </p>
       <p>
         <strong>Gear ID:</strong>
         {' '}
-        {gear?.id || 'N/A'}
+        {gearId}
       </p>
       <p>
         <strong>Gear Type:</strong>
         {' '}
-        {gear?.type || 'N/A'}
+        {gearType}
+      </p>
+      <p>
+        <strong>Description:</strong>
+        {' '}
+        {gearDescription}
       </p>
       <p>
         <strong>Price per Hour:</strong>
         {' '}
-        {pricePerHour}
-        {' '}
-        Naira
+        ₦
+        {gearPricePerHour}
       </p>
       <p>
         <strong>Cumulative Price:</strong>
         {' '}
-        {cumulativePrice}
-        {' '}
-        Naira
+        ₦
+        {cumulativePrice.toLocaleString()}
       </p>
       <p>
         <strong>Customer Name:</strong>
         {' '}
-        {user?.full_name || 'N/A'}
+        {userFullName}
       </p>
       <p>
         <strong>Rental Date:</strong>
         {' '}
-        {new Date(rentalDateTime).toLocaleString()}
+        {formattedRentalDate}
       </p>
       <p>
         <strong>Rental Duration:</strong>
@@ -170,12 +119,7 @@ const Receipt = ({ paymentReference }) => {
       <p>
         <strong>Rental End:</strong>
         {' '}
-        {new Date(rentalEndDateTime).toLocaleString()}
-      </p>
-      <p>
-        <strong>Is Rented:</strong>
-        {' '}
-        {isRentedNow ? 'Yes' : 'No'}
+        {formattedRentalEndDate}
       </p>
       <div className="receipt-buttons">
         <button type="button" onClick={handlePrint}>Print</button>
@@ -186,9 +130,23 @@ const Receipt = ({ paymentReference }) => {
   );
 };
 
-// PropTypes validation
+// Define the specific shape of the gear and user objects
 Receipt.propTypes = {
   paymentReference: PropTypes.string.isRequired,
+  gear: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    gearType: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    pricePerHour: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string,
+  }).isRequired,
+  user: PropTypes.shape({
+    full_name: PropTypes.string.isRequired,
+  }).isRequired,
+  rentalDateTime: PropTypes.string.isRequired,
+  rentalDuration: PropTypes.number.isRequired,
+  rentalEndDateTime: PropTypes.string.isRequired,
+  pricePerHour: PropTypes.number.isRequired,
 };
 
 export default Receipt;
