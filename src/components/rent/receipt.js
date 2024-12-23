@@ -1,40 +1,34 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './receipt.scss';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 
 const Receipt = ({
   paymentReference,
   gear,
-  user,
   rentalDateTime,
   rentalDuration,
-  rentalEndDateTime,
-  pricePerHour,
 }) => {
-  console.log({
-    paymentReference,
-    gear,
-    user,
-    rentalDateTime,
-    rentalDuration,
-    rentalEndDateTime,
-    pricePerHour,
-  });
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Calculate cumulative price, ensuring both pricePerHour and rentalDuration are valid numbers
-  const cumulativePrice = (pricePerHour && rentalDuration && !Number.isNaN(pricePerHour)
-  && !Number.isNaN(rentalDuration))
-    ? pricePerHour * rentalDuration
-    : 0;
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+    setIsLoading(false); // Set loading to false once the user data is fetched
+  }, [dispatch]);
+
+  const cumulativePrice = gear.pricePerHour * gear.rentalDuration || 0;
 
   // Function to format date (if valid)
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toString() === 'Invalid Date' ? 'N/A' : date.toLocaleString();
+    return Number.isNaN(date.getTime()) ? 'N/A' : date.toLocaleString();
   };
 
   const handlePrint = () => {
-    window.print(); // Or implement custom print logic
+    window.print();
   };
 
   const handleDownload = () => {
@@ -45,25 +39,20 @@ const Receipt = ({
     alert('Share functionality not implemented yet!');
   };
 
-  // Fallback image if gear's imageUrl is missing
-  const gearImage = gear?.imageUrl || '/src/components/images/jpeg/camera.jpeg';
-
-  // Fallback values for missing gear data
-  const gearId = gear?.id || 'N/A';
-  const gearType = gear?.gearType || 'N/A';
-  const gearDescription = gear?.description || 'N/A';
-  const gearPricePerHour = gear?.pricePerHour || 'N/A';
-
-  // Ensure user and rental data are properly handled
-  const userFullName = user?.full_name || 'N/A';
+  // Ensure rental data is properly handled
   const formattedRentalDate = rentalDateTime ? formatDate(rentalDateTime) : 'N/A';
+  const rentalEndDateTime = rentalDateTime
+    ? new Date(new Date(rentalDateTime).getTime() + rentalDuration * 60 * 60 * 1000)
+    : null;
   const formattedRentalEndDate = rentalEndDateTime ? formatDate(rentalEndDateTime) : 'N/A';
+
+  if (isLoading) return <p>Loading...</p>; // Display loading text while user data is being fetched
 
   return (
     <div className="receipt">
       <h2>Rental Receipt</h2>
       <img
-        src={gearImage}
+        src={gear.imageUrl || 'https://via.placeholder.com/150'}
         alt="Gear"
         className="gear-image"
       />
@@ -75,23 +64,23 @@ const Receipt = ({
       <p>
         <strong>Gear ID:</strong>
         {' '}
-        {gearId}
+        {gear.id || 'N/A'}
       </p>
       <p>
         <strong>Gear Type:</strong>
         {' '}
-        {gearType}
+        {gear.gearType || 'N/A'}
       </p>
       <p>
         <strong>Description:</strong>
         {' '}
-        {gearDescription}
+        {gear.description || 'N/A'}
       </p>
       <p>
         <strong>Price per Hour:</strong>
         {' '}
         ₦
-        {gearPricePerHour}
+        {gear.pricePerHour?.toLocaleString() || 'N/A'}
       </p>
       <p>
         <strong>Cumulative Price:</strong>
@@ -102,7 +91,7 @@ const Receipt = ({
       <p>
         <strong>Customer Name:</strong>
         {' '}
-        {userFullName}
+        {currentUser?.full_name || 'N/A'}
       </p>
       <p>
         <strong>Rental Date:</strong>
@@ -130,7 +119,7 @@ const Receipt = ({
   );
 };
 
-// Define the specific shape of the gear and user objects
+// Define PropTypes
 Receipt.propTypes = {
   paymentReference: PropTypes.string.isRequired,
   gear: PropTypes.shape({
@@ -138,15 +127,11 @@ Receipt.propTypes = {
     gearType: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     pricePerHour: PropTypes.number.isRequired,
+    rentalDuration: PropTypes.number.isRequired,
     imageUrl: PropTypes.string,
-  }).isRequired,
-  user: PropTypes.shape({
-    full_name: PropTypes.string.isRequired,
   }).isRequired,
   rentalDateTime: PropTypes.string.isRequired,
   rentalDuration: PropTypes.number.isRequired,
-  rentalEndDateTime: PropTypes.string.isRequired,
-  pricePerHour: PropTypes.number.isRequired,
 };
 
 export default Receipt;
