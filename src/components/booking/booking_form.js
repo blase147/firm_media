@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { createBooking } from '../../services/api';
-import BookingList from '../BookingsList';
+import Bookings from './bookings';
 import './booking_form.scss'; // Import your SCSS file
 import PaymentButton from '../payment/PaymentButton';
 import Receipt from '../Receipt/Receipt';
