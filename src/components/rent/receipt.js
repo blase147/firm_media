@@ -15,11 +15,10 @@ const Receipt = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-    setIsLoading(false); // Set loading to false once the user data is fetched
+    dispatch(fetchCurrentUser()).finally(() => setIsLoading(false));
   }, [dispatch]);
 
-  const cumulativePrice = gear.pricePerHour * gear.rentalDuration || 0;
+  const cumulativePrice = gear.pricePerHour * rentalDuration || 0;
 
   // Function to format date (if valid)
   const formatDate = (dateStr) => {
@@ -39,14 +38,13 @@ const Receipt = ({
     alert('Share functionality not implemented yet!');
   };
 
-  // Ensure rental data is properly handled
   const formattedRentalDate = rentalDateTime ? formatDate(rentalDateTime) : 'N/A';
   const rentalEndDateTime = rentalDateTime
     ? new Date(new Date(rentalDateTime).getTime() + rentalDuration * 60 * 60 * 1000)
     : null;
   const formattedRentalEndDate = rentalEndDateTime ? formatDate(rentalEndDateTime) : 'N/A';
 
-  if (isLoading) return <p>Loading...</p>; // Display loading text while user data is being fetched
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="receipt">
@@ -127,7 +125,6 @@ Receipt.propTypes = {
     gearType: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     pricePerHour: PropTypes.number.isRequired,
-    rentalDuration: PropTypes.number.isRequired,
     imageUrl: PropTypes.string,
   }).isRequired,
   rentalDateTime: PropTypes.string.isRequired,

@@ -29,12 +29,13 @@ const GearsList = () => {
     dispatch(fetchCurrentUser());
   }, [status, dispatch]);
 
-  const handlePaymentSuccess = async (reference, gearId) => {
+  // Handle payment success
+  const handlePaymentSuccess = async (transaction, gearId) => {
     try {
       const resultAction = await dispatch(
         rentGear({
           gearId,
-          paymentRefId: reference.reference,
+          paymentRefId: transaction.reference,
           rentalDuration: hours,
           rentalDatetime: dateTime.toISOString(),
         }),
@@ -42,18 +43,18 @@ const GearsList = () => {
 
       if (rentGear.fulfilled.match(resultAction)) {
         setSuccessMessage(`Successfully rented gear: ${gearId}`);
-        setPaymentReference(reference.reference);
+        setPaymentReference(transaction.reference);
 
-        // Log the resultAction payload
         console.log('Rental Data from resultAction: ', resultAction.payload);
 
         const rentalData = {
           ...gears.find((gear) => gear.id === gearId),
           rentalId: resultAction.payload.rentalId || resultAction.payload.id,
-          customerName: currentUser.name,
+          customerName: currentUser?.name || 'Unknown Customer',
           rentalEndDatetime: new Date(new Date(dateTime).getTime() + hours * 60 * 60 * 1000),
         };
-        console.log('Final Rental Data: ', rentalData); // Log the final rental data
+
+        console.log('Final Rental Data: ', rentalData);
 
         setSelectedGear(rentalData);
         setModalIsOpen(true);
@@ -68,7 +69,7 @@ const GearsList = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedGear(null);
-    setPaymentReference(''); // Reset payment reference on close
+    setPaymentReference('');
   };
 
   const handleDateTimeChange = (event) => {
@@ -92,8 +93,8 @@ const GearsList = () => {
             <div className="equipment_card" key={gear.id}>
               <div className="equipment_img">
                 <img
-                  src={gear.imageUrl}
-                  alt={gear.gearType}
+                  src={gear.imageUrl || 'https://via.placeholder.com/150'}
+                  alt={gear.gearType || 'Gear Image'}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://via.placeholder.com/150';
@@ -101,16 +102,16 @@ const GearsList = () => {
                 />
               </div>
               <div className="equipment_price_per_hour">
-                <h3>{gear.gearType}</h3>
+                <h3>{gear.gearType || 'Unknown Gear'}</h3>
                 <h4>
                   <span className="currency">N</span>
-                  {gear.pricePerHour}
+                  {gear.pricePerHour || '0'}
                   <span>/hour</span>
                 </h4>
               </div>
               <div className="equipment_description">
                 <ul>
-                  <li>{gear.description}</li>
+                  <li>{gear.description || 'No description available'}</li>
                 </ul>
               </div>
               <div className="rent">
@@ -159,7 +160,7 @@ const GearsList = () => {
                         onChange={handleDateTimeChange}
                       />
                     </label>
-                    {currentUser ? (
+                    {currentUser?.email ? (
                       <RentButton
                         amount={gear.pricePerHour * hours * 100} // Amount in kobo
                         email={currentUser.email}
@@ -188,9 +189,11 @@ const GearsList = () => {
           <Receipt
             gear={selectedGear}
             paymentReference={paymentReference}
+            rentalDateTime={dateTime.toISOString()}
+            rentalDuration={hours}
           />
         ) : (
-          <p>No rental found with the given ID.</p> // Add this fallback if selectedGear is null
+          <p>No rental found with the given ID.</p>
         )}
         <button type="button" onClick={closeModal}>
           Close
