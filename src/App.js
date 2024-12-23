@@ -16,6 +16,7 @@ import EquipmentForm from './components/rent/equipmentForm';
 import GearsForm from './components/rent/gearsForm';
 import GearsList from './components/rent/gearList';
 import Rentals from './components/rent/rentals';
+import Bookings from './components/booking/bookings';
 import Login from './components/device/login';
 import SignUp from './components/device/signup';
 
@@ -36,6 +37,7 @@ const App = () => (
         <Route path="/gearsForm" element={<GearsForm />} />
         <Route path="/gearList" element={<GearsList />} />
         <Route path="/rentals" element={<Rentals />} />
+        <Route path="/bookings" element={<Bookings />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/oauth2callback" element={<OAuthCallback />} />

@@ -1,0 +1,139 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+/* Rentals Container */
+.rentals-container {
+  max-width: 90%;
+  padding-bottom: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  // margin-bottom: 220px;
+  overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+/* Heading Styles */
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #007bff;
+  color: #fff;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 2px solid #0056b3;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+td {
+  padding: 10px;
+  font-size: 0.95rem;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Table Scrollbar for Small Screens */
+.rentals-container table {
+  display: block; /* Table becomes block element */
+  overflow-x: auto;
+  white-space: nowrap; /* Prevent content wrapping */
+}
+
+.rentals-container table th,
+.rentals-container table td {
+  white-space: nowrap; /* Prevent wrapping inside cells */
+}
+
+/* Status Messages */
+.loading,
+.failed {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.failed {
+  color: #dc3545;
+}
+
+/* Error Message Styling */
+.error {
+  color: #f00;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  td,
+  th {
+    padding: 8px;
+  }
+
+  .loading,
+  .failed {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  td,
+  th {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+}

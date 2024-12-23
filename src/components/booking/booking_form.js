@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { createBooking } from '../../services/api';
@@ -6,8 +7,9 @@ import BookingList from '../BookingsList';
 import './booking_form.scss'; // Import your SCSS file
 import PaymentButton from '../payment/PaymentButton';
 import Receipt from '../Receipt/Receipt';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 
-Modal.setAppElement('#root'); // Set the app element for accessibility
+Modal.setAppElement('#root'); // Accessibility requirement for Modal
 
 const BookingForm = () => {
   const [service, setService] = useState('');
@@ -15,7 +17,6 @@ const BookingForm = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('');
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,13 @@ const BookingForm = () => {
   const [paymentRefId, setPaymentRefId] = useState('');
   const [booking, setBooking] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   const navigate = useNavigate();
 
@@ -60,8 +68,8 @@ const BookingForm = () => {
       date,
       time,
       duration,
-      name,
       email,
+      currentUser,
       plan,
       phone,
       paymentRefId,
@@ -73,7 +81,7 @@ const BookingForm = () => {
       setSuccessMessage('Booking created successfully!');
       setModalIsOpen(true);
     } catch (err) {
-      setError('Failed to create booking.');
+      setError('Failed to create booking. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -123,7 +131,7 @@ const BookingForm = () => {
               Plan:
               <select
                 id="plan"
-                value={plan} // Set value directly from state
+                value={plan}
                 onChange={handlePlanChange}
                 required
               >
@@ -143,7 +151,6 @@ const BookingForm = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                placeholder="Start Date"
                 required
               />
             </label>
@@ -156,26 +163,6 @@ const BookingForm = () => {
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                placeholder="Start Time"
-                required
-              />
-            </label>
-          </div>
-          <input
-            type="hidden"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            required
-          />
-          <div>
-            <label htmlFor="name">
-              Name:
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
                 required
               />
             </label>
@@ -188,7 +175,6 @@ const BookingForm = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
                 required
               />
             </label>
@@ -201,7 +187,6 @@ const BookingForm = () => {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="Phone number"
                 required
               />
             </label>
@@ -218,44 +203,9 @@ const BookingForm = () => {
         {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
         {successMessage && <p className="success">{successMessage}</p>}
-        {plan && plans[plan] && (
-          <div className="plan-details">
-            <h3>Selected Plan Details</h3>
-            <p>
-              Price:
-              {' '}
-              {plans[plan].price}
-              {' '}
-              Naira
-            </p>
-            <p>
-              Session:
-              {' '}
-              {plans[plan].session}
-              {' '}
-              {plans[plan].session === 1 ? 'Hour' : 'Hours'}
-            </p>
-            <p>
-              Photos:
-              {' '}
-              {plans[plan].photos}
-              {' '}
-              Edited Photos
-            </p>
-            <p>
-              Editing:
-              {' '}
-              {plans[plan].editing}
-            </p>
-            <p>
-              Files:
-              {' '}
-              {plans[plan].files}
-            </p>
-          </div>
-        )}
       </div>
-      <BookingList />
+
+      <Bookings />
 
       <Modal
         isOpen={modalIsOpen}
@@ -265,11 +215,9 @@ const BookingForm = () => {
         overlayClassName="modal-overlay"
       >
         <h2>Booking Receipt</h2>
-        {successMessage && (
-          <div className="success-message">{successMessage}</div>
-        )}
+        {successMessage && <div className="success-message">{successMessage}</div>}
         {booking && <Receipt booking={booking} />}
-        <button type="button" onClick={closeModal}>Cancel</button>
+        <button type="button" onClick={closeModal}>Close</button>
       </Modal>
     </div>
   );
