@@ -184,7 +184,7 @@ const GearsList = () => {
         className="modal2"
         overlayClassName="modal2-overlay"
       >
-        <h2>Your Rented Gear Receipt</h2>
+        <h2>MotionBlox</h2>
         {selectedGear ? (
           <Receipt
             gear={selectedGear}

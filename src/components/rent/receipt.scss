@@ -8,11 +8,9 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 
-  .logo {
-    max-width: 150px;
-    margin-bottom: 20px;
+  .gear-image {
+    width: 100%;
   }
-
   h2 {
     margin-bottom: 20px;
     font-size: 1.5rem; // Improved heading style
@@ -20,6 +18,8 @@
   }
 
   p {
+    display: flex;
+    justify-content: space-between;
     margin: 10px 0;
     font-size: 1rem; // Added font size for consistency
     color: #555; // Lighter color for body text
@@ -32,7 +32,7 @@
       margin: 5px;
       padding: 10px 20px;
       border: none;
-      background: #007bff;
+      background: #11d084;
       color: #fff;
       cursor: pointer;
       border-radius: 5px;
@@ -75,7 +75,5 @@
   //   background-color: rgba(0, 0, 0, 0.5);
   //   z-index: 999;
   // }
-  .gear-image {
-    width: 100%;
-  }
+
 }

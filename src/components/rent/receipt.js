@@ -49,6 +49,11 @@ const Receipt = ({
   return (
     <div className="receipt">
       <h2>Rental Receipt</h2>
+      <p>
+        <strong>Payment Reference:</strong>
+        {' '}
+        {paymentReference || 'N/A'}
+      </p>
       <img
         src={gear.imageUrl || 'https://via.placeholder.com/150'}
         alt="Gear"
