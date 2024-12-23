@@ -7,15 +7,31 @@ const API_BASE_URL = 'http://localhost:5000/api/v1';
 
 // Thunks for async actions
 export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async () => {
-  const response = await axios.get(`${API_BASE_URL}/bokkings`);
+  const response = await axios.get(`${API_BASE_URL}/bookings`);
   return response.data;
 });
 
+// Assuming you have a way to store the token (e.g., in localStorage or a Redux store)
+const token = localStorage.getItem('authToken');
+
 export const createBooking = createAsyncThunk(
   'bookings/createBooking',
-  async (bokkingData) => {
-    const response = await axios.post(`${API_BASE_URL}/bookings`, bokkingData);
-    return response.data;
+  async (bookingData) => {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/bookings`,
+        { booking: bookingData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error creating booking:', error);
+      throw error; // Ensure the error is thrown to be handled by extraReducers
+    }
   },
 );
 

@@ -42,7 +42,7 @@ const GearsList = () => {
       );
 
       if (rentGear.fulfilled.match(resultAction)) {
-        setSuccessMessage(`Successfully rented gear: ${gearId}`);
+        setSuccessMessage(`Successfully rented gear: ${gearId} for {rentalDuration} + {rentalDatetime}`);
         setPaymentReference(transaction.reference);
 
         console.log('Rental Data from resultAction: ', resultAction.payload);

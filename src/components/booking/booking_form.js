@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { createBooking } from '../../services/api';
@@ -28,7 +28,7 @@ const BookingForm = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.auth);
+  // const { currentUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -69,7 +69,6 @@ const BookingForm = () => {
       time,
       duration,
       email,
-      currentUser,
       plan,
       phone,
       paymentRefId,

@@ -52,9 +52,13 @@ const GearsForm = () => {
                 value={gearType}
                 onChange={(e) => setGearType(e.target.value)}
               >
+                <option value="">Choose Gear</option>
                 <option value="camera">Camera</option>
                 <option value="lens">Lens</option>
-                <option value="accessory">Accessory</option>
+                <option value="drone">Drone</option>
+                <option value="light">Light</option>
+                <option value="tripod">Tripod</option>
+                <option value="Microphone">Microphone</option>
                 {/* Add other options as needed */}
               </select>
             </label>

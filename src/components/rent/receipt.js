@@ -60,11 +60,6 @@ const Receipt = ({
         className="gear-image"
       />
       <p>
-        <strong>Payment Reference:</strong>
-        {' '}
-        {paymentReference || 'N/A'}
-      </p>
-      <p>
         <strong>Gear ID:</strong>
         {' '}
         {gear.id || 'N/A'}
