@@ -167,6 +167,18 @@ const BookingForm = () => {
             </label>
           </div>
           <div>
+            <label htmlFor="duration">
+              Duration (hours):
+              <input
+                id="duration"
+                type="number"
+                value={duration}
+                onChange={(e) => setTime(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div>
             <label htmlFor="email">
               Email:
               <input

@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux'; import './App.css';
+import {
+  BrowserRouter as Router, Routes, Route, Navigate,
+} from 'react-router-dom';
+import { useSelector, Provider } from 'react-redux'; import './App.css';
 import store from './Redux/store';
 import Homepage from './components/homepage/homepage';
 import AboutDetails from './components/about/aboutDetails';
@@ -19,6 +21,15 @@ import Rentals from './components/rent/rentals';
 import Bookings from './components/booking/bookings';
 import Login from './components/device/login';
 import SignUp from './components/device/signup';
+
+const BookingFormRoute = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  return isAuthenticated ? <BookingForm /> : <Navigate to="/login" />;
+};
+
+// Routes
+  <Route path="/booking_form" element={<BookingFormRoute />} />;
 
 const App = () => (
   <Provider store={store}>
