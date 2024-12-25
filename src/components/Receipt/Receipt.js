@@ -1,12 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useReactToPrint } from 'react-to-print';
-// import jsPDF from 'jspdf';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import generatePDF from './generatePDF';
 import './Receipt.scss';
 import logo from '../images/png/Logo Silver.png';
 
 const Receipt = ({ booking }) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
+  useEffect(() => {
+    if (!currentUser) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [currentUser, dispatch]);
+
   const receiptRef = useRef();
 
   const handlePrint = useReactToPrint({
@@ -24,12 +34,8 @@ const Receipt = ({ booking }) => {
         text: 'Here is your booking receipt.',
         url: window.location.href,
       })
-        .then(() => {
-          console.log('Thanks for sharing!');
-        })
-        .catch((error) => {
-          console.error('Error sharing', error);
-        });
+        .then(() => console.log('Thanks for sharing!'))
+        .catch((error) => console.error('Error sharing', error));
     } else {
       alert('Web Share API is not supported in your browser.');
     }
@@ -64,8 +70,8 @@ const Receipt = ({ booking }) => {
             </span>
           </div>
           <div className="receipt-row">
-            <span className="receipt-label">Name:</span>
-            <span className="receipt-value">{booking.name}</span>
+            <span className="receipt-label">Customer&apos;s Name:</span>
+            <span className="receipt-value">{currentUser?.full_name || 'N/A'}</span>
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Email:</span>
@@ -81,7 +87,7 @@ const Receipt = ({ booking }) => {
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Payment Ref ID:</span>
-            <span className="receipt-value">{booking.paymentRefId}</span>
+            <span className="receipt-value">{booking.payment_ref_id}</span>
           </div>
         </div>
       </div>
@@ -89,11 +95,7 @@ const Receipt = ({ booking }) => {
         <button type="button" onClick={handlePrint}>
           Print Receipt
         </button>
-        <button
-          type="button"
-          className="download-btn"
-          onClick={handleDownload}
-        >
+        <button type="button" className="download-btn" onClick={handleDownload}>
           Download Receipt
         </button>
         <button type="button" className="share-btn" onClick={handleShare}>
@@ -110,11 +112,10 @@ Receipt.propTypes = {
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     plan: PropTypes.string.isRequired,
-    paymentRefId: PropTypes.string.isRequired,
+    payment_ref_id: PropTypes.string.isRequired,
   }).isRequired,
 };
 

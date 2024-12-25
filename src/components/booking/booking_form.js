@@ -51,11 +51,7 @@ const BookingForm = () => {
   }, [currentUser, dispatch]);
 
   const handlePaymentAndBooking = async (paymentRefId) => {
-    console.log('Payment Reference ID inside handlePaymentAndBooking:', paymentRefId); // Log to confirm
-    setLoading(true);
-    setError(null);
-    setSuccessMessage('');
-    setBooking(null); // Clear any previous booking data
+    console.log('Payment Reference ID inside handlePaymentAndBooking:', paymentRefId);
 
     if (!paymentRefId) {
       setError('Payment failed. No reference ID received.');
@@ -71,20 +67,22 @@ const BookingForm = () => {
       email,
       plan,
       phone,
-      paymentRefId, // Make sure this is passed correctly
+      payment_ref_id: paymentRefId,
     };
 
     try {
       const response = await dispatch(createBooking(bookingData)).unwrap();
+      console.log('Booking API Response:', response);
 
-      console.log('Booking response:', response); // Debugging the response
-
-      if (response && response.success) {
+      // Check if response explicitly has `success: true`
+      if (response?.success) {
+        console.log('Booking created successfully:', response.data);
         setSuccessMessage('Booking created successfully!');
-        setBooking(response.data); // Set booking only after success
-        setModalIsOpen(true); // Open modal with booking data
+        setBooking(response.data);
+        setModalIsOpen(true);
       } else {
-        throw new Error(response?.error || 'Failed to create booking');
+        console.error('Unexpected API Response:', response);
+        throw new Error(response?.error || 'Unexpected API response');
       }
     } catch (err) {
       console.error('API Error:', err.message || err);
@@ -231,7 +229,7 @@ const BookingForm = () => {
       >
         <h2>Booking Receipt</h2>
         {successMessage && <div className="success-message">{successMessage}</div>}
-        {booking && <Receipt booking={booking} />}
+        {booking && <Receipt booking={booking} currentUser={currentUser} />}
         <button type="button" onClick={closeModal}>Close</button>
       </Modal>
     </div>
