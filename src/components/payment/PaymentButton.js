@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import PaystackPop from '@paystack/inline-js';
 
-const PaymentButton = ({ amount, email, onSuccess }) => {
+const PaymentButton = ({
+  amount, email, onSuccess,
+}) => {
   const [error, setError] = useState(null);
 
   const handlePayment = () => {
@@ -17,11 +19,18 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
       amount,
       email,
       onSuccess: (transaction) => {
-        alert(`Payment Successful! Reference: ${transaction.reference}`);
-        onSuccess(transaction.reference); // Pass the payment reference to the parent component
+        // Log the entire transaction object for debugging
+        console.log('Payment successful:', transaction);
+
+        if (transaction && transaction.reference) {
+          // Pass the payment reference to the parent component
+          onSuccess(transaction.reference);
+        } else {
+          setError('Payment reference not found.');
+        }
       },
       onCancel: () => {
-        alert('Payment Cancelled');
+        setError('Payment Cancelled');
       },
     });
   };
@@ -30,9 +39,9 @@ const PaymentButton = ({ amount, email, onSuccess }) => {
     <div>
       {error && <p className="error">{error}</p>}
       <button type="button" onClick={handlePayment}>
-        Pay
+        Pay & Book Now at
         {' '}
-        {amount / 100}
+        {amount ? amount / 100 : 0}
         {' '}
         Naira
       </button>

@@ -31,9 +31,9 @@ const Bookings = () => {
       <table>
         <thead>
           <tr>
-            <th>Payment Ref ID</th>
-            <th>Gear ID</th>
+            <th>Ref ID</th>
             <th>Service</th>
+            <th>Plan</th>
             <th>Plan</th>
             <th>Customer Name</th>
             <th>Customer Email</th>
@@ -45,33 +45,36 @@ const Bookings = () => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(bookings) && bookings.map((booking) => (
-            <tr key={booking.id}>
-              <td>{booking.payment_ref_id || 'N/A'}</td>
-              <td>{booking.gear_id || 'N/A'}</td>
-              <td>{booking.service || 'N/A'}</td>
-              <td>{booking.plan || 'N/A'}</td>
-              <td>{currentUser?.full_name || 'N/A'}</td>
-              <td>{currentUser?.email || 'N/A'}</td>
-              <td>{currentUser?.phone || 'N/A'}</td>
-              <td>
-                {booking.booking_datetime
-                  ? new Date(booking.booking_datetime).toLocaleString()
-                  : 'N/A'}
-              </td>
-              <td>
-                {booking.booking_duration
-                  ? `${booking.booking_duration} hour(s)`
-                  : 'N/A'}
-              </td>
-              <td>
-                {booking.booking_end_datetime
-                  ? new Date(booking.booking_end_datetime).toLocaleString()
-                  : 'N/A'}
-              </td>
-              <td>{booking.is_booked_now ? 'Yes' : 'No'}</td>
+          {Array.isArray(bookings) && bookings.length > 0 ? (
+            bookings.map((booking) => (
+              <tr key={booking.id}>
+                <td>{booking.payment_ref_id || 'N/A'}</td>
+                <td>{booking.service || 'N/A'}</td>
+                <td>{booking.plan || 'N/A'}</td>
+                <td>{currentUser ? currentUser.full_name : 'N/A'}</td>
+                <td>{currentUser ? currentUser.email : 'N/A'}</td>
+                <td>{currentUser ? currentUser.phone : 'N/A'}</td>
+                <td>
+                  {booking.date
+                    ? new Date(booking.date).toLocaleString()
+                    : 'N/A'}
+                </td>
+                <td>
+                  {booking.duration ? `${booking.duration} hour(s)` : 'N/A'}
+                </td>
+                <td>
+                  {booking.time
+                    ? new Date(booking.time).toLocaleString()
+                    : 'N/A'}
+                </td>
+                <td>{booking.is_booked_now ? 'Yes' : 'No'}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="11">No bookings available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

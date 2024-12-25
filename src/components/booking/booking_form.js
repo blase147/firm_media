@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
-import { createBooking } from '../../services/api';
 import Bookings from './bookings';
+import { createBooking } from '../../Redux/Reducers/bookingSlice';
 import './booking_form.scss'; // Import your SCSS file
 import PaymentButton from '../payment/PaymentButton';
 import Receipt from '../Receipt/Receipt';
@@ -22,18 +22,11 @@ const BookingForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-  const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
-  const [paymentRefId, setPaymentRefId] = useState('');
   const [booking, setBooking] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-  // const { currentUser } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
-
+  const currentUser = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   const plans = {
@@ -51,14 +44,21 @@ const BookingForm = () => {
     },
   };
 
-  const handleBooking = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (!currentUser) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [currentUser, dispatch]);
+
+  const handlePaymentAndBooking = async (paymentRefId) => {
+    console.log('Payment Reference ID inside handlePaymentAndBooking:', paymentRefId); // Log to confirm
     setLoading(true);
     setError(null);
     setSuccessMessage('');
+    setBooking(null); // Clear any previous booking data
 
-    if (!isPaymentConfirmed) {
-      setError('Please confirm your payment before submitting the form.');
+    if (!paymentRefId) {
+      setError('Payment failed. No reference ID received.');
       setLoading(false);
       return;
     }
@@ -71,30 +71,38 @@ const BookingForm = () => {
       email,
       plan,
       phone,
-      paymentRefId,
+      paymentRefId, // Make sure this is passed correctly
     };
 
     try {
-      await createBooking(bookingData);
-      setBooking(bookingData);
-      setSuccessMessage('Booking created successfully!');
-      setModalIsOpen(true);
+      const response = await dispatch(createBooking(bookingData)).unwrap();
+
+      console.log('Booking response:', response); // Debugging the response
+
+      if (response && response.success) {
+        setSuccessMessage('Booking created successfully!');
+        setBooking(response.data); // Set booking only after success
+        setModalIsOpen(true); // Open modal with booking data
+      } else {
+        throw new Error(response?.error || 'Failed to create booking');
+      }
     } catch (err) {
-      setError('Failed to create booking. Please try again.');
+      console.error('API Error:', err.message || err);
+      setError(err.message || 'Failed to create booking. Please try again.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const processPayment = (reference) => {
+    console.log('Payment reference received: ', reference); // Log to confirm
+    handlePaymentAndBooking(reference);
   };
 
   const handlePlanChange = (e) => {
     const selectedPlan = e.target.value;
     setPlan(selectedPlan);
     setDuration(plans[selectedPlan]?.session || '');
-  };
-
-  const handlePaymentSuccess = (reference) => {
-    setIsPaymentConfirmed(true);
-    setPaymentRefId(reference);
   };
 
   const closeModal = () => {
@@ -106,7 +114,7 @@ const BookingForm = () => {
     <div id="booking_form_container">
       <div className="booking-form">
         <h2>Book a Service</h2>
-        <form onSubmit={handleBooking}>
+        <form>
           <div>
             <label htmlFor="service">
               Service:
@@ -173,7 +181,7 @@ const BookingForm = () => {
                 id="duration"
                 type="number"
                 value={duration}
-                onChange={(e) => setTime(e.target.value)}
+                onChange={(e) => setDuration(e.target.value)}
                 required
               />
             </label>
@@ -202,22 +210,18 @@ const BookingForm = () => {
               />
             </label>
           </div>
+          {/* Payment button, make sure this triggers payment process */}
           <PaymentButton
             amount={plans[plan]?.price * 100}
             email={email}
-            onSuccess={handlePaymentSuccess}
+            onSuccess={processPayment} // Pass reference here
           />
-          <button type="submit" disabled={loading}>
-            Submit Booking
-          </button>
         </form>
         {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
         {successMessage && <p className="success">{successMessage}</p>}
       </div>
-
       <Bookings />
-
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
