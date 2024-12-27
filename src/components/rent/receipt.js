@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './receipt.scss';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
+import logo from '../images/png/Logo Silver.png';
 
 const Receipt = ({
   paymentReference,
@@ -48,6 +49,7 @@ const Receipt = ({
 
   return (
     <div className="receipt">
+      <img className="logo" src={logo} alt="Logo" />
       <h2>Rental Receipt</h2>
       <p>
         <strong>Payment Reference:</strong>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBookings } from '../../Redux/Reducers/bookingSlice';
+import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice';
 import './bookings.scss'; // Import the SCSS file
 
 const Bookings = () => {
@@ -15,11 +15,25 @@ const Bookings = () => {
     }
   }, [status, dispatch]);
 
+  // Handle Booking Cancellation
+  const handleCancelBooking = (id) => {
+    if (window.confirm('Are you sure you want to cancel this booking?')) {
+      dispatch(cancelBooking(id));
+    }
+  };
+
+  // Handle Booking Update
+  const handleUpdateBooking = (id) => {
+    console.log(`Update booking with ID: ${id}`);
+    // Add your update logic here
+  };
+
   if (status === 'loading') return <div className="loading">Loading...</div>;
   if (status === 'failed') {
     return (
       <div className="error">
         Error:
+        {' '}
         {error}
       </div>
     );
@@ -28,20 +42,20 @@ const Bookings = () => {
   return (
     <div className="bookings-container">
       <h2>Bookings</h2>
-      <table>
+      <table className="b_table">
         <thead>
           <tr>
             <th>Ref ID</th>
             <th>Service</th>
             <th>Plan</th>
-            <th>Plan</th>
-            <th>Customer Name</th>
-            <th>Customer Email</th>
-            <th>Customer Phone</th>
+            <th>Customer&apos;s Phone</th>
+            <th>User&apos;s Full Name</th>
+            <th>Customer&apos;s Email</th>
             <th>Booking Date</th>
             <th>Booking Duration</th>
             <th>Booking End Time</th>
-            <th>Is Rented</th>
+            <th>Status/Edit</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -51,9 +65,9 @@ const Bookings = () => {
                 <td>{booking.payment_ref_id || 'N/A'}</td>
                 <td>{booking.service || 'N/A'}</td>
                 <td>{booking.plan || 'N/A'}</td>
-                <td>{currentUser ? currentUser.full_name : 'N/A'}</td>
-                <td>{currentUser ? currentUser.email : 'N/A'}</td>
-                <td>{currentUser ? currentUser.phone : 'N/A'}</td>
+                <td>{currentUser ? booking.phone : 'N/A'}</td>
+                <td>{currentUser?.full_name || 'N/A'}</td>
+                <td>{currentUser?.email || 'N/A'}</td>
                 <td>
                   {booking.date
                     ? new Date(booking.date).toLocaleString()
@@ -67,7 +81,29 @@ const Bookings = () => {
                     ? new Date(booking.time).toLocaleString()
                     : 'N/A'}
                 </td>
-                <td>{booking.is_booked_now ? 'Yes' : 'No'}</td>
+                <td>
+                  {/* {booking.status || 'N/A'} */}
+                  <button
+                    type="button"
+                    className="edit-button"
+                    onClick={() => handleUpdateBooking(booking.id)}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  {booking.status !== 'Cancelled' ? (
+                    <button
+                      type="button"
+                      className="cancel-button"
+                      onClick={() => handleCancelBooking(booking.id)}
+                    >
+                      Cancel
+                    </button>
+                  ) : (
+                    <span className="cancelled">Cancelled</span>
+                  )}
+                </td>
               </tr>
             ))
           ) : (
