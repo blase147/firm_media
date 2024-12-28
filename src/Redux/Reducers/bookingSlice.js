@@ -10,58 +10,95 @@ const getAuthHeaders = (token) => ({
   Authorization: `Bearer ${token}`,
 });
 
-// Thunks for async actions
-
-// Fetch all bookings
-export const fetchBookings = createAsyncThunk(
-  'bookings/fetchBookings',
-  async (_, { getState, rejectWithValue }) => {
-    try {
-      const { token } = getState().auth; // Retrieve token from auth slice
-      const response = await axios.get(`${API_BASE_URL}/bookings`, {
-        headers: getAuthHeaders(token),
-      });
-      return response.data; // Return entire response to access 'data'
-    } catch (error) {
-      return rejectWithValue(error.response?.data?.error || 'Failed to fetch bookings');
-    }
-  },
-);
-
 // Function to retrieve CSRF token from meta tag
 const getCsrfToken = () => {
   const token = document.querySelector('meta[name="csrf-token"]');
   return token && token.getAttribute('content');
 };
 
+// Fetch all bookings
+export const fetchBookings = createAsyncThunk(
+  'bookings/fetchBookings',
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth;
+      const response = await axios.get(`${API_BASE_URL}/bookings`, {
+        headers: getAuthHeaders(token),
+      });
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || 'Failed to fetch bookings');
+    }
+  },
+);
+
 // Create a new booking
-export const createBooking = createAsyncThunk('bookings/create', async (formData, { getState }) => {
-  const { token } = getState().auth; // Assuming the token is in the auth slice
-  const csrfToken = getCsrfToken();
+export const createBooking = createAsyncThunk(
+  'bookings/createBooking',
+  async (formData, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth;
+      const csrfToken = getCsrfToken();
 
-  const response = await axios.post('http://localhost:5000/api/v1/bookings', { booking: formData }, {
-    headers: {
-      Authorization: `Bearer ${token}`, // Make sure token is added here
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken,
-    },
-  });
+      const response = await axios.post(
+        `${API_BASE_URL}/bookings`,
+        { booking: formData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken,
+          },
+        },
+      );
 
-  return response.data;
-});
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || 'Failed to create booking');
+    }
+  },
+);
 
 // Cancel a booking
 export const cancelBooking = createAsyncThunk(
   'bookings/cancelBooking',
   async (bookingId, { getState, rejectWithValue }) => {
     try {
-      const { token } = getState().auth; // Retrieve token from auth slice
-      const response = await axios.delete(`${API_BASE_URL}/bookings/${bookingId}`, {
+      const { token } = getState().auth;
+      await axios.delete(`${API_BASE_URL}/bookings/${bookingId}`, {
         headers: getAuthHeaders(token),
       });
-      return response.data;
+
+      return { id: bookingId };
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || 'Failed to cancel booking');
+    }
+  },
+);
+
+// Update a booking
+export const updateBooking = createAsyncThunk(
+  'bookings/updateBooking',
+  async ({ bookingId, updatedData }, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth;
+      const csrfToken = getCsrfToken();
+
+      const response = await axios.put(
+        `${API_BASE_URL}/bookings/${bookingId}`,
+        { booking: updatedData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || 'Failed to update booking');
     }
   },
 );
@@ -83,7 +120,7 @@ const bookingsSlice = createSlice({
       })
       .addCase(fetchBookings.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.bookings = action.payload.data; // Use 'data' from the response
+        state.bookings = action.payload;
       })
       .addCase(fetchBookings.rejected, (state, action) => {
         state.status = 'failed';
@@ -105,6 +142,19 @@ const bookingsSlice = createSlice({
         );
       })
       .addCase(cancelBooking.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      // Update booking
+      .addCase(updateBooking.fulfilled, (state, action) => {
+        const index = state.bookings.findIndex(
+          (booking) => booking.id === action.payload.id,
+        );
+        if (index !== -1) {
+          state.bookings[index] = action.payload;
+        }
+      })
+      .addCase(updateBooking.rejected, (state, action) => {
         state.error = action.payload;
       });
   },
