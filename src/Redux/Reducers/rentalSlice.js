@@ -19,9 +19,17 @@ export const createRental = createAsyncThunk(
   },
 );
 
+export const updateRental = createAsyncThunk(
+  'rentals/updateRental',
+  async (rentalData) => {
+    const response = await axios.put(`${API_BASE_URL}/rentals/${rentalData.id}`, rentalData);
+    return response.data; // Assuming the API returns the updated rental data
+  },
+);
+
 export const cancelRental = createAsyncThunk('rentals/cancelRental', async (rentalId) => {
-  const response = await axios.delete(`${API_BASE_URL}/rentals/${rentalId}`);
-  return response.data;
+  await axios.delete(`${API_BASE_URL}/rentals/${rentalId}`); // No need to store the response here
+  return rentalId; // Returning rentalId to remove it from the state
 });
 
 const rentalsSlice = createSlice({
@@ -47,6 +55,12 @@ const rentalsSlice = createSlice({
       })
       .addCase(createRental.fulfilled, (state, action) => {
         state.rentals.push(action.payload);
+      })
+      .addCase(updateRental.fulfilled, (state, action) => {
+        const index = state.rentals.findIndex((rental) => rental.id === action.payload.id);
+        if (index !== -1) {
+          state.rentals[index] = action.payload;
+        }
       })
       .addCase(cancelRental.fulfilled, (state, action) => {
         state.rentals = state.rentals.filter((rental) => rental.id !== action.payload);
