@@ -79,6 +79,11 @@ td {
 .rentals-container table th,
 .rentals-container table td {
   white-space: nowrap; /* Prevent wrapping inside cells */
+
+  button {
+    // width: 15%;
+    background-color: red;
+  }
 }
 
 /* Status Messages */
@@ -105,6 +110,8 @@ td {
   text-align: center;
   margin-top: 15px;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

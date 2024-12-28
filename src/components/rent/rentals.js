@@ -46,7 +46,8 @@ const Rentals = () => {
             <th>Rental Duration</th>
             <th>Rental End</th>
             <th>Payment Ref</th>
-            <th>Is Rented</th>
+            <th>In Use Status</th>
+            <th>Edit</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -63,11 +64,15 @@ const Rentals = () => {
                 hour(s)
               </td>
               <td>{new Date(rental.rental_end_datetime).toLocaleString()}</td>
-                <button type="button" onClick={() => handleCancel(rental.id)}>Cancel</button>
-              <td>{rental.is_rented_now ? 'Yes' : 'No'}</td>
               <td>
-                <button onClick={() => handleUpdate(rental)}>Edit</button>
-                <button onClick={() => handleCancel(rental.id)}>Cancel</button>
+                {rental.payment_ref_id}
+              </td>
+              <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
+              <td>
+                <button type="button" onClick={() => handleUpdate(rental)}>Edit</button>
+              </td>
+              <td>
+                <button type="button" onClick={() => handleCancel(rental.id)}>Cancel</button>
               </td>
             </tr>
           ))}
