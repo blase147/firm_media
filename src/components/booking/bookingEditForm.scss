@@ -35,6 +35,10 @@ button {
   cursor: pointer;
 }
 
-button[type="button"] {
+.form-group [type="submit"] {
+  background-color: #4CAF50;
+}
+
+.form-group [type="button"] {
   background-color: #f44336;
 }
