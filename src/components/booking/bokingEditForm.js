@@ -24,8 +24,30 @@ const BookingEditForm = ({ booking, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateBooking(updatedBooking));
+    // Dispatch the update action with bookingId and updatedData
+    dispatch(updateBooking({ bookingId: booking.id, updatedData: updatedBooking }));
     onClose(); // Close the form after submitting
+  };
+
+  // Helper function to format time correctly for the input
+  // Helper function to format time correctly for the input
+  const formatTime = (time) => {
+    if (!time) return ''; // Return empty string if no time is provided
+
+    // Ensure the time is in HH:MM format
+    const timePattern = /^\d{2}:\d{2}$/;
+    if (!time.match(timePattern)) return ''; // If time is not in HH:MM format, return empty string
+
+    // Construct a new date object with a dummy date and set the time
+    const date = new Date(`1970-01-01T${time}:00Z`);
+
+    // Check if the date is valid using Number.isNaN
+    if (Number.isNaN(date.getTime())) {
+      console.error('Invalid time value:', time);
+      return ''; // Return empty string if time is invalid
+    }
+
+    return date.toISOString().slice(11, 16); // Return time in HH:MM format
   };
 
   return (
@@ -113,6 +135,20 @@ const BookingEditForm = ({ booking, onClose }) => {
         </div>
 
         <div className="form-group">
+          <label htmlFor="time">
+            Booking Time
+            <input
+              type="time"
+              id="time"
+              name="time"
+              value={formatTime(updatedBooking.time)}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
           <button type="submit">Update Booking</button>
           <button type="button" onClick={onClose}>Cancel</button>
         </div>
@@ -124,6 +160,7 @@ const BookingEditForm = ({ booking, onClose }) => {
 // Define prop types
 BookingEditForm.propTypes = {
   booking: PropTypes.shape({
+    id: PropTypes.string.isRequired, // Ensure id is required
     service: PropTypes.string,
     plan: PropTypes.string,
     phone: PropTypes.string,

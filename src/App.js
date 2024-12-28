@@ -22,7 +22,7 @@ import Bookings from './components/booking/bookings';
 import Login from './components/device/login';
 import SignUp from './components/device/signup';
 import RentalEditForm from './components/rent/rentalEditForm';
-import BookingEditForm from './components/booking/bookingEditForm';
+import BookingEditForm from './components/booking/bokingEditForm';
 
 const BookingFormRoute = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

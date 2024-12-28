@@ -44,6 +44,35 @@ export const rentGear = createAsyncThunk(
   },
 );
 
+export const rentGearUpdate = createAsyncThunk(
+  'gears/rentGearUpdate',
+  async ({ gearId, rentalId, rentalData }, { getState, rejectWithValue }) => {
+    if (!gearId || !rentalId) {
+      return rejectWithValue('Gear ID or Rental ID is missing');
+    }
+
+    try {
+      const { token } = getState().auth; // Ensure token is being retrieved properly
+
+      const response = await axios.put(
+        `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
+        { rental: rentalData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error('Error updating rental:', error.response?.data || error.message);
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  },
+);
+
 export const cancelRentGear = createAsyncThunk(
   'gears/cancelRentGear',
   async (gearId) => {

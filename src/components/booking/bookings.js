@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice';
-// import BookingEditForm from './bookingEditForm'; // Import the new component
+import BookingEditForm from './bokingEditForm'; // Import the new component
 import './bookings.scss'; // Import the SCSS file
 
 const Bookings = () => {

@@ -15,6 +15,25 @@ export const createGear = createAsyncThunk('gears/create', async (formData, { ge
   return response.data;
 });
 
+export const rentGearUpdate = createAsyncThunk(
+  'gears/rentGearUpdate',
+  async ({ rentalId, rentalData }, { getState }) => {
+    const { token } = getState().auth; // Ensure token is being retrieved properly
+
+    const response = await axios.put(
+      `${'http://localhost:5000/api/v1/gears'}/rentals/${rentalId}`,
+      { rental: rentalData },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    return response.data;
+  },
+);
+
 const createGearSlice = createSlice({
   name: 'gears',
   initialState: {

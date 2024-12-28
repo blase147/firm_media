@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRentals, cancelRental, updateRental } from '../../Redux/Reducers/rentalSlice';
 import './rentals.scss'; // Import the SCSS file
+import RentalEditForm from './rentalEditForm';
 
 const Rentals = () => {
   const dispatch = useDispatch();
   const { rentals, status, error } = useSelector((state) => state.rentals);
+
+  // State to handle selected rental and edit form visibility
+  const [selectedRental, setSelectedRental] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   // Fetch rentals
   useEffect(() => {
@@ -24,18 +29,50 @@ const Rentals = () => {
     );
   }
 
+  // Cancel a rental
   const handleCancel = (rentalId) => {
     dispatch(cancelRental(rentalId));
   };
 
-  const handleUpdate = (rental) => {
-    // Handle your update logic, potentially opening a modal or form
-    dispatch(updateRental(rental));
+  // Open edit form with selected rental
+  const handleEdit = (rental) => {
+    setSelectedRental(rental);
+    setIsEditing(true);
+  };
+
+  // Update a rental
+  const handleUpdate = () => {
+    if (!selectedRental) {
+      console.error('No rental selected for update');
+      return;
+    }
+
+    const updatedData = { status: 'active' }; // Example payload
+
+    console.log('Dispatching updateRental with:', selectedRental.id, updatedData);
+    dispatch(updateRental({ rentalId: selectedRental.id, updatedData }));
+    setIsEditing(false);
+  };
+
+  // Close the edit form
+  const handleCloseEditForm = () => {
+    setIsEditing(false);
+    setSelectedRental(null);
   };
 
   return (
     <div className="rentals-container">
       <h2>Rentals</h2>
+
+      {/* Show the edit form if in editing state */}
+      {isEditing && selectedRental && (
+        <RentalEditForm
+          rental={selectedRental}
+          onClose={handleCloseEditForm}
+          onUpdate={handleUpdate}
+        />
+      )}
+
       <table>
         <thead>
           <tr>
@@ -69,7 +106,7 @@ const Rentals = () => {
               </td>
               <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
               <td>
-                <button type="button" onClick={() => handleUpdate(rental)}>Edit</button>
+                <button type="button" onClick={() => handleEdit(rental)}>Edit</button>
               </td>
               <td>
                 <button type="button" onClick={() => handleCancel(rental.id)}>Cancel</button>
