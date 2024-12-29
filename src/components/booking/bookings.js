@@ -27,6 +27,8 @@ const Bookings = () => {
   const handleRowClick = (bookingId) => {
     if (bookingId) {
       navigate(`/receipt/${bookingId}`);
+    } else {
+      console.warn('Booking ID is missing. Navigation skipped.');
     }
   };
 
@@ -54,7 +56,6 @@ const Bookings = () => {
     return (
       <div className="error">
         Error:
-        {' '}
         {error}
       </div>
     );
@@ -87,61 +88,68 @@ const Bookings = () => {
         </thead>
         <tbody>
           {Array.isArray(bookings) && bookings.length > 0 ? (
-            bookings.map((booking) => (
-              <tr
-                key={booking.id}
-                onClick={() => handleRowClick(booking.id)}
-                style={{ cursor: 'pointer' }}
-              >
-                <td>{booking.payment_ref_id || 'N/A'}</td>
-                <td>{booking.service || 'N/A'}</td>
-                <td>{booking.plan || 'N/A'}</td>
-                <td>{currentUser ? booking.phone : 'N/A'}</td>
-                <td>{currentUser?.full_name || 'N/A'}</td>
-                <td>{currentUser?.email || 'N/A'}</td>
-                <td>
-                  {booking.date
-                    ? new Date(booking.date).toLocaleString()
-                    : 'N/A'}
-                </td>
-                <td>
-                  {booking.duration ? `${booking.duration} hour(s)` : 'N/A'}
-                </td>
-                <td>
-                  {booking.time
-                    ? new Date(booking.time).toLocaleString()
-                    : 'N/A'}
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    className="edit-btn"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent triggering row click
-                      handleUpdateBooking(booking);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td>
-                  {booking.status !== 'Cancelled' ? (
+            <>
+              {bookings.map((booking) => (
+                <tr
+                  key={booking.id}
+                  onClick={(e) => {
+                    if (e.target.tagName !== 'BUTTON') handleRowClick(booking.id);
+                  }}
+                  style={{
+                    cursor: booking?.service ? 'pointer' : 'not-allowed',
+                    opacity: booking?.service ? 1 : 0.6,
+                  }}
+                >
+                  <td>{booking.payment_ref_id || 'N/A'}</td>
+                  <td>{booking.service || 'N/A'}</td>
+                  <td>{booking.plan || 'N/A'}</td>
+                  <td>{currentUser ? booking.phone : 'N/A'}</td>
+                  <td>{currentUser?.full_name || 'N/A'}</td>
+                  <td>{currentUser?.email || 'N/A'}</td>
+                  <td>
+                    {booking.date
+                      ? new Date(booking.date).toLocaleString()
+                      : 'N/A'}
+                  </td>
+                  <td>
+                    {booking.duration ? `${booking.duration} hour(s)` : 'N/A'}
+                  </td>
+                  <td>
+                    {booking.time
+                      ? new Date(booking.time).toLocaleString()
+                      : 'N/A'}
+                  </td>
+                  <td>
                     <button
                       type="button"
-                      className="cancel-btn"
+                      className="edit-btn"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent triggering row click
-                        handleCancelBooking(booking.id);
+                        e.stopPropagation();
+                        handleUpdateBooking(booking);
                       }}
                     >
-                      Cancel
+                      Edit
                     </button>
-                  ) : (
-                    <span className="cancelled">Cancelled</span>
-                  )}
-                </td>
-              </tr>
-            ))
+                  </td>
+                  <td>
+                    {booking.status !== 'Cancelled' ? (
+                      <button
+                        type="button"
+                        className="cancel-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCancelBooking(booking.id);
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    ) : (
+                      <span className="cancelled">Cancelled</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </>
           ) : (
             <tr>
               <td colSpan="11">No bookings available</td>
