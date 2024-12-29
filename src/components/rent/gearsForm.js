@@ -30,9 +30,9 @@ const GearsForm = () => {
   };
 
   return (
-    <div id="rentingFormContainer">
+    <div id="gearsFormContainer">
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="gears_form">
           <div>
             <label htmlFor="name">
               Name
@@ -95,7 +95,7 @@ const GearsForm = () => {
               />
             </label>
           </div>
-          <div>
+          <div className="gear_submit_btn">
             <button type="submit" disabled={isLoading}>
               {isLoading ? 'Submitting...' : 'Submit'}
             </button>

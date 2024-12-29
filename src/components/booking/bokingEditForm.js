@@ -30,7 +30,6 @@ const BookingEditForm = ({ booking, onClose }) => {
   };
 
   // Helper function to format time correctly for the input
-  // Helper function to format time correctly for the input
   const formatTime = (time) => {
     if (!time) return ''; // Return empty string if no time is provided
 

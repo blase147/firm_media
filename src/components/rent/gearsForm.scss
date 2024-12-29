@@ -1,12 +1,12 @@
-#rentingFormContainer {
+#gearsFormContainer {
   background-color: #460505;
   color: rgb(241, 238, 238);
 
   & div {
     // width: 90%;
     margin: auto;
-    padding-top: 20px;
-    margin-bottom: 50px;
+    // padding-top: 20px;
+    // margin-bottom: 50px;
   }
 
   #gearListContainer {
@@ -16,7 +16,7 @@
   }
 
   // Form container
-  form {
+  .gears_form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -27,16 +27,19 @@
     label {
       color: gold;
     }
-    // Button styles
-    // button {
-    //   background-color: #007bff;
-    //   color: #fff;
-    //   border: none;
-    //   padding: 20px 20px;
-    //   cursor: pointer;
-    //   border-radius: 3px;
-    //   width: 100%;
-    // }
+
+    .gear_submit_btn {
+      // Button styles
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 20px 20px;
+        cursor: pointer;
+        border-radius: 3px;
+        width: 100%;
+      }
+    }
   }
 
   // Label styles
@@ -73,17 +76,6 @@
   // File input styles
   input[type="file"] {
     margin-top: 5px;
-  }
-
-  // Button styles
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 20px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    width: 100%;
   }
 
   button:disabled {

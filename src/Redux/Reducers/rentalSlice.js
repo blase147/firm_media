@@ -19,6 +19,15 @@ export const fetchRentals = createAsyncThunk('rentals/fetchRentals', async () =>
   return response.data;
 });
 
+export const fetchGears = createAsyncThunk('gears/fetchGears', async () => {
+  // Make sure the URL is complete and points to the correct gears endpoint
+  const response = await axios.get(`${API_BASE_URL}/gears`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch gears');
+  }
+  return response.json();
+});
+
 // Create a rental
 export const createRental = createAsyncThunk(
   'rentals/createRental',
@@ -104,6 +113,10 @@ const rentalsSlice = createSlice({
       // Cancel Rental
       .addCase(cancelRental.fulfilled, (state, action) => {
         state.rentals = state.rentals.filter((rental) => rental.id !== action.payload);
+      })
+
+      .addCase(fetchGears.fulfilled, (state, action) => {
+        state.gears = action.payload;
       });
   },
 });

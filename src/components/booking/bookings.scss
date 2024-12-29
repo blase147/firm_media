@@ -33,32 +33,32 @@ h2 {
   width: 100%;
   border-collapse: collapse;
   // margin-top: 20px;
-thead {
-  background-color: #007bff;
-  color: #fff;
-}
+  thead {
+    background-color: #007bff;
+    color: #fff;
+  }
 
-thead th {
-  padding: 12px;
-  text-align: left;
-  font-size: 1rem;
-  border-bottom: 2px solid #0056b3;
-}
+  thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+    border-bottom: 2px solid #0056b3;
+  }
 
-tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
+  tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
 
-tbody tr:hover {
-  background-color: #e9ecef;
-}
+  tbody tr:hover {
+    background-color: #e9ecef;
+  }
 
-td {
-  padding: 10px;
-  font-size: 0.95rem;
-  color: #555;
-  border-bottom: 1px solid #ddd;
-}
+  td {
+    padding: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+  }
 }
 
 

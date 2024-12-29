@@ -67,7 +67,8 @@ const Rentals = () => {
       {/* Show the edit form if in editing state */}
       {isEditing && selectedRental && (
         <RentalEditForm
-          rental={selectedRental}
+          rental={selectedRental} // Pass the selected rental directly
+          gear={selectedRental.gear} // Pass the gear object directly from rental
           onClose={handleCloseEditForm}
           onUpdate={handleUpdate}
         />
@@ -106,10 +107,10 @@ const Rentals = () => {
               </td>
               <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
               <td>
-                <button type="button" onClick={() => handleEdit(rental)}>Edit</button>
+                <button type="button" className="edit-btn" onClick={() => handleEdit(rental)}>Edit</button>
               </td>
               <td>
-                <button type="button" onClick={() => handleCancel(rental.id)}>Cancel</button>
+                <button type="button" className="cancel-btn" onClick={() => handleCancel(rental.id)}>Cancel</button>
               </td>
             </tr>
           ))}
