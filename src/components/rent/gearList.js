@@ -8,7 +8,7 @@ import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton';
 import Receipt from './receipt';
-import GearEditForm from './GearEditForm';
+import GearEditForm from './gearEditForm';
 
 Modal.setAppElement('#root'); // Accessibility requirement
 
@@ -238,16 +238,16 @@ const closeEditModal = () => {
         </button>
       </Modal>
       <Modal
-  isOpen={isEditModalOpen}
-  onRequestClose={closeEditModal}
-  contentLabel="Edit Gear Modal"
-  className="modal2"
-  overlayClassName="modal2-overlay"
->
-  {editGearId && (
-    <GearEditForm gearId={editGearId} closeModal={closeEditModal} />
-  )}
-</Modal>
+        isOpen={isEditModalOpen}
+        onRequestClose={closeEditModal}
+        contentLabel="Edit Gear Modal"
+        className="modal2"
+        overlayClassName="modal2-overlay"
+      >
+        {editGearId && (
+          <GearEditForm gearId={editGearId} closeModal={closeEditModal} />
+        )}
+      </Modal>
     </div>
   );
 };
