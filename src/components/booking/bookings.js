@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // Ensure proper import
 import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice';
 import BookingEditForm from './bokingEditForm'; // Import the new component
 import './bookings.scss'; // Import the SCSS file
 
 const Bookings = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Ensure this is declared correctly
+
   const { bookings, status, error } = useSelector((state) => state.bookings);
   const { currentUser } = useSelector((state) => state.auth);
 
@@ -19,6 +22,13 @@ const Bookings = () => {
       dispatch(fetchBookings());
     }
   }, [status, dispatch]);
+
+  // Handle Row Click (Navigate to Receipt Page)
+  const handleRowClick = (bookingId) => {
+    if (bookingId) {
+      navigate(`/receipt/${bookingId}`);
+    }
+  };
 
   // Handle Booking Cancellation
   const handleCancelBooking = (id) => {
@@ -53,18 +63,7 @@ const Bookings = () => {
   return (
     <div className="bookings-container">
       <h2>Bookings</h2>
-      {/* <form
-      <input
-      type="text"
-      id="search"
-      value=setSearch()
-      />
-      <input
-      type="submit"
-      value="Search Transaction with Reference"
-      />
-    </form>
-/}
+
       {/* Show the edit form if in editing state */}
       {isEditing && selectedBooking && (
         <BookingEditForm booking={selectedBooking} onClose={handleCloseEditForm} />
@@ -89,7 +88,11 @@ const Bookings = () => {
         <tbody>
           {Array.isArray(bookings) && bookings.length > 0 ? (
             bookings.map((booking) => (
-              <tr key={booking.id}>
+              <tr
+                key={booking.id}
+                onClick={() => handleRowClick(booking.id)}
+                style={{ cursor: 'pointer' }}
+              >
                 <td>{booking.payment_ref_id || 'N/A'}</td>
                 <td>{booking.service || 'N/A'}</td>
                 <td>{booking.plan || 'N/A'}</td>
@@ -113,7 +116,10 @@ const Bookings = () => {
                   <button
                     type="button"
                     className="edit-btn"
-                    onClick={() => handleUpdateBooking(booking)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent triggering row click
+                      handleUpdateBooking(booking);
+                    }}
                   >
                     Edit
                   </button>
@@ -123,7 +129,10 @@ const Bookings = () => {
                     <button
                       type="button"
                       className="cancel-btn"
-                      onClick={() => handleCancelBooking(booking.id)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering row click
+                        handleCancelBooking(booking.id);
+                      }}
                     >
                       Cancel
                     </button>

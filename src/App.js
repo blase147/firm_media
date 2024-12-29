@@ -23,6 +23,7 @@ import Login from './components/device/login';
 import SignUp from './components/device/signup';
 import RentalEditForm from './components/rent/rentalEditForm';
 import BookingEditForm from './components/booking/bokingEditForm';
+import Receipt from './components/Receipt/Receipt';
 
 const BookingFormRoute = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -55,6 +56,7 @@ const App = () => (
         <Route path="/login" element={<Login />} />
         <Route path="/rentalEditForm" element={<RentalEditForm />} />
         <Route path="/bookingEditForm" element={<BookingEditForm />} />
+        <Route path="/receipt/:bookingId" element={<Receipt />} />
         <Route path="/oauth2callback" element={<OAuthCallback />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
