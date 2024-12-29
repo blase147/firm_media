@@ -237,6 +237,17 @@ const closeEditModal = () => {
           Close
         </button>
       </Modal>
+      <Modal
+  isOpen={isEditModalOpen}
+  onRequestClose={closeEditModal}
+  contentLabel="Edit Gear Modal"
+  className="modal2"
+  overlayClassName="modal2-overlay"
+>
+  {editGearId && (
+    <GearEditForm gearId={editGearId} closeModal={closeEditModal} />
+  )}
+</Modal>
     </div>
   );
 };
