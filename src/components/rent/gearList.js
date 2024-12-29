@@ -8,6 +8,7 @@ import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton';
 import Receipt from './receipt';
+import GearEditForm from './GearEditForm';
 
 Modal.setAppElement('#root'); // Accessibility requirement
 
@@ -21,6 +22,20 @@ const GearsList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedGear, setSelectedGear] = useState(null);
   const [paymentReference, setPaymentReference] = useState('');
+
+  // Inside GearsList component function
+const [editGearId, setEditGearId] = useState<string | null>(null);
+const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+const openEditModal = (gearId: string) => {
+  setEditGearId(gearId);
+  setIsEditModalOpen(true);
+};
+
+const closeEditModal = () => {
+  setIsEditModalOpen(false);
+  setEditGearId(null);
+};
 
   // Fetch gears and current user on mount
   useEffect(() => {
