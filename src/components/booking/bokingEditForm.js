@@ -56,38 +56,26 @@ const BookingEditForm = ({ booking, onClose }) => {
         <div className="form-group">
           <label htmlFor="service">
             Service
-            <select
+            <input
               id="service"
               name="service"
               value={updatedBooking.service || ''}
               onChange={handleInputChange}
-              required
-            >
-              <option value="">Select a service</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Portrait">Portrait</option>
-              <option value="Corporate">Corporate</option>
-              <option value="Event">Event</option>
-              <option value="Other">Other</option>
-            </select>
+              disabled
+            />
           </label>
         </div>
 
         <div className="form-group">
           <label htmlFor="plan">
             Plan
-            <select
+            <input
               id="plan"
               name="plan"
               value={updatedBooking.plan || ''}
               onChange={handleInputChange}
-              required
-            >
-              <option value="">Select a plan</option>
-              <option value="Basic">Basic</option>
-              <option value="Standard">Standard</option>
-              <option value="Premium">Premium</option>
-            </select>
+              disabled
+            />
           </label>
         </div>
 
@@ -100,7 +88,7 @@ const BookingEditForm = ({ booking, onClose }) => {
               name="phone"
               value={updatedBooking.phone || ''}
               onChange={handleInputChange}
-              required
+              disabled
             />
           </label>
         </div>
@@ -114,7 +102,7 @@ const BookingEditForm = ({ booking, onClose }) => {
               name="duration"
               value={updatedBooking.duration || ''}
               onChange={handleInputChange}
-              required
+              disabled
             />
           </label>
         </div>

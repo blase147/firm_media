@@ -20,7 +20,7 @@
     }
 
     .equipment_img {
-      width: 25%;
+      max-width: 200px;
       padding: 10px;
 
       img {
@@ -34,7 +34,7 @@
       flex-direction: column;
       justify-content: center;
       text-align: left;
-      width: 25%;
+      // width: 25%;
       padding: 10px;
 
       h3 {
@@ -66,7 +66,7 @@
       padding: 50px 10px 50px 10px;
       list-style: none; /* Remove default bullets */
       // background-color: yellow;
-      width: 25%;
+      width: 50%;
       font-size: 0.7em;
       color: #fff;
     }
@@ -91,21 +91,24 @@
     }
 
     .rent {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+      // align-items: flex-start;
       // gap: 10px;
       // background-color: green;
-      width: 25%;
+      // width: 25%;
       color: #fff;
       margin: auto;
       padding: 10px;
 
-      button,
-      input {
-        width: 100%;
-        margin: 5px;
+      button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
       }
       // > div {
       //   width: 80%;

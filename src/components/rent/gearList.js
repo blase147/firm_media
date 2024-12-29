@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import {
-  fetchGears, deleteGear, rentGear, cancelRentGear,
-} from '../../Redux/Reducers/gearSlice';
+import { fetchGears, rentGear } from '../../Redux/Reducers/gearSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton';
@@ -84,98 +82,67 @@ const GearsList = () => {
       <h2>Gears List</h2>
       {successMessage && <div className="success-message">{successMessage}</div>}
       <ul>
-        {Array.isArray(gears) && gears.map((gear) => {
-          const rentalEndDateTime = gear.rental_end_datetime
-            ? new Date(gear.rental_end_datetime)
-            : null;
-
-          return (
-            <div className="equipment_card" key={gear.id}>
-              <div className="equipment_img">
-                <img
-                  src={gear.imageUrl || 'https://via.placeholder.com/150'}
-                  alt={gear.gearType || 'Gear Image'}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/150';
-                  }}
-                />
-              </div>
-              <div className="equipment_price_per_hour">
-                <h3>{gear.gearType || 'Unknown Gear'}</h3>
-                <h4>
-                  <span className="currency">N</span>
-                  {gear.pricePerHour || '0'}
-                  <span>/hour</span>
-                </h4>
-              </div>
-              <div className="equipment_description">
-                <ul>
-                  <li>{gear.description || 'No description available'}</li>
-                </ul>
-              </div>
-              <div className="rent">
-                {gear.is_rented_now ? (
-                  <>
-                    <button
-                      type="button"
-                      style={{ backgroundColor: 'green' }}
-                      disabled
-                    >
-                      Rented until
-                      {' '}
-                      {rentalEndDateTime ? rentalEndDateTime.toLocaleString() : 'N/A'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => dispatch(cancelRentGear(gear.id))}
-                    >
-                      Cancel Rent
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => dispatch(deleteGear(gear.id))}
-                    >
-                      Delete Gear
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <label htmlFor={`duration-${gear.id}`}>
-                      Rental Duration (hours):
-                      <input
-                        id={`duration-${gear.id}`}
-                        type="number"
-                        value={hours}
-                        min="1"
-                        onChange={(e) => setHours(parseInt(e.target.value, 10) || 1)}
-                      />
-                    </label>
-                    <label htmlFor={`datetime-${gear.id}`}>
-                      Rental Date & Time:
-                      <input
-                        id={`datetime-${gear.id}`}
-                        type="datetime-local"
-                        value={dateTime.toISOString().slice(0, 16)}
-                        onChange={handleDateTimeChange}
-                      />
-                    </label>
-                    {currentUser?.email ? (
-                      <RentButton
-                        amount={gear.pricePerHour * hours * 100} // Amount in kobo
-                        email={currentUser.email}
-                        onProceedToPayment={() => Promise.resolve(true)}
-                        onSuccess={(transaction) => handlePaymentSuccess(transaction, gear.id)}
-                      />
-                    ) : (
-                      <p>Please log in to rent this gear.</p>
-                    )}
-                  </>
-                )}
-              </div>
+        {Array.isArray(gears) && gears.map((gear) => (
+          <div className="equipment_card" key={gear.id}>
+            <div className="equipment_img">
+              <img
+                src={gear.imageUrl || 'https://via.placeholder.com/150'}
+                alt={gear.gearType || 'Gear Image'}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/150';
+                }}
+              />
             </div>
-          );
-        })}
+            <div className="equipment_price_per_hour">
+              <h3>{gear.gearType || 'Unknown Gear'}</h3>
+              <h4>
+                <span className="currency">N</span>
+                {gear.pricePerHour || '0'}
+                <span>/hour</span>
+              </h4>
+            </div>
+            <div className="equipment_description">
+              <ul>
+                <li>{gear.description || 'No description available'}</li>
+              </ul>
+            </div>
+            <div className="rent">
+
+              <>
+                <label htmlFor={`duration-${gear.id}`}>
+                  Rental Duration (hours):
+                  <input
+                    id={`duration-${gear.id}`}
+                    type="number"
+                    value={hours}
+                    min="1"
+                    onChange={(e) => setHours(parseInt(e.target.value, 10) || 1)}
+                  />
+                </label>
+                <label htmlFor={`datetime-${gear.id}`}>
+                  Rental Date & Time:
+                  <input
+                    id={`datetime-${gear.id}`}
+                    type="datetime-local"
+                    value={dateTime.toISOString().slice(0, 16)}
+                    onChange={handleDateTimeChange}
+                  />
+                </label>
+                {currentUser?.email ? (
+                  <RentButton
+                    amount={gear.pricePerHour * hours * 100} // Amount in kobo
+                    email={currentUser.email}
+                    onProceedToPayment={() => Promise.resolve(true)}
+                    onSuccess={(transaction) => handlePaymentSuccess(transaction, gear.id)}
+                  />
+                ) : (
+                  <p>Please log in to rent this gear.</p>
+                )}
+              </>
+            </div>
+          </div>
+        ))}
       </ul>
       <Modal
         isOpen={modalIsOpen}

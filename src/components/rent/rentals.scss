@@ -24,22 +24,23 @@
   padding: 20px;
   // margin-bottom: 220px;
   overflow-x: auto; /* Allow horizontal scrolling */
+
+  /* Heading Styles */
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
 }
 
-/* Heading Styles */
-h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 15px;
-}
 
 /* Table Styling */
 table {
   width: 100%;
   // margin:auto;
   border-collapse: collapse;
-  // margin-top: 20px;
+  margin-top: 20px;
 }
 
 thead {

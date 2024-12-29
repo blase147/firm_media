@@ -112,7 +112,7 @@ const Bookings = () => {
                 <td>
                   <button
                     type="button"
-                    className="edit-button"
+                    className="edit-btn"
                     onClick={() => handleUpdateBooking(booking)}
                   >
                     Edit
@@ -122,7 +122,7 @@ const Bookings = () => {
                   {booking.status !== 'Cancelled' ? (
                     <button
                       type="button"
-                      className="cancel-button"
+                      className="cancel-btn"
                       onClick={() => handleCancelBooking(booking.id)}
                     >
                       Cancel

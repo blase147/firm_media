@@ -17,7 +17,7 @@ $background-color: #150102;
 
 // Rental Edit Form Styles
 .rental_edit_form_container {
-    background-color:$background-color;
+  background-color: $background-color;
   padding: 1.5rem;
   border-radius: $border-radius;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@ $background-color: #150102;
         font-size: 0.9rem;
         font-weight: 500;
         margin-bottom: 0.3rem;
-    color: gold;
+        color: gold;
       }
 
       input {
