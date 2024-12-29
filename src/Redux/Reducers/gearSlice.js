@@ -5,45 +5,37 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/v1';
 
+// Fetch all gears
 export const fetchGears = createAsyncThunk('gears/fetchGears', async () => {
   const response = await axios.get(`${BASE_URL}/gears`);
   return response.data;
 });
 
+// Rent a gear
 export const rentGear = createAsyncThunk(
   'gears/rentGear',
   async ({
     gearId, paymentRefId, rentalDuration, rentalDatetime,
   }, { getState }) => {
-    try {
-      // Retrieve the authentication token (modify based on your state management)
-      const { token } = getState().auth; // Assuming you store auth in Redux state
-
-      // Make the POST request with the Authorization header
-      const response = await axios.post(
-        `${BASE_URL}/gears/${gearId}/rent`,
-        {
-          rental: {
-            payment_ref_id: paymentRefId,
-            rental_datetime: rentalDatetime,
-            rental_duration: rentalDuration,
-          },
+    const { token } = getState().auth;
+    const response = await axios.post(
+      `${BASE_URL}/gears/${gearId}/rent`,
+      {
+        rental: {
+          payment_ref_id: paymentRefId,
+          rental_datetime: rentalDatetime,
+          rental_duration: rentalDuration,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token here
-          },
-        },
-      );
-
-      return response.data;
-    } catch (error) {
-      console.error('Error renting gear:', error.response?.data || error.message);
-      throw error;
-    }
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
+    return response.data;
   },
 );
 
+// Update a rented gear
 export const rentGearUpdate = createAsyncThunk(
   'gears/rentGearUpdate',
   async ({ gearId, rentalId, rentalData }, { getState, rejectWithValue }) => {
@@ -51,38 +43,31 @@ export const rentGearUpdate = createAsyncThunk(
       return rejectWithValue('Gear ID or Rental ID is missing');
     }
 
-    try {
-      const { token } = getState().auth; // Ensure token is being retrieved properly
-
-      const response = await axios.put(
-        `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
-        { rental: rentalData },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
+    const { token } = getState().auth;
+    const response = await axios.put(
+      `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
+      { rental: rentalData },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
-      );
-
-      return response.data;
-    } catch (error) {
-      console.error('Error updating rental:', error.response?.data || error.message);
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  },
-);
-
-export const cancelRentGear = createAsyncThunk(
-  'gears/cancelRentGear',
-  async (gearId) => {
-    const response = await axios.post(
-      `${BASE_URL}/gears/${gearId}/cancel_rent`,
+      },
     );
     return response.data;
   },
 );
 
+// Cancel rent
+export const cancelRentGear = createAsyncThunk(
+  'gears/cancelRentGear',
+  async (gearId) => {
+    const response = await axios.post(`${BASE_URL}/gears/${gearId}/cancel_rent`);
+    return response.data;
+  },
+);
+
+// Delete a gear
 export const deleteGear = createAsyncThunk(
   'gears/deleteGear',
   async (gearId) => {
@@ -91,10 +76,21 @@ export const deleteGear = createAsyncThunk(
   },
 );
 
+// Update a gear
+export const updateGear = createAsyncThunk(
+  'gears/updateGear',
+  async ({ gearId, gearData }) => {
+    const response = await axios.put(`${BASE_URL}/gears/${gearId}`, {
+      gear: gearData,
+    });
+    return response.data;
+  },
+);
+
+// Create a gear
 export const createGear = createAsyncThunk(
   'gears/createGear',
   async (gearData) => {
-    // Convert camelCase keys to snake_case keys
     const gearPayload = {
       name: gearData.name,
       gear_type: gearData.gearType,
@@ -110,6 +106,7 @@ export const createGear = createAsyncThunk(
   },
 );
 
+// Gear Slice
 const gearSlice = createSlice({
   name: 'gears',
   initialState: {
@@ -117,11 +114,13 @@ const gearSlice = createSlice({
     status: 'idle',
     rentStatus: 'idle',
     deleteStatus: 'idle',
+    updateStatus: 'idle',
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Fetch Gears
       .addCase(fetchGears.pending, (state) => {
         state.status = 'loading';
       })
@@ -133,6 +132,8 @@ const gearSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
+
+      // Rent Gear
       .addCase(rentGear.pending, (state) => {
         state.rentStatus = 'loading';
       })
@@ -149,6 +150,8 @@ const gearSlice = createSlice({
         state.rentStatus = 'failed';
         state.error = action.error.message;
       })
+
+      // Cancel Rent
       .addCase(cancelRentGear.pending, (state) => {
         state.rentStatus = 'loading';
       })
@@ -165,6 +168,8 @@ const gearSlice = createSlice({
         state.rentStatus = 'failed';
         state.error = action.error.message;
       })
+
+      // Delete Gear
       .addCase(deleteGear.pending, (state) => {
         state.deleteStatus = 'loading';
       })
@@ -178,6 +183,24 @@ const gearSlice = createSlice({
         state.deleteStatus = 'failed';
         state.error = action.error.message;
       })
+
+      // Update Gear
+      .addCase(updateGear.pending, (state) => {
+        state.updateStatus = 'loading';
+      })
+      .addCase(updateGear.fulfilled, (state, action) => {
+        state.updateStatus = 'succeeded';
+        const index = state.gears.findIndex((gear) => gear.id === action.payload.id);
+        if (index !== -1) {
+          state.gears[index] = action.payload;
+        }
+      })
+      .addCase(updateGear.rejected, (state, action) => {
+        state.updateStatus = 'failed';
+        state.error = action.error.message;
+      })
+
+      // Create Gear
       .addCase(createGear.pending, (state) => {
         state.status = 'loading';
       })
