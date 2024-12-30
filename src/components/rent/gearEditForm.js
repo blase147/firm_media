@@ -9,15 +9,32 @@ const GearEditForm = ({ gearId, closeModal }) => {
   const gear = useSelector((state) => state.gears.gears.find((gear) => gear.id === gearId));
 
   // Local state for form data
-  const [name, setName] = useState(gear?.name || '');
-  const [description, setDescription] = useState(gear?.description || '');
-  const [pricePerHour, setPricePerHour] = useState(gear?.pricePerHour || '');
-  const [gearType, setGearType] = useState(gear?.gearType || '');
-  const [imageUrl, setImageUrl] = useState(gear?.imageUrl || '');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [pricePerHour, setPricePerHour] = useState('');
+  const [gearType, setGearType] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+
+  // Populate form fields when gear data is available
+  useEffect(() => {
+    if (gear) {
+      setName(gear.name || '');
+      setDescription(gear.description || '');
+      setPricePerHour(gear.pricePerHour || '');
+      setGearType(gear.gearType || '');
+      setImageUrl(gear.imageUrl || '');
+    }
+  }, [gear]);
 
   // Update Gear logic
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!gearId) {
+      console.error('Error: gearId is undefined');
+      return;
+    }
+
     const updatedGear = {
       id: gearId,
       name,
@@ -27,27 +44,15 @@ const GearEditForm = ({ gearId, closeModal }) => {
       imageUrl,
     };
 
-    dispatch(updateGear(updatedGear))
-      .then(() => {
-        closeModal();
-        alert('Gear updated successfully');
-      })
-      .catch((error) => {
-        console.error('Error updating gear:', error);
-        alert('Failed to update gear');
-      });
-  };
-
-  useEffect(() => {
-    // Ensure the form is populated with the latest gear details
-    if (gear) {
-      setName(gear.name);
-      setDescription(gear.description);
-      setPricePerHour(gear.pricePerHour);
-      setGearType(gear.gearType);
-      setImageUrl(gear.imageUrl);
+    try {
+      await dispatch(updateGear({ gearId, gearData: updatedGear }));
+      closeModal();
+      alert('Gear updated successfully');
+    } catch (error) {
+      console.error('Error updating gear:', error);
+      alert('Failed to update gear');
     }
-  }, [gear]);
+  };
 
   return (
     <div className="gear-edit-form">
@@ -89,7 +94,6 @@ const GearEditForm = ({ gearId, closeModal }) => {
           </label>
         </div>
         <div className="form-group">
-
           <label htmlFor="type">
             Gear Type
             <select
@@ -104,10 +108,8 @@ const GearEditForm = ({ gearId, closeModal }) => {
               <option value="light">Light</option>
               <option value="tripod">Tripod</option>
               <option value="Microphone">Microphone</option>
-              {/* Add other options as needed */}
             </select>
           </label>
-
         </div>
         <div className="form-group">
           <label htmlFor="imageUrl">
@@ -121,7 +123,7 @@ const GearEditForm = ({ gearId, closeModal }) => {
           </label>
         </div>
         <div className="form-buttons">
-          <button type="submit" className="submit-btn" onClick={handleSubmit}>Update</button>
+          <button type="submit" className="submit-btn">Update</button>
           <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
         </div>
       </form>
@@ -131,8 +133,8 @@ const GearEditForm = ({ gearId, closeModal }) => {
 
 // Props validation
 GearEditForm.propTypes = {
-  gearId: PropTypes.string.isRequired, // Ensure gearId is a string and required
-  closeModal: PropTypes.func.isRequired, // Ensure closeModal is a function and required
+  gearId: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default GearEditForm;
