@@ -89,16 +89,25 @@ const GearEditForm = ({ gearId, closeModal }) => {
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="gearType">
+
+          <label htmlFor="type">
             Gear Type
-            <input
-              id="gearType"
-              type="text"
+            <select
+              id="type"
               value={gearType}
               onChange={(e) => setGearType(e.target.value)}
-              required
-            />
+            >
+              <option value="">Choose Gear</option>
+              <option value="camera">Camera</option>
+              <option value="lens">Lens</option>
+              <option value="drone">Drone</option>
+              <option value="light">Light</option>
+              <option value="tripod">Tripod</option>
+              <option value="Microphone">Microphone</option>
+              {/* Add other options as needed */}
+            </select>
           </label>
+
         </div>
         <div className="form-group">
           <label htmlFor="imageUrl">
@@ -112,7 +121,7 @@ const GearEditForm = ({ gearId, closeModal }) => {
           </label>
         </div>
         <div className="form-buttons">
-          <button type="submit" className="submit-btn">Save Changes</button>
+          <button type="submit" className="submit-btn" onClick={handleSubmit}>Update</button>
           <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
         </div>
       </form>

@@ -36,27 +36,27 @@ export const rentGear = createAsyncThunk(
 );
 
 // Update a rented gear
-export const rentGearUpdate = createAsyncThunk(
-  'gears/rentGearUpdate',
-  async ({ gearId, rentalId, rentalData }, { getState, rejectWithValue }) => {
-    if (!gearId || !rentalId) {
-      return rejectWithValue('Gear ID or Rental ID is missing');
-    }
+// export const rentGearUpdate = createAsyncThunk(
+//   'gears/rentGearUpdate',
+//   async ({ gearId, rentalId, rentalData }, { getState, rejectWithValue }) => {
+//     if (!gearId || !rentalId) {
+//       return rejectWithValue('Gear ID or Rental ID is missing');
+//     }
 
-    const { token } = getState().auth;
-    const response = await axios.put(
-      `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
-      { rental: rentalData },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-    return response.data;
-  },
-);
+//     const { token } = getState().auth;
+//     const response = await axios.put(
+//       `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
+//       { rental: rentalData },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           'Content-Type': 'application/json',
+//         },
+//       },
+//     );
+//     return response.data;
+//   },
+// );
 
 // Cancel rent
 export const cancelRentGear = createAsyncThunk(
