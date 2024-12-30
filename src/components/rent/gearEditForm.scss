@@ -1,0 +1,143 @@
+/* gearEditForm.scss */
+
+// Variables
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$success-color: #27ae60;
+$error-color: #e74c3c;
+$background-color: #f8f9fa;
+$border-radius: 8px;
+$transition-speed: 0.3s;
+
+// Mixins
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Form Container
+.gear-edit-form {
+  background: $background-color;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  font-family: 'Arial', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: $primary-color;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: $border-radius;
+      font-size: 0.9rem;
+      transition: border-color $transition-speed ease-in-out;
+
+      &:focus {
+        border-color: $secondary-color;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .error {
+      color: $error-color;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  .form-actions {
+    @include flex-center(row, space-between, center);
+    margin-top: 1.5rem;
+
+    button {
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: $border-radius;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color $transition-speed ease-in-out;
+
+      &.save-btn {
+        background-color: $success-color;
+        color: #fff;
+
+        &:hover {
+          background-color: darken($success-color, 10%);
+        }
+      }
+
+      &.cancel-btn {
+        background-color: $error-color;
+        color: #fff;
+
+        &:hover {
+          background-color: darken($error-color, 10%);
+        }
+      }
+    }
+  }
+
+  .form-status {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+
+    &.success {
+      color: $success-color;
+    }
+
+    &.error {
+      color: $error-color;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 600px) {
+  .gear-edit-form {
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      gap: 0.75rem;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

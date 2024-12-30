@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import {
-  fetchGears, rentGear, deleteGear, updateGear,
+  fetchGears, rentGear, deleteGear,
 } from '../../Redux/Reducers/gearSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
@@ -24,18 +24,18 @@ const GearsList = () => {
   const [paymentReference, setPaymentReference] = useState('');
 
   // Inside GearsList component function
-const [editGearId, setEditGearId] = useState<string | null>(null);
-const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editGearId, setEditGearId] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-const openEditModal = (gearId: string) => {
-  setEditGearId(gearId);
-  setIsEditModalOpen(true);
-};
+  const openEditModal = (gearId) => {
+    setEditGearId(gearId);
+    setIsEditModalOpen(true);
+  };
 
-const closeEditModal = () => {
-  setIsEditModalOpen(false);
-  setEditGearId(null);
-};
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setEditGearId(null);
+  };
 
   // Fetch gears and current user on mount
   useEffect(() => {
@@ -100,36 +100,34 @@ const closeEditModal = () => {
     }));
   };
 
-  // Update Gear Logic
-  const handleUpdateGear = (gear) => {
-    const updatedData = {
-      ...gear,
-      name: prompt('Enter new gear name:', gear.name) || gear.name,
-      description: prompt('Enter new gear description:', gear.description) || gear.description,
-    };
-
-    dispatch(updateGear(updatedData))
-      .then(() => {
-        setSuccessMessage(`Gear ${gear.name} updated successfully.`);
-        dispatch(fetchGears());
-      })
-      .catch((error) => console.error('Failed to update gear:', error));
-  };
-
   // Delete Gear Logic
   const handleGearDelete = (gearId) => {
     if (window.confirm('Are you sure you want to delete this gear?')) {
       dispatch(deleteGear(gearId))
         .then(() => {
           setSuccessMessage(`Gear with ID ${gearId} deleted successfully.`);
-          dispatch(fetchGears());
+          dispatch(fetchGears()); // Refetch gears after deletion
         })
-        .catch((error) => console.error('Failed to delete gear:', error));
+        .catch((error) => {
+          console.error('Failed to delete gear:', error);
+        });
     }
   };
 
-  if (status === 'loading') return <div>Loading...</div>;
-  if (status === 'failed') return <div>{gearsError}</div>;
+  // Loading state handling
+  if (status === 'loading') {
+    return <div>Loading gears...</div>;
+  }
+
+  if (status === 'failed') {
+    return (
+      <div>
+        Error:
+        {' '}
+        {gearsError}
+      </div>
+    );
+  }
 
   return (
     <div id="gearListContainer">
@@ -195,9 +193,9 @@ const closeEditModal = () => {
                       <button
                         type="button"
                         className="update-btn"
-                        onClick={() => handleUpdateGear(gear)}
+                        onClick={() => openEditModal(gear.id)}
                       >
-                        Update
+                        Edit
                       </button>
                       <button
                         type="button"

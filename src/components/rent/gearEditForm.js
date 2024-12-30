@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useDispatch, useSelector } from 'react-redux';
 import { updateGear } from '../../Redux/Reducers/gearSlice';
 import './gearEditForm.scss';
 
-interface GearEditFormProps {
-  gearId: string;
-  closeModal: () => void;
-}
-
-const GearEditForm: React.FC<GearEditFormProps> = ({ gearId, closeModal }) => {
+const GearEditForm = ({ gearId, closeModal }) => {
   const dispatch = useDispatch();
-  const gear = useSelector((state: any) => state.gears.gears.find((gear: any) => gear.id === gearId));
+  const gear = useSelector((state) => state.gears.gears.find((gear) => gear.id === gearId));
 
   // Local state for form data
   const [name, setName] = useState(gear?.name || '');
@@ -20,7 +16,7 @@ const GearEditForm: React.FC<GearEditFormProps> = ({ gearId, closeModal }) => {
   const [imageUrl, setImageUrl] = useState(gear?.imageUrl || '');
 
   // Update Gear logic
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const updatedGear = {
       id: gearId,
@@ -58,52 +54,62 @@ const GearEditForm: React.FC<GearEditFormProps> = ({ gearId, closeModal }) => {
       <h2>Edit Gear</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <label htmlFor="name">
+            Name
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+          <label htmlFor="description">
+            Description
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label htmlFor="pricePerHour">Price Per Hour</label>
-          <input
-            id="pricePerHour"
-            type="number"
-            value={pricePerHour}
-            onChange={(e) => setPricePerHour(e.target.value)}
-            required
-          />
+          <label htmlFor="pricePerHour">
+            Price Per Hour
+            <input
+              id="pricePerHour"
+              type="number"
+              value={pricePerHour}
+              onChange={(e) => setPricePerHour(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label htmlFor="gearType">Gear Type</label>
-          <input
-            id="gearType"
-            type="text"
-            value={gearType}
-            onChange={(e) => setGearType(e.target.value)}
-            required
-          />
+          <label htmlFor="gearType">
+            Gear Type
+            <input
+              id="gearType"
+              type="text"
+              value={gearType}
+              onChange={(e) => setGearType(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label htmlFor="imageUrl">Image URL</label>
-          <input
-            id="imageUrl"
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
+          <label htmlFor="imageUrl">
+            Image URL
+            <input
+              id="imageUrl"
+              type="text"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+          </label>
         </div>
         <div className="form-buttons">
           <button type="submit" className="submit-btn">Save Changes</button>
@@ -112,6 +118,12 @@ const GearEditForm: React.FC<GearEditFormProps> = ({ gearId, closeModal }) => {
       </form>
     </div>
   );
+};
+
+// Props validation
+GearEditForm.propTypes = {
+  gearId: PropTypes.string.isRequired, // Ensure gearId is a string and required
+  closeModal: PropTypes.func.isRequired, // Ensure closeModal is a function and required
 };
 
 export default GearEditForm;
