@@ -12,9 +12,9 @@ const Rentals = () => {
   const [selectedRental, setSelectedRental] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  // State for transaction ID filter
-  const [transactionIdFilter, setTransactionIdFilter] = useState('');
-  const [filteredRentals, setFilteredRentals] = useState([]);
+  // State for transaction ID search
+  const [transactionIdsearch, setTransactionIdsearch] = useState('');
+  const [searchedRentals, setsearchedRentals] = useState([]);
 
   // Fetch rentals on mount
   useEffect(() => {
@@ -23,17 +23,17 @@ const Rentals = () => {
     }
   }, [status, dispatch]);
 
-  // Update filtered rentals whenever rentals or filter changes
+  // Update searched rentals whenever rentals or search changes
   useEffect(() => {
-    if (transactionIdFilter.trim() === '') {
-      setFilteredRentals(rentals);
+    if (transactionIdsearch.trim() === '') {
+      setsearchedRentals(rentals);
     } else {
-      setFilteredRentals(
+      setsearchedRentals(
         // eslint-disable-next-line max-len
-        rentals.filter((rental) => rental.payment_ref_id?.toLowerCase().includes(transactionIdFilter.toLowerCase())),
+        rentals.search((rental) => rental.payment_ref_id?.toLowerCase().includes(transactionIdsearch.toLowerCase())),
       );
     }
-  }, [transactionIdFilter, rentals]);
+  }, [transactionIdsearch, rentals]);
 
   if (status === 'loading') return <div className="loading">Loading...</div>;
   if (status === 'failed') {
@@ -78,14 +78,14 @@ const Rentals = () => {
     <div className="rentals-container">
       <h2>Rentals</h2>
 
-      {/* Transaction ID Filter */}
-      <div className="filter-container">
+      {/* Transaction ID search */}
+      <div className="search-container">
         <input
           type="text"
-          placeholder="Filter by Transaction ID"
-          value={transactionIdFilter}
-          onChange={(e) => setTransactionIdFilter(e.target.value)}
-          className="filter-input"
+          placeholder="search by Transaction ID"
+          value={transactionIdsearch}
+          onChange={(e) => setTransactionIdsearch(e.target.value)}
+          className="search-input"
         />
       </div>
 
@@ -116,8 +116,8 @@ const Rentals = () => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(filteredRentals) && filteredRentals.length > 0 ? (
-            filteredRentals.map((rental) => (
+          {Array.isArray(searchedRentals) && searchedRentals.length > 0 ? (
+            searchedRentals.map((rental) => (
               <tr key={rental.id}>
                 <td>{rental.id}</td>
                 <td>{rental.gear?.id || 'N/A'}</td>
@@ -145,7 +145,7 @@ const Rentals = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="10">No rentals match the filter</td>
+              <td colSpan="10">No rentals match the search</td>
             </tr>
           )}
         </tbody>

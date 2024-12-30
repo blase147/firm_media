@@ -196,12 +196,18 @@
     }
   }
 
-  // .modal-container {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   height: 100%;
-  // }
+.search-container {
+  margin-bottom: 15px;
+  text-align: left;
+
+  .search-input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
 }
 
 .modal {
