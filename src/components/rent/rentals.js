@@ -4,7 +4,9 @@ import { fetchRentals, cancelRental, updateRental } from '../../Redux/Reducers/r
 import './rentals.scss';
 import RentalEditForm from './rentalEditForm';
 
-const Rentals = () => {
+const Rentals = (userRole) => {
+  const canUpdateRentals = userRole === 'admin' || userRole === 'manager';
+  const canCancelRentals = userRole === 'admin';
   const dispatch = useDispatch();
   const { rentals, status, error } = useSelector((state) => state.rentals);
 
@@ -132,14 +134,18 @@ const Rentals = () => {
                 <td>{rental.payment_ref_id || 'N/A'}</td>
                 <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
                 <td>
+                  {canUpdateRentals && (
                   <button type="button" className="edit-btn" onClick={() => handleEdit(rental)}>
                     Edit
                   </button>
+                  )}
                 </td>
                 <td>
+                  {canCancelRentals && (
                   <button type="button" className="cancel-btn" onClick={() => handleCancel(rental.id)}>
                     Cancel
                   </button>
+                  )}
                 </td>
               </tr>
             ))

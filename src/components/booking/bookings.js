@@ -5,7 +5,10 @@ import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice'
 import BookingEditForm from './bokingEditForm'; // Import the new component
 import './bookings.scss'; // Import the SCSS file
 
-const Bookings = () => {
+const Bookings = (userRole) => {
+  const canUpdateBookings = userRole === 'admin' || userRole === 'manager';
+  const canCancelBookings = userRole === 'admin';
+
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Ensure this is declared correctly
 
@@ -137,6 +140,7 @@ const Bookings = () => {
                     : 'N/A'}
                 </td>
                 <td>
+                  {canUpdateBookings && (
                   <button
                     type="button"
                     className="edit-btn"
@@ -147,9 +151,10 @@ const Bookings = () => {
                   >
                     Edit
                   </button>
+                  )}
                 </td>
                 <td>
-                  {booking.status !== 'Cancelled' ? (
+                  {canCancelBookings && booking.status !== 'Cancelled' ? (
                     <button
                       type="button"
                       className="cancel-btn"

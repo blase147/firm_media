@@ -12,7 +12,10 @@ import GearEditForm from './gearEditForm';
 
 Modal.setAppElement('#root'); // Accessibility requirement
 
-const GearsList = () => {
+const GearsList = (userRole) => {
+  const canUpdateGear = userRole === 'admin';
+  const canDeleteGear = userRole === 'admin';
+
   const dispatch = useDispatch();
   const { gears, status, error: gearsError } = useSelector((state) => state.gears);
   const { currentUser } = useSelector((state) => state.auth);
@@ -190,6 +193,7 @@ const GearsList = () => {
                         onProceedToPayment={() => Promise.resolve(true)}
                         onSuccess={(transaction) => handlePaymentSuccess(transaction, gear.id)}
                       />
+                      {canUpdateGear && (
                       <button
                         type="button"
                         className="update-btn"
@@ -197,6 +201,8 @@ const GearsList = () => {
                       >
                         Edit
                       </button>
+                      )}
+                      {canDeleteGear && (
                       <button
                         type="button"
                         className="delete-btn"
@@ -204,6 +210,7 @@ const GearsList = () => {
                       >
                         Delete Gear
                       </button>
+                      )}
                     </>
                   ) : (
                     <p>Please log in to rent this gear.</p>
