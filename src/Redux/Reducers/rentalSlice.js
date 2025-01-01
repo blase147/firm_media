@@ -14,25 +14,58 @@ const getCsrfToken = () => {
 // Thunks for async actions
 
 // Fetch all rentals
-export const fetchRentals = createAsyncThunk('rentals/fetchRentals', async () => {
-  const response = await axios.get(`${API_BASE_URL}/rentals`);
+export const fetchRentals = createAsyncThunk('rentals/fetchRentals', async (_, { getState }) => {
+  const { auth } = getState();
+  const { token } = auth; // JWT Token
+
+  const csrfToken = getCsrfToken(); // CSRF token
+
+  // Ensure Authorization header is set with JWT and CSRF token
+  const response = await axios.get(`${API_BASE_URL}/rentals`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'X-CSRF-Token': csrfToken,
+    },
+  });
   return response.data;
 });
 
-export const fetchGears = createAsyncThunk('gears/fetchGears', async () => {
-  // Make sure the URL is complete and points to the correct gears endpoint
-  const response = await axios.get(`${API_BASE_URL}/gears`);
+// Fetch gears
+export const fetchGears = createAsyncThunk('gears/fetchGears', async (_, { getState }) => {
+  const { auth } = getState();
+  const { token } = auth; // JWT Token
+
+  const csrfToken = getCsrfToken(); // CSRF token
+
+  const response = await axios.get(`${API_BASE_URL}/gears`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'X-CSRF-Token': csrfToken,
+    },
+  });
+
   if (!response.ok) {
     throw new Error('Failed to fetch gears');
   }
-  return response.json();
+  return response.data;
 });
 
 // Create a rental
 export const createRental = createAsyncThunk(
   'rentals/createRental',
-  async (rentalData) => {
-    const response = await axios.post(`${API_BASE_URL}/rentals`, rentalData);
+  async (rentalData, { getState }) => {
+    const { auth } = getState();
+    const { token } = auth; // JWT Token
+
+    const csrfToken = getCsrfToken(); // CSRF token
+
+    const response = await axios.post(`${API_BASE_URL}/rentals`, rentalData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
+    });
     return response.data;
   },
 );
@@ -44,8 +77,10 @@ export const updateRental = createAsyncThunk(
     try {
       if (!rentalId) throw new Error('rentalId is missing');
 
-      const { token } = getState().auth;
-      const csrfToken = getCsrfToken();
+      const { auth } = getState();
+      const { token } = auth; // JWT Token
+
+      const csrfToken = getCsrfToken(); // CSRF token
 
       const response = await axios.put(
         `${API_BASE_URL}/rentals/${rentalId}`,
@@ -68,8 +103,19 @@ export const updateRental = createAsyncThunk(
 );
 
 // Cancel a rental
-export const cancelRental = createAsyncThunk('rentals/cancelRental', async (rentalId) => {
-  await axios.delete(`${API_BASE_URL}/rentals/${rentalId}`);
+export const cancelRental = createAsyncThunk('rentals/cancelRental', async (rentalId, { getState }) => {
+  const { auth } = getState();
+  const { token } = auth; // JWT Token
+
+  const csrfToken = getCsrfToken(); // CSRF token
+
+  await axios.delete(`${API_BASE_URL}/rentals/${rentalId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'X-CSRF-Token': csrfToken,
+    },
+  });
+
   return rentalId; // Returning rentalId to remove it from the state
 });
 
@@ -113,10 +159,6 @@ const rentalsSlice = createSlice({
       // Cancel Rental
       .addCase(cancelRental.fulfilled, (state, action) => {
         state.rentals = state.rentals.filter((rental) => rental.id !== action.payload);
-      })
-
-      .addCase(fetchGears.fulfilled, (state, action) => {
-        state.gears = action.payload;
       });
   },
 });
