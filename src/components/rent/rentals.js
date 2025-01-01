@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRentals, cancelRental, updateRental } from '../../Redux/Reducers/rentalSlice';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './rentals.scss';
 import RentalEditForm from './rentalEditForm';
 
-const Rentals = (userRole) => {
-  const canUpdateRentals = userRole === 'admin' || userRole === 'manager';
-  const canCancelRentals = userRole === 'admin';
+const Rentals = () => {
   const dispatch = useDispatch();
   const { rentals, status, error } = useSelector((state) => state.rentals);
+  const currentUser = useSelector((state) => state.auth.currentUser) || {};
 
-  // State for selected rental and edit form visibility
   const [selectedRental, setSelectedRental] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [transactionIdSearch, setTransactionIdSearch] = useState('');
+  const [searchedRentals, setSearchedRentals] = useState([]);
+  const [loading, setLoading] = useState(true); // Added missing loading state
 
-  // State for transaction ID search
-  const [transactionIdsearch, setTransactionIdsearch] = useState('');
-  const [searchedRentals, setsearchedRentals] = useState([]);
+  const canUpdateRental = currentUser?.role === 'admin' || currentUser?.role === 'manager';
+  const canCancelRental = currentUser?.role === 'admin';
+
+  // Fetch current user on mount
+  useEffect(() => {
+    dispatch(fetchCurrentUser())
+      .then(() => {
+        setLoading(false); // Stop loading after user data is fetched
+        console.log('Current User fetched:', currentUser);
+        console.log('User Role:', currentUser?.role);
+      })
+      .catch((err) => {
+        setLoading(false); // Stop loading even if there's an error
+        console.error('Error fetching current user:', err);
+      });
+  }, [dispatch]);
 
   // Fetch rentals on mount
   useEffect(() => {
@@ -25,23 +40,27 @@ const Rentals = (userRole) => {
     }
   }, [status, dispatch]);
 
-  // Update searched rentals whenever rentals or search changes
+  // Search rentals based on transaction ID
   useEffect(() => {
-    if (transactionIdsearch.trim() === '') {
-      setsearchedRentals(rentals);
+    if (transactionIdSearch.trim() === '') {
+      setSearchedRentals(rentals);
     } else {
-      setsearchedRentals(
+      setSearchedRentals(
         // eslint-disable-next-line max-len
-        rentals.search((rental) => rental.payment_ref_id?.toLowerCase().includes(transactionIdsearch.toLowerCase())),
+        rentals.filter((rental) => rental.payment_ref_id?.toLowerCase().includes(transactionIdSearch.toLowerCase())),
       );
     }
-  }, [transactionIdsearch, rentals]);
+  }, [transactionIdSearch, rentals]);
 
-  if (status === 'loading') return <div className="loading">Loading...</div>;
+  if (loading || status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
   if (status === 'failed') {
     return (
       <div className="error">
         Error:
+        {' '}
         {error}
       </div>
     );
@@ -84,9 +103,9 @@ const Rentals = (userRole) => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="search by Transaction ID"
-          value={transactionIdsearch}
-          onChange={(e) => setTransactionIdsearch(e.target.value)}
+          placeholder="Search by Transaction ID"
+          value={transactionIdSearch}
+          onChange={(e) => setTransactionIdSearch(e.target.value)}
           className="search-input"
         />
       </div>
@@ -134,17 +153,17 @@ const Rentals = (userRole) => {
                 <td>{rental.payment_ref_id || 'N/A'}</td>
                 <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
                 <td>
-                  {canUpdateRentals && (
-                  <button type="button" className="edit-btn" onClick={() => handleEdit(rental)}>
-                    Edit
-                  </button>
+                  {canUpdateRental && (
+                    <button type="button" className="edit-btn" onClick={() => handleEdit(rental)}>
+                      Edit
+                    </button>
                   )}
                 </td>
                 <td>
-                  {canCancelRentals && (
-                  <button type="button" className="cancel-btn" onClick={() => handleCancel(rental.id)}>
-                    Cancel
-                  </button>
+                  {canCancelRental && (
+                    <button type="button" className="cancel-btn" onClick={() => handleCancel(rental.id)}>
+                      Cancel
+                    </button>
                   )}
                 </td>
               </tr>

@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; // Ensure proper import
 import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import BookingEditForm from './bokingEditForm'; // Import the new component
 import './bookings.scss'; // Import the SCSS file
 
 const Bookings = (userRole) => {
-  const canUpdateBookings = userRole === 'admin' || userRole === 'manager';
-  const canCancelBookings = userRole === 'admin';
-
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Ensure this is declared correctly
 
   const { bookings, status, error } = useSelector((state) => state.bookings);
-  const { currentUser } = useSelector((state) => state.auth);
+  const currentUser = useSelector((state) => state.auth.currentUser) || {};
+
+  const canUpdateBooking = currentUser?.role === 'admin' || userRole === 'manager';
+  const canCancelBooking = currentUser?.role === 'admin';
 
   // State to handle showing the edit form
   const [isEditing, setIsEditing] = useState(false);
@@ -22,12 +23,28 @@ const Bookings = (userRole) => {
   // State to handle the search query
   const [searchQuery, setSearchQuery] = useState('');
 
+  const [loading, setLoading] = useState(true);
+
   // Fetch Bookings
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchBookings());
     }
+    dispatch(fetchCurrentUser())
+      .then(() => {
+        setLoading(false); // Set loading to false after user data is fetched
+        console.log('Current User fetched:', currentUser); // Check if currentUser is being fetched correctly
+        console.log('User Role:', currentUser?.role); // Log the role value
+      })
+      .catch((error) => {
+        setLoading(false); // Stop loading even if there's an error
+        console.error('Error fetching current user:', error);
+      });
   }, [status, dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading message while fetching user data
+  }
 
   // Handle Row Click (Navigate to Receipt Page)
   const handleRowClick = (bookingId) => {
@@ -140,7 +157,7 @@ const Bookings = (userRole) => {
                     : 'N/A'}
                 </td>
                 <td>
-                  {canUpdateBookings && (
+                  {canUpdateBooking && (
                   <button
                     type="button"
                     className="edit-btn"
@@ -154,7 +171,7 @@ const Bookings = (userRole) => {
                   )}
                 </td>
                 <td>
-                  {canCancelBookings && booking.status !== 'Cancelled' ? (
+                  { canCancelBooking && booking.status !== 'Cancelled' ? (
                     <button
                       type="button"
                       className="cancel-btn"
