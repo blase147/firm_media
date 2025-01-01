@@ -54,7 +54,7 @@ export const fetchCurrentUser = createAsyncThunk('auth/fetchCurrentUser', async 
     });
 
     if (response.status === 200) {
-      return response.data;
+      return response.data; // Include 'role' in the response data
     }
 
     return thunkAPI.rejectWithValue('Request failed');
@@ -69,6 +69,7 @@ const authSlice = createSlice({
     id: null,
     name: null,
     email: null,
+    role: null, // Add role to the initial state
     token: localStorage.getItem('token') || null,
     isLoading: false,
     error: null,
@@ -83,6 +84,7 @@ const authSlice = createSlice({
       state.id = null;
       state.name = null;
       state.email = null;
+      state.role = null; // Clear the role when logging out
       state.token = null;
       state.loggedIn = false;
       state.currentUser = null;
@@ -108,6 +110,7 @@ const authSlice = createSlice({
         state.id = null;
         state.name = null;
         state.email = null;
+        state.role = null; // Ensure role is cleared when logged out
         state.token = null;
         state.currentUser = null;
         localStorage.removeItem('token');
@@ -117,6 +120,7 @@ const authSlice = createSlice({
         state.id = null;
         state.name = null;
         state.email = null;
+        state.role = null; // Ensure role is cleared when logged out
         state.token = null;
         state.currentUser = null;
         localStorage.removeItem('token');
@@ -130,6 +134,7 @@ const authSlice = createSlice({
         state.id = payload.id;
         state.name = payload.full_name;
         state.email = payload.email;
+        state.role = payload.role; // Assign the role here
         state.currentUser = payload;
         state.loggedIn = true;
       })

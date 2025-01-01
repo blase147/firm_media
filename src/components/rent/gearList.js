@@ -12,13 +12,10 @@ import GearEditForm from './gearEditForm';
 
 Modal.setAppElement('#root'); // Accessibility requirement
 
-const GearsList = (userRole) => {
-  const canUpdateGear = userRole === 'admin';
-  const canDeleteGear = userRole === 'admin';
-
+const GearsList = () => {
   const dispatch = useDispatch();
   const { gears, status, error: gearsError } = useSelector((state) => state.gears);
-  const { currentUser } = useSelector((state) => state.auth);
+  const currentUser = useSelector((state) => state.auth.currentUser) || {};
 
   const [rentalDetails, setRentalDetails] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
@@ -41,10 +38,34 @@ const GearsList = (userRole) => {
   };
 
   // Fetch gears and current user on mount
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchGears());
-    dispatch(fetchCurrentUser());
+    if (status === 'idle') {
+      dispatch(fetchGears());
+    }
+
+    dispatch(fetchCurrentUser())
+      .then(() => {
+        setLoading(false); // Set loading to false after user data is fetched
+        console.log('Current User fetched:', currentUser); // Check if currentUser is being fetched correctly
+        console.log('User Role:', currentUser?.role); // Log the role value
+      })
+      .catch((error) => {
+        setLoading(false); // Stop loading even if there's an error
+        console.error('Error fetching current user:', error);
+      });
   }, [status, dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading message while fetching user data
+  }
+
+  const canUpdateGear = currentUser?.role === 'admin'; // Check if the role is 'admin'
+  const canDeleteGear = currentUser?.role === 'admin'; // Check if the role is 'admin'
+
+  console.log('Can update gear:', canUpdateGear); // Logs if the user can update gear
+  console.log('Can delete gear:', canDeleteGear); // Logs if the user can delete gear
 
   // Handle payment success
   const handlePaymentSuccess = async (transaction, gearId) => {
@@ -113,6 +134,7 @@ const GearsList = (userRole) => {
         })
         .catch((error) => {
           console.error('Failed to delete gear:', error);
+          console.log(currentUser?.role); // Check if 'admin' is properly set
         });
     }
   };
