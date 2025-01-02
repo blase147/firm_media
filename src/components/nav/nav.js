@@ -28,6 +28,10 @@ const Nav = () => {
     navigate('/login');
   };
 
+  const handleAdminDashboardRedirect = () => {
+    navigate('/adminDashboard'); // Navigates to the Admin Dashboard
+  };
+
   let navContent;
   if (isLoading) {
     navContent = <span>Loading...</span>;
@@ -38,6 +42,11 @@ const Nav = () => {
           Logout
         </button>
         <span>{currentUser?.email || 'Current User Absent'}</span>
+        {currentUser?.role === 'admin' && (
+          <button type="button" onClick={handleAdminDashboardRedirect}>
+            Admin Dashboard
+          </button>
+        )}
       </div>
     );
   } else {

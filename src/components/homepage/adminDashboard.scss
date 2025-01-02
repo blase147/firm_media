@@ -1,0 +1,43 @@
+.admin-tabs-container {
+  width: 100%;
+  padding: 20px;
+  background-color: #140101;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 60%;
+  margin: auto;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s ease;
+  width: 60%;
+}
+
+.tabs button.active {
+  background-color: #007BFF;
+  color: white;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.insight-tab {
+  text-align: center;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: #ddd;
+}
