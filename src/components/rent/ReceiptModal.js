@@ -1,103 +1,136 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import './ReceiptModal.scss'; // Add your custom styling here
+import './receipt.scss';
 
-const ReceiptModal = ({ rental, onClose }) => {
-  // Check if rental object is available before rendering
-  if (!rental) {
-    return <div className="receipt-modal">No rental details available</div>;
+const ReceiptModal = ({ onClose }) => {
+  const { rentalId } = useParams(); // Get rentalId from URL
+  const [rentalData, setRentalData] = useState(null); // Renamed state to avoid conflict
+  // eslint-disable-next-line max-len
+  const { rentals = [], gears = [] } = useSelector((state) => state.rentals); // Safe destructuring with default values
+
+  useEffect(() => {
+    if (!rentalId) return;
+
+    // Find the rental based on the rentalId
+    const rentalDetails = rentals.find((rental) => rental.id === parseInt(rentalId, 10));
+    setRentalData(rentalDetails);
+  }, [rentalId, rentals]);
+
+  if (!rentalData) {
+    return <div>Rental not found.</div>;
   }
 
-  // Accessibility handler for the overlay
-  const handleOverlayClick = (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      onClose(); // Close on 'Enter' or 'Space' key press
-    }
-    if (event.type === 'click') {
-      onClose(); // Close on mouse click
-    }
+  // Get the gear details using gearId
+  const gear = gears.find((gear) => gear.id === rentalData.gearId);
+
+  if (!gear) {
+    return <div>Gear not found.</div>;
+  }
+
+  const {
+    user, rentalDatetime, rentalDuration, rentalEndDatetime, id,
+  } = rentalData;
+  const pricePerHour = gear?.pricePerHour || 0;
+  const cumulativePrice = pricePerHour * rentalDuration || 0;
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return Number.isNaN(date.getTime()) ? 'N/A' : date.toLocaleString();
+  };
+
+  const formattedRentalDate = rentalDatetime ? formatDate(rentalDatetime) : 'N/A';
+  const formattedRentalEndDate = rentalEndDatetime ? formatDate(rentalEndDatetime) : 'N/A';
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleDownload = () => {
+    alert('Download functionality not implemented yet!');
+  };
+
+  const handleShare = () => {
+    alert('Share functionality not implemented yet!');
   };
 
   return (
     <div className="receipt-modal">
-      <div
-        className="modal-overlay"
-        onClick={handleOverlayClick} // Click event
-        onKeyDown={handleOverlayClick} // Keyboard event (to catch 'Enter' and 'Space')
-        role="button" // Make the div behave like a button
-        tabIndex="0" // Make it focusable and part of the tabbing sequence
-        aria-label="Close modal"
-      />
       <div className="modal-content">
         <button type="button" className="close-btn" onClick={onClose}>X</button>
-        <h3>
-          Receipt for Rental #
-          {rental.id}
-        </h3>
+        <h2>Rental Receipt</h2>
         <p>
-          <strong>Customer Name:</strong>
+          <strong>Rental ID:</strong>
           {' '}
-          {rental.user?.full_name || 'N/A'}
+          {id}
+        </p>
+        <img
+          src={gear?.imageUrl || 'https://via.placeholder.com/150'}
+          alt="Gear"
+          className="gear-image"
+        />
+        <p>
+          <strong>Gear ID:</strong>
+          {' '}
+          {gear?.id || 'N/A'}
+        </p>
+        <p>
+          <strong>Gear Type:</strong>
+          {' '}
+          {gear?.gearType || 'N/A'}
+        </p>
+        <p>
+          <strong>Description:</strong>
+          {' '}
+          {gear?.description || 'N/A'}
+        </p>
+        <p>
+          <strong>Price per Hour:</strong>
+          {' '}
+          ₦
+          {pricePerHour.toLocaleString() || 'N/A'}
+        </p>
+        <p>
+          <strong>Cumulative Price:</strong>
+          {' '}
+          ₦
+          {cumulativePrice.toLocaleString()}
+        </p>
+        <p>
+          <strong>User Name:</strong>
+          {' '}
+          {user?.fullName || 'N/A'}
         </p>
         <p>
           <strong>Rental Date:</strong>
           {' '}
-          {new Date(rental.rental_datetime).toLocaleString()}
+          {formattedRentalDate}
         </p>
         <p>
           <strong>Rental Duration:</strong>
           {' '}
-          {rental.rental_duration}
+          {rentalDuration}
           {' '}
           hour(s)
         </p>
         <p>
-          <strong>Rental End:</strong>
+          <strong>Rental End Date:</strong>
           {' '}
-          {new Date(rental.rental_end_datetime).toLocaleString()}
+          {formattedRentalEndDate}
         </p>
-        <p>
-          <strong>Payment Ref ID:</strong>
-          {' '}
-          {rental.payment_ref_id || 'N/A'}
-        </p>
-        <p>
-          <strong>Amount Paid:</strong>
-          {' '}
-          $
-          {rental.amount_paid ? rental.amount_paid.toFixed(2) : 'N/A'}
-        </p>
-        <p>
-          <strong>Status:</strong>
-          {' '}
-          {rental.is_rented_now ? 'In use now' : 'Not in use yet'}
-        </p>
-        {/* Add more rental details as needed */}
+        <div className="receipt-buttons">
+          <button type="button" onClick={handlePrint}>Print</button>
+          <button type="button" onClick={handleDownload}>Download</button>
+          <button type="button" onClick={handleShare}>Share</button>
+        </div>
       </div>
     </div>
   );
 };
 
-// Prop validation using PropTypes
 ReceiptModal.propTypes = {
-  rental: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      full_name: PropTypes.string,
-    }),
-    rental_datetime: PropTypes.string.isRequired,
-    rental_duration: PropTypes.number.isRequired,
-    rental_end_datetime: PropTypes.string.isRequired,
-    payment_ref_id: PropTypes.string,
-    amount_paid: PropTypes.number,
-    is_rented_now: PropTypes.bool.isRequired,
-  }),
   onClose: PropTypes.func.isRequired,
-};
-
-// Default props to avoid missing rental prop
-ReceiptModal.defaultProps = {
-  rental: null,
 };
 
 export default ReceiptModal;
