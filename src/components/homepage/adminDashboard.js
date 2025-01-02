@@ -11,8 +11,8 @@ const AdminTabsInterface = () => {
     totalRentals: 0,
     totalBookings: 0,
   });
-  const [rentalsData, setRentalsData] = useState([]); // State to store rental data
-  const [bookingsData, setBookingsData] = useState([]); // State to store booking data
+  const [rentalsData, setRentalsData] = useState([]);
+  const [bookingsData, setBookingsData] = useState([]);
   const [loadingRentals, setLoadingRentals] = useState(true);
   const [loadingBookings, setLoadingBookings] = useState(true);
   const [error, setError] = useState(null);
@@ -65,7 +65,6 @@ const AdminTabsInterface = () => {
       const bookingsData = await bookingsRes.json();
       console.log('Bookings Data:', bookingsData); // Inspect the data
 
-      // Access the 'data' field containing the bookings array
       setBookingsData(bookingsData.data || []); // Set bookings data
       setInsight({
         totalBookings: Array.isArray(bookingsData.data) ? bookingsData.data.length : 0,
@@ -126,7 +125,7 @@ const AdminTabsInterface = () => {
           <div className="insight-tab">
             <h2>Data Insight</h2>
             {(loadingRentals || loadingBookings) && <p>Loading insights...</p>}
-            {!loadingRentals && !loadingBookings && error && <p className="error-message">{error}</p>}
+            {error && <p className="error-message">{error}</p>}
             {!loadingRentals && !loadingBookings && !error && (
               <>
                 <p>
