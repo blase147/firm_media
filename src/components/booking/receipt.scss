@@ -1,0 +1,35 @@
+.receipt-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.receipt-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.receipt-details {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.receipt-details div {
+  margin-bottom: 8px;
+}
+
+.receipt-details strong {
+  font-weight: bold;
+}
+
+.receipt-footer {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.receipt-footer p {
+  margin: 4px 0;
+}

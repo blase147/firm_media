@@ -4,6 +4,7 @@ import Rentals from '../rent/rentals';
 import Bookings from '../booking/bookings';
 import './adminDashboard.scss';
 import Nav from '../nav/nav';
+import FooterBody from '../footer body/footer_body';
 
 const AdminTabsInterface = () => {
   const [activeTab, setActiveTab] = useState('insight');
@@ -147,6 +148,7 @@ const AdminTabsInterface = () => {
         {activeTab === 'rentals' && <Rentals rentalsData={rentalsData} />}
         {activeTab === 'bookings' && <Bookings bookingsData={bookingsData} />}
       </div>
+      <FooterBody />
     </div>
   );
 };

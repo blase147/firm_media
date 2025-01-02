@@ -23,7 +23,8 @@ import Login from './components/device/login';
 import SignUp from './components/device/signup';
 import RentalEditForm from './components/rent/rentalEditForm';
 import BookingEditForm from './components/booking/bokingEditForm';
-import Receipt from './components/Receipt/Receipt';
+import Receipt from './components/booking/receipt';
+import ReceiptModal from './components/rent/ReceiptModal';
 import AdminDashboard from './components/homepage/adminDashboard';
 
 const BookingFormRoute = () => {
@@ -58,6 +59,7 @@ const App = () => (
         <Route path="/rentalEditForm" element={<RentalEditForm />} />
         <Route path="/bookingEditForm" element={<BookingEditForm />} />
         <Route path="/receipt/:bookingId" element={<Receipt />} />
+        <Route path="/receiptModal/:rentalId" element={<ReceiptModal />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/oauth2callback" element={<OAuthCallback />} />
         <Route path="*" element={<div>404 Not Found</div>} />

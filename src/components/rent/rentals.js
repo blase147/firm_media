@@ -1,46 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchRentals, cancelRental, updateRental } from '../../Redux/Reducers/rentalSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './rentals.scss';
 import RentalEditForm from './rentalEditForm';
+import ReceiptModal from './ReceiptModal'; // Import the Receipt Modal component
 
 const Rentals = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize useNavigate hook for navigation
   const { rentals, status, error } = useSelector((state) => state.rentals);
   const currentUser = useSelector((state) => state.auth.currentUser) || {};
 
   const [selectedRental, setSelectedRental] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isReceiptOpen, setIsReceiptOpen] = useState(false); // New state for receipt modal
   const [transactionIdSearch, setTransactionIdSearch] = useState('');
   const [searchedRentals, setSearchedRentals] = useState([]);
-  const [loading, setLoading] = useState(true); // Added missing loading state
+  const [loading, setLoading] = useState(true);
 
   const canUpdateRental = currentUser?.role === 'admin' || currentUser?.role === 'manager';
   const canCancelRental = currentUser?.role === 'admin';
 
-  // Fetch current user on mount
+  // Fetch the current user and rentals
   useEffect(() => {
     dispatch(fetchCurrentUser())
       .then(() => {
-        setLoading(false); // Stop loading after user data is fetched
-        console.log('Current User fetched:', currentUser);
-        console.log('User Role:', currentUser?.role);
+        setLoading(false);
       })
       .catch((err) => {
-        setLoading(false); // Stop loading even if there's an error
+        setLoading(false);
         console.error('Error fetching current user:', err);
       });
   }, [dispatch]);
 
-  // Fetch rentals on mount
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchRentals());
     }
   }, [status, dispatch]);
 
-  // Search rentals based on transaction ID
+  // Handle transaction ID search filtering
   useEffect(() => {
     if (transactionIdSearch.trim() === '') {
       setSearchedRentals(rentals);
@@ -66,18 +67,16 @@ const Rentals = () => {
     );
   }
 
-  // Cancel a rental
+  // Handle rental actions (cancel, edit, update)
   const handleCancel = (rentalId) => {
     dispatch(cancelRental(rentalId));
   };
 
-  // Open edit form
   const handleEdit = (rental) => {
     setSelectedRental(rental);
     setIsEditing(true);
   };
 
-  // Update rental
   const handleUpdate = () => {
     if (!selectedRental) {
       console.error('No rental selected for update');
@@ -89,10 +88,18 @@ const Rentals = () => {
     setIsEditing(false);
   };
 
-  // Close edit form
   const handleCloseEditForm = () => {
     setIsEditing(false);
     setSelectedRental(null);
+  };
+
+  // Handle Row Click (Navigate to Receipt Page)
+  const handleRowClick = (rentalId) => {
+    if (rentalId) {
+      navigate(`/receiptModal/${rentalId}`);
+    } else {
+      console.warn('Rental ID is missing. Navigation skipped.');
+    }
   };
 
   return (
@@ -139,7 +146,11 @@ const Rentals = () => {
         <tbody>
           {Array.isArray(searchedRentals) && searchedRentals.length > 0 ? (
             searchedRentals.map((rental) => (
-              <tr key={rental.id}>
+              <tr
+                key={rental.id}
+                onClick={() => handleRowClick(rental.id)} // Handle row click here
+                style={{ cursor: 'pointer' }}
+              >
                 <td>{rental.id}</td>
                 <td>{rental.gear?.id || 'N/A'}</td>
                 <td>{rental.user?.full_name || 'N/A'}</td>
@@ -154,14 +165,22 @@ const Rentals = () => {
                 <td>{rental.is_rented_now ? 'In use now' : 'Not in use yet'}</td>
                 <td>
                   {canUpdateRental && (
-                    <button type="button" className="edit-btn" onClick={() => handleEdit(rental)}>
+                    <button
+                      type="button"
+                      className="edit-btn"
+                      onClick={(e) => { e.stopPropagation(); handleEdit(rental); }}
+                    >
                       Edit
                     </button>
                   )}
                 </td>
                 <td>
                   {canCancelRental && (
-                    <button type="button" className="cancel-btn" onClick={() => handleCancel(rental.id)}>
+                    <button
+                      type="button"
+                      className="cancel-btn"
+                      onClick={(e) => { e.stopPropagation(); handleCancel(rental.id); }}
+                    >
                       Cancel
                     </button>
                   )}
@@ -175,6 +194,11 @@ const Rentals = () => {
           )}
         </tbody>
       </table>
+
+      {/* Receipt Modal */}
+      {isReceiptOpen && selectedRental && (
+        <ReceiptModal rental={selectedRental} onClose={setIsReceiptOpen} />
+      )}
     </div>
   );
 };
