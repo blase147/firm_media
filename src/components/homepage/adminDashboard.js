@@ -11,17 +11,19 @@ const AdminTabsInterface = () => {
     totalRentals: 0,
     totalBookings: 0,
   });
-  const [loading, setLoading] = useState(true); // Ensure loading starts as true
+  const [rentalsData, setRentalsData] = useState([]); // State to store rental data
+  const [bookingsData, setBookingsData] = useState([]); // State to store booking data
+  const [loadingRentals, setLoadingRentals] = useState(true);
+  const [loadingBookings, setLoadingBookings] = useState(true);
   const [error, setError] = useState(null);
 
   const BASE_URL = 'http://localhost:5000/api/v1'; // Adjust to match your backend URL
 
-  const fetchInsightData = async () => {
-    setLoading(true); // Start loading when the fetch begins
+  // Fetch Rentals Data
+  const fetchRentalsData = async () => {
+    setLoadingRentals(true);
     try {
       const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-
-      // Fetch Rentals
       const rentalsRes = await fetch(`${BASE_URL}/rentals`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,8 +33,25 @@ const AdminTabsInterface = () => {
 
       if (!rentalsRes.ok) throw new Error('Failed to fetch rentals data');
       const rentalsData = await rentalsRes.json();
+      setRentalsData(rentalsData); // Update state with rentals data
+      setInsight((prevState) => ({
+        ...prevState,
+        totalRentals: Array.isArray(rentalsData) ? rentalsData.length : 0,
+      }));
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching rentals:', err.message);
+      setError('Failed to load rentals. Please try again.');
+    } finally {
+      setLoadingRentals(false);
+    }
+  };
 
-      // Fetch Bookings
+  // Fetch Bookings Data
+  const fetchBookingsData = async () => {
+    setLoadingBookings(true);
+    try {
+      const token = localStorage.getItem('token');
       const bookingsRes = await fetch(`${BASE_URL}/bookings`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,27 +59,30 @@ const AdminTabsInterface = () => {
         },
       });
 
-      if (!bookingsRes.ok) throw new Error('Failed to fetch bookings data');
+      if (!bookingsRes.ok) {
+        throw new Error(`Failed to fetch bookings: ${bookingsRes.statusText}`);
+      }
       const bookingsData = await bookingsRes.json();
+      console.log('Bookings Data:', bookingsData); // Inspect the data
 
-      // Set Insight Data
+      // Access the 'data' field containing the bookings array
+      setBookingsData(bookingsData.data || []); // Set bookings data
       setInsight({
-        totalRentals: Array.isArray(rentalsData) ? rentalsData.length : 0,
-        totalBookings: Array.isArray(bookingsData) ? bookingsData.length : 0,
+        totalBookings: Array.isArray(bookingsData.data) ? bookingsData.data.length : 0,
       });
-
       setError(null);
     } catch (err) {
-      console.error('Error fetching insights:', err.message);
-      setError('Failed to load insights. Please try again.');
+      console.error('Error fetching bookings:', err.message);
+      setError('Failed to load bookings. Please try again.');
     } finally {
-      setLoading(false); // Stop loading after the fetch is complete
+      setLoadingBookings(false);
     }
   };
 
-  // Fetch Insight Data on Component Mount
+  // Fetch Data on Component Mount
   useEffect(() => {
-    fetchInsightData();
+    fetchRentalsData();
+    fetchBookingsData();
   }, []);
 
   return (
@@ -103,9 +125,9 @@ const AdminTabsInterface = () => {
         {activeTab === 'insight' && (
           <div className="insight-tab">
             <h2>Data Insight</h2>
-            {loading && <p>Loading insights...</p>}
-            {!loading && error && <p className="error-message">{error}</p>}
-            {!loading && !error && (
+            {(loadingRentals || loadingBookings) && <p>Loading insights...</p>}
+            {!loadingRentals && !loadingBookings && error && <p className="error-message">{error}</p>}
+            {!loadingRentals && !loadingBookings && !error && (
               <>
                 <p>
                   <strong>Total Rentals:</strong>
@@ -123,10 +145,8 @@ const AdminTabsInterface = () => {
         )}
 
         {activeTab === 'gears' && <GearsForm />}
-
-        {activeTab === 'rentals' && <Rentals />}
-
-        {activeTab === 'bookings' && <Bookings />}
+        {activeTab === 'rentals' && <Rentals rentalsData={rentalsData} />}
+        {activeTab === 'bookings' && <Bookings bookingsData={bookingsData} />}
       </div>
     </div>
   );
