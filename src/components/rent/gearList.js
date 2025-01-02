@@ -70,7 +70,7 @@ const GearsList = () => {
   // Handle payment success
   const handlePaymentSuccess = async (transaction, gearId) => {
     try {
-      const { rentalDuration, rentalDatetime } = rentalDetails[gearId] || {};
+      const { rentalDuration = 1, rentalDatetime } = rentalDetails[gearId] || {};
       const resultAction = await dispatch(
         rentGear({
           gearId,
@@ -91,7 +91,7 @@ const GearsList = () => {
           rentalId: resultAction.payload.rentalId || resultAction.payload.id,
           customerName: currentUser?.name || 'Unknown Customer',
           rentalEndDatetime: new Date(new Date(rentalDatetime).getTime()
-           + rentalDuration * 60 * 60 * 1000),
+          + rentalDuration * 60 * 60 * 1000),
         };
 
         setSelectedGear(rentalData);
@@ -118,9 +118,15 @@ const GearsList = () => {
   };
 
   const handleDurationChange = (event, gearId) => {
+    const value = parseInt(event.target.value, 10);
+
     setRentalDetails((prevDetails) => ({
       ...prevDetails,
-      [gearId]: { ...prevDetails[gearId], rentalDuration: parseInt(event.target.value, 10) || 1 },
+      [gearId]: {
+        ...prevDetails[gearId],
+        // eslint-disable-next-line no-restricted-globals
+        rentalDuration: !isNaN(value) && value > 0 ? value : 1, // Ensure valid positive integer
+      },
     }));
   };
 
@@ -196,6 +202,7 @@ const GearsList = () => {
                     onChange={(e) => handleDurationChange(e, gear.id)}
                   />
                 </label>
+
                 <label htmlFor={`datetime-${gear.id}`}>
                   Rental Date & Time:
                   <input

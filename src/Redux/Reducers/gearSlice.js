@@ -16,47 +16,34 @@ export const rentGear = createAsyncThunk(
   'gears/rentGear',
   async ({
     gearId, paymentRefId, rentalDuration, rentalDatetime,
-  }, { getState }) => {
-    const { token } = getState().auth;
-    const response = await axios.post(
-      `${BASE_URL}/gears/${gearId}/rent`,
-      {
-        rental: {
-          payment_ref_id: paymentRefId,
-          rental_datetime: rentalDatetime,
-          rental_duration: rentalDuration,
+  }, { getState, rejectWithValue }) => {
+    try {
+      const { token } = getState().auth;
+
+      if (!gearId || !paymentRefId || !rentalDuration || !rentalDatetime) {
+        throw new Error('All fields (gearId, paymentRefId, rentalDuration, rentalDatetime) are required');
+      }
+
+      const response = await axios.post(
+        `${BASE_URL}/gears/${gearId}/rent`,
+        {
+          rental: {
+            payment_ref_id: paymentRefId,
+            rental_datetime: rentalDatetime,
+            rental_duration: rentalDuration,
+          },
         },
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
-    return response.data;
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || error.message);
+    }
   },
 );
-
-// Update a rented gear
-// export const rentGearUpdate = createAsyncThunk(
-//   'gears/rentGearUpdate',
-//   async ({ gearId, rentalId, rentalData }, { getState, rejectWithValue }) => {
-//     if (!gearId || !rentalId) {
-//       return rejectWithValue('Gear ID or Rental ID is missing');
-//     }
-
-//     const { token } = getState().auth;
-//     const response = await axios.put(
-//       `${BASE_URL}/gears/${gearId}/rentals/${rentalId}`,
-//       { rental: rentalData },
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           'Content-Type': 'application/json',
-//         },
-//       },
-//     );
-//     return response.data;
-//   },
-// );
 
 // Cancel rent
 export const cancelRentGear = createAsyncThunk(
@@ -148,7 +135,7 @@ const gearSlice = createSlice({
       })
       .addCase(rentGear.rejected, (state, action) => {
         state.rentStatus = 'failed';
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
       })
 
       // Cancel Rent
@@ -166,50 +153,6 @@ const gearSlice = createSlice({
       })
       .addCase(cancelRentGear.rejected, (state, action) => {
         state.rentStatus = 'failed';
-        state.error = action.error.message;
-      })
-
-      // Delete Gear
-      .addCase(deleteGear.pending, (state) => {
-        state.deleteStatus = 'loading';
-      })
-      .addCase(deleteGear.fulfilled, (state, action) => {
-        state.deleteStatus = 'succeeded';
-        state.gears = state.gears.filter(
-          (gear) => gear.id !== action.payload.id,
-        );
-      })
-      .addCase(deleteGear.rejected, (state, action) => {
-        state.deleteStatus = 'failed';
-        state.error = action.error.message;
-      })
-
-      // Update Gear
-      .addCase(updateGear.pending, (state) => {
-        state.updateStatus = 'loading';
-      })
-      .addCase(updateGear.fulfilled, (state, action) => {
-        state.updateStatus = 'succeeded';
-        const index = state.gears.findIndex((gear) => gear.id === action.payload.id);
-        if (index !== -1) {
-          state.gears[index] = action.payload;
-        }
-      })
-      .addCase(updateGear.rejected, (state, action) => {
-        state.updateStatus = 'failed';
-        state.error = action.error.message;
-      })
-
-      // Create Gear
-      .addCase(createGear.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(createGear.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.gears.push(action.payload);
-      })
-      .addCase(createGear.rejected, (state, action) => {
-        state.status = 'failed';
         state.error = action.error.message;
       });
   },
