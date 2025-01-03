@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal'; // Modal import
 import { fetchRentals, cancelRental, updateRental } from '../../Redux/Reducers/rentalSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './rentals.scss';
 import RentalEditForm from './rentalEditForm';
-import ReceiptModal from './ReceiptModal'; // Import the Receipt Modal component
+import Receipt from '../Receipt/RentingReceipt'; // Assuming you have a Receipt component for rendering the receipt
 
 const Rentals = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate hook for navigation
+  // const navigate = useNavigate(); // Initialize useNavigate hook for navigation
   const { rentals, status, error } = useSelector((state) => state.rentals);
   const currentUser = useSelector((state) => state.auth.currentUser) || {};
 
   const [selectedRental, setSelectedRental] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [isReceiptOpen, setIsReceiptOpen] = useState(false); // New state for receipt modal
   const [transactionIdSearch, setTransactionIdSearch] = useState('');
   const [searchedRentals, setSearchedRentals] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const canUpdateRental = currentUser?.role === 'admin' || currentUser?.role === 'manager';
   const canCancelRental = currentUser?.role === 'admin';
+
+  // State for the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch the current user and rentals
   useEffect(() => {
@@ -37,7 +40,9 @@ const Rentals = () => {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchRentals());
+      dispatch(fetchRentals()).then(() => {
+        console.log('Fetched Rentals:', rentals);
+      });
     }
   }, [status, dispatch]);
 
@@ -72,11 +77,6 @@ const Rentals = () => {
     dispatch(cancelRental(rentalId));
   };
 
-  const handleEdit = (rental) => {
-    setSelectedRental(rental);
-    setIsEditing(true);
-  };
-
   const handleUpdate = () => {
     if (!selectedRental) {
       console.error('No rental selected for update');
@@ -93,14 +93,21 @@ const Rentals = () => {
     setSelectedRental(null);
   };
 
-  // Handle Row Click (Navigate to Receipt Page)
-  const handleRowClick = (rentalId) => {
-    if (rentalId) {
-      setIsReceiptOpen(true); // Open the receipt modal on row click
-      navigate(`/receiptModal/${rentalId}`);
-    } else {
-      console.warn('Rental ID is missing. Navigation skipped.');
-    }
+  const handleEdit = (rental) => {
+    console.log('Editing Rental:', rental);
+    setSelectedRental(rental);
+    setIsEditing(true);
+  };
+
+  const handleRowClick = (rental) => {
+    console.log('Clicked Rental Row:', rental);
+    setSelectedRental(rental);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRental(null);
   };
 
   return (
@@ -149,7 +156,7 @@ const Rentals = () => {
             searchedRentals.map((rental) => (
               <tr
                 key={rental.id}
-                onClick={() => handleRowClick(rental.id)} // Handle row click here
+                onClick={() => handleRowClick(rental)} // Handle row click here
                 style={{ cursor: 'pointer' }}
               >
                 <td>{rental.id}</td>
@@ -196,10 +203,20 @@ const Rentals = () => {
         </tbody>
       </table>
 
-      {/* Receipt Modal */}
-      {isReceiptOpen && selectedRental && (
-        <ReceiptModal rental={selectedRental} onClose={() => setIsReceiptOpen(false)} />
-      )}
+      {/* Modal for Receipt */}
+      <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal} contentLabel="Receipt Modal">
+        <h2>
+          Receipt for Renting #
+          {selectedRental?.payment_ref_id}
+        </h2>
+        {selectedRental ? (
+          <Receipt booking={selectedRental} />
+        ) : (
+          <div>No rental selected for receipt.</div>
+        )}
+
+        <button type="button" onClick={handleCloseModal}>Close</button>
+      </Modal>
     </div>
   );
 };

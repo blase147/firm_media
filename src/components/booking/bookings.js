@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Ensure proper import
+// import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal'; // Modal import
 import { fetchBookings, cancelBooking } from '../../Redux/Reducers/bookingSlice';
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
-import BookingEditForm from './bokingEditForm'; // Import the new component
-import './bookings.scss'; // Import the SCSS file
+import BookingEditForm from './bokingEditForm';
+import './bookings.scss';
+import Receipt from '../Receipt/BookingReceipt'; // Assuming you have a Receipt component for rendering the receipt
 
 const Bookings = (userRole) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Ensure this is declared correctly
+  // const navigate = useNavigate();
 
   const { bookings, status, error } = useSelector((state) => state.bookings);
   const currentUser = useSelector((state) => state.auth.currentUser) || {};
@@ -16,14 +18,13 @@ const Bookings = (userRole) => {
   const canUpdateBooking = currentUser?.role === 'admin' || userRole === 'manager';
   const canCancelBooking = currentUser?.role === 'admin';
 
-  // State to handle showing the edit form
   const [isEditing, setIsEditing] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
-
-  // State to handle the search query
   const [searchQuery, setSearchQuery] = useState('');
-
   const [loading, setLoading] = useState(true);
+
+  // State for the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch Bookings
   useEffect(() => {
@@ -32,49 +33,45 @@ const Bookings = (userRole) => {
     }
     dispatch(fetchCurrentUser())
       .then(() => {
-        setLoading(false); // Set loading to false after user data is fetched
-        console.log('Current User fetched:', currentUser); // Check if currentUser is being fetched correctly
-        console.log('User Role:', currentUser?.role); // Log the role value
+        setLoading(false);
       })
       .catch((error) => {
-        setLoading(false); // Stop loading even if there's an error
+        setLoading(false);
         console.error('Error fetching current user:', error);
       });
   }, [status, dispatch]);
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading message while fetching user data
+    return <div>Loading...</div>;
   }
 
-  // Handle Row Click (Navigate to Receipt Page)
-  const handleRowClick = (bookingId) => {
-    if (bookingId) {
-      navigate(`/receipt/${bookingId}`);
-    } else {
-      console.warn('Booking ID is missing. Navigation skipped.');
-    }
+  const handleRowClick = (booking) => {
+    // Open the modal and pass the selected booking data
+    setSelectedBooking(booking);
+    setIsModalOpen(true);
   };
 
-  // Handle Booking Cancellation
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedBooking(null);
+  };
+
   const handleCancelBooking = (id) => {
     if (window.confirm('Are you sure you want to cancel this booking?')) {
       dispatch(cancelBooking(id));
     }
   };
 
-  // Handle Booking Update
   const handleUpdateBooking = (booking) => {
     setIsEditing(true);
-    setSelectedBooking(booking); // Set the selected booking for editing
+    setSelectedBooking(booking);
   };
 
-  // Close the edit form
   const handleCloseEditForm = () => {
     setIsEditing(false);
     setSelectedBooking(null);
   };
 
-  // Filter bookings based on search query
   // eslint-disable-next-line max-len
   const filteredBookings = bookings.filter((booking) => booking.payment_ref_id?.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -92,7 +89,6 @@ const Bookings = (userRole) => {
     <div className="bookings-container">
       <h2>Bookings</h2>
 
-      {/* Search by Transaction ID */}
       <div className="search-container">
         <input
           type="text"
@@ -103,7 +99,6 @@ const Bookings = (userRole) => {
         />
       </div>
 
-      {/* Show the edit form if in editing state */}
       {isEditing && selectedBooking && (
         <BookingEditForm booking={selectedBooking} onClose={handleCloseEditForm} />
       )}
@@ -129,9 +124,7 @@ const Bookings = (userRole) => {
             filteredBookings.map((booking) => (
               <tr
                 key={booking.id}
-                onClick={(e) => {
-                  if (e.target.tagName !== 'BUTTON') handleRowClick(booking.id);
-                }}
+                onClick={() => handleRowClick(booking)} // Trigger modal on row click
                 style={{
                   cursor: booking?.service ? 'pointer' : 'not-allowed',
                   opacity: booking?.service ? 1 : 0.6,
@@ -158,20 +151,20 @@ const Bookings = (userRole) => {
                 </td>
                 <td>
                   {canUpdateBooking && (
-                  <button
-                    type="button"
-                    className="edit-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleUpdateBooking(booking);
-                    }}
-                  >
-                    Edit
-                  </button>
+                    <button
+                      type="button"
+                      className="edit-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleUpdateBooking(booking);
+                      }}
+                    >
+                      Edit
+                    </button>
                   )}
                 </td>
                 <td>
-                  { canCancelBooking && booking.status !== 'Cancelled' ? (
+                  {canCancelBooking && booking.status !== 'Cancelled' ? (
                     <button
                       type="button"
                       className="cancel-btn"
@@ -195,6 +188,16 @@ const Bookings = (userRole) => {
           )}
         </tbody>
       </table>
+
+      {/* Modal for Receipt */}
+      <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal} contentLabel="Receipt Modal">
+        <h2>
+          Receipt for Booking #
+          {selectedBooking?.payment_ref_id}
+        </h2>
+        {selectedBooking && <Receipt booking={selectedBooking} />}
+        <button type="button" onClick={handleCloseModal}>Close</button>
+      </Modal>
     </div>
   );
 };

@@ -7,7 +7,8 @@ import {
 import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import './gearList.scss';
 import RentButton from '../payment/RentingButton';
-import Receipt from './receipt';
+import Receipt from '../Receipt/RentingReceipt'; // Assuming you have a Receipt component for rendering the receipt
+// import Receipt from './receipt';
 import GearEditForm from './gearEditForm';
 
 Modal.setAppElement('#root'); // Accessibility requirement
