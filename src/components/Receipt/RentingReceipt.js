@@ -1,32 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types'; // Import PropTypes
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
+import { useDispatch, useSelector } from 'react-redux';
 import { jsPDF } from 'jspdf'; // Import jsPDF
 import './Receipt.scss';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 import logo from '../images/png/Logo Silver.png';
 
-const Receipt = () => {
-  const { rentalId } = useParams(); // Get rentalId from URL
-  const [rental, setRental] = useState(null);
-  const { rentals } = useSelector((state) => state.rentals); // Get rentals from Redux store
+const Receipt = ({ rental }) => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   useEffect(() => {
-    // Find the rental based on the rentalId
-    const rentalDetails = rentals.find((rental) => rental.id === parseInt(rentalId, 10));
-
-    if (rentalDetails) {
-      // Assuming gear and user are separate, fetch them as needed
-      const gearDetails = rentalDetails.gear || {};
-      const userDetails = rentalDetails.user || {};
-
-      setRental({
-        ...rentalDetails,
-        gear: gearDetails,
-        user: userDetails,
-      });
+    if (!currentUser) {
+      dispatch(fetchCurrentUser());
     }
-  }, [rentalId, rentals]);
+  }, [currentUser, dispatch]);
 
   if (!rental) {
     return <div>Rental details are unavailable. Please try again later.</div>;
@@ -38,6 +26,8 @@ const Receipt = () => {
     rental_duration: rentalDuration = 0,
     rental_end_datetime: rentalEnd = 'N/A',
     payment_ref_id: paymentRef = 'N/A',
+    gear = {},
+    user = {},
   } = rental;
 
   // Date formatting helper
@@ -60,10 +50,9 @@ const Receipt = () => {
     const doc = new jsPDF();
     doc.setFontSize(16);
     doc.text('Rental Receipt', 20, 20);
-
     doc.text(`Rental ID: ${rentalIdValue}`, 20, 30);
-    doc.text(`Gear ID: ${rental.gear?.id || 'N/A'}`, 20, 40);
-    doc.text(`Customer Name: ${rental.user?.full_name || 'N/A'}`, 20, 50);
+    doc.text(`Gear ID: ${gear?.id || 'N/A'}`, 20, 40);
+    doc.text(`Customer Name: ${user?.full_name || 'N/A'}`, 20, 50);
     doc.text(`Rental Date: ${formattedRentalDate}`, 20, 60);
     doc.text(`Rental Duration: ${rentalDuration} hour(s)`, 20, 70);
     doc.text(`Rental End: ${formattedRentalEndDate}`, 20, 80);
@@ -75,11 +64,13 @@ const Receipt = () => {
   // Share the receipt (Placeholder)
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({
-        title: 'Rental Receipt',
-        text: `Receipt for rental ${rentalIdValue}`,
-        url: window.location.href, // Shares the current URL
-      }).catch((error) => console.log('Error sharing:', error));
+      navigator
+        .share({
+          title: 'Rental Receipt',
+          text: `Receipt for rental ${rentalIdValue}`,
+          url: window.location.href,
+        })
+        .catch((error) => console.log('Error sharing:', error));
     } else {
       alert('Sharing is not supported on this device or browser.');
     }
@@ -99,11 +90,11 @@ const Receipt = () => {
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Service:</span>
-            <span className="receipt-value">{rental.gear?.id || 'N/A'}</span>
+            <span className="receipt-value">{gear?.id || 'N/A'}</span>
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Customer Name:</span>
-            <span className="receipt-value">{rental.user?.full_name || 'N/A'}</span>
+            <span className="receipt-value">{user?.full_name || 'N/A'}</span>
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Rental Date:</span>
@@ -113,6 +104,7 @@ const Receipt = () => {
             <span className="receipt-label">Rental Duration:</span>
             <span className="receipt-value">
               {rentalDuration}
+              {' '}
               hour(s)
             </span>
           </div>
@@ -122,9 +114,7 @@ const Receipt = () => {
           </div>
           <div className="receipt-row">
             <span className="receipt-label">Payment Ref:</span>
-            <span className="receipt-value">
-              {paymentRef}
-            </span>
+            <span className="receipt-value">{paymentRef}</span>
           </div>
         </div>
       </div>
@@ -143,6 +133,26 @@ const Receipt = () => {
   );
 };
 
-// Removed PropTypes as rental data is coming from Redux store and not passed via props.
+// ✅ **PropTypes Validation**
+Receipt.propTypes = {
+  rental: PropTypes.shape({
+    id: PropTypes.number,
+    rental_datetime: PropTypes.string,
+    rental_duration: PropTypes.number,
+    rental_end_datetime: PropTypes.string,
+    payment_ref_id: PropTypes.string,
+    gear: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+    user: PropTypes.shape({
+      full_name: PropTypes.string,
+    }),
+  }),
+};
+
+// ✅ **Default Props**
+Receipt.defaultProps = {
+  rental: null,
+};
 
 export default Receipt;

@@ -210,7 +210,7 @@ const Rentals = () => {
           {selectedRental?.payment_ref_id}
         </h2>
         {selectedRental ? (
-          <Receipt booking={selectedRental} />
+          <Receipt rental={selectedRental} />
         ) : (
           <div>No rental selected for receipt.</div>
         )}
