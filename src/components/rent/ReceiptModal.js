@@ -1,106 +1,116 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import './receipt.scss';
+import { jsPDF } from 'jspdf'; // Import jsPDF
+import './ReceiptModal.scss'; // Import the SCSS file for styling
 
-const ReceiptModal = ({ onClose }) => {
+const ReceiptModal = () => {
   const { rentalId } = useParams(); // Get rentalId from URL
-  const [rentalData, setRentalData] = useState(null); // Renamed state to avoid conflict
-  // eslint-disable-next-line max-len
-  const { rentals = [], gears = [] } = useSelector((state) => state.rentals); // Safe destructuring with default values
+  const [rental, setRental] = useState(null);
+  const { rentals } = useSelector((state) => state.rentals); // Get rentals from Redux store
 
   useEffect(() => {
-    if (!rentalId) return;
-
     // Find the rental based on the rentalId
     const rentalDetails = rentals.find((rental) => rental.id === parseInt(rentalId, 10));
-    setRentalData(rentalDetails);
+
+    if (rentalDetails) {
+      // Assuming gear and user are separate, fetch them as needed
+      const gearDetails = rentalDetails.gear || {};
+      const userDetails = rentalDetails.user || {};
+
+      setRental({
+        ...rentalDetails,
+        gear: gearDetails,
+        user: userDetails,
+      });
+    }
   }, [rentalId, rentals]);
 
-  if (!rentalData) {
-    return <div>Rental not found.</div>;
-  }
-
-  // Get the gear details using gearId
-  const gear = gears.find((gear) => gear.id === rentalData.gearId);
-
-  if (!gear) {
-    return <div>Gear not found.</div>;
+  if (!rental) {
+    return <div>Rental details are unavailable. Please try again later.</div>;
   }
 
   const {
-    user, rentalDatetime, rentalDuration, rentalEndDatetime, id,
-  } = rentalData;
-  const pricePerHour = gear?.pricePerHour || 0;
-  const cumulativePrice = pricePerHour * rentalDuration || 0;
+    id: rentalIdValue = 'N/A',
+    rental_datetime: rentalDate = 'N/A',
+    rental_duration: rentalDuration = 0,
+    rental_end_datetime: rentalEnd = 'N/A',
+    payment_ref_id: paymentRef = 'N/A',
+  } = rental;
 
+  // Date formatting helper
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return Number.isNaN(date.getTime()) ? 'N/A' : date.toLocaleString();
   };
 
-  const formattedRentalDate = rentalDatetime ? formatDate(rentalDatetime) : 'N/A';
-  const formattedRentalEndDate = rentalEndDatetime ? formatDate(rentalEndDatetime) : 'N/A';
+  const formattedRentalDate = rentalDate !== 'N/A' ? formatDate(rentalDate) : 'N/A';
+  const formattedRentalEndDate = rentalEnd !== 'N/A' ? formatDate(rentalEnd) : 'N/A';
 
+  // Print the receipt
   const handlePrint = () => {
     window.print();
   };
 
-  const handleDownload = () => {
-    alert('Download functionality not implemented yet!');
+  // Download receipt as PDF
+  const handleDownloadPDF = () => {
+    // eslint-disable-next-line new-cap
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text('Rental Receipt', 20, 20);
+
+    doc.text(`Rental ID: ${rentalIdValue}`, 20, 30);
+    doc.text(`Gear ID: ${rental.gear?.id || 'N/A'}`, 20, 40);
+    doc.text(`Customer Name: ${rental.user?.full_name || 'N/A'}`, 20, 50);
+    doc.text(`Rental Date: ${formattedRentalDate}`, 20, 60);
+    doc.text(`Rental Duration: ${rentalDuration} hour(s)`, 20, 70);
+    doc.text(`Rental End: ${formattedRentalEndDate}`, 20, 80);
+    doc.text(`Payment Ref: ${paymentRef}`, 20, 90);
+
+    doc.save('rental-receipt.pdf');
   };
 
+  // Share the receipt (Placeholder)
   const handleShare = () => {
-    alert('Share functionality not implemented yet!');
+    if (navigator.share) {
+      navigator.share({
+        title: 'Rental Receipt',
+        text: `Receipt for rental ${rentalIdValue}`,
+        url: window.location.href, // Shares the current URL
+      }).catch((error) => console.log('Error sharing:', error));
+    } else {
+      alert('Sharing is not supported on this device or browser.');
+    }
+  };
+
+  // Close modal
+  const handleClose = () => {
+    window.history.back(); // Or you can use a state to manage modal visibility
   };
 
   return (
-    <div className="receipt-modal">
-      <div className="modal-content">
-        <button type="button" className="close-btn" onClick={onClose}>X</button>
+    <div className="modal-overlay">
+      <div className="receipt-modal">
+        <button type="button" className="close-button" onClick={handleClose}>X</button>
+        <div className="logo">
+          {/* Optionally, add a logo */}
+          <img src="/path/to/logo.png" alt="Logo" />
+        </div>
         <h2>Rental Receipt</h2>
         <p>
           <strong>Rental ID:</strong>
           {' '}
-          {id}
+          {rentalIdValue}
         </p>
-        <img
-          src={gear?.imageUrl || 'https://via.placeholder.com/150'}
-          alt="Gear"
-          className="gear-image"
-        />
         <p>
           <strong>Gear ID:</strong>
           {' '}
-          {gear?.id || 'N/A'}
+          {rental.gear?.id || 'N/A'}
         </p>
         <p>
-          <strong>Gear Type:</strong>
+          <strong>Customer Name:</strong>
           {' '}
-          {gear?.gearType || 'N/A'}
-        </p>
-        <p>
-          <strong>Description:</strong>
-          {' '}
-          {gear?.description || 'N/A'}
-        </p>
-        <p>
-          <strong>Price per Hour:</strong>
-          {' '}
-          ₦
-          {pricePerHour.toLocaleString() || 'N/A'}
-        </p>
-        <p>
-          <strong>Cumulative Price:</strong>
-          {' '}
-          ₦
-          {cumulativePrice.toLocaleString()}
-        </p>
-        <p>
-          <strong>User Name:</strong>
-          {' '}
-          {user?.fullName || 'N/A'}
+          {rental.user?.full_name || 'N/A'}
         </p>
         <p>
           <strong>Rental Date:</strong>
@@ -115,22 +125,24 @@ const ReceiptModal = ({ onClose }) => {
           hour(s)
         </p>
         <p>
-          <strong>Rental End Date:</strong>
+          <strong>Rental End:</strong>
           {' '}
           {formattedRentalEndDate}
         </p>
+        <p>
+          <strong>Payment Ref:</strong>
+          {' '}
+          {paymentRef}
+        </p>
+
         <div className="receipt-buttons">
-          <button type="button" onClick={handlePrint}>Print</button>
-          <button type="button" onClick={handleDownload}>Download</button>
-          <button type="button" onClick={handleShare}>Share</button>
+          <button type="button" className="btn-print" onClick={handlePrint}>Print</button>
+          <button type="button" className="btn-download" onClick={handleDownloadPDF}>Download PDF</button>
+          <button type="button" className="btn-share" onClick={handleShare}>Share</button>
         </div>
       </div>
     </div>
   );
-};
-
-ReceiptModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
 };
 
 export default ReceiptModal;

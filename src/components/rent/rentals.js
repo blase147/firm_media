@@ -96,6 +96,7 @@ const Rentals = () => {
   // Handle Row Click (Navigate to Receipt Page)
   const handleRowClick = (rentalId) => {
     if (rentalId) {
+      setIsReceiptOpen(true); // Open the receipt modal on row click
       navigate(`/receiptModal/${rentalId}`);
     } else {
       console.warn('Rental ID is missing. Navigation skipped.');
@@ -197,7 +198,7 @@ const Rentals = () => {
 
       {/* Receipt Modal */}
       {isReceiptOpen && selectedRental && (
-        <ReceiptModal rental={selectedRental} onClose={setIsReceiptOpen} />
+        <ReceiptModal rental={selectedRental} onClose={() => setIsReceiptOpen(false)} />
       )}
     </div>
   );
