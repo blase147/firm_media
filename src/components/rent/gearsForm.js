@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGear } from '../../Redux/Reducers/createGearSlice';
 import GearsList from './gearList';
-import Rentals from './rentals';
 import './gearsForm.scss';
 
 const GearsForm = () => {
@@ -104,7 +103,6 @@ const GearsForm = () => {
         </form>
         <div id="equipment_card_container">
           <GearsList />
-          <Rentals />
         </div>
       </div>
     </div>

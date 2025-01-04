@@ -155,65 +155,65 @@ a {
   }
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure it's on top of other elements */
-}
+// .modal-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 1000; /* Ensure it's on top of other elements */
+// }
 
-.receipt-modal {
-  background-color: #fff;
-  color: black;
-  width: 70%; /* Set modal width to 40% */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  max-height: 90vh; /* Prevent modal from becoming too large */
-  overflow-y: auto; /* Allow scrolling if content overflows */
-  z-index: 1001; /* Ensure modal content is on top of overlay */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+// .receipt-modal {
+//   background-color: #fff;
+//   color: black;
+//   width: 70%; /* Set modal width to 40% */
+//   padding: 20px;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+//   max-height: 90vh; /* Prevent modal from becoming too large */
+//   overflow-y: auto; /* Allow scrolling if content overflows */
+//   z-index: 1001; /* Ensure modal content is on top of overlay */
+// h2 {
+//   text-align: center;
+//   margin-bottom: 20px;
+// }
 
-p {
-  font-size: 14px;
-  color: black;
-  margin: 10px 0;
-}
-}
+// p {
+//   font-size: 14px;
+//   color: black;
+//   margin: 10px 0;
+// }
+// }
 
-strong {
-  font-weight: bold;
-}
+// strong {
+//   font-weight: bold;
+// }
 
-.receipt-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+// .receipt-buttons {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 20px;
+// }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 30%; /* Ensure buttons do not overlap */
-}
+// button {
+//   padding: 10px 20px;
+//   font-size: 16px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+//   width: 30%; /* Ensure buttons do not overlap */
+// }
 
-.btn-print {
-  background-color: #4CAF50; /* Green for print */
-  color: white;
-}
+// .btn-print {
+//   background-color: #4CAF50; /* Green for print */
+//   color: white;
+// }
 
 .btn-print:hover {
   background-color: #45a049;

@@ -89,7 +89,7 @@ const Receipt = ({ rental }) => {
             <span className="receipt-value">{rentalIdValue}</span>
           </div>
           <div className="receipt-row">
-            <span className="receipt-label">Service:</span>
+            <span className="receipt-label">Gear ID:</span>
             <span className="receipt-value">{gear?.id || 'N/A'}</span>
           </div>
           <div className="receipt-row">
