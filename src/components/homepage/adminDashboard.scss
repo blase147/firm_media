@@ -34,10 +34,10 @@
   text-align: center;
 }
 
-button:focus {
+.tabs button:focus {
   outline: none;
 }
 
-button:hover {
+.tabs button:hover {
   background-color: #ddd;
 }

@@ -34,8 +34,8 @@ const RentButton = ({
   };
 
   return (
-    <div className="rentNowBtnCont">
-      <button className="rentNowBtn" type="button" onClick={handleClick}>
+    <div>
+      <button className="rent-btn" type="button" onClick={handleClick}>
         Rent Now
       </button>
       {isAvailable === false && <p>Gear is not available for the selected time and date.</p>}

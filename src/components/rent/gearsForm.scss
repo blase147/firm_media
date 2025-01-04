@@ -3,6 +3,7 @@
 #gearsFormContainer {
   background-color: #460505;
   color: rgb(241, 238, 238);
+  padding-top: 30px;
 
   & div {
     // width: 90%;
@@ -22,7 +23,7 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #0fb847;
+    background-color: #9d6a78;
     border: 1px solid #ddd;
     border-radius: 5px;
 
@@ -30,24 +31,24 @@
       color: gold;
     }
 
-    .gear_submit_btn {
-      // Button styles
-      button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 20px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        width: 100%;
-      }
-    }
+    // .gear_submit_btn {
+    //   // Button styles
+    //   button {
+    //     // background-color: #562222;
+    //     // color: #fff;
+    //     // border: none;
+    //     // padding: 20px 20px;
+    //     // cursor: pointer;
+    //     // border-radius: 3px;
+    //     // width: 100%;
+    //   }
+    // }
   }
 
   // Label styles
   label {
     display: block;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     font-weight: bold;
   }
 
@@ -61,7 +62,7 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
   }
 
   // Select styles
@@ -114,10 +115,11 @@
     }
   }
 
-  // #equipment_card_container {
+  #equipment_card_container {
   //  width: 90%;
-  //  background-color: #e310a7;
-  // }
+  margin-top: 30px;
+   background-color: #9e85bb;
+  }
 }
 
 /* Mobile Responsive Styles */

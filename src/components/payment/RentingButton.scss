@@ -1,10 +1,13 @@
 @import "../scss/config";
 
-// .rentNowBtnCont {
-//   width: 100%;
-//   margin: auto;
-//   .rentNowBtn {
-//     width: 100%;
-//     margin: auto;
-//   }
-// }
+.rent-btn {
+    background-color: rgb(9, 123, 64);
+    border-color: transparent;
+    // color:rgb(83, 4, 4);
+      
+    &:hover {
+    background-color: rgb(181, 11, 11);
+    // border-color: $button-hover-border-color;
+    color: rgb(17, 204, 229);
+     }
+}

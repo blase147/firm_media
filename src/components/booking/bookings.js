@@ -153,7 +153,7 @@ const Bookings = (userRole) => {
                   {canUpdateBooking && (
                     <button
                       type="button"
-                      className="edit-btn"
+                      className="update-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleUpdateBooking(booking);
@@ -167,7 +167,7 @@ const Bookings = (userRole) => {
                   {canCancelBooking && booking.status !== 'Cancelled' ? (
                     <button
                       type="button"
-                      className="cancel-btn"
+                      className="delete-btn"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleCancelBooking(booking.id);

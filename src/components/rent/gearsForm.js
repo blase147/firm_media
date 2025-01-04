@@ -95,7 +95,7 @@ const GearsForm = () => {
             </label>
           </div>
           <div className="gear_submit_btn">
-            <button type="submit" disabled={isLoading}>
+            <button className="submit-btn" type="submit" disabled={isLoading}>
               {isLoading ? 'Submitting...' : 'Submit'}
             </button>
           </div>

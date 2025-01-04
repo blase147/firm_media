@@ -175,7 +175,7 @@ const Rentals = () => {
                   {canUpdateRental && (
                     <button
                       type="button"
-                      className="edit-btn"
+                      className="update-btn"
                       onClick={(e) => { e.stopPropagation(); handleEdit(rental); }}
                     >
                       Edit
@@ -186,7 +186,7 @@ const Rentals = () => {
                   {canCancelRental && (
                     <button
                       type="button"
-                      className="cancel-btn"
+                      className="delete-btn"
                       onClick={(e) => { e.stopPropagation(); handleCancel(rental.id); }}
                     >
                       Cancel

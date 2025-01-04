@@ -208,6 +208,7 @@ const GearsList = () => {
                   Rental Date & Time:
                   <input
                     id={`datetime-${gear.id}`}
+                    className="date"
                     type="datetime-local"
                     value={rentalDetails[gear.id]?.rentalDatetime?.toISOString().slice(0, 16) || ''}
                     onChange={(e) => handleDateTimeChange(e, gear.id)}
@@ -229,7 +230,7 @@ const GearsList = () => {
                         className="update-btn"
                         onClick={() => openEditModal(gear.id)}
                       >
-                        Edit
+                        Update
                       </button>
                       )}
                       {canDeleteGear && (
@@ -268,7 +269,7 @@ const GearsList = () => {
         ) : (
           <p>No rental found with the given ID.</p>
         )}
-        <button type="button" onClick={closeModal}>
+        <button className="close-btn" type="button" onClick={closeModal}>
           Close
         </button>
       </Modal>
