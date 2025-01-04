@@ -78,6 +78,7 @@ $transition-speed: 0.3s;
 
   .form-actions {
     @include flex-center(row, space-between, center);
+
     margin-top: 1.5rem;
 
     button {

@@ -220,7 +220,7 @@ a {
 }
 
 .btn-download {
-  background-color: #008CBA; /* Blue for download */
+  background-color: #008cba; /* Blue for download */
   color: white;
 }
 
@@ -236,6 +236,7 @@ a {
 .btn-share:hover {
   background-color: #e6362c;
 }
+
 .btn-close {
   background-color: #999; /* Gray for close */
   color: white;
@@ -244,6 +245,7 @@ a {
 .btn-close:hover {
   background-color: #777;
 }
+
 .close-button {
   position: absolute;
   top: 155px;
@@ -267,55 +269,53 @@ a {
 }
 //  .edit-btn {
 //     background-color: rgb(244, 185, 6);
-//  } 
- 
- .delete-btn {
-    background-color: rgb(123, 9, 9);
-    border-color: transparent;
-    width: 100%;
-      
-    &:hover {
+//  }
+
+.delete-btn {
+  background-color: rgb(123, 9, 9);
+  border-color: transparent;
+  width: 100%;
+
+  &:hover {
     background-color: rgb(181, 11, 11);
     // border-color: $button-hover-border-color;
     color: rgb(255, 255, 255);
-     }
-    }
+  }
+}
 
-  .update-btn {
-    background-color: rgb(22, 41, 183);
-    border-color: transparent;
-    width: 100%;
-    // color:rgb(83, 4, 4);
-      
-    &:hover {
+.update-btn {
+  background-color: rgb(22, 41, 183);
+  border-color: transparent;
+  width: 100%;
+  // color:rgb(83, 4, 4);
+
+  &:hover {
     background-color: rgb(83, 4, 4);
     // border-color: $button-hover-border-color;
     color: rgb(25, 189, 7);
   }
+}
 
- }
+.submit-btn {
+  background-color: #562222;
+  border-color: transparent;
+  padding: 20px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 100%;
 
-   .submit-btn {
-        background-color: #562222;
-    border-color: transparent;
-        padding: 20px 20px;
-        cursor: pointer;
-        border-radius: 3px;
-        width: 100%;
-      
-    &:hover {
+  &:hover {
     background-color: rgb(83, 4, 4);
     border-color: rgb(25, 189, 7);
     color: rgb(25, 189, 7);
   }
+}
 
- }
+.search-btn {
+  background-color: rgb(34, 146, 17);
+}
 
-   .search-btn {
-    background-color: rgb(34, 146, 17);
- }
-
- .date {
+.date {
   width: 100%;
   padding: 10px;
- }
+}
