@@ -4,7 +4,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
+const BASE_API_URL = 'http://localhost:5000/api/v1/';
 
+// Login action
 export const login = createAsyncThunk('auth/login', async ({ email, password }) => {
   const response = await axios.post(`${BASE_URL}/login`, {
     user: { email, password },
@@ -19,6 +21,7 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
   throw new Error(response.statusText);
 });
 
+// Logout action
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem('token');
@@ -39,6 +42,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+// Fetch current user action
 export const fetchCurrentUser = createAsyncThunk('auth/fetchCurrentUser', async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem('token');
@@ -63,6 +67,31 @@ export const fetchCurrentUser = createAsyncThunk('auth/fetchCurrentUser', async 
   }
 });
 
+// Fetch all users action
+export const fetchUsers = createAsyncThunk('auth/fetchUsers', async (_, thunkAPI) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return thunkAPI.rejectWithValue('No token found');
+    }
+
+    const response = await axios.get(`${BASE_API_URL}/users`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      return response.data; // Return list of users
+    }
+
+    return thunkAPI.rejectWithValue('Request failed');
+  } catch (error) {
+    return thunkAPI.rejectWithValue('Request failed');
+  }
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -75,6 +104,7 @@ const authSlice = createSlice({
     error: null,
     loggedIn: !!localStorage.getItem('token'),
     currentUser: null,
+    users: [], // Add users to store the list of users
   },
   reducers: {
     setUserId: (state, { payload }) => {
@@ -88,6 +118,7 @@ const authSlice = createSlice({
       state.token = null;
       state.loggedIn = false;
       state.currentUser = null;
+      state.users = []; // Clear users when logging out
     },
   },
   extraReducers: (builder) => {
@@ -113,6 +144,7 @@ const authSlice = createSlice({
         state.role = null; // Ensure role is cleared when logged out
         state.token = null;
         state.currentUser = null;
+        state.users = []; // Clear users on logout
         localStorage.removeItem('token');
       })
       .addCase(logout.rejected, (state) => {
@@ -123,6 +155,7 @@ const authSlice = createSlice({
         state.role = null; // Ensure role is cleared when logged out
         state.token = null;
         state.currentUser = null;
+        state.users = []; // Clear users on logout
         localStorage.removeItem('token');
       })
       .addCase(fetchCurrentUser.pending, (state) => {
@@ -139,6 +172,18 @@ const authSlice = createSlice({
         state.loggedIn = true;
       })
       .addCase(fetchCurrentUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchUsers.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUsers.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.users = payload; // Store the list of users
+      })
+      .addCase(fetchUsers.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

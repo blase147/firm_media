@@ -17,7 +17,7 @@ const Nav = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(fetchCurrentUser());
+      dispatch(fetchCurrentUser()); // Fetch the user details after authentication
     }
   }, [dispatch, isAuthenticated]);
 
@@ -41,7 +41,7 @@ const Nav = () => {
   let navContent;
   if (isLoading) {
     navContent = <span>Loading...</span>;
-  } else if (isAuthenticated) {
+  } else if (isAuthenticated && currentUser) {
     navContent = (
       <div className="profile-container">
         <div
