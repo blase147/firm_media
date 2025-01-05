@@ -26,6 +26,7 @@ import BookingEditForm from './components/booking/bokingEditForm';
 import Receipt from './components/booking/receipt';
 import RentingReceipt from './components/Receipt/RentingReceipt';
 import AdminDashboard from './components/homepage/adminDashboard';
+import Roles from './components/Roles/roles';
 
 const BookingFormRoute = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -61,6 +62,7 @@ const App = () => (
         <Route path="/receipt/:bookingId" element={<Receipt />} />
         <Route path="/receipt/:rentalId" element={<RentingReceipt />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
+        <Route path="/roles" element={<Roles />} />
         <Route path="/oauth2callback" element={<OAuthCallback />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>

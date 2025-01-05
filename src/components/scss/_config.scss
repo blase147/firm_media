@@ -71,7 +71,7 @@ $page-background-color: #230b0b; // Page background color
 $input-border: 1px solid gold; // Input border
 $input-background-color: transparent; // Input background color
 $input-padding: 15px 20px; // Input padding
-$input-width: 60%; // Input width
+$input-width: 100%; // Input width
 
 // Button Properties
 $button-background-color: transparent; // Button background color
@@ -83,11 +83,11 @@ $button-border: 2px solid gold; // Button border
 $button-hover-background-color: gold; // Button background color on hover
 $button-hover-border-color: #fff; // Button border color on hover
 $button-hover-text-color: #000; // Button text color on hover
-$button-width: 200px; // Button width
+$button-width: 100%; // Button width
 $button-margin-top-bottom: 5px 0;
 
 // Button styles
-button {
+.main-btn {
   // background-color: $button-background-color;
   color: $button-text-color;
   border-radius: $button-border-radius;
@@ -98,6 +98,44 @@ button {
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
   width: $button-width;
+  color: $button-text-color;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+    border-color: $button-hover-border-color;
+    color: $button-hover-text-color;
+  }
+}
+
+button {
+  background-color: $button-background-color;
+  padding: $button-padding;
+  font-size: $button-font-size;
+  border: $button-border;
+  margin: $button-margin-top-bottom;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  width: $button-width;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+    border-color: $button-hover-border-color;
+    color: $button-hover-text-color;
+  }
+}
+
+.button {
+  background-color: $button-background-color;
+  color: $button-text-color;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  font-size: $button-font-size;
+  border: $button-border;
+  margin: $button-margin-top-bottom;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  width: $button-width;
+  color: $button-text-color;
 
   &:hover {
     background-color: $button-hover-background-color;
@@ -275,6 +313,8 @@ a {
   background-color: rgb(123, 9, 9);
   border-color: transparent;
   width: 100%;
+  border-radius: $button-border-radius;
+  color: $button-text-color;
 
   &:hover {
     background-color: rgb(181, 11, 11);
@@ -287,7 +327,8 @@ a {
   background-color: rgb(22, 41, 183);
   border-color: transparent;
   width: 100%;
-  // color:rgb(83, 4, 4);
+  border-radius: $button-border-radius;
+  color: $button-text-color;
 
   &:hover {
     background-color: rgb(83, 4, 4);
@@ -303,6 +344,8 @@ a {
   cursor: pointer;
   border-radius: 3px;
   width: 100%;
+  border-radius: $button-border-radius;
+  color: $button-text-color;
 
   &:hover {
     background-color: rgb(83, 4, 4);
@@ -317,5 +360,6 @@ a {
 
 .date {
   width: 100%;
-  padding: 10px;
+  max-width: 100%; /* Ensures it doesn't exceed parent container */
+  padding: 8px;
 }

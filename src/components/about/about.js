@@ -58,7 +58,7 @@ const About = () => {
           {/* Conditionally render the button based on the current pathname */}
           {!isAboutDetailsPage && (
             <Link to="/aboutDetails">
-              <button className="button" type="button">
+              <button className="main-btn" type="button">
                 Discover more
               </button>
             </Link>

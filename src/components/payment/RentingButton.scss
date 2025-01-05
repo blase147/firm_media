@@ -4,6 +4,9 @@
   background-color: rgb(9, 123, 64);
   border-color: transparent;
   // color:rgb(83, 4, 4);
+  width: 100%;
+  box-sizing: border-box; /* Padding and border included in width */
+  color: $button-text-color;
 
   &:hover {
     background-color: rgb(181, 11, 11);

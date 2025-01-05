@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGear } from '../../Redux/Reducers/createGearSlice';
 import GearsList from './gearList';
 import './gearsForm.scss';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
 
 const GearsForm = () => {
   const [name, setName] = useState('');
@@ -13,6 +14,14 @@ const GearsForm = () => {
 
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.addGear);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const isAuthenticated = useSelector((state) => state.auth.loggedIn);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, isAuthenticated]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +37,28 @@ const GearsForm = () => {
     dispatch(createGear(formData));
   };
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'morning';
+    if (hour < 18) return 'afternoon';
+    return 'evening';
+  };
+
   return (
     <div id="gearsFormContainer">
+      <p>
+        Good
+        {' '}
+        {getGreeting()}
+        {' '}
+        my creator
+        {' '}
+        {currentUser?.full_name}
+        .
+        {' '}
+        It&apos;s good to see you here again.
+      </p>
+      <h1>Add some gears here...</h1>
       <div>
         <form onSubmit={handleSubmit} className="gears_form">
           <div>
@@ -57,8 +86,7 @@ const GearsForm = () => {
                 <option value="drone">Drone</option>
                 <option value="light">Light</option>
                 <option value="tripod">Tripod</option>
-                <option value="Microphone">Microphone</option>
-                {/* Add other options as needed */}
+                <option value="microphone">Microphone</option>
               </select>
             </label>
           </div>

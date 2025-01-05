@@ -4,6 +4,9 @@
   background-color: #460505;
   color: rgb(241, 238, 238);
   padding-top: 30px;
+    h1, p {
+      margin: 20px;
+    }
 
   & div {
     // width: 90%;
@@ -118,7 +121,8 @@
   #equipment_card_container {
     //  width: 90%;
     margin-top: 30px;
-    background-color: #9e85bb;
+      padding-top: 30px;
+background-color: #772f33;
   }
 }
 

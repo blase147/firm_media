@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import GearsForm from '../rent/gearsForm';
 import Rentals from '../rent/rentals';
 import Bookings from '../booking/bookings';
+import Roles from '../Roles/roles';
 import './adminDashboard.scss';
 import Nav from '../nav/nav';
 import FooterBody from '../footer body/footer_body';
@@ -14,80 +15,84 @@ const AdminTabsInterface = () => {
   });
   const [rentalsData, setRentalsData] = useState([]);
   const [bookingsData, setBookingsData] = useState([]);
-  const [loadingRentals, setLoadingRentals] = useState(true);
-  const [loadingBookings, setLoadingBookings] = useState(true);
+  const [rolesData, setRolesData] = useState([]); // Added rolesData state
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const BASE_URL = 'http://localhost:5000/api/v1'; // Adjust to match your backend URL
+  const BASE_URL = 'http://localhost:5000/api/v1';
 
   // Fetch Rentals Data
   const fetchRentalsData = async () => {
-    setLoadingRentals(true);
     try {
-      const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-      const rentalsRes = await fetch(`${BASE_URL}/rentals`, {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${BASE_URL}/rentals`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-
-      if (!rentalsRes.ok) throw new Error('Failed to fetch rentals data');
-      const rentalsData = await rentalsRes.json();
-      setRentalsData(rentalsData); // Update state with rentals data
-      setInsight((prevState) => ({
-        ...prevState,
-        totalRentals: Array.isArray(rentalsData) ? rentalsData.length : 0,
-      }));
+      if (!res.ok) throw new Error('Failed to fetch rentals data');
+      const data = await res.json();
+      setRentalsData(data);
+      setInsight((prev) => ({ ...prev, totalRentals: data.length || 0 }));
       setError(null);
     } catch (err) {
-      console.error('Error fetching rentals:', err.message);
       setError('Failed to load rentals. Please try again.');
-    } finally {
-      setLoadingRentals(false);
     }
   };
 
   // Fetch Bookings Data
   const fetchBookingsData = async () => {
-    setLoadingBookings(true);
     try {
       const token = localStorage.getItem('token');
-      const bookingsRes = await fetch(`${BASE_URL}/bookings`, {
+      const res = await fetch(`${BASE_URL}/bookings`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-
-      if (!bookingsRes.ok) {
-        throw new Error(`Failed to fetch bookings: ${bookingsRes.statusText}`);
-      }
-      const bookingsData = await bookingsRes.json();
-      console.log('Bookings Data:', bookingsData); // Inspect the data
-
-      setBookingsData(bookingsData.data || []); // Set bookings data
-      setInsight({
-        totalBookings: Array.isArray(bookingsData.data) ? bookingsData.data.length : 0,
-      });
+      if (!res.ok) throw new Error('Failed to fetch bookings data');
+      const data = await res.json();
+      setBookingsData(data.data || []);
+      setInsight((prev) => ({ ...prev, totalBookings: data.data?.length || 0 }));
       setError(null);
     } catch (err) {
-      console.error('Error fetching bookings:', err.message);
       setError('Failed to load bookings. Please try again.');
-    } finally {
-      setLoadingBookings(false);
     }
   };
 
-  // Fetch Data on Component Mount
+  // Fetch Roles Data
+  const fetchRolesData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${BASE_URL}/roles`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!res.ok) throw new Error('Failed to fetch roles data');
+      const data = await res.json();
+      setRolesData(data);
+      setError(null);
+    } catch (err) {
+      setError('Failed to load roles. Please try again.');
+    }
+  };
+
+  // Fetch all data on mount
   useEffect(() => {
-    fetchRentalsData();
-    fetchBookingsData();
+    (async () => {
+      setLoading(true);
+      await Promise.all([fetchRentalsData(), fetchBookingsData(), fetchRolesData()]);
+      setLoading(false);
+    })();
   }, []);
 
   return (
     <div className="admin-tabs-container">
       <Nav />
+
       {/* Tab Buttons */}
       <div className="tabs">
         <button
@@ -118,6 +123,13 @@ const AdminTabsInterface = () => {
         >
           Bookings
         </button>
+        <button
+          type="button"
+          className={activeTab === 'roles' ? 'active' : ''}
+          onClick={() => setActiveTab('roles')}
+        >
+          Manage Roles
+        </button>
       </div>
 
       {/* Tab Content */}
@@ -125,9 +137,9 @@ const AdminTabsInterface = () => {
         {activeTab === 'insight' && (
           <div className="insight-tab">
             <h2>Data Insight</h2>
-            {(loadingRentals || loadingBookings) && <p>Loading insights...</p>}
+            {loading && <p>Loading insights...</p>}
             {error && <p className="error-message">{error}</p>}
-            {!loadingRentals && !loadingBookings && !error && (
+            {!loading && !error && (
               <>
                 <p>
                   <strong>Total Rentals:</strong>
@@ -147,7 +159,9 @@ const AdminTabsInterface = () => {
         {activeTab === 'gears' && <GearsForm />}
         {activeTab === 'rentals' && <Rentals rentalsData={rentalsData} />}
         {activeTab === 'bookings' && <Bookings bookingsData={bookingsData} />}
+        {activeTab === 'roles' && <Roles rolesData={rolesData} />}
       </div>
+
       <FooterBody />
     </div>
   );
