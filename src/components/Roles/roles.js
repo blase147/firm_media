@@ -55,9 +55,10 @@ const Roles = () => {
     }
   };
 
-  // Filter users based on the search query (email search)
-  // eslint-disable-next-line max-len
-  const filteredUsers = users?.filter((user) => user.email.toLowerCase().includes(searchQuery.toLowerCase()));
+  // Ensure users.data is an array before filtering
+  const filteredUsers = Array.isArray(users?.data)
+    ? users.data.filter((user) => user.email.toLowerCase().includes(searchQuery.toLowerCase()))
+    : [];
 
   if (isLoading) return <p>Loading users...</p>;
   if (error) {
@@ -93,7 +94,7 @@ const Roles = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers && filteredUsers.length > 0 ? (
+          {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.name}</td>
@@ -106,8 +107,7 @@ const Roles = () => {
                   >
                     <option value="admin">Admin</option>
                     <option value="manager">Manager</option>
-                    <option value="editor">Editor</option>
-                    <option value="guest">Guest</option>
+                    <option value="user">User</option>
                   </select>
                 </td>
               </tr>
