@@ -3,60 +3,71 @@
 @media only screen and (min-width: 769px) {
   #about {
     display: flex;
-    justify-content: first baseline;
-    align-content: first baseline;
-    width: 75%;
+    width: 90%;
     margin: auto;
-    // gap: 20px;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    margin-top: 100px;
 
     .grid-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      width: 60%;
-      animation: fadeInSlideUp 1s ease-in-out;
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Two equal columns
+      grid-template-rows: repeat(2, 300px); // Two rows with equal height
+      gap: 10px; // Space between grid items
+      margin-bottom: 100px;
 
-      #grid1 {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 45%;
-        max-height: 20vh;
+      .grid-item {
+        overflow: hidden;
+
+        img.responsive_image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
       }
 
-      #grid2 {
-        display: flex;
-        flex-direction: column;
-        width: 45%;
-        max-height: 41vh;
-        // background-color: rgb(12, 248, 228);
+      // Left Column - Top Image
+      .grid-left-top {
+        grid-column: 1 / 2; // First column
+        grid-row: 1 / 2; // First row
       }
 
-      .responsive_image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the entire container and crops the excess */
+      // Left Column - Bottom Image
+      .grid-left-bottom {
+        grid-column: 1 / 2; // First column
+        grid-row: 2 / 3; // Second row
+      }
+
+      // Right Column - One Image Spanning Both Rows
+      .grid-right {
+        grid-column: 2 / 3; // Second column
+        grid-row: 1 / 3; // Spans both rows
       }
     }
 
     #about_text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: first baseline;
-      width: 50%;
-      text-align: left;
-      // background-color: green;
-      margin-top: 0;
-      padding-top: 0;
+      width: 70%;
+      margin-top: 2rem;
+      text-align: center;
 
-      h5 {
-        margin-top: 0;
-      }
+      // h5 {
+      //   font-size: 1.2rem;
+      //   color: #555;
 
-      animation: slideInFromLeft 1s ease-in-out;
+      //   span {
+      //     font-weight: bold;
+      //   }
+      // }
+
+      // h2 {
+      //   font-size: 2rem;
+      //   margin: 10px 0;
+      // }
+
+      // p {
+      //   font-size: 1rem;
+      //   line-height: 1.5;
+      //   margin-bottom: 20px;
+      // }
     }
   }
 }

@@ -17,7 +17,7 @@ const HomeBanner = ({
   return (
     <div id="banner_cont">
       <div id="HomeBannerContainer" style={bannerStyle}>
-        <div className="h5_h2_p">
+        <div>
           <Nav />
           <div>
             <div id="banner">
@@ -27,7 +27,9 @@ const HomeBanner = ({
                   <h5>{welcome}</h5>
                   <h1>{heading}</h1>
                   <p>{paragraph}</p>
-                  {showButton && <button className="button" type="button">{button}</button>}
+                  <div className="button-container">
+                    {showButton && <button className="main-btn" type="button">{button}</button>}
+                  </div>
                 </div>
               </div>
             </div>

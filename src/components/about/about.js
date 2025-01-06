@@ -15,23 +15,25 @@ const About = () => {
     <div>
       <div id="about">
         <div className="grid-container">
-          <div id="grid1">
+          <div className="grid-item grid-left-top">
             <img
               className="responsive_image"
               src={aboutImage1}
-              alt="aboutImage"
+              alt="aboutImage1"
             />
+          </div>
+          <div className="grid-item grid-left-bottom">
             <img
               className="responsive_image"
               src={aboutImage3}
-              alt="aboutImage"
+              alt="aboutImage3"
             />
           </div>
-          <div id="grid2">
+          <div className="grid-item grid-right">
             <img
               className="responsive_image"
               src={aboutImage2}
-              alt="aboutImage"
+              alt="aboutImage2"
             />
           </div>
         </div>
@@ -58,9 +60,11 @@ const About = () => {
           {/* Conditionally render the button based on the current pathname */}
           {!isAboutDetailsPage && (
             <Link to="/aboutDetails">
-              <button className="main-btn" type="button">
-                Discover more
-              </button>
+              <div className="button-container">
+                <button className="main-btn" type="button">
+                  Discover more
+                </button>
+              </div>
             </Link>
           )}
         </div>

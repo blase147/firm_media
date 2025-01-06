@@ -2,8 +2,33 @@
 
 @media only screen and (min-width: 768px) {
   #banner_cont {
+    h1 {
+      font-size: 2.3em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 0.7em;
+    }
+
+    h5 {
+      font-size: 1.2em;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.72em;
+    }
+
     #banner {
-      height: 50vh;
+      // background-color: green;
+      height: 70vh;
       animation: fadeInSlideUp 1s ease-in-out;
 
       #social_icons_container {
@@ -12,12 +37,12 @@
         > div {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 20px;
         }
 
         position: absolute;
-        top: 8%;
-        left: -7%;
+        top: 7%;
+        left: -12%;
         animation: slideInFromLeft 1s ease-in-out;
       }
     }

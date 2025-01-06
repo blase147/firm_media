@@ -1,14 +1,15 @@
 @import "../scss/config";
 
+/* Desktop View */
 @media only screen and (min-width: 768px) {
   #banner_cont {
     #HomeBannerContainer {
       background-color: #230b0b;
       color: white;
-      height: 88vh;
+      height: 100vh;
 
       #banner {
-        margin-top: 90px;
+        margin-top: 70px;
 
         #HomeBannerText {
           display: flex;
@@ -19,22 +20,23 @@
           position: relative;
           top: 10%;
           left: 20%;
+          font-size: clamp(1.5rem, 2vw, 3rem); /* Dynamically scales between sizes */
+          line-height: 1.4;
         }
       }
     }
   }
 }
 
+/* Mobile View */
 @media only screen and (max-width: 768px) {
   #banner_cont {
     #HomeBannerContainer {
       display: flex;
       flex-direction: column;
       background-color: #230b0b;
-      // padding-bottom: 100px;
-      // opacity: 0.9;
       color: white;
-      // margin-bottom: 100px;
+
       #banner {
         #HomeBannerText {
           display: flex;
@@ -43,6 +45,8 @@
           text-align: center;
           padding: 20px;
           animation: slideInFromLeft 1s ease-in-out;
+          font-size: clamp(1.2rem, 5vw, 2rem); /* Adjusts text size for smaller screens */
+          line-height: 1.3;
         }
       }
 

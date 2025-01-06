@@ -112,7 +112,7 @@ td {
     cursor: pointer;
     transition: background 0.3s ease;
     color: #fff;
-  border-radius: $button-border-radius;
+    border-radius: $button-border-radius;
 
     &:hover {
       background-color: rgb(94, 6, 6);
