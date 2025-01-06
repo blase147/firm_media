@@ -2,6 +2,7 @@ import React from 'react';
 import './footer_body.scss';
 import { faEnvelope, faPhone, faLocation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import footerImage from '../images/jpeg/footer_image.jpg';
 import SocialIcons from '../social icons/social_icons';
 import Logo from '../images/png/Logo.png';
@@ -12,23 +13,17 @@ const FooterBody = () => {
     backgroundImage: `url(${footerImage})`, // Set the background image dynamically
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    // height: '113vh',
   };
+
   const overlayStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    // height: '100%',
-    // width: '100%',
-    // backgroundSize: 'cover',
-    // backgroundPosition: 'center',
   };
 
   return (
     <div id="footer_body" style={footerImageStyle}>
       <div className="footer_body_content" style={overlayStyle}>
-        {/* <div id="newsletter">
-          <Newsletter />
-        </div> */}
         <div id="footer1">
+          {/* Company Info */}
           <div id="company_info" className="footer1_item">
             <img src={Logo} alt="company-logo" />
             <p>
@@ -37,10 +32,12 @@ const FooterBody = () => {
               medium-sized businesses.
             </p>
           </div>
+
+          {/* Services */}
           <div id="footer1_services" className="footer1_item">
             <h3>Services</h3>
             <ul>
-              <li>Photogrphy</li>
+              <li>Photography</li>
               <li>Videography</li>
               <li>Drone Shot</li>
               <li>Studio Photo</li>
@@ -48,40 +45,61 @@ const FooterBody = () => {
               <li>Post Production</li>
             </ul>
           </div>
+
+          {/* About Us with Links */}
           <div id="footer1_about" className="footer1_item">
             <h3>About Us</h3>
             <ul>
-              <li>About Us</li>
-              <li>Our Team</li>
-              <li>Contact Us</li>
-              <li>FAQ</li>
+              <li>
+                <Link to="/aboutDetails">About Us</Link>
+              </li>
+              <li>
+                <Link to="/team">Our Team</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/faq">FAQ</Link>
+              </li>
             </ul>
           </div>
+
+          {/* Contact Info */}
           <div id="footer1_contact" className="footer1_item">
             <h3>Company Info</h3>
             <div>
               <p>
                 <FontAwesomeIcon icon={faEnvelope} />
-                <span>Email: example@example.com</span>
+                {' '}
+                <span>Email: info@gmt.com</span>
               </p>
               <p>
                 <FontAwesomeIcon icon={faPhone} />
-                <span>Phone: +1234567890</span>
+                {' '}
+                <span>Phone: +234 803 534 4730</span>
               </p>
               <p>
                 <FontAwesomeIcon icon={faLocation} />
-                <span>286 King Roman, New York</span>
+                {' '}
+                <span>
+                  Block 4, World Bank, Plot 4, Area A Sam MbaKwe Ave,
+                  beside Dreamland Hotel, New Owerri, Owerri West 046000,
+                  Owerri 460000, Imo
+                </span>
               </p>
             </div>
             <SocialIcons />
           </div>
         </div>
+
+        {/* Footer Disclaimer and Copyright */}
         <div id="copyright">
           <Copyright />
           <div id="disclaimer">
-            <p>Disclaimer</p>
-            |
-            <p>Privacy Policy</p>
+            <Link to="/disclaimer">Disclaimer</Link>
+            {' | '}
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
         </div>
       </div>

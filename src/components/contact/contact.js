@@ -77,7 +77,9 @@ const Contact = () => (
             </span>
           </h3>
           <hr />
-          <p>286 King Roman, New York</p>
+          <p>
+            Block 4, Sam MbaKwe Ave
+          </p>
         </div>
         <div className="contactCard">
           <h3>

@@ -1,0 +1,25 @@
+@import "../scss/config";
+
+
+.team-container {
+  text-align: center;
+  padding: 20px;
+
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .team-member {
+      text-align: center;
+
+      img {
+        border-radius: 50%;
+      }
+
+      h3 {
+        margin-top: 10px;
+      }
+    }
+  }
+}

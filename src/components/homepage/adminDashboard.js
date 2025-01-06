@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import GearsForm from '../rent/gearsForm';
 import Rentals from '../rent/rentals';
 import Bookings from '../booking/bookings';
 import Roles from '../Roles/roles';
 import './adminDashboard.scss';
-import Nav from '../nav/nav';
 import FooterBody from '../footer body/footer_body';
+import Newsletter from '../newsletter/newsletter';
+import { fetchCurrentUser } from '../../Redux/Reducers/authSlice';
+import Nav from '../nav/nav';
 
 const AdminTabsInterface = () => {
   const [activeTab, setActiveTab] = useState('insight');
@@ -18,8 +21,12 @@ const AdminTabsInterface = () => {
   const [rolesData, setRolesData] = useState([]); // Added rolesData state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const isAuthenticated = useSelector((state) => state.auth.loggedIn);
 
   const BASE_URL = 'http://localhost:5000/api/v1';
+
+  const dispatch = useDispatch();
 
   // Fetch Rentals Data
   const fetchRentalsData = async () => {
@@ -89,9 +96,32 @@ const AdminTabsInterface = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, isAuthenticated]);
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'morning';
+    if (hour < 18) return 'afternoon';
+    return 'evening';
+  };
+
   return (
     <div className="admin-tabs-container">
       <Nav />
+      <p>
+        Good
+        {' '}
+        {getGreeting()}
+        {' '}
+        {currentUser?.full_name}
+        .
+        {' '}
+        It&apos;s good to see you here again.
+      </p>
 
       {/* Tab Buttons */}
       <div className="tabs">
@@ -161,7 +191,7 @@ const AdminTabsInterface = () => {
         {activeTab === 'bookings' && <Bookings bookingsData={bookingsData} />}
         {activeTab === 'roles' && <Roles rolesData={rolesData} />}
       </div>
-
+      <Newsletter />
       <FooterBody />
     </div>
   );

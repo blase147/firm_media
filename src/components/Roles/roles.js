@@ -97,7 +97,7 @@ const Roles = () => {
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <tr key={user.id}>
-                <td>{user.name}</td>
+                <td>{user.full_name}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>

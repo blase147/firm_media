@@ -14,7 +14,6 @@ const GearsForm = () => {
 
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector((state) => state.addGear);
-  const currentUser = useSelector((state) => state.auth.currentUser);
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
 
   useEffect(() => {
@@ -37,28 +36,13 @@ const GearsForm = () => {
     dispatch(createGear(formData));
   };
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'morning';
-    if (hour < 18) return 'afternoon';
-    return 'evening';
-  };
-
   return (
     <div id="gearsFormContainer">
       <p>
-        Good
+        Oh here boss!
         {' '}
-        {getGreeting()}
-        {' '}
-        my creator
-        {' '}
-        {currentUser?.full_name}
-        .
-        {' '}
-        It&apos;s good to see you here again.
+        <h3>You can add some gears here....</h3>
       </p>
-      <h1>Add some gears here...</h1>
       <div>
         <form onSubmit={handleSubmit} className="gears_form">
           <div>
