@@ -111,8 +111,18 @@ const Rentals = () => {
   };
 
   return (
-    <div className="rentals-container">
+    <div className="table-container">
       <h2>Rentals</h2>
+
+      {/* Edit Form */}
+      {isEditing && selectedRental && (
+        <RentalEditForm
+          rental={selectedRental}
+          gear={selectedRental.gear}
+          onClose={handleCloseEditForm}
+          onUpdate={handleUpdate}
+        />
+      )}
 
       {/* Transaction ID search */}
       <div className="search-container">
@@ -124,16 +134,6 @@ const Rentals = () => {
           className="search-input"
         />
       </div>
-
-      {/* Edit Form */}
-      {isEditing && selectedRental && (
-        <RentalEditForm
-          rental={selectedRental}
-          gear={selectedRental.gear}
-          onClose={handleCloseEditForm}
-          onUpdate={handleUpdate}
-        />
-      )}
 
       {/* Rentals Table */}
       <table>

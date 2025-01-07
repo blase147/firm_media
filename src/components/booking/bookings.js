@@ -86,7 +86,7 @@ const Bookings = (userRole) => {
   }
 
   return (
-    <div className="bookings-container">
+    <div className="table-container">
       <h2>Bookings</h2>
 
       <div className="search-container">
@@ -97,13 +97,12 @@ const Bookings = (userRole) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
+        {isEditing && selectedBooking && (
+        <BookingEditForm booking={selectedBooking} onClose={handleCloseEditForm} />
+        )}
       </div>
 
-      {isEditing && selectedBooking && (
-        <BookingEditForm booking={selectedBooking} onClose={handleCloseEditForm} />
-      )}
-
-      <table className="b_table">
+      <table>
         <thead>
           <tr>
             <th>Ref ID</th>
