@@ -104,23 +104,24 @@ const AdminTabsInterface = () => {
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'morning';
-    if (hour < 18) return 'afternoon';
-    return 'evening';
+    if (hour < 12) return 'morning. Hope you had a good sleep';
+    if (hour < 18) return 'afternoon. How is your day going?';
+    return 'evening. How was your day?';
   };
 
   return (
     <div className="admin-tabs-container">
       <Nav />
       <p>
+        Hi there,
+        {' '}
+        {currentUser?.full_name}
+        {' '}
         Good
         {' '}
         {getGreeting()}
-        {' '}
-        {currentUser?.full_name}
         .
         {' '}
-        It&apos;s good to see you here again.
       </p>
 
       {/* Tab Buttons */}
